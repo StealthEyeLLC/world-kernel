@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+.vs/
+.vscode/
+artifacts/runtime/
+artifacts/postgres/
+# The integrity test deliberately corrupts its disposable blob in place.
+artifacts/preflight/evidence-store-test/
+evidence/blobs/
+*.user
+*.suo
+*.trx
+TestResults/

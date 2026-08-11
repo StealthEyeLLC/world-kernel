@@ -1,0 +1,189 @@
+{
+  "schema": "stealtheye-world-kernel-build001-prereg-v1",
+  "date": "2026-08-11",
+  "status": "candidate_preregistration_before_implementation",
+  "implementation_authorized_by_this_file": false,
+  "canonicalized": false,
+  "mission": "Test whether completely fresh ChatGPT invocations using structured provider-grounded temporal transition experience outperform equivalent fresh invocations using materially equivalent conventional episodic memory.",
+  "governing_constraints": {
+    "no_extra_safety_or_approval_layer": true,
+    "no_extra_guardrail_or_policy_engine": true,
+    "no_architecture_theater": true,
+    "no_separate_verifier_agent_or_pipeline": true,
+    "no_generic_receipt_or_action_ledger": true,
+    "persistent_transition_history_justification": "Only explicit world-learning episodes and epistemic records intrinsically required for prediction, outcome resolution, temporal belief reconstruction, and fresh-instance inheritance may persist."
+  },
+  "live_baselines": {
+    "eye_commit": "53948b74701f51c29c9322dfa9f017ba6b45f4a4",
+    "codeeye_commit": "1ca0f93d64bc20bccb3b96dbcda43a2232783609",
+    "eyebrowse_commit": "2e27f44ebd3522d0d26b036dc57f790535df3533",
+    "machine": "STEALTHEYELLC",
+    "dotnet_sdk_observed": "10.0.302",
+    "git_observed": "2.55.0.windows.3",
+    "chrome_descriptor_observed": "151.0.7922.109",
+    "portable_node_observed": "24.18.1",
+    "postgres_observed": "not_installed_or_not_discoverable_at_spec_time",
+    "liveness_rule": "live_probe_beats_persisted_descriptor"
+  },
+  "architecture": {
+    "primary_store": "PostgreSQL 18.x, experiment-owned on-demand process, no permanent Windows service",
+    "implementation_language_preference": ".NET 10 / C# unless a concrete implementation blocker is documented",
+    "eyes": ["CODEeye", "eyeBROWSE"],
+    "universal_entity": false,
+    "universal_state": false,
+    "universal_event": false,
+    "persistent_rules": false,
+    "persistent_capability_model": false,
+    "planner": false,
+    "active_experiment_engine": false,
+    "neural_world_model": false,
+    "vector_store": false,
+    "graph_database": false,
+    "distributed_broker": false,
+    "desktop_eye": false,
+    "multi_agent_swarm": false,
+    "primary_correspondence": "git:working_copy_of",
+    "repository_same_as_available": false
+  },
+  "semantic_actions": [
+    "git:create_local_commit",
+    "git:create_branch",
+    "git:push_ref",
+    "github:create_remote_commit",
+    "git:fetch_remote",
+    "git:integrate_fast_forward"
+  ],
+  "primary_arms": [
+    "cold",
+    "conventional_memory",
+    "structured"
+  ],
+  "primary_comparison": "structured_vs_conventional_memory",
+  "primary_metric": "configuration_block_mean_brier_loss",
+  "effect_target": {
+    "relative_brier_loss_reduction": 0.20,
+    "formula": "(mean_memory_brier - mean_structured_brier) / mean_memory_brier"
+  },
+  "statistical_analysis": {
+    "paired_by": "configuration_block",
+    "bootstrap_resamples": 10000,
+    "confidence_level": 0.95,
+    "randomization_test_alpha": 0.05,
+    "cold_comparison_primary": false
+  },
+  "history_fairness": {
+    "same_acquisition_episode_source_set": true,
+    "same_candidate_episode_ids_for_memory_and_structured": true,
+    "extra_llm_calls_for_structured": 0,
+    "candidate_max_inherited_tokens": 6000,
+    "candidate_max_inherited_utf8_bytes": 32768,
+    "pilot_may_reduce_budget": true,
+    "pilot_may_raise_budget_above_8000_tokens": false
+  },
+  "acquisition": {
+    "fresh_invocation_each_configuration_block": true,
+    "prior_inherited_memory": false,
+    "initial_blocks": 24,
+    "maximum_blocks": 36,
+    "minimum_eligible_episodes_per_action_class": 20,
+    "minimum_push_accepts": 8,
+    "minimum_push_rejects": 8,
+    "minimum_fast_forward_accepts": 8,
+    "minimum_fast_forward_rejects": 8,
+    "minimum_distinct_configuration_seeds_per_action": 6
+  },
+  "pilot": {
+    "blocks": 12,
+    "excluded_from_confirmatory_analysis": true,
+    "memory_brier_headroom_minimum": 0.05,
+    "may_tune": [
+      "H1_H2_H3_horizons",
+      "inherited_package_budget_within_spec_bounds",
+      "serialization_format_without_information_change",
+      "fixture_reset_mechanics",
+      "unambiguous_outcome_proposition_schema",
+      "confirmatory_sample_size_via_locked_formula",
+      "provider_wait_and_censor_mechanics"
+    ],
+    "may_not_tune": [
+      "primary_comparison",
+      "20_percent_effect_target",
+      "primary_brier_metric_family",
+      "three_primary_arms",
+      "six_semantic_action_classes",
+      "kernel_ontology_boundary",
+      "provider_authority",
+      "original_eye_constraints",
+      "fresh_invocation_requirement",
+      "equal_information_and_compute_requirement"
+    ]
+  },
+  "confirmatory_sample_size": {
+    "status": "pilot_derived",
+    "formula": "delta=0.20*mean_memory_pilot_brier; n_raw=((1.959964+0.841621)*sd_paired_difference/delta)^2; N=ceil_to_multiple_of_8(max(48,n_raw))",
+    "minimum": 48,
+    "maximum_feasible": 96,
+    "if_calculated_above_maximum": "redesign_and_rerun_pilot_before_confirmatory",
+    "if_pilot_memory_brier_below_headroom": "redesign_and_rerun_pilot_before_confirmatory"
+  },
+  "behavioral_metric": {
+    "name": "excess_material_actions",
+    "formula": "max(0, actual_material_actions - evaluator_oracle_minimum_material_actions)",
+    "relative_reduction_target_when_memory_has_headroom": 0.20,
+    "task_completion_max_allowed_drop_percentage_points": 5,
+    "consequential_error_increase_allowed": false
+  },
+  "drift": {
+    "minimum_fraction_of_confirmatory_blocks": 0.3333333333,
+    "fresh_invocation_each_contradiction_opportunity": true,
+    "max_strong_contradictions_before_obsolete_probability_must_be_at_most_0_5": 3,
+    "strong_pass_fraction_meeting_bound": 0.90
+  },
+  "hard_invariants": [
+    "prediction_durable_before_dispatch",
+    "prediction_immutable",
+    "changed_action_requires_new_attempt_and_prediction",
+    "evidence_content_addressed_and_immutable",
+    "prediction_never_observation",
+    "model_inference_never_provider_observation",
+    "provider_receipt_never_verified_outcome_by_itself",
+    "material_claim_has_observation_evidence_lineage",
+    "manifestations_never_destructively_merged",
+    "no_repository_same_as",
+    "claims_and_correspondence_revised_by_append_only_dispositions",
+    "valid_as_of_and_known_as_of_independent",
+    "replayed_old_evidence_not_fresh",
+    "provider_outage_yields_unknown_not_assumed_unchanged",
+    "projections_rebuildable_and_non_authoritative",
+    "closed_episode_has_complete_lifecycle",
+    "hidden_evaluator_labels_never_operator_visible",
+    "memory_and_structured_use_same_source_episode_candidates",
+    "same_model_and_base_instructions_across_arms",
+    "fresh_context_each_arm_run",
+    "no_global_eye_action_hook",
+    "no_world_kernel_permission_policy_risk_engine",
+    "no_verifier_agent_pipeline",
+    "no_additional_permanent_windows_service",
+    "no_silent_codeeye_or_eyebrowse_canonical_api_change",
+    "no_posthoc_primary_metric_or_effect_change",
+    "no_chain_of_thought_persistence"
+  ],
+  "strong_pass": {
+    "requires_all_integrity_gates": true,
+    "primary_relative_brier_reduction_at_least": 0.20,
+    "bootstrap_ci_excludes_zero_in_structured_favor": true,
+    "paired_randomization_p_below": 0.05,
+    "behavioral_gate": true,
+    "fresh_instance_gate": true,
+    "drift_gate": true,
+    "equal_information_compute_gate": true
+  },
+  "allowed_conclusions": [
+    "PASS",
+    "PARTIAL_PASS",
+    "ARCHITECTURE_REDUCTION",
+    "FAILURE",
+    "NO_CONFIRMATORY_CONCLUSION"
+  ],
+  "post_build001_expansion_not_authorized": true
+}
