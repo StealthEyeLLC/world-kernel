@@ -1,0 +1,63 @@
+{
+    "schema":  "world-kernel-build001-campaign2-product-attestation-v1",
+    "passed":  true,
+    "attestation_method_version":  "campaign2-chatgpt-observable-controls-v1",
+    "captured_at":  "2026-08-11T17:38:44.4374077+00:00",
+    "observable_configuration":  {
+                                     "product_surface":  "ChatGPT web",
+                                     "documented_model_family":  "GPT-5.6 Sol",
+                                     "selected_model":  "5.6 Sol",
+                                     "reasoning_selection":  "Extra High",
+                                     "conversation_type":  "Temporary Chat",
+                                     "subject_mode":  "Chat",
+                                     "workspace_type":  "Business",
+                                     "memory_state":  "not_used_or_created_by_temporary_chat",
+                                     "account_memory_enabled":  true,
+                                     "record_history_reference_enabled":  true,
+                                     "custom_instructions":  {
+                                                                 "state":  "identically_frozen",
+                                                                 "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                                                 "field_count":  4
+                                                             },
+                                     "base_style_and_tone":  "Default",
+                                     "style_characteristics":  {
+                                                                   "warm":  "Default",
+                                                                   "enthusiastic":  "Default",
+                                                                   "headers_and_lists":  "Default",
+                                                                   "emoji":  "Default"
+                                                               },
+                                     "fast_answers_enabled":  false,
+                                     "project_context_enabled":  false,
+                                     "file_library_context_enabled":  false,
+                                     "prior_trial_attachments_present":  false,
+                                     "base_prompt_sha256":  "f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5",
+                                     "tool_contract_sha256":  "e1d2b899190ed0c0f88e1dce4fb2a73f653de20b9d8766df4e196cb4f883c181",
+                                     "trial_output_contract_sha256":  "8aec3ac079db715f8d6990d52a8cd9f7d275e4e3ded2efa1088ef101d9d5c193",
+                                     "application":  "Microsoft Edge",
+                                     "application_version":  "151.0.4129.72"
+                                 },
+    "observable_configuration_fingerprint_sha256":  "afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5",
+    "private_deployment_identifier":  {
+                                          "exposed":  false,
+                                          "value":  null,
+                                          "equality_claimed":  false
+                                      },
+    "attestation_sources":  {
+                                "official_openai_models_url":  "https://learn.chatgpt.com/docs/models?surface=app",
+                                "official_openai_memory_url":  "https://learn.chatgpt.com/docs/customization/memories?surface=app",
+                                "temporary_chat_inspection":  {
+                                                                  "path":  "experiments/build001/campaign-2/preflight/p0-inspect-edge-result-v3.json",
+                                                                  "file_sha256":  "72914814337987150731f8eb959a5f008de4a5eaacfb444301d1f886c2ed65af",
+                                                                  "ui_evidence_sha256":  "8c8a0c74c0c8000f334fe0008d2dcabff5f1508649b5a9e106606257f3064f48"
+                                                              },
+                                "current_controls":  {
+                                                         "path":  "experiments/build001/campaign-2/preflight/p0-edge-current-controls.json",
+                                                         "file_sha256":  "db8dd66418d1c13c2ca3ae5d3da719df438e91cfebd8c3b019fb426634fbc4a3"
+                                                     },
+                                "personalization":  {
+                                                        "path":  "experiments/build001/campaign-2/preflight/p0-personalization-controls-v3.json",
+                                                        "file_sha256":  "0fa833d86df5fc9de28baf782f6d16d4f5138f6997884d64ac243c965c19af0a"
+                                                    }
+                            },
+    "scientific_boundary":  "Observable controlled configuration equality is claimed; unobservable private serving deployment identity is not claimed."
+}

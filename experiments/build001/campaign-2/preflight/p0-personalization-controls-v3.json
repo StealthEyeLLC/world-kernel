@@ -1,0 +1,278 @@
+{
+    "schema":  "world-kernel-build001-campaign2-p0-personalization-observation-v1",
+    "passed":  true,
+    "captured_at":  "2026-08-11T17:36:49.3451550+00:00",
+    "settings_root_descendants":  83,
+    "records":  [
+                    {
+                        "name":  "Personalization",
+                        "control_type":  "ControlType.TabItem",
+                        "automation_id":  "radix-_r_cm_-trigger-Personalization",
+                        "toggle_state":  null,
+                        "selected":  true,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Personalization",
+                        "control_type":  "ControlType.Pane",
+                        "automation_id":  "radix-_r_cm_-content-Personalization",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Personalization",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Base style and tone Default",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "_r_j8_",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Default",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Characteristics",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Choose additional customizations on top of your base style and tone.",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Warm, Default",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "radix-_r_k7_",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Default",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Enthusiastic, Default",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "radix-_r_k9_",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Default",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Headers \u0026 Lists, Default",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "radix-_r_kb_",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Default",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Emoji, Default",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "radix-_r_kd_",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Default",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Fast answers",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "ChatGPT can sometimes use its general knowledge to give fast, in-depth answers. These aren\u0027t personalized and don\u0027t use your memory.",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Fast answers",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "",
+                        "toggle_state":  "Off",
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Custom instructions",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Default Choose a companion that works alongside you Select pet",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Memory",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Learn More about Memory.",
+                        "control_type":  "ControlType.Hyperlink",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Enable memory",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Enable memory",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "",
+                        "toggle_state":  "On",
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Memory summary",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "custom instructions",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "saved memories",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "ChatGPT may use Memory to personalize queries to search providers, such as Bing. ",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Reference record history",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Let ChatGPT reference all previous recording transcripts and notes when responding.",
+                        "control_type":  "ControlType.Text",
+                        "automation_id":  "",
+                        "toggle_state":  null,
+                        "selected":  null,
+                        "enabled":  true
+                    },
+                    {
+                        "name":  "Reference record history",
+                        "control_type":  "ControlType.Button",
+                        "automation_id":  "",
+                        "toggle_state":  "On",
+                        "selected":  null,
+                        "enabled":  true
+                    }
+                ],
+    "edit_fields":  [
+                        {
+                            "automation_id":  "",
+                            "value_length":  0,
+                            "value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                        },
+                        {
+                            "automation_id":  "",
+                            "value_length":  0,
+                            "value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                        },
+                        {
+                            "automation_id":  "",
+                            "value_length":  0,
+                            "value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                        },
+                        {
+                            "automation_id":  "",
+                            "value_length":  0,
+                            "value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                        }
+                    ]
+}

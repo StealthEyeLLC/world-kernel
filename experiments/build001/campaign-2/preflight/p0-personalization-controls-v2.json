@@ -1,0 +1,26 @@
+{
+    "schema":  "world-kernel-build001-campaign2-p0-personalization-observation-v1",
+    "passed":  true,
+    "captured_at":  "2026-08-11T17:35:54.1300517+00:00",
+    "records":  [
+                    {
+                        "name":  "Personalization",
+                        "control_type":  "ControlType.TabItem",
+                        "automation_id":  "radix-_r_5r_-trigger-Personalization",
+                        "toggle_state":  null,
+                        "enabled":  true
+                    }
+                ],
+    "edit_fields":  [
+                        {
+                            "automation_id":  "view_1021",
+                            "value_length":  49,
+                            "value_sha256":  "1580147fd3b95f6ec5d73e58c547221e3347e07f1ab37470e8401a37c11e319e"
+                        },
+                        {
+                            "automation_id":  "",
+                            "value_length":  0,
+                            "value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                        }
+                    ]
+}
