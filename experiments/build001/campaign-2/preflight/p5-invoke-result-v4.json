@@ -1,0 +1,83 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-adapter-result-v1",
+    "passed":  true,
+    "mode":  "invoke",
+    "trial_id":  "campaign2-p5-probe-003",
+    "arm":  "attestation_probe",
+    "started_at":  "2026-08-11T17:57:35.2950934+00:00",
+    "completed_at":  "2026-08-11T17:57:54.1125601+00:00",
+    "request_sha256":  "d9fd379c36166230c5b70a7aa5c96dfcb0a6a6a8280c85460661338a01ad0576",
+    "prompt_sha256":  "6065a28aa4758f2e52d4a1897babb8c8c76a93f89213239a1a840eed24a80001",
+    "raw_response_sha256":  "691828d11236b71f2ffb816ff7b2e8201534048a25f660d0a24c03c78cb70207",
+    "subject_output":  {
+                           "action_class":  "git:create_branch",
+                           "target":  "fixture:preflight",
+                           "parameters":  {
+                                              "branch_name":  "wk-b001-c2-p5-probe"
+                                          },
+                           "prediction":  {
+                                              "provider_accepts_action":  0.99,
+                                              "new_local_branch_exists":  0.99,
+                                              "current_branch_is_new_branch":  0.02,
+                                              "local_head_sha_changes":  0.01,
+                                              "remote_branch_exists_before_push":  0.01,
+                                              "worktree_content_changes":  0.01
+                                          },
+                           "requested_observations":  [
+
+                                                      ],
+                           "material_action":  "Create local branch wk-b001-c2-p5-probe at the current HEAD without switching branches."
+                       },
+    "machine_readable_response_parsed":  true,
+    "observable_product_fallback":  false,
+    "invalidation_reasons":  {
+
+                             },
+    "ui_evidence":  {
+                        "application":  "Microsoft Edge",
+                        "application_version":  "151.0.4129.72",
+                        "before":  {
+                                       "href":  "https://chatgpt.com/?temporary-chat=true",
+                                       "signed_in":  true,
+                                       "login_control_present":  false,
+                                       "temporary_chat":  true,
+                                       "chat_surface_selected":  true,
+                                       "message_marker_count":  0,
+                                       "attachment_marker_count":  0,
+                                       "project_context_present":  false,
+                                       "file_library_context_present":  false,
+                                       "temporary_markers":  [
+                                                                 "Turn off temporary chat",
+                                                                 "Temporary chat"
+                                                             ]
+                                   },
+                        "model_before":  {
+                                             "selected_model":  "5.6 Sol",
+                                             "reasoning_selection":  "Extra High",
+                                             "model_marker":  "Model GPT-5.6 Sol",
+                                             "effort_marker":  "Effort Extra High"
+                                         },
+                        "after":  {
+                                      "href":  "https://chatgpt.com/?temporary-chat=true",
+                                      "signed_in":  true,
+                                      "login_control_present":  false,
+                                      "temporary_chat":  true,
+                                      "chat_surface_selected":  true,
+                                      "message_marker_count":  0,
+                                      "attachment_marker_count":  0,
+                                      "project_context_present":  false,
+                                      "file_library_context_present":  false,
+                                      "temporary_markers":  [
+                                                                "Temporary chat"
+                                                            ]
+                                  },
+                        "model_after":  {
+                                            "selected_model":  "5.6 Sol",
+                                            "reasoning_selection":  "Extra High",
+                                            "model_marker":  "Model GPT-5.6 Sol",
+                                            "effort_marker":  "Effort Extra High"
+                                        }
+                    },
+    "ui_evidence_sha256":  "c8eaca1c3d6e6a5ebec8d41dd00fb82a7943bc05b1b98d733887592821a22079",
+    "operation_count":  14
+}
