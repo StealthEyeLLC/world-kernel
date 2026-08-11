@@ -26,7 +26,7 @@ public sealed record PreflightManifest(
 
 public static class PreflightGateEvaluator
 {
-    public const string ManifestSchema = "world-kernel-build001-preflight-gates-v1";
+    public const string ManifestSchema = "world-kernel-build001-preflight-gates-v2-campaign2";
 
     public static PreflightManifest Evaluate(string artifactDirectory)
     {
@@ -46,7 +46,7 @@ public static class PreflightGateEvaluator
         var p4Tests = Load(artifactDirectory, "implementation-test-results.json");
         var p4Recovery = Load(artifactDirectory, "recovery-test.json");
         var p4Runtime = Load(artifactDirectory, "postgres-runtime-manifest.json");
-        var p5 = Load(artifactDirectory, "p5-fresh-invocation-blocker.json");
+        var p5 = Load(artifactDirectory, "p5-fresh-invocation.json", required: false) ??\n                 Load(artifactDirectory, "p5-fresh-invocation-blocker.json");
         var p6 = Load(artifactDirectory, "p6-deterministic-reset.json");
 
         var gates = new List<PreflightGate>
@@ -54,15 +54,12 @@ public static class PreflightGateEvaluator
             Gate(
                 "P0",
                 "Baseline capture",
-                IsTrue(p0, "passed") && IsNonEmptyString(p0, "model", "exact_identifier") &&
-                IsSha256(p0, "model", "configuration_hash"),
+                Campaign2Attestation.PassesP0(p0.Root),
                 [
-                    IsNonEmptyString(p0, "model", "exact_identifier")
-                        ? "Exact model identifier recorded."
-                        : "Exact model deployment identifier is unavailable.",
-                    IsSha256(p0, "model", "configuration_hash")
-                        ? "Model configuration hash recorded."
-                        : "Model configuration hash is unavailable."
+                    Campaign2Attestation.PassesP0(p0.Root)
+                        ? "Observable ChatGPT product controls and their canonical fingerprint are attested."
+                        : "Campaign 2 observable product/configuration attestation is absent or invalid.",
+                    "No private OpenAI serving deployment identifier is claimed or hashed."
                 ],
                 [p0]),
             Gate(
@@ -81,9 +78,10 @@ public static class PreflightGateEvaluator
                 "P2",
                 "Live authenticated eyeBROWSE",
                 Number(p2, "exit_code") == 0 && IsTrue(p2, "payload", "signed_in") &&
+                IsNonEmptyString(p2, "payload", "location", "user_login") &&
                 ArrayLength(p2, "payload", "observation", "semantic_controls") > 0 &&
-                p2Action is not null && Number(p2Action, "exit_code") == 0 && IsTrue(p2Action, "write_occurred") &&
-                IsTrue(p2Action, "stale_then_fresh_distinguished"),
+                p2Action is not null && Number(p2Action, "exit_code") == 0 &&
+                Campaign2Attestation.PassesP2Action(p2Action.Root),
                 [
                     IsTrue(p2, "payload", "signed_in")
                         ? "Authenticated browser identity observed."
@@ -127,13 +125,11 @@ public static class PreflightGateEvaluator
             Gate(
                 "P5",
                 "Fresh isolated cognitive invocation",
-                IsTrue(p5, "passed") && IsNonEmptyString(p5, "exact_model_identifier") &&
-                IsSha256(p5, "model_configuration_hash") && IsTrue(p5, "no_prior_trial_transcript") &&
-                IsTrue(p5, "no_cross_arm_memory") && IsTrue(p5, "no_hidden_evaluator_state"),
+                Campaign2Attestation.PassesP5(p5.Root, p0.Root),
                 [
-                    IsTrue(p5, "passed")
-                        ? "Fresh invocation attestation passed."
-                        : "No supported mechanism can attest clean model context, disabled cross-chat memory, exact model/config, and cross-arm isolation."
+                    Campaign2Attestation.PassesP5(p5.Root, p0.Root)
+                        ? "Fresh Temporary Chat invocation and matching observable configuration passed."
+                        : "No valid Campaign 2 fresh-invocation attestation matches the observable P0 configuration."
                 ],
                 [p5]),
             Gate(
