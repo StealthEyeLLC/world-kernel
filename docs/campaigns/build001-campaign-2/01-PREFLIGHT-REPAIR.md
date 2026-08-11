@@ -25,7 +25,7 @@ Immediately before the audited gate was regenerated, evaluator and kernel querie
 | P5 fresh isolated invocation | PASS | `p5-fresh-invocation.json`, SHA-256 `104968ac005fb9b77ba305f9bde4d54cbbcaf34d746d68a7d7e79345a7af9934` |
 | P6 deterministic reset | PASS | v4 bundle SHA-256 `9f5e0d3961f9e563bb26ef35a2067e212fe5576109b510f5c86433a7c364ca3e`; source attestation SHA-256 `3d0446d4b4135f951bbc2286ebc98ed40237f381ddc36787c3c751ac6b3e8d02` |
 
-The repository's unmodified `PreflightGateEvaluator` produced `artifacts/campaign-2/preflight/preflight-gates.json` with SHA-256 `e9b37f1719c666001f167bf6a18079c073b9cfa889bc83c194d2ce09e98b9391`. P0 through P6 are all `passed: true`.
+The repository's unmodified `PreflightGateEvaluator` produced `artifacts/campaign-2/preflight/preflight-gates.json` with SHA-256 `66d7c77d9e4a36cae8e1ddabc86e7ed11b56d4a1ad807c7fb3367a47df350dbf`. P0 through P6 are all `passed: true`.
 
 The phase gate was tested in both directions. The historical Campaign 1 failed manifest still refuses acquisition and identifies its original P0/P2/P5 blockers. The audited Campaign 2 manifest authorizes acquisition, pilot, confirmatory, and drift. No phase was executed by this authorization test.
 

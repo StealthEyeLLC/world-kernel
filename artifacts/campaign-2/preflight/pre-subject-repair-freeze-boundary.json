@@ -1,0 +1,35 @@
+{
+    "schema":  "world-kernel-build001-campaign2-pre-subject-repair-freeze-boundary-v1",
+    "campaign_id":  "build001-campaign-2",
+    "observed_at":  "2026-08-11T20:36:46.9837082+00:00",
+    "repair_implementation_commit":  "f0c2dce2af55baec381be9a0ff9efe3185b2201f",
+    "superseded_execution_freeze_commit":  "c7762b38b969c586d330387eed1181ebbec913a8",
+    "preflight_manifest_sha256":  "66d7c77d9e4a36cae8e1ddabc86e7ed11b56d4a1ad807c7fb3367a47df350dbf",
+    "preserved_seed":  {
+                           "seed_id":  "campaign2-acquisition-block-seed-01-lc",
+                           "configuration_block_id":  "c2-acq-01",
+                           "commitment_sha256":  "23793241ef40481bb91cb683fe72cb235b862959eb506ccd4e12135eac846321",
+                           "public_fixture_revision":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+                           "recorded_at":  "2026-08-11 16:31:20.346867-04"
+                       },
+    "counts":  {
+                   "seed_commitments":  1,
+                   "hidden_configurations":  0,
+                   "reset_verifications":  0,
+                   "arm_randomizations":  0,
+                   "invocation_attestations":  0,
+                   "ground_truth_rows":  0,
+                   "aggregate_results":  0,
+                   "campaign2_actions":  0,
+                   "campaign2_predictions":  0,
+                   "campaign2_episodes":  0
+               },
+    "subject_invoked":  false,
+    "prediction_recorded":  false,
+    "material_action_dispatched":  false,
+    "outcome_observed":  false,
+    "scientific_outcomes_observed":  false,
+    "hidden_schedule_changed":  false,
+    "seed_commitment_changed":  false,
+    "passed":  true
+}

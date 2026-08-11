@@ -1,19 +1,19 @@
 {
     "schema":  "world-kernel-build001-campaign2-execution-freeze-v2",
     "campaign_id":  "build001-campaign-2",
-    "frozen_at":  "2026-08-11T20:37:32.5548442+00:00",
-    "frozen_before_acquisition":  false,
+    "frozen_at":  "2026-08-11T20:29:53.3225136+00:00",
+    "frozen_before_acquisition":  true,
     "valid":  true,
     "branch":  "build001-campaign-2",
     "authority":  {
                       "campaign2_authority_path":  "docs/campaigns/build001-campaign-2/00-AUTHORITY.md",
                       "campaign2_authority_sha256":  "9a6f7ca2e976f0f0e6dd763152d3e2d26220ce9ff05763590105a59df00c1041",
                       "preflight_repair_path":  "docs/campaigns/build001-campaign-2/01-PREFLIGHT-REPAIR.md",
-                      "preflight_repair_sha256":  "055ec67a61c6985dbc49ad40f46bf9ca8438ea5e55f0337ed17d22a096bb14b8",
+                      "preflight_repair_sha256":  "ca2174ce6b317c216c586a4d984b4c4b2fb5bbcb937ca018c13ac848c057b501",
                       "amendment_path":  "docs/campaigns/build001-campaign-2/02-PREREGISTRATION-AMENDMENT.md",
-                      "amendment_sha256":  "962aca2448d898f74a5876381502be96620fb2d836c8902c26a942bff5ded904",
+                      "amendment_sha256":  "8ca431105e63609e5e3a31397d29ae71c623d1d4a0be4f7a326df131490cf9d1",
                       "machine_amendment_path":  "experiments/build001/campaign-2/preregistration.json",
-                      "machine_amendment_sha256":  "506c76e7997dafb4a60a3f6491c850a0dbfe917671ddfd4d12c4848d431e2965",
+                      "machine_amendment_sha256":  "10927c54ef666657428f75de449085a02a48650189e95a711f746627505cd2b8",
                       "build002_authorized":  false,
                       "canonicalization_authorized":  false,
                       "architecture_redesign_authorized":  false
@@ -37,13 +37,13 @@
                       "preserved":  true
                   },
     "implementation":  {
-                           "commit":  "f0c2dce2af55baec381be9a0ff9efe3185b2201f",
+                           "commit":  "0c1dcc21301218c25a403fff174e1d90e465195e",
                            "remote_verified":  true,
                            "eye_head":  "53948b74701f51c29c9322dfa9f017ba6b45f4a4",
                            "codeeye_head":  "1ca0f93d64bc20bccb3b96dbcda43a2232783609",
                            "eyebrowse_head":  "2e27f44ebd3522d0d26b036dc57f790535df3533",
                            "frozen_files":  {
-                                                "src/WorldKernel.Build001/Campaign2Execution.cs":  "64bc8b2bab8016f0f5b959c81026a677dd17d57b3ddacf4c55bc0c76deefd17d",
+                                                "src/WorldKernel.Build001/Campaign2Execution.cs":  "7559ddce3026aa3a5d4f81868ac2db492e04007030d1b188149e0b292ddc9bad",
                                                 "src/WorldKernel.Build001/Campaign2Attestation.cs":  "6a34b288a2364e4f815d21649128e1691c3c7b16188d3d1238e8f2b58d84316b",
                                                 "src/WorldKernel.Build001/ExperimentControl.cs":  "28f0d26ddbd6a9e1b5f4cd8a38b50b6d6a27305c9b6052612d80d28b9798a2f3",
                                                 "src/WorldKernel.Build001/Program.cs":  "79fd0b4f8e62b95405a6bb26f81a15e687ead176893d2d4951363acfcf99fe80",
@@ -71,7 +71,7 @@
                        },
     "preflight":  {
                       "manifest_path":  "artifacts/campaign-2/preflight/preflight-gates.json",
-                      "manifest_sha256":  "66d7c77d9e4a36cae8e1ddabc86e7ed11b56d4a1ad807c7fb3367a47df350dbf",
+                      "manifest_sha256":  "e9b37f1719c666001f167bf6a18079c073b9cfa889bc83c194d2ce09e98b9391",
                       "all_p0_through_p6_passed":  true,
                       "p0":  {
                                  "path":  "experiments/build001/campaign-2/preflight/p0-product-attestation.json",
@@ -104,7 +104,7 @@
                                                   "drift":  true,
                                                   "no_waiver":  true,
                                                   "evidence_path":  "artifacts/campaign-2/preflight/phase-authorization-final.json",
-                                                  "evidence_sha256":  "81e813c401b24bc29c6cd60444bdc518d1d0009d7dc07d19b22c1143a74d23b2"
+                                                  "evidence_sha256":  "b7baa4bf54281ad73702220c0f172d8efc66c341b712cf1f14c79d2732029204"
                                               }
                   },
     "subject":  {
@@ -238,22 +238,10 @@
                       "unfavorable_result_is_not_invalidation":  true
                   },
     "boundary":  {
-                     "path":  "artifacts/campaign-2/preflight/pre-subject-repair-freeze-boundary.json",
-                     "sha256":  "5f76d4387ab71eb9469cae1262747c4f8d9f40837c18ec6cc4c3b362b912967f",
-                     "all_scientific_counts_zero":  false,
-                     "scientific_outcomes_observed":  false,
-                     "seed_commitments":  1,
-                     "subject_invocations":  0,
-                     "predictions":  0,
-                     "material_actions":  0,
-                     "outcomes":  0,
-                     "preserved_seed_id":  "campaign2-acquisition-block-seed-01-lc"
+                     "path":  "artifacts/campaign-2/preflight/pre-execution-freeze-boundary.json",
+                     "sha256":  "4609ac769062c61258e9fa4f1e89b6feb848a91c37bb41428159f77ec9953950",
+                     "all_scientific_counts_zero":  true,
+                     "scientific_outcomes_observed":  false
                  },
-    "decision":  "Acquisition may resume from the exact preserved seed only after this pre-subject repair freeze is committed, pushed, provider-verified, the runtime freeze validator accepts it, and phase-authorize accepts the bound all-pass manifest. No hidden schedule or scientific rule changed.",
-    "repair_after_seed_registration":  true,
-    "frozen_before_first_subject_invocation":  true,
-    "scientific_outcomes_observed":  false,
-    "supersedes_execution_freeze_commit":  "c7762b38b969c586d330387eed1181ebbec913a8",
-    "supersedes_execution_freeze_sha256":  "e094714b0dbe3681f4d30c32aec379643eb3369a9e289452ebf011aecad90667",
-    "repair_reason":  "Pre-subject PostgreSQL timestamptz CLR materialization compatibility repair after one durable seed commitment and before any subject, Prediction, Action, Outcome, or ground truth."
+    "decision":  "Acquisition may begin only after this execution-freeze manifest and its final preflight artifacts are committed, pushed, provider-verified, and phase-authorize accepts the bound all-pass manifest. Any subsequent frozen execution-file change invalidates this freeze until prospectively re-evaluated."
 }
