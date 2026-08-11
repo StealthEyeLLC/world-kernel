@@ -1,0 +1,21 @@
+{
+  "schema": "world-kernel-build001-final-runtime-state-v1",
+  "observed_at": "2026-08-11T14:40:30.4461383Z",
+  "postgresql": {
+    "version": "18.4",
+    "endpoint": "127.0.0.1:55431",
+    "stopped_cleanly": true,
+    "pg_isready_exit": 2,
+    "pg_isready_output": "127.0.0.1:55431 - no response"
+  },
+  "windows_scm": {
+    "postgres_or_world_kernel_services": [],
+    "second_permanent_service_created": false
+  },
+  "on_demand_task": {
+    "name": "world-kernel-build001-postgres",
+    "state": "Ready",
+    "triggerless": true,
+    "purpose": "documented experiment-owned on-demand launch only"
+  }
+}

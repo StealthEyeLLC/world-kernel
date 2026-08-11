@@ -1,6 +1,8 @@
 # StealthEye World Kernel — Build 001
 
-This repository contains the isolated, noncanonical implementation and measured experiment for StealthEye World Kernel Build 001.
+This repository contains the isolated, noncanonical implementation and measured execution boundary for StealthEye World Kernel Build 001.
+
+**Final classification: NO VALID CONFIRMATORY CONCLUSION.** The kernel, provider adapters, deterministic fixture, scorer, recovery path, and hostile harness were implemented and tested. Preflight gates P0, P2, and P5 did not pass, so the harness correctly refused acquisition, pilot, confirmatory, and drift execution. No Treatment-versus-Memory effect was estimated.
 
 It is a research repository, not an approved product name or a change to Eye, CODEeye, or eyeBROWSE. Native providers remain authoritative for material state. The kernel persists only evidence, observations, epistemic claims, conservative correspondence, action-conditioned predictions, evaluated outcomes, and measured transition episodes.
 
@@ -23,4 +25,3 @@ It is a research repository, not an approved product name or a change to Eye, CO
 ```
 
 See `docs/04-EXPERIMENT-PROTOCOL.md` for the complete frozen sequence and `docs/05-BUILD-001-RESULTS.md` for the measured conclusion.
-

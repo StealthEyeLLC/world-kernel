@@ -1,0 +1,643 @@
+{
+    "schema":  "world-kernel-build001-artifact-index-v1",
+    "generated_at":  "2026-08-11T14:45:52.5799912+00:00",
+    "excludes":  [
+                     "artifacts/ARTIFACT-INDEX.json",
+                     ".git/**",
+                     "**/bin/**",
+                     "**/obj/**"
+                 ],
+    "file_count":  126,
+    "files":  [
+                  {
+                      "path":  ".gitignore",
+                      "sha256":  "07cacd26f0454898e37ba0b66ab8601e1a02fb71df8f557df61222c58ee54059",
+                      "byte_length":  231
+                  },
+                  {
+                      "path":  "AGENTS.md",
+                      "sha256":  "788fff08d8b46bae406ba49e9435821838e5261dc71aba559beed1d522595e16",
+                      "byte_length":  1029
+                  },
+                  {
+                      "path":  "artifacts/drift/not-executed.json",
+                      "sha256":  "026a83e9b143819db2b3cedd751d3ae8751e604504802c61baf6178a69311159",
+                      "byte_length":  354
+                  },
+                  {
+                      "path":  "artifacts/hostile/eyebrowse-stale-page.json",
+                      "sha256":  "80c6b8eceb8ec267d0bf9fe2cf875f31576effd52b3805970979908adbbfd492",
+                      "byte_length":  1560
+                  },
+                  {
+                      "path":  "artifacts/hostile/eyebrowse-stale-page-status.json",
+                      "sha256":  "e594f56c48012e1880e5691833fe95737531f20c11c4a6966a036e26736cc3be",
+                      "byte_length":  1945
+                  },
+                  {
+                      "path":  "artifacts/hostile/git-provider-hostiles-interruption-resolution.json",
+                      "sha256":  "2ed4a3732a7327d419ebe2608a7a242f3cdc86fda88e96a36ec98e1a8475fd91",
+                      "byte_length":  595
+                  },
+                  {
+                      "path":  "artifacts/hostile/git-provider-hostiles-status.interrupted.json",
+                      "sha256":  "40c4355e53133abd7ae75698e35b3f4397bc1dd8026706a895ff3bbe3be5f479",
+                      "byte_length":  160
+                  },
+                  {
+                      "path":  "artifacts/hostile/hostile-local-prepare.json",
+                      "sha256":  "5129c0738a29e8fe8be5384593c6831021f7f5be7423f641ce2d32aa979c5232",
+                      "byte_length":  408
+                  },
+                  {
+                      "path":  "artifacts/hostile/hostile-local-provider.json",
+                      "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                      "byte_length":  5292
+                  },
+                  {
+                      "path":  "artifacts/hostile/hostile-suite-matrix.json",
+                      "sha256":  "e593c89e5bfb6a5d79b04511e1e7a5b99a9ccef81bdfcafc0fe5082a48bee6f2",
+                      "byte_length":  28910
+                  },
+                  {
+                      "path":  "artifacts/overhead/implementation-overhead.json",
+                      "sha256":  "57fe8606ee2a3c49d3d3a54f07c9798c7cf44d7b296d2c6205caabcf83f6b723",
+                      "byte_length":  2195
+                  },
+                  {
+                      "path":  "artifacts/preflight/epistemic-evidence/sha256/9b/24/9b24e6d217a0930dbe858cf4c1197f5c686c05c8a63dac74aa3e7b1268b226b6",
+                      "sha256":  "9b24e6d217a0930dbe858cf4c1197f5c686c05c8a63dac74aa3e7b1268b226b6",
+                      "byte_length":  20
+                  },
+                  {
+                      "path":  "artifacts/preflight/evidence-store-test/41830b386d854bb08e8d5554b81f5f64/sha256/ae/ff/aeff868b6d4b87b297f28da65e4b3e5d838646ca2149123e17fc794d6a023fb5",
+                      "sha256":  "d121be3103007b41edf96f8262925f8c7d61894afe9a041843b631f69445bc57",
+                      "byte_length":  8
+                  },
+                  {
+                      "path":  "artifacts/preflight/evidence-store-test/55b6358df6154023a3dadd24538b9e30/sha256/ae/ff/aeff868b6d4b87b297f28da65e4b3e5d838646ca2149123e17fc794d6a023fb5",
+                      "sha256":  "d121be3103007b41edf96f8262925f8c7d61894afe9a041843b631f69445bc57",
+                      "byte_length":  8
+                  },
+                  {
+                      "path":  "artifacts/preflight/evidence-store-test/5d7da2b7bab54a2880313b8cb51ea997/sha256/ae/ff/aeff868b6d4b87b297f28da65e4b3e5d838646ca2149123e17fc794d6a023fb5",
+                      "sha256":  "d121be3103007b41edf96f8262925f8c7d61894afe9a041843b631f69445bc57",
+                      "byte_length":  8
+                  },
+                  {
+                      "path":  "artifacts/preflight/evidence-store-test/7cf6aa238d5f4b7e8ad3a8e9f2392d20/sha256/ae/ff/aeff868b6d4b87b297f28da65e4b3e5d838646ca2149123e17fc794d6a023fb5",
+                      "sha256":  "d121be3103007b41edf96f8262925f8c7d61894afe9a041843b631f69445bc57",
+                      "byte_length":  8
+                  },
+                  {
+                      "path":  "artifacts/preflight/implementation-test-results.json",
+                      "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                      "byte_length":  1588
+                  },
+                  {
+                      "path":  "artifacts/preflight/implementation-test-results.json.sha256",
+                      "sha256":  "fe18de893842d53d29222d265085d21160f1e3b49441237aa99f781eb0b3e032",
+                      "byte_length":  99
+                  },
+                  {
+                      "path":  "artifacts/preflight/lifecycle-evidence/sha256/2c/85/2c859d11c25d05fe8e8a165d57834485522ffdf9dfc73b7f4f1e9f14f5f880ca",
+                      "sha256":  "2c859d11c25d05fe8e8a165d57834485522ffdf9dfc73b7f4f1e9f14f5f880ca",
+                      "byte_length":  16
+                  },
+                  {
+                      "path":  "artifacts/preflight/lifecycle-evidence/sha256/5f/43/5f435b61b1d3151fbf5885fe8957e47969f072820e38894a8a648c320df116d6",
+                      "sha256":  "5f435b61b1d3151fbf5885fe8957e47969f072820e38894a8a648c320df116d6",
+                      "byte_length":  25
+                  },
+                  {
+                      "path":  "artifacts/preflight/lifecycle-evidence/sha256/a7/41/a741da05251f5647de6bfbd64a428f195fd79b88c15795295ecaa72df8823c43",
+                      "sha256":  "a741da05251f5647de6bfbd64a428f195fd79b88c15795295ecaa72df8823c43",
+                      "byte_length":  9
+                  },
+                  {
+                      "path":  "artifacts/preflight/native-git-policy-rejection.json",
+                      "sha256":  "2cea8895ca65f48848b5fc790e0186e4128215da107c8e34fd632d61109a1d15",
+                      "byte_length":  1206
+                  },
+                  {
+                      "path":  "artifacts/preflight/p0-baseline.json",
+                      "sha256":  "e97d203a89641b5c2b87a74fe836d89802546f9e80c6308a72baad67a27cfc0c",
+                      "byte_length":  2963
+                  },
+                  {
+                      "path":  "artifacts/preflight/p1-codeeye-live.json",
+                      "sha256":  "1d5daea17f491d69d7d421b3ce6a717823c193e2ad60c4454b7cc96c825c8b7a",
+                      "byte_length":  3821
+                  },
+                  {
+                      "path":  "artifacts/preflight/p2-eyebrowse-live.json",
+                      "sha256":  "ef0d9cd848703fbbcc83ad39165bbff50492e4f3d5c42e40198c8114c59a5b39",
+                      "byte_length":  2160
+                  },
+                  {
+                      "path":  "artifacts/preflight/p2-eyebrowse-remote-commit-blocker.json",
+                      "sha256":  "8a502df848b6b1ecc78d7b808ce60ae500fb03c5f500054ddd9d4cb9d6575fd5",
+                      "byte_length":  1039
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-check-failure-outcome.json",
+                      "sha256":  "4fffb1c5fe803369d51f7de7aaf57b642b45a426a4d2d6f91620176ba1a0ec85",
+                      "byte_length":  347
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-check-failure-push.json",
+                      "sha256":  "5bb7fc2dd1c214ef94429d4f87614991bda83a4f95400342af239eaa540185ad",
+                      "byte_length":  6464
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-check-success-outcome.json",
+                      "sha256":  "b12298646e974b6ad7f77f970afaaf4d6d12fa3ad14623ae703978382730d961",
+                      "byte_length":  343
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-codeeye-post-action.json",
+                      "sha256":  "a82de3f0a96328d0648973339acb3280d30e77a9e48ec20ee2d53bc3a9c29134",
+                      "byte_length":  3479
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-create-branch.json",
+                      "sha256":  "26d5c6678d0230086915a8fb57ddc84df5c7c601d5aca7719be3265cb55c94cf",
+                      "byte_length":  1028
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-create-local-commit.json",
+                      "sha256":  "4bc0715b1b3250aea4166ba90e77cc52a04d8ed4aad7e30def5be83f2d2d43c2",
+                      "byte_length":  1416
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-evaluator-remote-commit.json",
+                      "sha256":  "4f69f5afb8f8892415eb54f55609a7d49f30b7b769213d0ffd416d86d8024926",
+                      "byte_length":  23550
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-fetch.json",
+                      "sha256":  "595c5dffff2b10d3b14242bd2269c0b9889e15c8b1bee2f0ca43a6a9075979d1",
+                      "byte_length":  848
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-integrate-fast-forward.json",
+                      "sha256":  "d72aa0ceb4ca7dd6d1c7ef42bef96de61cea6042114b39102a5afb889be2979b",
+                      "byte_length":  870
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-native-git-observation.json",
+                      "sha256":  "35a9ebe8e4f621aa5f853a847d586b57177bc55c4f7b4657ee6c52a65efcc6d6",
+                      "byte_length":  2033
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-no-check-outcome.json",
+                      "sha256":  "5a7d4c6f58739482c411c359a96a150a4ab498b5807d77a945a024fff2e56682",
+                      "byte_length":  287
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-no-check-push.json",
+                      "sha256":  "5fbb4ff2da2583bbb671d82944533767da013e87eb6055312cd40e5730a9d224",
+                      "byte_length":  6438
+                  },
+                  {
+                      "path":  "artifacts/preflight/p3-push-accepted.json",
+                      "sha256":  "a5c7a041f614011f363b45638cb3c0c0da725751f1080001d394c7059c3026ee",
+                      "byte_length":  871
+                  },
+                  {
+                      "path":  "artifacts/preflight/p4-projection-rebuild.json",
+                      "sha256":  "77d011709b06b8b43b7763cd8ec88a9052fa7bd631095d158c401d6799a5aa92",
+                      "byte_length":  610
+                  },
+                  {
+                      "path":  "artifacts/preflight/p5-fresh-invocation-blocker.json",
+                      "sha256":  "ca3a8547543cd6489e62dac5e963ef7415f0105b5c8eed6379950335611676c7",
+                      "byte_length":  1005
+                  },
+                  {
+                      "path":  "artifacts/preflight/p6-deterministic-reset.json",
+                      "sha256":  "6584decfec10d826688ed11277f5de97f905856f4740605ae8ab6caf439ba4d8",
+                      "byte_length":  1234
+                  },
+                  {
+                      "path":  "artifacts/preflight/phase-refusal-proof.json",
+                      "sha256":  "6199374913eaa04690126468098fceda3c003e26e57ad5cb5a84c19bd7d2ff0c",
+                      "byte_length":  1562
+                  },
+                  {
+                      "path":  "artifacts/preflight/postgres-runtime-manifest.json",
+                      "sha256":  "f4ce3e955341986b8a60850595e378b18151d073c9371bbc18ab8128198883a2",
+                      "byte_length":  946
+                  },
+                  {
+                      "path":  "artifacts/preflight/preflight-gates.json",
+                      "sha256":  "5f4195e5b8d8ee9047d78cc16f3d3dc5459e562e14e3e76d732cdfbda6e48e00",
+                      "byte_length":  4088
+                  },
+                  {
+                      "path":  "artifacts/preflight/preregistration-freeze-manifest.json",
+                      "sha256":  "2074c22bd266863cc488aafa9c98397b0c253dc0618c8c4a574cfd60c3c70e5c",
+                      "byte_length":  969
+                  },
+                  {
+                      "path":  "artifacts/preflight/recovery-mark-interrupted.sql",
+                      "sha256":  "866771ec1d31a015be2703b682056e7eccad46349a1a7d593c75b99968ec5530",
+                      "byte_length":  537
+                  },
+                  {
+                      "path":  "artifacts/preflight/recovery-test.json",
+                      "sha256":  "8a5d46300785a1502d3ed0458f2e0035106e8a32ac60410a7845b94ea342e69b",
+                      "byte_length":  487
+                  },
+                  {
+                      "path":  "artifacts/preflight/recovery-test.json.sha256",
+                      "sha256":  "a6c8841db7dad1c6afbd969fa194e2c63bc7c7db4a00e710b2f66a05007e6ca7",
+                      "byte_length":  86
+                  },
+                  {
+                      "path":  "artifacts/preflight/reset-check-failure.json",
+                      "sha256":  "9faa2d433e636df52fa151a66195c1e421d82bde3c932688dd6b9a76baac2d96",
+                      "byte_length":  2124
+                  },
+                  {
+                      "path":  "artifacts/preflight/reset-git-facet.json",
+                      "sha256":  "f9db5939ec25573acb6c57de187f5ca3fb0ed260e3912a2b5a6ead611ba930a5",
+                      "byte_length":  2116
+                  },
+                  {
+                      "path":  "artifacts/preflight/reset-no-check.json",
+                      "sha256":  "0526cdaccbeaa82911bcccda1991f39187dd4082abf6dafb4b311c6b0bd0932e",
+                      "byte_length":  2125
+                  },
+                  {
+                      "path":  "artifacts/preflight/reset-policy-reject.json",
+                      "sha256":  "cdc2a287f20822efdca5b4261ae9087e6cb4ce12c1816fb1277f0f74d4fb21d6",
+                      "byte_length":  2138
+                  },
+                  {
+                      "path":  "artifacts/preflight/reset-policy-reject-2.json",
+                      "sha256":  "f0879a92c52d182ce7f6376a0a5a342d06391e8dcdb0c005f6962e4d9691af0f",
+                      "byte_length":  2138
+                  },
+                  {
+                      "path":  "artifacts/preflight/reset-proof-1.json",
+                      "sha256":  "690982667a2a9db64a55224bb1f4dfba84e6f5e3d21e1668ab88e7d45dd8a4a0",
+                      "byte_length":  2119
+                  },
+                  {
+                      "path":  "artifacts/preflight/reset-proof-2.json",
+                      "sha256":  "232dc706cbaee4d96b1ede0dee31a7f9053ffa0795c69ade737da142d8671ddf",
+                      "byte_length":  2119
+                  },
+                  {
+                      "path":  "artifacts/results/execution-boundary.json",
+                      "sha256":  "01db90aa1128f530dec4eb99cfbd5fde3b8c7b5f7f28931164da466f91897f86",
+                      "byte_length":  526
+                  },
+                  {
+                      "path":  "artifacts/results/final-runtime-state.json",
+                      "sha256":  "c34ac3cd8fdef77dffe89f900685f6c87664a437a1f1e518b46640d748038eaa",
+                      "byte_length":  607
+                  },
+                  {
+                      "path":  "artifacts/statistics/primary-analysis-not-estimable.json",
+                      "sha256":  "2cd748c8213a8a34608e7f5637ecc1238bd84113c8014c4b0a96417b4e9e3339",
+                      "byte_length":  649
+                  },
+                  {
+                      "path":  "Directory.Build.props",
+                      "sha256":  "48f459a7a20428e490c3eb12c7c50d3c352163c6d79c63c58394b220d02cf260",
+                      "byte_length":  382
+                  },
+                  {
+                      "path":  "docs/00-BUILD-001-AUTHORITY.md",
+                      "sha256":  "6391ab7d6980ef532ae8dd95dec3f060c7e2e8c5932c0b4f908cdf46106295d0",
+                      "byte_length":  1704
+                  },
+                  {
+                      "path":  "docs/01-BUILD-001-SPEC.md",
+                      "sha256":  "e6fde4ed95e0d9770c2a7561b0ae6af302d96069823868e53033c6c96901b25c",
+                      "byte_length":  1421
+                  },
+                  {
+                      "path":  "docs/02-PREREGISTRATION.md",
+                      "sha256":  "0f6c61e3eee4fe85ca4b9a4c414519752021f8bba2745cadcce1a4961f6e5941",
+                      "byte_length":  1700
+                  },
+                  {
+                      "path":  "docs/03-LIVE-BASELINE.md",
+                      "sha256":  "7b97388e5221579cc8c0d37328e46d9cefa5ee2d82baccde358e9dbe26146786",
+                      "byte_length":  4023
+                  },
+                  {
+                      "path":  "docs/04-EXPERIMENT-PROTOCOL.md",
+                      "sha256":  "557c6b4e5751e84a87420581d2331cd4728b8c488ee1be98e967073162f70975",
+                      "byte_length":  3061
+                  },
+                  {
+                      "path":  "docs/05-BUILD-001-RESULTS.md",
+                      "sha256":  "b14df79d5d4c34be33501eea6f848503587dc0649ce49ad2eb06db0aaaf741e2",
+                      "byte_length":  24478
+                  },
+                  {
+                      "path":  "docs/preregistration/original/StealthEye_World_Kernel_Build_001_Preregistration.json",
+                      "sha256":  "cf4de0ea97cd394ec8ae9373617d253b9b220be11a6584d30380b0051a617b10",
+                      "byte_length":  7611
+                  },
+                  {
+                      "path":  "docs/preregistration/original/StealthEye_World_Kernel_Build_001_Spec_and_Preregistration.md",
+                      "sha256":  "63804abcc376c4e2c27f242bee16e10678458b1befd5d1e4903ff54fa2d87696",
+                      "byte_length":  95065
+                  },
+                  {
+                      "path":  "experiments/acquisition/NOT-STARTED.md",
+                      "sha256":  "4687a53dcc4b81f52d43aeacb52584679fee7384402382efd3b6665ff54bbd8a",
+                      "byte_length":  334
+                  },
+                  {
+                      "path":  "experiments/confirmatory/NOT-STARTED.md",
+                      "sha256":  "b146bcb2f74dc2454d2ef1e6c52d178754bc8eb3299e6b9f831614a0d74923af",
+                      "byte_length":  278
+                  },
+                  {
+                      "path":  "experiments/drift/NOT-STARTED.md",
+                      "sha256":  "008b94946137dc211270764692e7b10f0a66e2b71ecfa46432bfb0ca3ae77212",
+                      "byte_length":  258
+                  },
+                  {
+                      "path":  "experiments/fixture/README.md",
+                      "sha256":  "45efa44260dc57c05904c372c20aa9556a3ea53f4b3aa8e522540e85f15be6a5",
+                      "byte_length":  623
+                  },
+                  {
+                      "path":  "experiments/fixture/repository-template/.github/workflows/fixture-check.yml",
+                      "sha256":  "ba0cc6869cf637440c163277cd4ffe0e8f243aa8af76639c56f34350efd55f85",
+                      "byte_length":  593
+                  },
+                  {
+                      "path":  "experiments/fixture/repository-template/.gitignore",
+                      "sha256":  "79810615b4063be5474618fd002df934762fe9ccebb448537ce74ce23b319202",
+                      "byte_length":  16
+                  },
+                  {
+                      "path":  "experiments/fixture/repository-template/fixture/check-mode.txt",
+                      "sha256":  "2f322935570ab5033df6277354d362f0709a5904e122b3bf3d82abcb0a7c8d1a",
+                      "byte_length":  83
+                  },
+                  {
+                      "path":  "experiments/fixture/repository-template/fixture/state.txt",
+                      "sha256":  "d5d4a80748a99c2a7721ed55f988e056c599a57e31412cb30f670e9260b44223",
+                      "byte_length":  58
+                  },
+                  {
+                      "path":  "experiments/fixture/repository-template/FixtureProbe.slnx",
+                      "sha256":  "e00d17f9142cfea55aceb96ebf226c6bb7faedeec6a44811777fa6e8451a3938",
+                      "byte_length":  82
+                  },
+                  {
+                      "path":  "experiments/fixture/repository-template/README.md",
+                      "sha256":  "fdcb7e6c7a2f80f661b29241168be2dc49aefdd3cfe640625d03c3d2ad696fa4",
+                      "byte_length":  245
+                  },
+                  {
+                      "path":  "experiments/fixture/repository-template/src/FixtureProbe/FixtureProbe.csproj",
+                      "sha256":  "45ec734f1026c6716625d3e010187e8157bda8374d0125a09eb16500fadc9122",
+                      "byte_length":  239
+                  },
+                  {
+                      "path":  "experiments/fixture/repository-template/src/FixtureProbe/Program.cs",
+                      "sha256":  "fcb59136ec801060cbaa2dbec3b60fd55829bb8a28cfd5f418d0d83e54a4191a",
+                      "byte_length":  239
+                  },
+                  {
+                      "path":  "experiments/fixture/seed-manifest.json",
+                      "sha256":  "67673eba448b2ad0092be27ab17ce688390547dc1a04c9e62229fda71a6a2337",
+                      "byte_length":  642
+                  },
+                  {
+                      "path":  "experiments/pilot/NOT-STARTED.md",
+                      "sha256":  "6dfe673f0c45f2c7d1eea372cee23e10b29d2ee58051374f5e23600d51820280",
+                      "byte_length":  290
+                  },
+                  {
+                      "path":  "README.md",
+                      "sha256":  "6055b2b5675ccec91d9f4a3fe96452a46455afc41acedd07f0dea0fd2d9a98de",
+                      "byte_length":  1627
+                  },
+                  {
+                      "path":  "schemas/001-world-kernel.sql",
+                      "sha256":  "bb9a78409420214004327ab12320664fd4004ef2877c73ea6e4b38abf95f3094",
+                      "byte_length":  46404
+                  },
+                  {
+                      "path":  "schemas/002-evaluator.sql",
+                      "sha256":  "d718ea562ffe007d7af0f76a4d27cdf2efe74375e96deaf334e7c43d3f17dbe8",
+                      "byte_length":  7662
+                  },
+                  {
+                      "path":  "schemas/003-operator-grants.sql",
+                      "sha256":  "62b6c10d023d5d6df6a3a8f082915cf10f8915dce3f15755d43f030ed1621773",
+                      "byte_length":  505
+                  },
+                  {
+                      "path":  "schemas/evaluation-spec-v1.json",
+                      "sha256":  "f182f6b0ac91d85436f077f0c78e3db0ec3b35d2f15f82d0675b699598c93ded",
+                      "byte_length":  2132
+                  },
+                  {
+                      "path":  "scripts/codeeye-observe.mjs",
+                      "sha256":  "4f38fb5a02a239bffa24aa19cb2a8661453b6b33f2aac46811864cb917f0569a",
+                      "byte_length":  1554
+                  },
+                  {
+                      "path":  "scripts/eyebrowse-github-preflight.mjs",
+                      "sha256":  "aa8af08232f781369c6d7b5bf75702adbea489bd987dbf0a15bee8d319c63394",
+                      "byte_length":  2721
+                  },
+                  {
+                      "path":  "scripts/eyebrowse-github-remote-commit.mjs",
+                      "sha256":  "3af03f3a4b230c9e03f60386b7713c0def9158be09cdb5a19412be00ea813a7e",
+                      "byte_length":  4669
+                  },
+                  {
+                      "path":  "scripts/eyebrowse-stale-page-probe.mjs",
+                      "sha256":  "a99e3acfc769e82f940ed7026a84ac64ad3b282d5db55ee16ba3acb1b4de9cac",
+                      "byte_length":  4338
+                  },
+                  {
+                      "path":  "scripts/finalize-hostile-suite.ps1",
+                      "sha256":  "4505e5fcf491204d39c906811ccf4c5f7bba0200d156162c70f8886b3059a05a",
+                      "byte_length":  9763
+                  },
+                  {
+                      "path":  "scripts/finalize-preflight.ps1",
+                      "sha256":  "8c24f649918ff8b5138cfe521b62ee3d411e749a442109373eb4a3115d5554be",
+                      "byte_length":  2719
+                  },
+                  {
+                      "path":  "scripts/fixture-provider-admin.ps1",
+                      "sha256":  "b562a2599f3ddce0f6b6145086df0a9440489b5e7dacb970472309c962671c66",
+                      "byte_length":  5692
+                  },
+                  {
+                      "path":  "scripts/fixture-reset.ps1",
+                      "sha256":  "2f944abf4a5cf2874bb73b9db9e1e642dfd23256e689534c01c3ba3b5412982f",
+                      "byte_length":  8418
+                  },
+                  {
+                      "path":  "scripts/generate-artifact-index.ps1",
+                      "sha256":  "637b0def4e580d252c11cad99e1f2342aa728837944c1e30f9c16119efe330cf",
+                      "byte_length":  1908
+                  },
+                  {
+                      "path":  "scripts/hostile-local-provider.ps1",
+                      "sha256":  "23f0b12950ce87ae6e02a131a7a06d55f185d446da56a543a0df8d36b7bd4ed3",
+                      "byte_length":  11226
+                  },
+                  {
+                      "path":  "scripts/provision-postgres.ps1",
+                      "sha256":  "71156ece6da2c5b5a86c2e3d8801090bf871c35ee99263f06f694b2211b0c6f7",
+                      "byte_length":  8332
+                  },
+                  {
+                      "path":  "scripts/recovery-test.ps1",
+                      "sha256":  "d7b4c62d76d6c5ada4d169b67d2b0b9e0f4c3b330e2811d0ac664d6bfb6591c1",
+                      "byte_length":  4078
+                  },
+                  {
+                      "path":  "scripts/run-experiment.ps1",
+                      "sha256":  "1e4d9f560e1a20319f7f61e387fd2df38289d599e8717dda4c0855442c541b89",
+                      "byte_length":  2158
+                  },
+                  {
+                      "path":  "scripts/run-eyebrowse-stale-probe.ps1",
+                      "sha256":  "d54069708af97783e8fcb4c5bc6f340b813fd89c692735e34742aa9161aa986f",
+                      "byte_length":  1730
+                  },
+                  {
+                      "path":  "scripts/run-postgres.ps1",
+                      "sha256":  "628d063ee4532b6d7ca17ddcf039a4a7c79a3e0d9c14a78cf769d7f7f98f61d3",
+                      "byte_length":  519
+                  },
+                  {
+                      "path":  "scripts/runtime-common.ps1",
+                      "sha256":  "be943dc180ee7055557aed224ec13e4e1acb25340fdfa882573aed5ce90c24be",
+                      "byte_length":  2021
+                  },
+                  {
+                      "path":  "scripts/start-postgres.ps1",
+                      "sha256":  "6945d14a3a1291a39d1a2142cf9e544e63b738a7049112ab8ac63ffcb12b8531",
+                      "byte_length":  7036
+                  },
+                  {
+                      "path":  "scripts/stop-postgres.ps1",
+                      "sha256":  "42e8fa4bc383b16b8f6ac0cd35aba8d9aff4dbef04364686402cbdfe0bf6e1c6",
+                      "byte_length":  1454
+                  },
+                  {
+                      "path":  "scripts/test.ps1",
+                      "sha256":  "f0f61209f2bb26285bd05f3708bbb413b0e85ce77a37e3c406f625e666534139",
+                      "byte_length":  2118
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/Build001Contract.cs",
+                      "sha256":  "5066ef65a13b039778d4de4c1eeb76bb5241eedaf4c6dc7557a14e053610abc9",
+                      "byte_length":  7407
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/CanonicalJson.cs",
+                      "sha256":  "16160cbc29090c42f31826326dadf2582ff11ac645c7dbb4f9233808de9652f6",
+                      "byte_length":  3467
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/ConnectionSecrets.cs",
+                      "sha256":  "84a5bbbafb064012d7ff3f1f49fbc5fd5b831ea6f2e7f23f7bc2d6f5292246d7",
+                      "byte_length":  615
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/CorrespondenceResolver.cs",
+                      "sha256":  "3b6980db24c7fa1d7b66b1b331bddcd34a9a65337e3cb695463ae20d943dc1af",
+                      "byte_length":  4953
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/EvidenceStore.cs",
+                      "sha256":  "faacba77faf34fc64b800989dfe1472e7239c68711b90259697e5c3a5b55c530",
+                      "byte_length":  5155
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/ExperimentControl.cs",
+                      "sha256":  "9b4e1f3a8d81e32a7abd3518c79499fd21fb9faf94918b2d8ae78b1537c87568",
+                      "byte_length":  21939
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/GitFacet.cs",
+                      "sha256":  "10af19557a22eb9b583c1d3edcc48e506628adcf6fdf3f3085870815dd88f1db",
+                      "byte_length":  10704
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/KernelDb.cs",
+                      "sha256":  "58d2db077e004db82123c2036708dd5a0e9518e08d2aa31987cf512e902de405",
+                      "byte_length":  16363
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/OverheadBenchmark.cs",
+                      "sha256":  "cab3f181db09dde64b70c4c45d50ae916aed5c21cfba5146bb77431d55c26f89",
+                      "byte_length":  10466
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/Packages.cs",
+                      "sha256":  "ca1bc3e55b0c1a0dc04b2af66d4f6883f0d3788dfef13d440dd4020f3c60e390",
+                      "byte_length":  12552
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/Program.cs",
+                      "sha256":  "8966c87119ae17ee5ec637a9e3c32bdc5611d3903c04da23e592d3d9d7e04af3",
+                      "byte_length":  18712
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/ProgramHostAdapter.cs",
+                      "sha256":  "89ad8cb048e2952ceaee73d010731c72d60dd3c6a31abf46f22008acd5dbceed",
+                      "byte_length":  4468
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/Scoring.cs",
+                      "sha256":  "56c6ead94f543b93700f8c3f9bbc89f565e0483f511bfcbcf099998be4d800f9",
+                      "byte_length":  11118
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/WorldKernel.Build001.csproj",
+                      "sha256":  "b8e006e7790f18d5380e9e6f183d7c49f3fea88bafa0654485efc5d8d82ebec3",
+                      "byte_length":  477
+                  },
+                  {
+                      "path":  "tests/WorldKernel.Build001.Tests/AssertEx.cs",
+                      "sha256":  "082739ce9c2a9babb693d0264ba38b58cbbaa37fef40b12afc20433758776422",
+                      "byte_length":  1473
+                  },
+                  {
+                      "path":  "tests/WorldKernel.Build001.Tests/DatabaseTests.cs",
+                      "sha256":  "aef25421d335607770d7b39658a96a04a686e447ed152fb3c7b37d0882480161",
+                      "byte_length":  50222
+                  },
+                  {
+                      "path":  "tests/WorldKernel.Build001.Tests/Program.cs",
+                      "sha256":  "018a002fb69e71c9f5e7fee3ec6f036e949d5a339fc8c6a9105ad430eaf3b278",
+                      "byte_length":  3793
+                  },
+                  {
+                      "path":  "tests/WorldKernel.Build001.Tests/UnitTests.cs",
+                      "sha256":  "60b74a09b2b999bf4eea3de85804b2b86f01975d69ba02e9318f06d1a2ce3d53",
+                      "byte_length":  12471
+                  },
+                  {
+                      "path":  "tests/WorldKernel.Build001.Tests/WorldKernel.Build001.Tests.csproj",
+                      "sha256":  "e476270f674f4d770bbb22589cf238a55b401d95276738b7c5d470946de76386",
+                      "byte_length":  373
+                  },
+                  {
+                      "path":  "WorldKernel.Build001.slnx",
+                      "sha256":  "8057f664ce011e6752af026f6cd0e82bf5e7a2b2ef8f42b3c88e0ff4f84290ae",
+                      "byte_length":  186
+                  }
+              ]
+}

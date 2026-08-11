@@ -41,7 +41,11 @@ The live Eye contract is v1 (`eye_inspect` and raw `eye_run`); repository v2 is 
 ## Experiment-owned topology
 
 - Source/workspace root: `X:\WorldKernel\Build001\repo` after deployment.
-- PostgreSQL binaries/data/logs: under `X:\WorldKernel\Build001\runtime`, explicitly started/stopped, never registered with Windows SCM.
+- PostgreSQL binaries/data/logs: under `C:\WorldKernel\Build001\runtime`, explicitly started/stopped through a triggerless experiment-owned scheduled task, never registered with Windows SCM. The C:/X: split follows the live sibling deployment mechanic because task-owned runtime processes cannot reliably use the X:-resident source tree.
 - Kernel Evidence blobs: `X:\WorldKernel\Build001\evidence\blobs`.
 - Evaluator hidden state: separate database and separate filesystem ACL/path under `X:\WorldKernel\Build001\evaluator`.
 - Fixture only: `StealthEyeLLC/world-kernel-build-001-fixture`.
+
+## Final runtime state
+
+At the end of Build 001 execution, PostgreSQL was stopped cleanly. A live `pg_isready` probe returned no response on `127.0.0.1:55431`; no PostgreSQL or World Kernel Windows SCM service existed. The triggerless experiment-owned scheduled task remains in the Ready state solely as the documented on-demand launch mechanism.
