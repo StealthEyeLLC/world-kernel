@@ -1,5 +1,5 @@
 <Solution>
   <Project Path="src/WorldKernel.Build001/WorldKernel.Build001.csproj" />
   <Project Path="tests/WorldKernel.Build001.Tests/WorldKernel.Build001.Tests.csproj" />
+  <Project Path="tools/WorldKernel.Campaign2Runner/WorldKernel.Campaign2Runner.csproj" />
 </Solution>
-
