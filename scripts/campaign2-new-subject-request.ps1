@@ -15,7 +15,7 @@ param(
     [Parameter(Mandatory = $true)]
     [string] $CurrentObservations,
     [Parameter(Mandatory = $true)]
-    [string[]] $Propositions,
+    [string] $PropositionsJson,
     [Parameter(Mandatory = $true)]
     [string] $ArmPackagePath,
     [Parameter(Mandatory = $true)]
@@ -34,6 +34,10 @@ $toolContract = Join-Path $campaignRoot 'tool-contract.json'
 $outputContract = Join-Path $campaignRoot 'trial-output-contract.json'
 $armPackage = [IO.Path]::GetFullPath($ArmPackagePath)
 $output = [IO.Path]::GetFullPath($OutputPath)
+$propositions = @($PropositionsJson | ConvertFrom-Json)
+if ($propositions.Count -eq 0 -or $propositions.Where({ $_ -isnot [string] }).Count -gt 0) {
+    throw 'PropositionsJson must be a non-empty JSON string array.'
+}
 foreach ($candidate in @($armPackage, $output)) {
     if (-not $candidate.StartsWith($campaignRoot, [StringComparison]::OrdinalIgnoreCase)) {
         throw "Campaign 2 request path is outside the experiment namespace: $candidate"
@@ -69,7 +73,7 @@ $request = [ordered]@{
     target = $Target
     task = $Task
     current_observations = $CurrentObservations
-    propositions = @($Propositions)
+    propositions = $propositions
     extra_treatment_model_calls = 0
     response_timeout_ms = $ResponseTimeoutMs
     generated_at = [DateTimeOffset]::UtcNow.ToString('O')
