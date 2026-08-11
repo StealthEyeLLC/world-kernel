@@ -389,8 +389,23 @@ try {
         if ($valuePattern.Current.IsReadOnly) { throw 'ChatGPT prompt textbox is read-only.' }
         $valuePattern.SetValue($prompt)
         $textbox.SetFocus()
-        [Windows.Forms.SendKeys]::SendWait('{ENTER}')
-        $script:OperationCount += 2
+        [Windows.Forms.SendKeys]::SendWait('{END}')
+        [Windows.Forms.SendKeys]::SendWait(' ')
+        [Windows.Forms.SendKeys]::SendWait('{BACKSPACE}')
+        $script:OperationCount += 4
+        Start-Sleep -Milliseconds 150
+        $preparedPrompt = (Get-Value $textbox).Replace("`r`n", "`n")
+        if ($preparedPrompt -ne $prompt) { throw 'ChatGPT prompt editor did not retain the exact locked prompt.' }
+        $send = @(Find-ElementsByName '^(Send prompt|Send message|Send)$' |
+            Where-Object { $_.Current.ControlType -eq [Windows.Automation.ControlType]::Button } |
+            Select-Object -First 1)
+        if ($send.Count -gt 0) {
+            Invoke-Element $send[0]
+        }
+        else {
+            [Windows.Forms.SendKeys]::SendWait('{ENTER}')
+            $script:OperationCount += 1
+        }
 
         Wait-Until {
             $current = Find-Element 'Chat with ChatGPT' ([Windows.Automation.ControlType]::Edit) 'prompt-textarea'

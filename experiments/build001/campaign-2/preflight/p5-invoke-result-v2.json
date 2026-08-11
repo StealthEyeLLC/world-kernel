@@ -1,0 +1,15 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-adapter-result-v1",
+    "passed":  false,
+    "mode":  "invoke",
+    "trial_id":  "campaign2-p5-probe-001",
+    "started_at":  "2026-08-11T17:44:16.7533588+00:00",
+    "completed_at":  "2026-08-11T17:44:51.2833223+00:00",
+    "invalidation_reasons":  [
+                                 "adapter_error"
+                             ],
+    "error_type":  "RuntimeException",
+    "error":  "Timed out waiting for subject prompt submission after 30000 ms.",
+    "request_sha256":  "0ca5ed9423b0d411ba6e9688262d97137d997bc551903b29ca08baa598a4f737",
+    "operation_count":  8
+}
