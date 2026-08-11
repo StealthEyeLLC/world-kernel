@@ -1,0 +1,49 @@
+{
+    "schema":  "world-kernel-build001-campaign2-check-observation-v2",
+    "branch":  "wk-b001-c2-p6-reject-v3",
+    "expected_head":  "6a442f52be2f8e60de07eba710b6fdf80e725864",
+    "not_before":  "2026-08-11T20:05:43.8827725+00:00",
+    "observed":  true,
+    "started":  false,
+    "terminal_success":  false,
+    "conclusion":  null,
+    "runs":  [
+
+             ],
+    "provider_observer":  "GitHub Actions provider API",
+    "browser_observer":  "eyeBROWSE/GitHub-checks-web",
+    "browser_receipt":  {
+                            "schema":  "world-kernel-build001-campaign2-eyebrowse-check-observation-v1",
+                            "provider":  "GitHub Actions web",
+                            "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+                            "branch":  "wk-b001-c2-p6-reject-v3",
+                            "expected_head":  "6a442f52be2f8e60de07eba710b6fdf80e725864",
+                            "expected_check":  false,
+                            "observed":  true,
+                            "started":  false,
+                            "terminal_success":  false,
+                            "conclusion":  null,
+                            "attempts":  1,
+                            "started_at":  "2026-08-11T20:05:59.453Z",
+                            "observed_at":  "2026-08-11T20:06:29.548Z",
+                            "elapsed_ms":  30095,
+                            "evidence":  {
+                                             "target":  "t_132",
+                                             "href":  "https://github.com/StealthEyeLLC/world-kernel-build-001-fixture/commit/6a442f52be2f8e60de07eba710b6fdf80e725864/checks",
+                                             "title":  "Build 001 deterministic reset c2-p6-reject-v3 ┬╖ StealthEyeLLC/world-kernel-build-001-fixture@6a442f5",
+                                             "user_login":  "StealthEyeLLC",
+                                             "branch_confirmed":  true,
+                                             "expected_head_confirmed":  true,
+                                             "no_checks":  true,
+                                             "workflow_presented":  false,
+                                             "terminal":  false,
+                                             "conclusion":  null,
+                                             "salient_text":  [
+                                                                  "wk-b001-c2-p6-reject-v3 StealthEye Build 001 Evaluator  6a442f5",
+                                                                  "There are no checks for this commit"
+                                                              ]
+                                         },
+                            "operations":  3
+                        },
+    "observed_at":  "2026-08-11T20:06:29.6279327+00:00"
+}

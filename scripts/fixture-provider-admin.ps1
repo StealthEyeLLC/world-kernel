@@ -16,49 +16,60 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
 $repository = 'StealthEyeLLC/world-kernel-build-001-fixture'
-$git = 'C:\Program Files\Git\cmd\git.exe'
 $gh = 'C:\WorldKernel\Build001\runtime\gh-2.97.0\gh.exe'
-if (-not (Test-Path $git)) { throw 'Pinned git.exe is unavailable.' }
 if (-not (Test-Path $gh)) { throw 'Pinned portable GitHub CLI is unavailable.' }
 if ($Branch -and $Branch -notmatch '^wk-b001-[a-z0-9][a-z0-9-]{0,62}$') {
     throw 'Branch is outside the disposable Build 001 namespace.'
 }
+if ($Branch -eq 'main') { throw 'Fixture provider administration may not target main.' }
 
-function Get-ConfiguredGitHubToken {
-    $credentialInput = "protocol=https`nhost=github.com`n`n"
-    $credentialOutput = $credentialInput | & $git credential fill
-    if ($LASTEXITCODE -ne 0) { throw 'Configured Git credential provider failed.' }
-    $passwordLine = $credentialOutput | Where-Object { $_ -like 'password=*' } | Select-Object -First 1
-    if (-not $passwordLine) { throw 'Configured GitHub credential is unavailable.' }
-    return $passwordLine.Substring('password='.Length)
+function Invoke-GhLines([string[]] $Arguments, [string] $InputText = $null, [switch] $AllowFailure) {
+    $saved = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'Continue'
+        if ($null -eq $InputText) {
+            $lines = @(& $gh @Arguments 2>&1 | ForEach-Object { [string]$_ })
+        }
+        else {
+            $lines = @($InputText | & $gh @Arguments 2>&1 | ForEach-Object { [string]$_ })
+        }
+        $exit = $LASTEXITCODE
+    }
+    finally { $ErrorActionPreference = $saved }
+    if ($exit -ne 0 -and -not $AllowFailure) {
+        throw "GitHub CLI failed ($($Arguments -join ' ')): $($lines -join [Environment]::NewLine)"
+    }
+    return [pscustomobject]@{ exit_code = $exit; lines = $lines }
 }
 
-$token = Get-ConfiguredGitHubToken
-$env:GH_TOKEN = $token
-$headers = @{
-    Authorization = 'Bearer ' + $token
-    Accept = 'application/vnd.github+json'
-    'X-GitHub-Api-Version' = '2022-11-28'
-    'User-Agent' = 'StealthEye-WorldKernel-Build001'
+function Invoke-GhJson([string[]] $Arguments) {
+    $result = Invoke-GhLines $Arguments
+    $text = $result.lines -join [Environment]::NewLine
+    if ([string]::IsNullOrWhiteSpace($text)) { return $null }
+    return $text | ConvertFrom-Json
 }
 
 function Get-BranchProtection([string] $Name) {
-    try {
-        return Invoke-RestMethod -Method Get -Uri "https://api.github.com/repos/$repository/branches/$Name/protection" -Headers $headers
+    if (-not $Name) { return $null }
+    $endpoint = "repos/$repository/branches/$([uri]::EscapeDataString($Name))/protection"
+    $result = Invoke-GhLines @('api',$endpoint,'--method','GET') -AllowFailure
+    if ($result.exit_code -eq 0) {
+        return ($result.lines -join [Environment]::NewLine) | ConvertFrom-Json
     }
-    catch {
-        if ($_.Exception.Response -and [int]$_.Exception.Response.StatusCode -eq 404) { return $null }
-        throw
-    }
+    if (($result.lines -join [Environment]::NewLine) -match 'HTTP 404|Not Found') { return $null }
+    throw "Unable to inspect fixture branch protection: $($result.lines -join [Environment]::NewLine)"
 }
 
 function Remove-BranchProtection([string] $Name) {
+    if ($Name -eq 'main') { throw 'Main branch protection is outside Campaign 2 fixture authority.' }
     if (Get-BranchProtection $Name) {
-        Invoke-RestMethod -Method Delete -Uri "https://api.github.com/repos/$repository/branches/$Name/protection" -Headers $headers | Out-Null
+        $endpoint = "repos/$repository/branches/$([uri]::EscapeDataString($Name))/protection"
+        Invoke-GhLines @('api',$endpoint,'--method','DELETE') | Out-Null
     }
 }
 
 function Set-RejectingBranchProtection([string] $Name) {
+    if ($Name -eq 'main') { throw 'Main branch protection is outside Campaign 2 fixture authority.' }
     $body = [ordered]@{
         required_status_checks = $null
         enforce_admins = $true
@@ -75,15 +86,20 @@ function Set-RejectingBranchProtection([string] $Name) {
         required_conversation_resolution = $false
         lock_branch = $false
         allow_fork_syncing = $true
-    } | ConvertTo-Json -Depth 8
-    Invoke-RestMethod -Method Put -Uri "https://api.github.com/repos/$repository/branches/$Name/protection" -Headers $headers -Body $body -ContentType 'application/json' | Out-Null
+    } | ConvertTo-Json -Depth 8 -Compress
+    $endpoint = "repos/$repository/branches/$([uri]::EscapeDataString($Name))/protection"
+    Invoke-GhLines @('api',$endpoint,'--method','PUT','--input','-') $body | Out-Null
+}
+
+function Get-Workflow {
+    return Invoke-GhJson @('api',"repos/$repository/actions/workflows/fixture-check.yml",'--method','GET')
 }
 
 function Get-ProviderConfiguration([string] $Name) {
     $protection = if ($Name) { Get-BranchProtection $Name } else { $null }
-    $workflow = Invoke-RestMethod -Method Get -Uri "https://api.github.com/repos/$repository/actions/workflows/fixture-check.yml" -Headers $headers
-    $secretRaw = & $gh secret list --repo $repository --json name
-    if ($LASTEXITCODE -ne 0) { throw 'Unable to inspect fixture secret metadata.' }
+    $workflow = Get-Workflow
+    $secretResult = Invoke-GhLines @('secret','list','--repo',$repository,'--json','name')
+    $secretRaw = $secretResult.lines -join [Environment]::NewLine
     return [ordered]@{
         repository = $repository
         branch = $Name
@@ -99,36 +115,57 @@ function Get-ProviderConfiguration([string] $Name) {
     }
 }
 
-switch ($Operation) {
-    'set-check-regime' {
-        if ($CheckRegime -eq 'no_check') {
-            & $gh workflow disable fixture-check.yml --repo $repository
-            if ($LASTEXITCODE -ne 0) { throw 'Unable to disable fixture workflow.' }
-        }
-        else {
-            & $gh workflow enable fixture-check.yml --repo $repository
-            if ($LASTEXITCODE -ne 0) { throw 'Unable to enable fixture workflow.' }
-            & $gh secret set WK_BUILD001_CHECK_MODE --repo $repository --body $CheckRegime
-            if ($LASTEXITCODE -ne 0) { throw 'Unable to set encrypted fixture check regime.' }
-        }
-    }
-    'set-push-regime' {
-        if (-not $Branch) { throw '-Branch is required for set-push-regime.' }
-        if ($PushRegime -eq 'accepted') { Remove-BranchProtection $Branch }
-        else { Set-RejectingBranchProtection $Branch }
-    }
-    'inspect' { }
+function Get-GitHubToken {
+    $git = 'C:\Program Files\Git\cmd\git.exe'
+    $credentialInput = "protocol=https`nhost=github.com`n`n"
+    $credentialOutput = @($credentialInput | & $git credential fill)
+    if ($LASTEXITCODE -ne 0) { throw 'Git credential provider failed for fixture provider administration.' }
+    $passwordLine = $credentialOutput | Where-Object { $_ -like 'password=*' } | Select-Object -First 1
+    if (-not $passwordLine) { throw 'GitHub credential is unavailable for fixture provider administration.' }
+    return $passwordLine.Substring('password='.Length)
 }
 
-$configuration = Get-ProviderConfiguration $Branch
-$bytes = [Text.Encoding]::UTF8.GetBytes(($configuration | ConvertTo-Json -Compress))
-$hasher = [Security.Cryptography.SHA256]::Create()
-try { $fingerprint = ([BitConverter]::ToString($hasher.ComputeHash($bytes)) -replace '-', '').ToLowerInvariant() }
-finally { $hasher.Dispose() }
+$oldGitHubToken = $env:GH_TOKEN
+try {
+    $env:GH_TOKEN = Get-GitHubToken
+    switch ($Operation) {
+        'set-check-regime' {
+            $currentWorkflow = Get-Workflow
+            $currentState = [string]$currentWorkflow.state
+            if ($CheckRegime -eq 'no_check') {
+                if ($currentState -eq 'active') {
+                    Invoke-GhLines @('workflow','disable','fixture-check.yml','--repo',$repository) | Out-Null
+                }
+            }
+            else {
+                if ($currentState -ne 'active') {
+                    Invoke-GhLines @('workflow','enable','fixture-check.yml','--repo',$repository) | Out-Null
+                }
+                Invoke-GhLines @('secret','set','WK_BUILD001_CHECK_MODE','--repo',$repository,'--body',$CheckRegime) | Out-Null
+            }
+        }
+        'set-push-regime' {
+            if (-not $Branch) { throw '-Branch is required for set-push-regime.' }
+            if ($PushRegime -eq 'accepted') { Remove-BranchProtection $Branch }
+            else { Set-RejectingBranchProtection $Branch }
+        }
+        'inspect' { }
+    }
 
-[pscustomobject]@{
-    operation = $Operation
-    configuration = $configuration
-    configuration_fingerprint = $fingerprint
-    observed_at = [DateTimeOffset]::UtcNow.ToString('O')
-} | ConvertTo-Json -Compress -Depth 6
+    $configuration = Get-ProviderConfiguration $Branch
+    $bytes = [Text.Encoding]::UTF8.GetBytes(($configuration | ConvertTo-Json -Compress))
+    $hasher = [Security.Cryptography.SHA256]::Create()
+    try { $fingerprint = ([BitConverter]::ToString($hasher.ComputeHash($bytes)) -replace '-', '').ToLowerInvariant() }
+    finally { $hasher.Dispose() }
+    $result = [pscustomobject]@{
+        operation = $Operation
+        configuration = $configuration
+        configuration_fingerprint = $fingerprint
+        observed_at = [DateTimeOffset]::UtcNow.ToString('O')
+    }
+}
+finally {
+    $env:GH_TOKEN = $oldGitHubToken
+    Remove-Variable oldGitHubToken -ErrorAction SilentlyContinue
+}
+$result | ConvertTo-Json -Compress -Depth 6

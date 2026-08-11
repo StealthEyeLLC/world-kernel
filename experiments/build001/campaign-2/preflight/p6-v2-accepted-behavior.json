@@ -1,0 +1,22 @@
+{
+    "schema":  "world-kernel-build001-p6-regime-behavior-v1",
+    "mode":  "accepted",
+    "branch":  "wk-b001-c2-p6-accept",
+    "remote_before":  "934e9d1ce431e2a39212285cc917a5f7b95b2bdd",
+    "local_candidate":  "ac0a7425755b68b1c61b8d2f1eff04ffbd60c6a5",
+    "push":  {
+                 "args":  [
+                              "push",
+                              "origin",
+                              "HEAD:refs/heads/wk-b001-c2-p6-accept"
+                          ],
+                 "exit_code":  0,
+                 "output":  [
+                                "To https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                                "   934e9d1..ac0a742  HEAD -\u003e wk-b001-c2-p6-accept"
+                            ]
+             },
+    "remote_after":  "ac0a7425755b68b1c61b8d2f1eff04ffbd60c6a5",
+    "passed":  true,
+    "observed_at":  "2026-08-11T19:45:22.7162449+00:00"
+}

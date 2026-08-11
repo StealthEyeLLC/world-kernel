@@ -62,7 +62,7 @@ internal static class Campaign2ExecutionTests
             ("checked_out_branch_content_changes", false));
 
         var integrateBefore = State(localHead: Sha('a'), remoteHead: Sha('c'), trackingHead: Sha('c'), worktree: Sha('1'));
-        var integrateAfter = State(localHead: Sha('c'), remoteHead: Sha('c'), trackingHead: Sha('c'), worktree: Sha('3'));
+        var integrateAfter = State(localHead: Sha('c'), remoteHead: Sha('c'), trackingHead: Sha('c'), worktree: Sha('3'), parents: 2);
         AssertVector("git:integrate_fast_forward", integrateBefore, integrateAfter, true, emptyProvider,
             ("fast_forward_is_accepted", true),
             ("local_head_equals_remote_target_after_H1", true),

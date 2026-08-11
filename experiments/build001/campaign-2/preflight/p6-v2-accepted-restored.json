@@ -1,0 +1,36 @@
+{
+    "reset_version":  "build001-fixture-reset-v1",
+    "phase":  "preflight",
+    "block_id":  "c2-p6-accept",
+    "arm":  "preflight",
+    "generation_id":  "2ed4bb0d-ea3f-43ef-b10e-a0fd5a05700f",
+    "seed_commitment_sha256":  "c43aaeb65b7ee9235276cf97c44cf222e6338d035806593038baee62639693c3",
+    "material":  {
+                     "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+                     "provider_native_repository_id":  1330898503,
+                     "base_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+                     "local_head":  "934e9d1ce431e2a39212285cc917a5f7b95b2bdd",
+                     "remote_head":  "934e9d1ce431e2a39212285cc917a5f7b95b2bdd",
+                     "tree":  "71463e83f5d8dcbb76bb800b0f49dbbe5fdf8b26",
+                     "branch":  "wk-b001-c2-p6-accept",
+                     "state_sha256":  "e546c722f4e169bd4b58043828444d5f5c38adcecb6afea1156ad488ea297509",
+                     "push_policy":  {
+                                         "branch_protected":  false,
+                                         "required_approving_reviews":  0,
+                                         "admins_enforced":  false
+                                     },
+                     "check_provider":  {
+                                            "workflow_state":  "active",
+                                            "encrypted_check_secret_present":  true
+                                        },
+                     "browser_freshness_setup":  "fresh"
+                 },
+    "actual_fingerprint":  "95e2701734da7414d9c53294bfacf80c3cb8b426541d6e38cda69260b27765e2",
+    "exact_local_remote_match":  true,
+    "reset_verified":  true,
+    "provider_evidence":  {
+                              "configured_remote":  "https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                              "provider_configuration_fingerprint":  "7798745bda8f2bdda67a7cd0fa0ac5b7b2d6bb4247284240c257d53b4f67f667"
+                          },
+    "reset_at":  "2026-08-11T19:46:12.2182973+00:00"
+}

@@ -1,0 +1,59 @@
+{
+    "schema":  "world-kernel-build001-campaign2-p6-attestation-v3",
+    "campaign_id":  "build001-campaign-2",
+    "preflight":  "P6 deterministic reset",
+    "method":  "deterministic fixture reset + idempotent provider control + independent Git/provider reobservation + provider behavior proof",
+    "supersedes":  "p6-deterministic-reset-attestation-v2.json",
+    "accepted_regime":  {
+                            "fingerprint_1":  "df89027051be30dcd8494ac762e2c5f7cf769d053cc28c02965208a59cbf97b0",
+                            "fingerprint_2":  "df89027051be30dcd8494ac762e2c5f7cf769d053cc28c02965208a59cbf97b0",
+                            "head_1":  "f2ce5185a328b853d3654a973b4324737942a24e",
+                            "head_2":  "f2ce5185a328b853d3654a973b4324737942a24e",
+                            "restored_fingerprint":  "df89027051be30dcd8494ac762e2c5f7cf769d053cc28c02965208a59cbf97b0",
+                            "independent_fingerprint":  "df89027051be30dcd8494ac762e2c5f7cf769d053cc28c02965208a59cbf97b0",
+                            "push_exit_code":  0,
+                            "passed":  true
+                        },
+    "rejected_regime":  {
+                            "fingerprint_1":  "1e38ac0b261fd42d915937ab8ce429a386287600f54e1963fa1938e3bf9262ca",
+                            "fingerprint_2":  "1e38ac0b261fd42d915937ab8ce429a386287600f54e1963fa1938e3bf9262ca",
+                            "head_1":  "6a442f52be2f8e60de07eba710b6fdf80e725864",
+                            "head_2":  "6a442f52be2f8e60de07eba710b6fdf80e725864",
+                            "restored_fingerprint":  "1e38ac0b261fd42d915937ab8ce429a386287600f54e1963fa1938e3bf9262ca",
+                            "independent_fingerprint":  "1e38ac0b261fd42d915937ab8ce429a386287600f54e1963fa1938e3bf9262ca",
+                            "branch_protected":  true,
+                            "required_approving_reviews":  1,
+                            "admins_enforced":  true,
+                            "browser_freshness_setup":  "stale_until_reobserve",
+                            "push_exit_code":  1,
+                            "remote_unchanged_on_rejection":  true,
+                            "passed":  true
+                        },
+    "same_seed_repeated_material_state":  true,
+    "different_regimes_have_different_fingerprints":  true,
+    "independent_reobservation_matches_reset":  true,
+    "accepted_provider_behavior_verified":  true,
+    "rejected_provider_behavior_verified":  true,
+    "restored_after_behavior_proof":  true,
+    "fixture_repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+    "fixture_main_baseline":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "reset_implementation":  {
+                                 "fixture_reset_sha256":  "e9e3f4b5bf3ac44a94c70636fb1c59eb55f7b0da47996b03336e827d92ef9901",
+                                 "provider_admin_sha256":  "614f06f504ae159799d1fad2b640e2ce895d039b118e055a4f999ccdd73e9b91",
+                                 "independent_verifier_sha256":  "c9175cb677013f69b42c5e4747dd9cd512bd5fa82734559b41d2d6c782276734"
+                             },
+    "source_sha256":  {
+                          "p6-v3-accepted-1.json":  "5de1739fe8fae3ae442f8baeebaa2086d0b7a53de0d6999f5e8ba920e3656c4a",
+                          "p6-v3-accepted-2.json":  "7b03e3b7dad4d5c83eac56961be613fadb45c55ab995dad0b897db0a2e27da59",
+                          "p6-v3-accepted-behavior.json":  "8c85d1a4335a1de4e53bb1b984f8c4d000ab12fdb280b5222682ffc3fc54a489",
+                          "p6-v3-accepted-restored.json":  "5450210d1aee23df2616af0e6b8f957bf9427742cbea72a67983315032ddfab7",
+                          "p6-v3-accepted-final-independent.json":  "f98436f93c7171d7014e084096b01378de510fe3cb567ccf49cc8e947f1ae1a5",
+                          "p6-v3-rejected-1.json":  "df903ef2aea4b2ac83bad08fbaa3c95932f46633bf547ee36d06583c0f1538ac",
+                          "p6-v3-rejected-2.json":  "4b3d8943bef0c5be9f64485c62b34c8bdcd4cfaf69d8276f112dec5c53b06f79",
+                          "p6-v3-rejected-behavior.json":  "d550718068bcd91c209bf8c180eb375a5555f585efc23d23a2fc854e11a42362",
+                          "p6-v3-rejected-restored.json":  "99e6771d12617e310c43ee0c4a478edcbbca58effc5a5b40f17e2a0cfb0a3626",
+                          "p6-v3-rejected-final-independent.json":  "70f4e848192470f31ead25f1697bbe38c4cdf39d8d451fcdf827cc4d9586865f"
+                      },
+    "passed":  true,
+    "observed_at":  "2026-08-11T19:59:30.1650327+00:00"
+}

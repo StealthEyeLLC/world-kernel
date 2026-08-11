@@ -1,0 +1,62 @@
+{
+    "schema":  "world-kernel-build001-campaign2-p6-attestation-v4",
+    "campaign_id":  "build001-campaign-2",
+    "preflight":  "P6 deterministic reset",
+    "method":  "deterministic fixture reset + idempotent provider control using ephemeral Git credential + independent Git/provider reobservation + provider behavior proof",
+    "supersedes":  [
+                       "p6-deterministic-reset-attestation-v2.json",
+                       "p6-deterministic-reset-attestation-v3.json"
+                   ],
+    "accepted_regime":  {
+                            "fingerprint_1":  "df89027051be30dcd8494ac762e2c5f7cf769d053cc28c02965208a59cbf97b0",
+                            "fingerprint_2":  "df89027051be30dcd8494ac762e2c5f7cf769d053cc28c02965208a59cbf97b0",
+                            "head_1":  "f2ce5185a328b853d3654a973b4324737942a24e",
+                            "head_2":  "f2ce5185a328b853d3654a973b4324737942a24e",
+                            "restored_fingerprint":  "df89027051be30dcd8494ac762e2c5f7cf769d053cc28c02965208a59cbf97b0",
+                            "independent_fingerprint":  "df89027051be30dcd8494ac762e2c5f7cf769d053cc28c02965208a59cbf97b0",
+                            "push_exit_code":  0,
+                            "passed":  true
+                        },
+    "rejected_regime":  {
+                            "fingerprint_1":  "1e38ac0b261fd42d915937ab8ce429a386287600f54e1963fa1938e3bf9262ca",
+                            "fingerprint_2":  "1e38ac0b261fd42d915937ab8ce429a386287600f54e1963fa1938e3bf9262ca",
+                            "head_1":  "6a442f52be2f8e60de07eba710b6fdf80e725864",
+                            "head_2":  "6a442f52be2f8e60de07eba710b6fdf80e725864",
+                            "restored_fingerprint":  "1e38ac0b261fd42d915937ab8ce429a386287600f54e1963fa1938e3bf9262ca",
+                            "independent_fingerprint":  "1e38ac0b261fd42d915937ab8ce429a386287600f54e1963fa1938e3bf9262ca",
+                            "branch_protected":  true,
+                            "required_approving_reviews":  1,
+                            "admins_enforced":  true,
+                            "browser_freshness_setup":  "stale_until_reobserve",
+                            "push_exit_code":  1,
+                            "remote_unchanged_on_rejection":  true,
+                            "passed":  true
+                        },
+    "same_seed_repeated_material_state":  true,
+    "different_regimes_have_different_fingerprints":  true,
+    "independent_reobservation_matches_reset":  true,
+    "accepted_provider_behavior_verified":  true,
+    "rejected_provider_behavior_verified":  true,
+    "restored_after_behavior_proof":  true,
+    "fixture_repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+    "fixture_main_baseline":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "reset_implementation":  {
+                                 "fixture_reset_sha256":  "e9e3f4b5bf3ac44a94c70636fb1c59eb55f7b0da47996b03336e827d92ef9901",
+                                 "provider_admin_sha256":  "b031f1d7cd18b14baf91035593f9ef8cbf5693c905c4f431a8337aec2b5caec5",
+                                 "independent_verifier_sha256":  "c9175cb677013f69b42c5e4747dd9cd512bd5fa82734559b41d2d6c782276734"
+                             },
+    "source_sha256":  {
+                          "p6-v4-accepted-1.json":  "3db5bd60409d70022f4ea3aee196fb2e267e123ab534bb4e545d9568d5bfcb8a",
+                          "p6-v4-accepted-2.json":  "b4d40f4dad2bc9b0c7edf4f60e1d71d26ce26ec4f9aa3f2abac706dd9d06da9a",
+                          "p6-v4-accepted-behavior.json":  "8ad40047ad58ee5c7901df53d89a88b7683cc54c047cf46238d406aae88adbc2",
+                          "p6-v4-accepted-restored.json":  "24b93ace7e4e87baa85e9a927537e36f26b1d866f49376ece2b4df2707f64ab5",
+                          "p6-v4-accepted-final-independent.json":  "d351e2d3d2d111ee81b3cea4cec7d951989cf75cd31d514bc5b6426f5f964040",
+                          "p6-v4-rejected-1.json":  "10675f64967ab654f7f6afb5e759a733641eefaa5b3fd210a3369f88612adf49",
+                          "p6-v4-rejected-2.json":  "3104b76915b9ac15a9346f2c258f5babc56bd19391531ef8f9cc7f319a78ae3b",
+                          "p6-v4-rejected-behavior.json":  "2bb1bae060f771059e59977e7a30f7a7f95e751407824ef47a7d3251995e08e8",
+                          "p6-v4-rejected-restored.json":  "efebb18f0b0159593eb1d42b28a25054281f60854706d1651ff527083bae3227",
+                          "p6-v4-rejected-final-independent.json":  "694edf5fbaa56be8ae33526b49d9c8d4f7c3d28b39a592d566366cd9d19efc55"
+                      },
+    "passed":  true,
+    "observed_at":  "2026-08-11T20:15:46.7777350+00:00"
+}

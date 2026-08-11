@@ -322,6 +322,7 @@ internal static class CommandLine
             Required(options, "configuration-block"),
             Required(options, "seed-id"),
             Required(options, "reset-manifest"),
+            Required(options, "verification"),
             Required(options, "output")).ConfigureAwait(false);
         Console.WriteLine(JsonSerializer.Serialize(new
         {
@@ -484,7 +485,7 @@ internal static class CommandLine
           eyebrowse-preflight --node-executable PATH --scripts-root PATH --sdk-path PATH --repository-url URL
           eyebrowse-remote-commit --node-executable PATH --scripts-root PATH --sdk-path PATH --branch NAME --file PATH --text TEXT --message TEXT
           campaign2-register-block --repo-root PATH --secret-file PATH --input PATH --output PATH
-          campaign2-register-reset --repo-root PATH --secret-file PATH --configuration-block ID --seed-id ID --reset-manifest PATH --output PATH
+          campaign2-register-reset --repo-root PATH --secret-file PATH --configuration-block ID --seed-id ID --reset-manifest PATH --verification PATH --output PATH
           campaign2-begin --repo-root PATH --secret-file PATH --evidence-root PATH --input PATH --output PATH
           campaign2-close --repo-root PATH --secret-file PATH --evidence-root PATH --begin PATH --receipt PATH --post-observation PATH --provider-outcome PATH --output PATH
           campaign2-coverage --repo-root PATH --secret-file PATH --output PATH

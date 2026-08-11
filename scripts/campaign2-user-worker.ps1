@@ -1,4 +1,4 @@
-param(
+﻿param(
     [Parameter(Mandatory = $true)]
     [string] $JobPath
 )
@@ -44,16 +44,6 @@ function Invoke-ExternalJson([string] $Executable, [string[]] $Arguments) {
     return $jsonLine | ConvertFrom-Json
 }
 
-function Get-GitHubToken {
-    $git = 'C:\Program Files\Git\cmd\git.exe'
-    $credentialInput = "protocol=https`nhost=github.com`n`n"
-    $credentialOutput = $credentialInput | & $git credential fill
-    if ($LASTEXITCODE -ne 0) { throw 'Configured Git credential provider failed.' }
-    $passwordLine = $credentialOutput | Where-Object { $_ -like 'password=*' } | Select-Object -First 1
-    if (-not $passwordLine) { throw 'Configured GitHub credential is unavailable.' }
-    return $passwordLine.Substring('password='.Length)
-}
-
 $started = [DateTimeOffset]::UtcNow
 try {
     $a = $job.arguments
@@ -62,6 +52,10 @@ try {
             & (Join-Path $PSScriptRoot 'fixture-reset.ps1') -Phase acquisition -BlockId $a.block_id -Arm acquisition -Seed $a.seed `
                 -Branch $a.branch -PushRegime $a.push_regime -CheckRegime $a.check_regime -BrowserFreshness $a.browser_freshness `
                 -WorkspaceRoot $a.workspace_root -OutputPath $a.output_path | Out-Null
+        }
+        'verify-reset' {
+            & (Join-Path $PSScriptRoot 'campaign2-verify-reset.ps1') -WorkingCopy $a.working_copy -Branch $a.branch `
+                -BrowserFreshness $a.browser_freshness -OutputPath $a.output_path | Out-Null
         }
         'prepare' {
             & (Join-Path $PSScriptRoot 'campaign2-prepare-action.ps1') -SemanticAction $a.semantic_action -WorkingCopy $a.working_copy `
@@ -73,69 +67,37 @@ try {
                 (Join-Path $PSScriptRoot 'campaign2-subject-adapter.ps1'),'-RequestPath',$a.request_path,'-OutputPath',$a.output_path)
             if (-not $result.passed) { throw 'Campaign 2 subject invocation was invalid.' }
         }
-        'git-action' {
-            $dotnet = [string]$a.dotnet
-            $args = @([string]$a.cli_dll,'git-action','--semantic-action',[string]$a.semantic_action,
-                '--git-executable','C:\Program Files\Git\cmd\git.exe','--fixture-root',[string]$a.fixture_root,
-                '--working-copy',[string]$a.working_copy)
-            switch ([string]$a.semantic_action) {
-                'git:create_local_commit' {
-                    $args += @('--relative-path',[string]$a.parameters.relative_path,'--message',[string]$a.parameters.message,'--timestamp',[string]$a.parameters.timestamp)
-                }
-                'git:create_branch' { $args += @('--branch',[string]$a.parameters.branch) }
-                'git:push_ref' { $args += @('--branch',[string]$a.parameters.branch) }
-                'git:integrate_fast_forward' { $args += @('--branch',[string]$a.parameters.branch) }
-            }
-            $result = Invoke-ExternalJson $dotnet $args
-            Write-NewJson $a.output_path $result
-        }
-        'remote-commit' {
-            $nodeResult = Invoke-ExternalJson $a.node @((Join-Path $PSScriptRoot 'eyebrowse-github-remote-commit.mjs'),
-                [string]$a.sdk,[string]$a.parameters.branch,[string]$a.parameters.file,[string]$a.parameters.text,[string]$a.parameters.message)
-            $receipt = [ordered]@{
-                ok = $true
-                semantic_action = 'github:create_remote_commit'
-                receipt_accepted = $true
-                exit_code = 0
-                started_at = $nodeResult.started_at
-                completed_at = $nodeResult.completed_at
-                receipt = $nodeResult
-            }
-            Write-NewJson $a.output_path $receipt
+        'material-action' {
+            & (Join-Path $PSScriptRoot 'campaign2-recover-action.ps1') `
+                -SemanticAction $a.semantic_action -WorkingCopy $a.working_copy `
+                -PreObservationPath $a.pre_observation_path -PreparePath $a.prepare_path -OutputPath $a.output_path `
+                -Dotnet $a.dotnet -CliDll $a.cli_dll -FixtureRoot $a.fixture_root -Node $a.node -Sdk $a.sdk | Out-Null
         }
         'browser-observe' {
             $nodeResult = Invoke-ExternalJson $a.node @((Join-Path $PSScriptRoot 'eyebrowse-github-ref-observe.mjs'),[string]$a.sdk,[string]$a.branch)
             Write-NewJson $a.output_path $nodeResult
         }
         'provider-check' {
-            $git = 'C:\Program Files\Git\cmd\git.exe'
-            $gh = 'C:\WorldKernel\Build001\runtime\gh-2.97.0\gh.exe'
-            $env:GH_TOKEN = Get-GitHubToken
-            $deadline = [DateTimeOffset]::UtcNow.AddSeconds([int]$a.timeout_seconds)
-            $matching = @()
-            do {
-                $json = & $gh run list --repo StealthEyeLLC/world-kernel-build-001-fixture --branch $a.branch --event push --limit 50 `
-                    --json databaseId,headSha,status,conclusion,createdAt,updatedAt,workflowName
-                if ($LASTEXITCODE -ne 0) { throw 'Unable to inspect GitHub Actions runs.' }
-                $runs = @($json | ConvertFrom-Json)
-                $matching = @($runs | Where-Object { $_.headSha -eq $a.expected_head })
-                $terminal = @($matching | Where-Object { $_.status -eq 'completed' })
-                if ($matching.Count -gt 0 -and ((-not [bool]$a.expect_check) -or $terminal.Count -gt 0)) { break }
-                if (-not [bool]$a.expect_check -and [DateTimeOffset]::UtcNow -ge $started.AddSeconds(15)) { break }
-                Start-Sleep -Seconds 2
-            } while ([DateTimeOffset]::UtcNow -lt $deadline)
-            $terminal = @($matching | Where-Object { $_.status -eq 'completed' })
-            $success = @($terminal | Where-Object { $_.conclusion -eq 'success' }).Count -gt 0
+            $nodeResult = Invoke-ExternalJson $a.node @(
+                (Join-Path $PSScriptRoot 'eyebrowse-github-check-observe.mjs'),
+                [string]$a.sdk,
+                [string]$a.branch,
+                [string]$a.expected_head,
+                ([bool]$a.expect_check).ToString().ToLowerInvariant(),
+                ([int]$a.timeout_seconds).ToString()
+            )
             $check = [ordered]@{
                 schema = 'world-kernel-build001-campaign2-check-observation-v1'
-                branch = $a.branch
-                expected_head = $a.expected_head
-                observed = $true
-                started = $matching.Count -gt 0
-                terminal_success = $success
-                conclusion = if ($terminal.Count -gt 0) { [string]$terminal[0].conclusion } else { $null }
-                runs = $matching
-                observed_at = [DateTimeOffset]::UtcNow.ToString('O')
+                branch = [string]$nodeResult.branch
+                expected_head = [string]$nodeResult.expected_head
+                observed = [bool]$nodeResult.observed
+                started = [bool]$nodeResult.started
+                terminal_success = [bool]$nodeResult.terminal_success
+                conclusion = $nodeResult.conclusion
+                runs = @($nodeResult.evidence)
+                observer = 'eyeBROWSE/GitHub-checks-web'
+                observer_receipt = $nodeResult
+                observed_at = [string]$nodeResult.observed_at
             }
             Write-NewJson $a.output_path $check
         }

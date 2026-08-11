@@ -1,74 +1,119 @@
-# Build 001 Campaign 2 preflight repair
+# Build 001 Campaign 2 preflight repair and execution audit
 
 Date: 2026-08-11
-Status: P0–P6 PASS; no acquisition, pilot, confirmatory, or drift execution occurred before this record.
+Status: P0-P6 PASS on the audited Campaign 2 tree; no acquisition, pilot, confirmatory, or drift outcome exists at this record.
 
-## Boundary
+## Boundary and authority
 
-Campaign 1 remains permanently classified **NO VALID CONFIRMATORY CONCLUSION**. Its result is preserved at commit `29851025b0f11034a276cd1259651ee4fec5ed0e`; `docs/05-BUILD-001-RESULTS.md` has SHA-256 `b14df79d5d4c34be33501eea6f848503587dc0649ce49ad2eb06db0aaaf741e2`.
+Campaign 1 remains permanently classified **NO VALID CONFIRMATORY CONCLUSION**. Its historical result remains in `docs/05-BUILD-001-RESULTS.md`; Campaign 2 does not rewrite it.
 
-Campaign 2 is the prospective rerun authorized by `00-AUTHORITY.md` (SHA-256 `9a6f7ca2e976f0f0e6dd763152d3e2d26220ce9ff05763590105a59df00c1041`). It repairs only P0, P2, and P5 mechanics. It does not redesign the architecture, alter the frozen hypothesis, change any arm or endpoint, mutate a sibling repository, or waive any gate.
+Campaign 2 remains the prospective Build 001 rerun authorized by `docs/campaigns/build001-campaign-2/00-AUTHORITY.md`. The work described here is limited to preflight repair, deterministic experiment mechanics, recovery, and evidence capture required to execute the already-frozen Build 001 experiment. It does not authorize Build 002, canonicalization, architecture redesign, or sibling-Eye architecture changes.
 
-The Campaign 1 artifact directory `artifacts/preflight` was not modified. Campaign 2 uses `artifacts/campaign-2/preflight`; its lineage record has SHA-256 `77ec8ffcce0a32220735a953c35042ebb0ead156fab1395dd3b679f3cfee4923`.
+Campaign 1 evidence in `artifacts/preflight/` remains historical. Campaign 2 uses the separate `artifacts/campaign-2/preflight/` and `experiments/build001/campaign-2/` namespaces.
 
-## Repair results
+Immediately before the audited gate was regenerated, evaluator and kernel queries returned zero Campaign 2 seed commitments, hidden configurations, reset-verification rows, invocation attestations, ground-truth rows, aggregate results, measured Actions, and TransitionEpisodes. No scientific outcome was available to influence these repairs.
 
-| Gate | Result | Evidence |
+## Final audited preflight
+
+| Gate | Result | Current Campaign 2 evidence |
 |---|---:|---|
-| P0 observable baseline | PASS | `p0-baseline.json`, `b55fa393290cb349fdab1fe4a45c86ce3a2efc34152efa60810c9e15ee2e7672` |
-| P1 live CODEeye | PASS | Unchanged valid Campaign 1 evidence, `1d5daea17f491d69d7d421b3ce6a717823c193e2ad60c4454b7cc96c825c8b7a` |
-| P2 authenticated eyeBROWSE | PASS | Live browser `f8aae80ccea0cb6784591575964628748e0c44131617294d9c8a88c59635f506`; write attestation `e469cd6fddb95299f2d6bca329119993a06fbc593baaf1a669a9325c2b55ea03` |
-| P3 experiment-owned Git facet | PASS | Unchanged valid evidence beginning with `p3-native-git-observation.json`, `35a9ebe8e4f621aa5f853a847d586b57177bc55c4f7b4657ee6c52a65efcc6d6` |
-| P4 PostgreSQL, integrity, and recovery | PASS | Campaign 2 regression: 12 passed, 0 failed, `45dd4c4ef6baac552a8c7193c2ec00d1c34d949a2765d47f393bd1bd6a9d8b1d` |
-| P5 fresh isolated invocation | PASS | `p5-fresh-invocation.json`, `104968ac005fb9b77ba305f9bde4d54cbbcaf34d746d68a7d7e79345a7af9934` |
-| P6 deterministic reset | PASS | Unchanged valid evidence, `6584decfec10d826688ed11277f5de97f905856f4740605ae8ab6caf439ba4d8` |
+| P0 observable subject configuration | PASS | `p0-baseline.json`, SHA-256 `b55fa393290cb349fdab1fe4a45c86ce3a2efc34152efa60810c9e15ee2e7672` |
+| P1 live CODEeye | PASS | `p1-codeeye-live.json`, SHA-256 `f83554d2b03390e3fc0cfe199e309f942dc4469f0f156a4c5920ff21e40814b8` |
+| P2 authenticated eyeBROWSE + fixture write | PASS | live `95e7ededa361e65d26a97403e4e2c5694a8297ba3dc3d23b67486d7b14f39a84`; browser remote-commit `e469cd6fddb95299f2d6bca329119993a06fbc593baaf1a669a9325c2b55ea03` |
+| P3 experiment-owned native Git facet | PASS | existing Campaign 2 P3 evidence remains valid; the audited execution also exercised real accepted and rejected fixture pushes without changing P3 semantics |
+| P4 PostgreSQL / integrity / recovery | PASS | `implementation-test-results.json`, 13 passed / 0 failed, SHA-256 `e36a31cbb566fa16e35e5b244c42bdf1ff0b99cb4c77546b0ee4152989863c53` |
+| P5 fresh isolated invocation | PASS | `p5-fresh-invocation.json`, SHA-256 `104968ac005fb9b77ba305f9bde4d54cbbcaf34d746d68a7d7e79345a7af9934` |
+| P6 deterministic reset | PASS | v4 bundle SHA-256 `9f5e0d3961f9e563bb26ef35a2067e212fe5576109b510f5c86433a7c364ca3e`; source attestation SHA-256 `3d0446d4b4135f951bbc2286ebc98ed40237f381ddc36787c3c751ac6b3e8d02` |
 
-The repository's `PreflightGateEvaluator` produced `preflight-gates.json` with SHA-256 `63e1e460ffb16396db66477e775ea6c500936ebc56308fad9ad3ca13c46d32d0`. Every gate is `passed: true`; the manifest contains no failed gate.
+The repository's unmodified `PreflightGateEvaluator` produced `artifacts/campaign-2/preflight/preflight-gates.json` with SHA-256 `35f71f99661e762970c5a985873b5bc61c6e7d656cfad37a3a0df75aa5af7edc`. P0 through P6 are all `passed: true`.
 
-## P0 repair
+The phase gate was tested in both directions. The historical Campaign 1 failed manifest still refuses acquisition and identifies its original P0/P2/P5 blockers. The audited Campaign 2 manifest authorizes acquisition, pilot, confirmatory, and drift. No phase was executed by this authorization test.
 
-The subject is ChatGPT web in a brand-new Temporary Chat, observable model `5.6 Sol`, reasoning `Extra High`, Chat surface, and Business workspace. Project context, file-library context, prior attachments, and prior messages are absent. Base style and tone and all style characteristics are Default; Fast answers is off; four custom-instruction fields are empty and frozen. Account memory settings are transparently recorded as enabled, while Temporary Chat does not use or create memory.
+## P0 repair and scientific boundary
 
-The canonical observable-configuration fingerprint is `afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5`. No private serving deployment identifier is exposed, fabricated, hashed, or used in an equality claim. Equality is claimed only for the observable configuration.
+Campaign 2 uses the observable controlled ChatGPT product configuration rather than fabricating an unavailable private deployment identifier. The subject surface is ChatGPT web, model `5.6 Sol`, reasoning `Extra High`, brand-new Temporary Chat, Chat mode, Business workspace, no project context, no File Library context, no prior trial attachment, and zero prior trial transcript.
 
-P0 evidence was frozen at commit `4e4ce7bd3d67bcf1a3bd5780df5fde258cd63d2a`.
+The observable-configuration fingerprint is `afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5`. The formal P0 evidence explicitly records that the private deployment identifier is not exposed and no private-backend equality claim is made.
 
-## P2 repair
+## P2 authenticated browser proof
 
-The live Program Host probe observed the existing eyeBROWSE `dev` profile signed in to GitHub as `StealthEyeLLC`, exit code 0, with semantic controls available. The browser-created proof is confined to `StealthEyeLLC/world-kernel-build-001-fixture`:
+The live eyeBROWSE Program Host profile is authenticated to GitHub as `StealthEyeLLC`. The proof action remains confined to `StealthEyeLLC/world-kernel-build-001-fixture`; the browser receipt is not treated as Outcome. Independent provider observation established the material commit and branch state. Fixture `main` remains at the original baseline `519d05879314cab45280a9f58efbd8859ecd8d64`.
 
-- branch: `wk-b001-c2-p2-auth-proof`;
-- commit: `96dd6c21a2f1ce9304020331a7c7930a128c4986`;
-- base/main: `519d05879314cab45280a9f58efbd8859ecd8d64`;
-- changed path: `fixture/campaign2-p2-authenticated-browser-proof-20260811.txt` only.
+The audited live P2 observation was refreshed after the execution hardening and still showed authenticated GitHub state and semantic browser controls. No production repository or sibling-Eye repository was used for the browser write proof.
 
-The GitHub connector independently fetched the commit, compared main with the proof branch, confirmed the branch is one commit ahead and zero behind, confirmed the file on the proof branch, and received 404 for that file on main. Main remained unchanged. The provider observation has SHA-256 `4708e8a4acbe9482d9573dc2eccf14eca5c94e3a29ad9372c4c925fac805c73a`.
+## P5 fresh-subject repair and freeze
 
-P2 evidence was frozen at commit `19a3ac9b0787a28dca640244d19c97d3cd173b60`.
+The failed P5 attempts remain preserved:
 
-## P5 repair
+- `campaign2-p5-probe-001`: the prompt reached the editor but did not produce a valid submitted subject invocation. No material action was dispatched.
+- `campaign2-p5-probe-002`: PowerShell's case-insensitive `$Matches` automatic variable collided with a local accumulator. The attempt was invalidated; no material action was dispatched.
+- `campaign2-p5-probe-003`: passed with a new Temporary Chat, zero prior messages, `5.6 Sol`, `Extra High`, machine-readable locked response, no fallback, and no material action.
 
-The adapter opens one new Temporary Chat, verifies zero prior messages and attachments, verifies no project or file-library context, verifies `5.6 Sol` and `Extra High`, submits the exact locked prompt, waits for a machine-readable response, validates the response contract, and rechecks observable configuration after the response. The mechanism does not persist or inject prior arm transcripts, cross-arm memory, hidden evaluator labels, or chain of thought.
+The subject mechanism remains unchanged since the P5 attestation. The current normalized hashes match the formal P5 record exactly: base prompt `f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5`; tool contract `e1d2b899190ed0c0f88e1dce4fb2a73f653de20b9d8766df4e196cb4f883c181`; trial-output contract `8aec3ac079db715f8d6990d52a8cd9f7d275e4e3ded2efa1088ef101d9d5c193`; subject driver `b2c6e52e4a44eff7e46ebdbb6e97d5ec706110698362961106ffe96ded27ab98`; invocation adapter `98d4bd52e90bf86564c502898403c8549c8a21e31f722c893c1f693e2334df46`.
 
-Two preflight attempts were invalidated before an acceptable subject response:
+## Execution-mechanics audit
 
-- `campaign2-p5-probe-001`: prompt submission timed out; no subject response was accepted and no material action was dispatched.
-- `campaign2-p5-probe-002`: PowerShell's case-insensitive automatic `$Matches` variable collided with a `$matches` accumulator; the adapter error invalidated the attempt and no material action was dispatched.
+The takeover audit found defects that ordinary regression did not expose. Each was repaired prospectively while the science boundary was still zero.
 
-The bounded repairs generated a harmless editor input event before semantic Send invocation and renamed the colliding accumulator. Prompt, arm package, tool contract, output contract, metric, and experiment meaning did not change.
+### Prospective evaluator registration
 
-`campaign2-p5-probe-003` passed. It started with a new Temporary Chat and zero prior messages, parsed the locked JSON response, observed no product fallback, retained `5.6 Sol` / `Extra High`, and dispatched no material action. The raw result has SHA-256 `a41bc1ffd658fcc17d5dd450da6245025200a022bf2fc1d6ad06447d60f491e7`; the formal attestation has SHA-256 `104968ac005fb9b77ba305f9bde4d54cbbcaf34d746d68a7d7e79345a7af9934`.
+Each acquisition action slot receives a sealed hidden schedule outside the repository tree. Its commitment is written to the evaluator database before reset or subject cognition. The deterministic reset is independently reconstructed from native Git and provider state, and the evaluator requires the sealed recipe, reset manifest, independent fingerprint, provider identity, branch, policy regime, and fixture baseline to agree before a Prediction can be sealed for dispatch.
 
-P5 evidence was frozen at commit `bb10549a2da7d7bacfa7f88e283d7effdabd83ff`.
+Registration is content-idempotent. A restart may reuse only an exact existing seed/reset registration; any mismatch fails closed.
 
-## Prospective phase boundary
+### Reset and provider-control hardening
 
-The read-only boundary observation has SHA-256 `b31285619c2011a5be4d0374cd3280a904ba999135f77b00f47cf53ae1e60bc8`. At capture, the evaluator database contained only the original `v1-original` freeze event and:
+`fixture-reset.ps1` now establishes check and push policy deliberately around evaluator setup. `fixture-provider-admin.ps1` converges workflow state idempotently instead of treating an already-disabled workflow as an error. It obtains the already-authorized GitHub credential through Git's credential provider, exposes it only as process-local `GH_TOKEN` during provider administration, restores the prior environment afterward, and never serializes the token.
 
-- seed commitments: 0;
-- arm randomizations: 0;
-- invocation attestations: 0;
-- ground-truth rows: 0;
-- aggregate results: 0.
+A PowerShell helper-name collision with the built-in `h`/history alias was found in the independent reset verifier and eliminated by using an explicit `Get-Sha256Bytes` helper.
 
-No acquisition, pilot, confirmatory, or drift phase had started, and no confirmatory outcome had been inspected. The Campaign 2 amendment must be hash-frozen and committed before phase dispatch.
+### P6 v4
+
+P6 was re-attested after every reset/provider-control change rather than carrying forward stale evidence. v2 and v3 remain as superseded engineering history. v4 binds the current reset stack.
+
+Accepted-regime repeated resets produced the same fingerprint `df89027051be30dcd8494ac762e2c5f7cf769d053cc28c02965208a59cbf97b0`. Rejected/protected/stale repeated resets produced the same fingerprint `1e38ac0b261fd42d915937ab8ce429a386287600f54e1963fa1938e3bf9262ca`. The two regimes differ. Independent reobservation reproduced both final fingerprints and exact local/remote equality.
+
+The provider behavior proof also performed real actions: the accepted fixture push landed at the provider; the protected push returned a real rejection and left the remote ref unchanged. Both branches were reset back to their deterministic state afterward.
+
+### Provider-check temporal isolation
+
+A live audit showed that GitHub workflow state changes are asynchronous: a reset/setup push can create a workflow run that becomes visible after the workflow is re-enabled. Therefore a same-SHA check observation cannot simply ask whether *any* run exists.
+
+The final check observer is bounded by the durable action dispatch timestamp. GitHub provider data determines whether a run for the expected head was created at or after `dispatched_at`; eyeBROWSE separately observes the visible GitHub checks presentation. This prevents a pre-dispatch evaluator-setup run from being counted as action consequence while preserving the historical run as real evidence.
+
+The negative audit (`audit-provider-check-v3/check-after-boundary.json`, SHA-256 `88fd4a44b3ca49265afcc6534dabca4423167c3563410fa098a9d56a3dc883ae`) found zero qualifying post-boundary runs. The positive audit created a real post-boundary accepted push; `audit-provider-check-v3-true/check-after-boundary.json` (SHA-256 `4cb734b9325491a8a51180f3c02c4d71d2ea709e226059a70c8fe06571f0a198`) observed one qualifying run, terminal success, and matching successful eyeBROWSE presentation.
+
+### Crash recovery and append-only integrity
+
+The acquisition controller is resumable by artifact and provider state. Seed/reset registration, evidence, manifestations, observations, claims, correspondence, Prediction lineage, and evaluator ground truth are exact-content idempotent. Begin recovery reconstructs an existing Action -> unique Prediction -> sealed dispatch boundary instead of creating a second Action. Material-action recovery either proves the intended action already occurred, proves the pre-state is unchanged and safely retries, or refuses an ambiguous state. It never blindly redispatches.
+
+Close recovery uses the existing unique Action/Outcome/TransitionEpisode constraints. If database closure succeeded but the public artifact write was interrupted, the runner verifies the stored Outcome/Brier values against fresh provider evidence and reconstructs the same public `EpisodeExport` rather than opening another episode.
+
+Receipt and Outcome remain distinct. Recovery receipts are explicitly labeled as recovered provider-state receipts; verified Outcome still requires fresh independent provider reobservation.
+
+### Typed inheritance and arm parity
+
+Acquisition closes a public `EpisodeExport` containing the provider-grounded experience required by the frozen serializers: observations, Claims with temporal provenance, correspondence, Prediction, Outcome, Brier components, deltas, evidence hashes, and TransitionEpisode identity. Hidden evaluator regimes are not included.
+
+The frozen Memory and Structured serializers were not modified. Inspection confirmed that Conventional Memory already receives the same public episode facts, claims, valid/known time, correspondence, evidence lineage, Prediction, Outcome, and errors in chronological narrative form, while Structured receives the same source episode IDs in typed representation. The treatment therefore retains a representational difference rather than an information-quantity advantage.
+
+## P1 refresh
+
+The original P1 probe state had been consumed by later preflight work, so a fresh disposable worktree was reset at `wk-b001-c2-p1-live`. Exactly one uncommitted `p3_local_change=1` delta was created there. Live CODEeye observed that change through the `codeeye-dev` Program Host path. This produced the current P1 artifact rather than reusing a stale descriptor.
+
+## Final prospective boundary
+
+At the final audited gate:
+
+- P0-P6: PASS;
+- full regression: 13 PASS, 0 FAIL;
+- subject P0/P5 hashes: unchanged from formal attestations;
+- Campaign 2 evaluator science rows: 0;
+- Campaign 2 measured Actions: 0;
+- Campaign 2 TransitionEpisodes: 0;
+- acquisition corpus: not started;
+- pilot: not started;
+- confirmatory: not started;
+- drift: not started.
+
+The audited implementation must be committed and pushed, then a separate Campaign 2 execution-freeze manifest must bind that exact commit and the preregistered scientific constants before any acquisition seed is opened.

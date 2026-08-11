@@ -17,6 +17,12 @@ $fixturePublicRevision = '519d05879314cab45280a9f58efbd8859ecd8d64'
 $worker = Join-Path $repoRoot 'scripts\campaign2-user-worker.ps1'
 $observe = Join-Path $repoRoot 'scripts\campaign2-observe-state.ps1'
 $requestBuilder = Join-Path $repoRoot 'scripts\campaign2-new-subject-request.ps1'
+$resetScript = Join-Path $repoRoot 'scripts\fixture-reset.ps1'
+$verifyResetScript = Join-Path $repoRoot 'scripts\campaign2-verify-reset.ps1'
+$prepareActionScript = Join-Path $repoRoot 'scripts\campaign2-prepare-action.ps1'
+$recoverActionScript = Join-Path $repoRoot 'scripts\campaign2-recover-action.ps1'
+$refObserver = Join-Path $repoRoot 'scripts\eyebrowse-github-ref-observe.mjs'
+$checkObserver = Join-Path $repoRoot 'scripts\eyebrowse-github-check-observe.mjs'
 $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
 $cliDll = Join-Path $repoRoot 'src\WorldKernel.Build001\bin\Release\net10.0\world-kernel-build-001.dll'
 $node = 'C:\AgentBrowser\tools\node-v24.18.1-win-x64\node.exe'
@@ -26,7 +32,7 @@ $coldPackage = Join-Path $campaignRoot 'packages\cold.txt'
 $configurationFingerprint = 'afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5'
 $userId = 'STEALTHEYELLC\StealthEye'
 if ($InitialBlocks -ne 24 -or $MaximumBlocks -ne 36) { throw 'Campaign 2 acquisition block bounds are frozen at 24 and 36.' }
-foreach ($required in @($worker,$observe,$requestBuilder,$cliDll,$node,$sdk,$preflight,$coldPackage,$SecretFile)) {
+foreach ($required in @($worker,$observe,$requestBuilder,$resetScript,$verifyResetScript,$prepareActionScript,$recoverActionScript,$refObserver,$checkObserver,$cliDll,$node,$sdk,$preflight,$coldPackage,$SecretFile)) {
     if (-not (Test-Path $required)) { throw "Required Campaign 2 acquisition dependency is absent: $required" }
 }
 [IO.Directory]::CreateDirectory($acquisitionRoot) | Out-Null
@@ -59,6 +65,19 @@ function Invoke-Cli([string[]] $Arguments) {
     return $json | ConvertFrom-Json
 }
 
+function Invoke-ExternalJson([string] $Executable, [string[]] $Arguments) {
+    $saved = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'Continue'
+        $lines = @(& $Executable @Arguments 2>&1 | ForEach-Object { [string]$_ })
+        $exit = $LASTEXITCODE
+    }
+    finally { $ErrorActionPreference = $saved }
+    if ($exit -ne 0) { throw "$Executable exited $exit`: $($lines -join [Environment]::NewLine)" }
+    $json = $lines | Where-Object { $_.Trim().StartsWith('{') } | Select-Object -Last 1
+    if (-not $json) { throw "$Executable returned no JSON object." }
+    return $json | ConvertFrom-Json
+}
 function Invoke-UserJob([string] $Operation, [object] $Arguments, [ValidateSet('Limited','Highest')] [string] $RunLevel, [string] $JobDirectory, [int] $TimeoutSeconds) {
     [IO.Directory]::CreateDirectory($JobDirectory) | Out-Null
     $jobId = [Guid]::NewGuid().ToString('N')
@@ -142,41 +161,12 @@ $coveragePath = Join-Path $acquisitionRoot 'coverage.json'
 
 for ($block = 1; $block -le $MaximumBlocks; $block++) {
     $configurationBlockId = 'c2-acq-{0:d2}' -f $block
-    $seed = 'campaign2-acquisition-seed-{0:d2}' -f $block
+    $blockSeed = 'campaign2-acquisition-block-seed-{0:d2}' -f $block
     $blockRoot = Join-Path $acquisitionRoot ("blocks\$configurationBlockId")
     [IO.Directory]::CreateDirectory($blockRoot) | Out-Null
-    $blockRegistrationPath = Join-Path $blockRoot 'block-registration.json'
-    if (-not (Test-Path $blockRegistrationPath)) {
-        $hiddenInputPath = Join-Path $evaluatorHiddenRoot ("$configurationBlockId.hidden.json")
-        if (Test-Path $hiddenInputPath) { throw "Hidden acquisition registration exists without public registration: $configurationBlockId" }
-        $hiddenConfiguration = [ordered]@{
-            schedule_version = 'campaign2-acquisition-schedule-v1'
-            configuration_block_id = $configurationBlockId
-            seed = $seed
-            push_regime = Get-PushRegime $block
-            check_regime = Get-CheckRegime $block
-            integration_regime = Get-IntegrationRegime $block
-            browser_freshness = 'fresh'
-            policy_epoch = 'stable-acquisition'
-            scheduled_actions = $actions
-        }
-        Write-NewJson $hiddenInputPath ([ordered]@{
-            schema = 'world-kernel-build001-campaign2-block-registration-input-v1'
-            campaign_id = 'build001-campaign-2'
-            phase = 'acquisition'
-            configuration_block_id = $configurationBlockId
-            seed_id = $seed
-            commitment_sha256 = ''
-            sealed_payload_ref = $hiddenInputPath
-            public_fixture_revision = $fixturePublicRevision
-            hidden_configuration = $hiddenConfiguration
-            expected_configuration_fingerprint = ''
-        })
-        Invoke-Cli @('campaign2-register-block','--repo-root',$repoRoot,'--secret-file',$SecretFile,
-            '--input',$hiddenInputPath,'--output',$blockRegistrationPath) | Out-Null
-    }
     foreach ($semanticAction in $actions) {
         $code = Get-Code $semanticAction
+        $seed = "$blockSeed-$code"
         $trialId = "$configurationBlockId-$code"
         $resetBlockId = "c2-a{0:d2}-$code" -f $block
         $resetBranch = "wk-b001-c2-a{0:d2}-$code" -f $block
@@ -185,7 +175,45 @@ for ($block = 1; $block -le $MaximumBlocks; $block++) {
         $closePath = Join-Path $episodeRoot 'close.json'
         if (Test-Path $closePath) { continue }
         $beginPath = Join-Path $episodeRoot 'begin.json'
-        if (Test-Path $beginPath) { throw "Sealed but unclosed acquisition action requires explicit recovery: $trialId" }
+
+
+        $pushRegime = if ($semanticAction -eq 'git:push_ref') { Get-PushRegime $block } else { 'accepted' }
+        $checkRegime = if ($semanticAction -eq 'git:push_ref') { Get-CheckRegime $block } else { 'no_check' }
+        $integrationRegime = if ($semanticAction -eq 'git:integrate_fast_forward') { Get-IntegrationRegime $block } else { 'accepted' }
+        if (-not (Test-Path $beginPath)) {
+        $registrationPath = Join-Path $episodeRoot 'seed-registration.json'
+        if (-not (Test-Path $registrationPath)) {
+            $hiddenInputPath = Join-Path $evaluatorHiddenRoot ("$configurationBlockId-$code.hidden.json")
+            if (Test-Path $hiddenInputPath) { throw "Hidden action-slot registration exists without public registration: $trialId" }
+            $hiddenConfiguration = [ordered]@{
+                schedule_version = 'campaign2-acquisition-action-slot-v2'
+                configuration_block_id = $configurationBlockId
+                block_seed = $blockSeed
+                seed_id = $seed
+                semantic_action = $semanticAction
+                reset_block_id = $resetBlockId
+                branch = $resetBranch
+                push_regime = $pushRegime
+                check_regime = $checkRegime
+                integration_regime = $integrationRegime
+                browser_freshness = 'fresh'
+                policy_epoch = 'stable-acquisition'
+            }
+            Write-NewJson $hiddenInputPath ([ordered]@{
+                schema = 'world-kernel-build001-campaign2-block-registration-input-v1'
+                campaign_id = 'build001-campaign-2'
+                phase = 'acquisition'
+                configuration_block_id = $configurationBlockId
+                seed_id = $seed
+                commitment_sha256 = ''
+                sealed_payload_ref = $hiddenInputPath
+                public_fixture_revision = $fixturePublicRevision
+                hidden_configuration = $hiddenConfiguration
+                expected_configuration_fingerprint = ''
+            })
+            Invoke-Cli @('campaign2-register-block','--repo-root',$repoRoot,'--secret-file',$SecretFile,
+                '--input',$hiddenInputPath,'--output',$registrationPath) | Out-Null
+        }
 
         Write-ReplaceJson $controllerStatus ([ordered]@{
             schema = 'world-kernel-build001-campaign2-controller-status-v1'
@@ -197,27 +225,30 @@ for ($block = 1; $block -le $MaximumBlocks; $block++) {
         })
 
         $resetPath = Join-Path $episodeRoot 'reset.json'
-        $pushRegime = if ($semanticAction -eq 'git:push_ref') { Get-PushRegime $block } else { 'accepted' }
-        $checkRegime = if ($semanticAction -eq 'git:push_ref') { Get-CheckRegime $block } else { 'no_check' }
         if (-not (Test-Path $resetPath)) {
             Invoke-UserJob 'reset' ([ordered]@{
                 block_id = $resetBlockId; seed = $seed; branch = $resetBranch; push_regime = $pushRegime
                 check_regime = $checkRegime; browser_freshness = 'fresh'; workspace_root = $WorkspaceRoot; output_path = $resetPath
             }) Limited $episodeRoot 300 | Out-Null
         }
+        $workingCopy = Join-Path $WorkspaceRoot ("reset-acquisition-$resetBlockId")
+        $independentResetPath = Join-Path $episodeRoot 'reset-independent-verification.json'
+        if (-not (Test-Path $independentResetPath)) {
+            Invoke-UserJob 'verify-reset' ([ordered]@{
+                working_copy = $workingCopy; branch = $resetBranch; browser_freshness = 'fresh'; output_path = $independentResetPath
+            }) Limited $episodeRoot 180 | Out-Null
+        }
         $resetRegistrationPath = Join-Path $episodeRoot 'reset-registration.json'
         if (-not (Test-Path $resetRegistrationPath)) {
             Invoke-Cli @('campaign2-register-reset','--repo-root',$repoRoot,'--secret-file',$SecretFile,
-                '--configuration-block',$configurationBlockId,'--seed-id',$seed,'--reset-manifest',$resetPath,'--output',$resetRegistrationPath) | Out-Null
+                '--configuration-block',$configurationBlockId,'--seed-id',$seed,'--reset-manifest',$resetPath,
+                '--verification',$independentResetPath,'--output',$resetRegistrationPath) | Out-Null
         }
-        $workingCopy = Join-Path $WorkspaceRoot ("reset-acquisition-$resetBlockId")
-
         $preparePath = Join-Path $episodeRoot 'prepare.json'
         if (-not (Test-Path $preparePath)) {
             Invoke-UserJob 'prepare' ([ordered]@{
                 semantic_action = $semanticAction; working_copy = $workingCopy; reset_branch = $resetBranch; seed = $seed
-                integration_regime = if ($semanticAction -eq 'git:integrate_fast_forward') { Get-IntegrationRegime $block } else { 'accepted' }
-                output_path = $preparePath
+                integration_regime = $integrationRegime; output_path = $preparePath
             }) Limited $episodeRoot 300 | Out-Null
         }
         $prepare = Get-Content -Raw -LiteralPath $preparePath | ConvertFrom-Json
@@ -245,6 +276,7 @@ for ($block = 1; $block -le $MaximumBlocks; $block++) {
                 phase = 'acquisition'
                 trial_id = $trialId
                 configuration_block_id = $configurationBlockId
+                evaluator_seed_id = $seed
                 arm = 'acquisition'
                 semantic_action = $semanticAction
                 target = "fixture:$actionBranch"
@@ -260,28 +292,37 @@ for ($block = 1; $block -le $MaximumBlocks; $block++) {
         }
         Invoke-Cli @('campaign2-begin','--repo-root',$repoRoot,'--secret-file',$SecretFile,'--evidence-root',$EvidenceRoot,
             '--input',$beginInputPath,'--output',$beginPath) | Out-Null
+        }
+
+        $workingCopy = Join-Path $WorkspaceRoot ("reset-acquisition-$resetBlockId")
+        $preparePath = Join-Path $episodeRoot 'prepare.json'
+        $prePath = Join-Path $episodeRoot 'pre-observation.json'
+        if (-not (Test-Path $preparePath) -or -not (Test-Path $prePath)) {
+            throw "Sealed Campaign 2 trial is missing its immutable preparation/pre-observation artifacts: $trialId"
+        }
+        $prepare = Get-Content -Raw -LiteralPath $preparePath | ConvertFrom-Json
+        $actionBranch = [string]$prepare.action_branch
 
         $receiptPath = Join-Path $episodeRoot 'receipt.json'
-        if ($semanticAction -eq 'github:create_remote_commit') {
-            Invoke-UserJob 'remote-commit' ([ordered]@{
-                node = $node; sdk = $sdk; parameters = $prepare.scheduled_parameters; output_path = $receiptPath
-            }) Highest $episodeRoot 300 | Out-Null
-        }
-        else {
-            Invoke-UserJob 'git-action' ([ordered]@{
-                dotnet = $dotnet; cli_dll = $cliDll; semantic_action = $semanticAction; fixture_root = $WorkspaceRoot
-                working_copy = $workingCopy; parameters = $prepare.scheduled_parameters; output_path = $receiptPath
-            }) Limited $episodeRoot 300 | Out-Null
+        if (-not (Test-Path $receiptPath)) {
+            Invoke-UserJob 'material-action' ([ordered]@{
+                semantic_action = $semanticAction; working_copy = $workingCopy
+                pre_observation_path = $prePath; prepare_path = $preparePath; output_path = $receiptPath
+                dotnet = $dotnet; cli_dll = $cliDll; fixture_root = $WorkspaceRoot; node = $node; sdk = $sdk
+            }) Highest $episodeRoot 360 | Out-Null
         }
 
         $postPath = Join-Path $episodeRoot 'post-observation.json'
-        & $observe -WorkingCopy $workingCopy -Branch $actionBranch -OutputPath $postPath | Out-Null
+        if (-not (Test-Path $postPath)) { & $observe -WorkingCopy $workingCopy -Branch $actionBranch -OutputPath $postPath | Out-Null }
         $post = Get-Content -Raw -LiteralPath $postPath | ConvertFrom-Json
         $receipt = Get-Content -Raw -LiteralPath $receiptPath | ConvertFrom-Json
 
         $browserPath = Join-Path $episodeRoot 'browser-observation.json'
         if ($semanticAction -in @('git:push_ref','github:create_remote_commit')) {
-            Invoke-UserJob 'browser-observe' ([ordered]@{ node = $node; sdk = $sdk; branch = $actionBranch; output_path = $browserPath }) Highest $episodeRoot 180 | Out-Null
+            if (-not (Test-Path $browserPath)) {
+                $browserResult = Invoke-ExternalJson $node @($refObserver,$sdk,$actionBranch)
+                Write-NewJson $browserPath $browserResult
+            }
             $browserRaw = Get-Content -Raw -LiteralPath $browserPath | ConvertFrom-Json
             $browser = [ordered]@{
                 observed = $true; presented_head = $browserRaw.presented_head; href = $browserRaw.href; evidence = $browserRaw
@@ -294,10 +335,27 @@ for ($block = 1; $block -le $MaximumBlocks; $block++) {
         $checkPath = Join-Path $episodeRoot 'check-observation.json'
         if ($semanticAction -eq 'git:push_ref') {
             $expectCheck = [bool]$receipt.receipt_accepted -and $checkRegime -eq 'success'
-            Invoke-UserJob 'provider-check' ([ordered]@{
-                branch = $actionBranch; expected_head = $post.remote_head; expect_check = $expectCheck
-                timeout_seconds = if ($expectCheck) { 180 } else { 25 }; output_path = $checkPath
-            }) Limited $episodeRoot 240 | Out-Null
+            if (-not (Test-Path $checkPath)) {
+                $checkResult = Invoke-ExternalJson $node @(
+                    $checkObserver,$sdk,$actionBranch,[string]$post.remote_head,
+                    $expectCheck.ToString().ToLowerInvariant(),
+                    $(if ($expectCheck) { '180' } else { '60' })
+                )
+                $checkArtifact = [ordered]@{
+                    schema = 'world-kernel-build001-campaign2-check-observation-v1'
+                    branch = [string]$checkResult.branch
+                    expected_head = [string]$checkResult.expected_head
+                    observed = [bool]$checkResult.observed
+                    started = [bool]$checkResult.started
+                    terminal_success = [bool]$checkResult.terminal_success
+                    conclusion = $checkResult.conclusion
+                    runs = @($checkResult.evidence)
+                    observer = 'eyeBROWSE/GitHub-checks-web'
+                    observer_receipt = $checkResult
+                    observed_at = [string]$checkResult.observed_at
+                }
+                Write-NewJson $checkPath $checkArtifact
+            }
             $checkRaw = Get-Content -Raw -LiteralPath $checkPath | ConvertFrom-Json
             $check = [ordered]@{
                 observed = [bool]$checkRaw.observed; started = [bool]$checkRaw.started
@@ -309,12 +367,14 @@ for ($block = 1; $block -le $MaximumBlocks; $block++) {
         }
 
         $providerPath = Join-Path $episodeRoot 'provider-outcome.json'
-        Write-NewJson $providerPath ([ordered]@{
-            schema = 'world-kernel-build001-campaign2-provider-outcome-v1'
-            observed_at = [DateTimeOffset]::UtcNow.ToString('O')
-            check = $check
-            browser = $browser
-        })
+        if (-not (Test-Path $providerPath)) {
+            Write-NewJson $providerPath ([ordered]@{
+                schema = 'world-kernel-build001-campaign2-provider-outcome-v1'
+                observed_at = [DateTimeOffset]::UtcNow.ToString('O')
+                check = $check
+                browser = $browser
+            })
+        }
         Invoke-Cli @('campaign2-close','--repo-root',$repoRoot,'--secret-file',$SecretFile,'--evidence-root',$EvidenceRoot,
             '--begin',$beginPath,'--receipt',$receiptPath,'--post-observation',$postPath,'--provider-outcome',$providerPath,'--output',$closePath) | Out-Null
     }
