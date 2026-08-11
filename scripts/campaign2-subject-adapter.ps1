@@ -18,11 +18,8 @@ foreach ($candidate in @($request, $output)) {
 if (-not (Test-Path $request -PathType Leaf)) { throw "Subject request is absent: $request" }
 if (Test-Path $output) { throw "Subject output already exists and will not be overwritten: $output" }
 
-$node = 'C:\AgentBrowser\tools\node-v24.18.1-win-x64\node.exe'
-$sdk = 'X:\AgentBrowser\repo\program-host\sdk\eyebrowse.mjs'
-$script = Join-Path $PSScriptRoot 'campaign2-chatgpt-subject.mjs'
-$expectedSdk = '72fef71df188fae2805580b0c3382543ac4eb47daa61f480ecda3fb0623e047b'
-$expectedScript = '28d2ce6a73ce6ca96ef38151deabf7a13f2031d4e73e2421fb9ca68886c40195'
+$script = Join-Path $PSScriptRoot 'campaign2-edge-subject.ps1'
+$expectedScript = 'e2de076fd500d4e11a09d83aaa8d4db65b417345e13d9ef3b3b1cfe2facc98a0'
 
 function Get-NormalizedSha256([string] $Path) {
     $text = [IO.File]::ReadAllText($Path).Replace("`r`n", "`n")
@@ -32,13 +29,9 @@ function Get-NormalizedSha256([string] $Path) {
     return -join ($hash | ForEach-Object { $_.ToString('x2') })
 }
 
-if ((Get-NormalizedSha256 $sdk) -ne $expectedSdk) {
-    throw 'Frozen eyeBROWSE SDK hash changed.'
-}
 if ((Get-NormalizedSha256 $script) -ne $expectedScript) {
     throw 'Frozen Campaign 2 subject driver hash changed.'
 }
-if (-not (Test-Path $node -PathType Leaf)) { throw 'Pinned portable Node runtime is absent.' }
 
-& $node $script $sdk $request $output
+& $script -RequestPath $request -OutputPath $output
 exit $LASTEXITCODE

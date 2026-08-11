@@ -1,0 +1,31 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-request-v1",
+    "mode":  "invoke",
+    "trial_id":  "campaign2-p5-probe-001",
+    "arm":  "attestation_probe",
+    "expected_model":  "5.6 Sol",
+    "expected_reasoning":  "Extra High",
+    "observable_configuration_fingerprint_sha256":  "584e9a410ec31500439df15f6acfaa5370177e0836890750272f036300fdca10",
+    "base_prompt_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\base-prompt.txt",
+    "base_prompt_sha256":  "f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5",
+    "tool_contract_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\tool-contract.json",
+    "tool_contract_sha256":  "e1d2b899190ed0c0f88e1dce4fb2a73f653de20b9d8766df4e196cb4f883c181",
+    "trial_output_contract_sha256":  "8aec3ac079db715f8d6990d52a8cd9f7d275e4e3ded2efa1088ef101d9d5c193",
+    "arm_package_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\packages\\attestation-probe.txt",
+    "arm_package_sha256":  "b0c621ae359f311ffe69bc07afe8355f948f1cd8ef58f2f025f33a22993aec9b",
+    "semantic_action":  "git:create_branch",
+    "target":  "fixture:preflight",
+    "task":  "Choose parameters and prediction probabilities for the locked semantic action. This is a preflight cognition-path probe; no material provider action will be dispatched.",
+    "current_observations":  "Disposable fixture main is clean at 519d05879314cab45280a9f58efbd8859ecd8d64; requested branch name wk-b001-c2-p5-probe is absent. The operator will not dispatch the selected action during this mechanism probe.",
+    "propositions":  [
+                         "provider_accepts_action",
+                         "new_local_branch_exists",
+                         "current_branch_is_new_branch",
+                         "local_head_sha_changes",
+                         "remote_branch_exists_before_push",
+                         "worktree_content_changes"
+                     ],
+    "extra_treatment_model_calls":  0,
+    "response_timeout_ms":  900000,
+    "generated_at":  "2026-08-11T15:51:02.2832748+00:00"
+}
