@@ -24,10 +24,18 @@ $script = Join-Path $PSScriptRoot 'campaign2-chatgpt-subject.mjs'
 $expectedSdk = '72fef71df188fae2805580b0c3382543ac4eb47daa61f480ecda3fb0623e047b'
 $expectedScript = '28d2ce6a73ce6ca96ef38151deabf7a13f2031d4e73e2421fb9ca68886c40195'
 
-if ((Get-FileHash -Algorithm SHA256 -Path $sdk).Hash.ToLowerInvariant() -ne $expectedSdk) {
+function Get-NormalizedSha256([string] $Path) {
+    $text = [IO.File]::ReadAllText($Path).Replace("`r`n", "`n")
+    $algorithm = [Security.Cryptography.SHA256]::Create()
+    try { $hash = $algorithm.ComputeHash([Text.Encoding]::UTF8.GetBytes($text)) }
+    finally { $algorithm.Dispose() }
+    return -join ($hash | ForEach-Object { $_.ToString('x2') })
+}
+
+if ((Get-NormalizedSha256 $sdk) -ne $expectedSdk) {
     throw 'Frozen eyeBROWSE SDK hash changed.'
 }
-if ((Get-FileHash -Algorithm SHA256 -Path $script).Hash.ToLowerInvariant() -ne $expectedScript) {
+if ((Get-NormalizedSha256 $script) -ne $expectedScript) {
     throw 'Frozen Campaign 2 subject driver hash changed.'
 }
 if (-not (Test-Path $node -PathType Leaf)) { throw 'Pinned portable Node runtime is absent.' }
