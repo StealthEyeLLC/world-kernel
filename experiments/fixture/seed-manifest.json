@@ -1,0 +1,14 @@
+{
+  "fixture_repository": "StealthEyeLLC/world-kernel-build-001-fixture",
+  "seed_version": "build001-fixture-v1",
+  "default_branch": "main",
+  "operator_branch_pattern": "^wk-b001-[a-z0-9][a-z0-9-]{0,62}$",
+  "operator_editable_file": "fixture/state.txt",
+  "tracked_change_file": "fixture/state.txt",
+  "allowed_topologies": ["synchronized", "local_ahead", "remote_ahead", "diverged"],
+  "allowed_push_regimes": ["accepted", "rejected_by_provider_policy"],
+  "allowed_check_regimes": ["no_check", "success", "failure"],
+  "allowed_browser_freshness": ["fresh", "stale_until_reobserve"],
+  "destructive_scope": "disposable fixture only"
+}
+

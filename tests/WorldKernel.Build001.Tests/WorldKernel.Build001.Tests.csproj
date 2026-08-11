@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>StealthEye.WorldKernel.Build001.Tests</RootNamespace>
+    <AssemblyName>world-kernel-build-001-tests</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/WorldKernel.Build001/WorldKernel.Build001.csproj" />
+  </ItemGroup>
+</Project>

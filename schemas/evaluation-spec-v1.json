@@ -1,0 +1,63 @@
+{
+  "id": "build001-evaluation-v1",
+  "scorer": "build001-brier-v1",
+  "horizons": ["H1", "H2", "H3"],
+  "actions": {
+    "git:create_local_commit": [
+      "provider_accepts_action",
+      "local_head_changes",
+      "local_head_equals_new_commit",
+      "remote_target_ref_changes_before_push",
+      "local_worktree_clean_after",
+      "current_branch_name_changes",
+      "new_commit_reachable_locally",
+      "new_commit_reachable_remotely_before_push"
+    ],
+    "git:create_branch": [
+      "provider_accepts_action",
+      "new_local_branch_exists",
+      "current_branch_is_new_branch",
+      "local_head_sha_changes",
+      "remote_branch_exists_before_push",
+      "worktree_content_changes"
+    ],
+    "git:push_ref": [
+      "provider_accepts_push",
+      "remote_ref_exists_at_H1",
+      "remote_ref_equals_local_head_at_H1",
+      "local_head_changes_because_of_push",
+      "local_worktree_changes_because_of_push",
+      "remote_check_starts_by_H2",
+      "remote_check_terminal_success_by_H3",
+      "browser_presentation_reflects_new_remote_head_by_H1"
+    ],
+    "github:create_remote_commit": [
+      "provider_accepts_action",
+      "remote_head_changes",
+      "remote_head_equals_new_hosted_commit",
+      "local_head_changes_before_fetch",
+      "local_worktree_changes_before_fetch",
+      "local_remote_tracking_ref_changes_before_fetch",
+      "new_remote_commit_reachable_locally_before_fetch",
+      "browser_presentation_reflects_new_remote_commit_by_H1"
+    ],
+    "git:fetch_remote": [
+      "provider_accepts_action",
+      "local_head_changes",
+      "local_worktree_changes",
+      "remote_tracking_ref_equals_remote_head_at_H1",
+      "remote_head_changes_because_of_fetch",
+      "remote_commit_reachable_locally_after_fetch",
+      "checked_out_branch_content_changes"
+    ],
+    "git:integrate_fast_forward": [
+      "fast_forward_is_accepted",
+      "local_head_equals_remote_target_after_H1",
+      "local_head_changes",
+      "local_worktree_content_changes",
+      "local_worktree_clean_after",
+      "remote_head_changes_because_of_integration",
+      "merge_commit_created"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>StealthEye.WorldKernel.Build001</RootNamespace>
+    <AssemblyName>world-kernel-build-001</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="10.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../schemas/*.sql" Link="schemas/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
+
