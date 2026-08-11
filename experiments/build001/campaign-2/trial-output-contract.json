@@ -1,0 +1,20 @@
+{
+  "schema": "world-kernel-build001-campaign2-trial-output-v1",
+  "additional_properties": false,
+  "required": [
+    "action_class",
+    "target",
+    "parameters",
+    "prediction",
+    "requested_observations",
+    "material_action"
+  ],
+  "properties": {
+    "action_class": "string: locked semantic action",
+    "target": "string: locked trial target",
+    "parameters": "object",
+    "prediction": "object: exact locked proposition keys with finite values in [0,1]",
+    "requested_observations": "array",
+    "material_action": "string"
+  }
+}
