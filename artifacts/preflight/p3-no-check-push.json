@@ -1,0 +1,88 @@
+{
+    "head":  "76733765762ec5e54d359ea6bf18b3f9210a86f6",
+    "commit":  {
+                   "ok":  true,
+                   "semantic_action":  "git:create_local_commit",
+                   "receipt_accepted":  true,
+                   "exit_code":  0,
+                   "started_at":  "2026-08-11T13:56:34.2410935+00:00",
+                   "completed_at":  "2026-08-11T13:56:34.3549061+00:00",
+                   "evidence_sha256":  "8a2d57d7bb6f08f6225d0b995df58639f2a971bbe66942417e98ac072244f2f8",
+                   "receipt":  {
+                                   "semantic_action":  "git:create_local_commit",
+                                   "provider":  "stock-git-experiment-facet",
+                                   "accepted":  true,
+                                   "started_at":  "2026-08-11T13:56:34.2410935+00:00",
+                                   "completed_at":  "2026-08-11T13:56:34.3549061+00:00",
+                                   "commands":  [
+                                                    {
+                                                        "arguments":  [
+                                                                          "add",
+                                                                          "--",
+                                                                          "fixture/state.txt"
+                                                                      ],
+                                                        "exit_code":  0,
+                                                        "standard_output":  "",
+                                                        "standard_error":  "warning: in the working copy of \u0027fixture/state.txt\u0027, LF will be replaced by CRLF the next time Git touches it\n",
+                                                        "started_at":  "2026-08-11T13:56:34.2438115+00:00",
+                                                        "completed_at":  "2026-08-11T13:56:34.2822512+00:00"
+                                                    },
+                                                    {
+                                                        "arguments":  [
+                                                                          "commit",
+                                                                          "--no-gpg-sign",
+                                                                          "-m",
+                                                                          "Build 001 no check probe"
+                                                                      ],
+                                                        "exit_code":  0,
+                                                        "standard_output":  "[wk-b001-no-check 7673376] Build 001 no check probe\n 1 file changed, 1 insertion(+)\n",
+                                                        "standard_error":  "",
+                                                        "started_at":  "2026-08-11T13:56:34.282769+00:00",
+                                                        "completed_at":  "2026-08-11T13:56:34.3290867+00:00"
+                                                    },
+                                                    {
+                                                        "arguments":  [
+                                                                          "rev-parse",
+                                                                          "HEAD"
+                                                                      ],
+                                                        "exit_code":  0,
+                                                        "standard_output":  "76733765762ec5e54d359ea6bf18b3f9210a86f6\n",
+                                                        "standard_error":  "",
+                                                        "started_at":  "2026-08-11T13:56:34.3291243+00:00",
+                                                        "completed_at":  "2026-08-11T13:56:34.35458+00:00"
+                                                    }
+                                                ]
+                               }
+               },
+    "push":  {
+                 "ok":  true,
+                 "semantic_action":  "git:push_ref",
+                 "receipt_accepted":  true,
+                 "exit_code":  0,
+                 "started_at":  "2026-08-11T13:56:34.8692472+00:00",
+                 "completed_at":  "2026-08-11T13:56:36.5201886+00:00",
+                 "evidence_sha256":  "540284fbe13e23c91600448a0a9f1bc1dd610d79f91055ebc6e620798bdf9c64",
+                 "receipt":  {
+                                 "semantic_action":  "git:push_ref",
+                                 "provider":  "stock-git-experiment-facet",
+                                 "accepted":  true,
+                                 "started_at":  "2026-08-11T13:56:34.8692472+00:00",
+                                 "completed_at":  "2026-08-11T13:56:36.5201886+00:00",
+                                 "commands":  [
+                                                  {
+                                                      "arguments":  [
+                                                                        "push",
+                                                                        "--porcelain",
+                                                                        "origin",
+                                                                        "HEAD:refs/heads/wk-b001-no-check"
+                                                                    ],
+                                                      "exit_code":  0,
+                                                      "standard_output":  "To https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git\n \tHEAD:refs/heads/wk-b001-no-check\tc91cd0c..7673376\nDone\n",
+                                                      "standard_error":  "",
+                                                      "started_at":  "2026-08-11T13:56:34.8718228+00:00",
+                                                      "completed_at":  "2026-08-11T13:56:36.5196733+00:00"
+                                                  }
+                                              ]
+                             }
+             }
+}

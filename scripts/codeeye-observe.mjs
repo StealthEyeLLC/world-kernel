@@ -11,8 +11,11 @@ const client = new sdk.CODEeyeClient({ pipe, timeoutMs: 300000 });
 const startedAt = new Date().toISOString();
 try {
   const attachment = await client.workspaceAttach(path.resolve(solutionPath));
-  const workspaceId = attachment.workspaceId ?? attachment.workspace_id ?? attachment.id;
-  if (!workspaceId) throw new Error('CODEeye workspace.attach returned no workspace identity');
+  const workspaceValue = attachment.workspace ?? attachment;
+  const workspaceId = typeof workspaceValue === 'string'
+    ? workspaceValue
+    : workspaceValue?.workspaceId ?? workspaceValue?.WorkspaceId ?? workspaceValue?.workspace_id ?? workspaceValue?.id ?? workspaceValue?.Id;
+  if (!workspaceId) throw new Error(`CODEeye workspace.attach returned no workspace identity: ${JSON.stringify(attachment)}`);
   const [repositoryStatus, worldSync, gitDiff] = await Promise.all([
     client.repoStatus(workspaceId),
     client.worldSync(workspaceId),
@@ -33,4 +36,3 @@ try {
 } finally {
   await client.close();
 }
-

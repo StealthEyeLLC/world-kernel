@@ -1,0 +1,99 @@
+{
+    "schema":  "world-kernel-build001-hostile-local-provider-v1",
+    "branch":  "wk-b001-hostile-connector",
+    "remote_mutation_method":  "authorized GitHub connector, evaluator-side",
+    "cases":  [
+                  {
+                      "id":  "local_unpushed_commit",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "remote_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+                                       "local_head":  "a5f00bee9af8939c3d52452ff26bd765db4f471c"
+                                   }
+                  },
+                  {
+                      "id":  "unseen_remote_commit",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "remote_now":  "bb63056a4d5efcc8a84e9161ed72bf23f52da56b",
+                                       "local_before_fetch":  "a5f00bee9af8939c3d52452ff26bd765db4f471c"
+                                   }
+                  },
+                  {
+                      "id":  "out_of_band_remote_mutation",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "operator_action":  null,
+                                       "remote_delta":  "bb63056a4d5efcc8a84e9161ed72bf23f52da56b",
+                                       "attribution":  "ambiguous/non-operator"
+                                   }
+                  },
+                  {
+                      "id":  "fetch_remote_without_head_collapse",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "local_head":  "a5f00bee9af8939c3d52452ff26bd765db4f471c",
+                                       "tracking_after":  "bb63056a4d5efcc8a84e9161ed72bf23f52da56b",
+                                       "tracking_before":  "519d05879314cab45280a9f58efbd8859ecd8d64"
+                                   }
+                  },
+                  {
+                      "id":  "same_branch_name_different_history",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "remote_sha":  "bb63056a4d5efcc8a84e9161ed72bf23f52da56b",
+                                       "local_sha":  "a5f00bee9af8939c3d52452ff26bd765db4f471c"
+                                   }
+                  },
+                  {
+                      "id":  "fast_forward_rejects_divergence",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "exit_code":  128,
+                                       "head_after":  "a5f00bee9af8939c3d52452ff26bd765db4f471c"
+                                   }
+                  },
+                  {
+                      "id":  "provider_outage",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "exit_code":  128,
+                                       "current_resolution":  "unknown"
+                                   }
+                  },
+                  {
+                      "id":  "local_path_deleted_recreated",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "path":  "X:\\WorldKernel\\Build001\\workspaces\\hostile-path-reuse\\world-kernel-build-001-fixture",
+                                       "manifestation_policy":  "new",
+                                       "first":  "ff82bfa47722376678b1c935b2a0eb9a705ccb65",
+                                       "second":  "24c1dddbb479d2ca1f5428e505920c8c99448845"
+                                   }
+                  },
+                  {
+                      "id":  "same_basename_identical_content_independent_repos",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "tree_a":  "6a8bea19961984bf32504816332d3e174cc37e2c",
+                                       "tree_b":  "6a8bea19961984bf32504816332d3e174cc37e2c",
+                                       "path_b":  "X:\\WorldKernel\\Build001\\workspaces\\hostile-identical-b\\same-basename",
+                                       "path_a":  "X:\\WorldKernel\\Build001\\workspaces\\hostile-identical-a\\same-basename",
+                                       "hard_merge":  false
+                                   }
+                  },
+                  {
+                      "id":  "changed_local_remote",
+                      "status":  "PASS",
+                      "evidence":  {
+                                       "old_correspondence":  "disputed",
+                                       "before":  "https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                                       "new_correspondence":  "unestablished",
+                                       "after":  "https://github.com/StealthEyeLLC/world-kernel.git"
+                                   }
+                  }
+              ],
+    "pass_count":  10,
+    "fail_count":  0,
+    "generated_at":  "2026-08-11T14:20:41.1014997+00:00"
+}

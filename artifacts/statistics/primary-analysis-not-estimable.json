@@ -1,0 +1,16 @@
+{
+  "schema": "world-kernel-build001-primary-analysis-v1",
+  "analysis_status": "not_estimable",
+  "reason": "No acquisition, pilot, or confirmatory blocks were authorized after P0/P2/P5 preflight failures.",
+  "independent_configuration_blocks": 0,
+  "memory_mean_brier_loss": null,
+  "structured_mean_brier_loss": null,
+  "cold_mean_brier_loss": null,
+  "relative_brier_loss_reduction": null,
+  "bootstrap_95_percent_confidence_interval": null,
+  "paired_randomization_p_value": null,
+  "missing_or_censored_confirmatory_blocks": 0,
+  "preregistered_exclusions": 0,
+  "confirmatory_rows_created": false,
+  "generated_at": "2026-08-11T14:33:00Z"
+}

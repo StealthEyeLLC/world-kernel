@@ -1,0 +1,11 @@
+{
+    "schema":  "world-kernel-build001-interrupted-hostile-run-v1",
+    "source_status_file":  "git-provider-hostiles-status.interrupted.json",
+    "interrupted_at":  "2026-08-11T14:16:48Z",
+    "reason":  "Detached probe blocked in Git Credential Manager before fixture reset; exact experiment process tree was terminated.",
+    "material_provider_mutation_occurred":  false,
+    "confirmatory_started":  false,
+    "replacement_path":  "GitHub connector plus public local Git hostile probe",
+    "replacement_result":  "10 PASS, 0 FAIL",
+    "credential_handoff_persisted":  false
+}

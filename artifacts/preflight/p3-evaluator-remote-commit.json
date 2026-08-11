@@ -1,0 +1,227 @@
+{
+    "provider":  "stock-git evaluator fixture controller",
+    "semantic_action":  "evaluator:create_remote_commit",
+    "before":  "eec3b7852ab2c9d9187b20d178ea5ce7d91ab6fc",
+    "after":  "7175c586f0699653cd43ee524c7e706bd4c9a4e3",
+    "remote_branch":  "wk-b001-git-facet",
+    "push_exit":  0,
+    "push_output":  [
+                        {
+                            "Exception":  {
+                                              "SerializedRemoteException":  null,
+                                              "SerializedRemoteInvocationInfo":  null,
+                                              "ErrorRecord":  {
+                                                                  "Exception":  {
+                                                                                    "Message":  "To https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                                                                                    "Data":  "System.Collections.ListDictionaryInternal",
+                                                                                    "InnerException":  null,
+                                                                                    "TargetSite":  null,
+                                                                                    "StackTrace":  null,
+                                                                                    "HelpLink":  null,
+                                                                                    "Source":  null,
+                                                                                    "HResult":  -2146233087
+                                                                                },
+                                                                  "TargetObject":  null,
+                                                                  "CategoryInfo":  {
+                                                                                       "Category":  0,
+                                                                                       "Activity":  "",
+                                                                                       "Reason":  "ParentContainsErrorRecordException",
+                                                                                       "TargetName":  "",
+                                                                                       "TargetType":  ""
+                                                                                   },
+                                                                  "FullyQualifiedErrorId":  "RuntimeException",
+                                                                  "ErrorDetails":  null,
+                                                                  "InvocationInfo":  null,
+                                                                  "ScriptStackTrace":  null,
+                                                                  "PipelineIterationInfo":  [
+
+                                                                                            ]
+                                                              },
+                                              "WasThrownFromThrowStatement":  false,
+                                              "Message":  "To https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                                              "Data":  {
+
+                                                       },
+                                              "InnerException":  null,
+                                              "TargetSite":  null,
+                                              "StackTrace":  null,
+                                              "HelpLink":  null,
+                                              "Source":  null,
+                                              "HResult":  -2146233087
+                                          },
+                            "TargetObject":  "To https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                            "CategoryInfo":  {
+                                                 "Category":  0,
+                                                 "Activity":  "",
+                                                 "Reason":  "RemoteException",
+                                                 "TargetName":  "To https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                                                 "TargetType":  "String"
+                                             },
+                            "FullyQualifiedErrorId":  "NativeCommandError",
+                            "ErrorDetails":  null,
+                            "InvocationInfo":  {
+                                                   "MyCommand":  {
+                                                                     "Path":  "C:\\Program Files\\Git\\cmd\\git.exe",
+                                                                     "Extension":  ".exe",
+                                                                     "Definition":  "C:\\Program Files\\Git\\cmd\\git.exe",
+                                                                     "Source":  "C:\\Program Files\\Git\\cmd\\git.exe",
+                                                                     "Version":  {
+                                                                                     "Major":  2,
+                                                                                     "Minor":  55,
+                                                                                     "Build":  0,
+                                                                                     "Revision":  3,
+                                                                                     "MajorRevision":  0,
+                                                                                     "MinorRevision":  3
+                                                                                 },
+                                                                     "Visibility":  0,
+                                                                     "OutputType":  [
+                                                                                        "System.String"
+                                                                                    ],
+                                                                     "Name":  "git.exe",
+                                                                     "CommandType":  32,
+                                                                     "ModuleName":  "",
+                                                                     "Module":  null,
+                                                                     "RemotingCapability":  1,
+                                                                     "Parameters":  null,
+                                                                     "ParameterSets":  null
+                                                                 },
+                                                   "BoundParameters":  {
+
+                                                                       },
+                                                   "UnboundArguments":  [
+
+                                                                        ],
+                                                   "ScriptLineNumber":  1,
+                                                   "OffsetInLine":  294,
+                                                   "HistoryId":  -1,
+                                                   "ScriptName":  "",
+                                                   "Line":  "$ErrorActionPreference=\u0027Stop\u0027;$g=\u0027C:\\Program Files\\Git\\cmd\\git.exe\u0027;$w=\u0027X:\\WorldKernel\\Build001\\workspaces\\evaluator-p3\u0027;$remote=\u0027https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git\u0027;function G([string[]]$a){$old=$ErrorActionPreference;try{$ErrorActionPreference=\u0027Continue\u0027;$o=\u0026 $g -C $w @a 2\u003e\u00261;$e=$LASTEXITCODE}finally{$ErrorActionPreference=$old};if($e){throw \"git $($a -join \u0027 \u0027) failed: $($o -join [Environment]::NewLine)\"};return @($o)};function First([string[]]$a){return ([string](G $a|Select-Object -First 1)).Trim()};if(-not(Test-Path (Join-Path $w \u0027.git\u0027))){throw \u0027evaluator clone absent\u0027};if((First @(\u0027remote\u0027,\u0027get-url\u0027,\u0027origin\u0027)) -ne $remote){throw \u0027evaluator remote mismatch\u0027};G @(\u0027fetch\u0027,\u0027--prune\u0027,\u0027origin\u0027)|Out-Null;G @(\u0027switch\u0027,\u0027-C\u0027,\u0027wk-b001-git-facet\u0027,\u0027origin/wk-b001-git-facet\u0027)|Out-Null;$before=First @(\u0027rev-parse\u0027,\u0027HEAD\u0027);$p=Join-Path $w \u0027fixture\\state.txt\u0027;[IO.File]::WriteAllText($p,([IO.File]::ReadAllText($p)+\"p3_evaluator_remote_change=1`n\"),(New-Object Text.UTF8Encoding($false)));$env:GIT_AUTHOR_NAME=\u0027Build 001 Blinded Evaluator\u0027;$env:GIT_AUTHOR_EMAIL=\u0027build001-evaluator@invalid.local\u0027;$env:GIT_COMMITTER_NAME=$env:GIT_AUTHOR_NAME;$env:GIT_COMMITTER_EMAIL=$env:GIT_AUTHOR_EMAIL;$env:GIT_AUTHOR_DATE=\u00272026-08-11T12:20:00Z\u0027;$env:GIT_COMMITTER_DATE=$env:GIT_AUTHOR_DATE;G @(\u0027add\u0027,\u0027--\u0027,\u0027fixture/state.txt\u0027)|Out-Null;G @(\u0027commit\u0027,\u0027--no-gpg-sign\u0027,\u0027-m\u0027,\u0027Build 001 P3 evaluator remote commit\u0027)|Out-Null;$after=First @(\u0027rev-parse\u0027,\u0027HEAD\u0027);$push=G @(\u0027push\u0027,\u0027origin\u0027,\u0027HEAD:refs/heads/wk-b001-git-facet\u0027);$result=[ordered]@{provider=\u0027stock-git evaluator fixture controller\u0027;semantic_action=\u0027evaluator:create_remote_commit\u0027;before=$before;after=$after;remote_branch=\u0027wk-b001-git-facet\u0027;push_exit=0;push_output=$push;recorded_at=[DateTimeOffset]::UtcNow.ToString(\u0027O\u0027)};$path=\u0027X:\\WorldKernel\\Build001\\repo\\artifacts\\preflight\\p3-evaluator-remote-commit.json\u0027;[IO.File]::WriteAllText($path,($result|ConvertTo-Json -Depth 5),(New-Object Text.UTF8Encoding($false)));[pscustomobject]@{Before=$before;After=$after;ArtifactSha256=(Get-FileHash $path -Algorithm SHA256).Hash.ToLowerInvariant()}|ConvertTo-Json -Compress",
+                                                   "PositionMessage":  "At line:1 char:294\r\n+ ... e;try{$ErrorActionPreference=\u0027Continue\u0027;$o=\u0026 $g -C $w @a 2\u003e\u00261;$e=$LAS ...\r\n+                                                ~~~~~~~~~~~~~~~~~~",
+                                                   "PSScriptRoot":  "",
+                                                   "PSCommandPath":  null,
+                                                   "InvocationName":  "\u0026",
+                                                   "PipelineLength":  0,
+                                                   "PipelinePosition":  0,
+                                                   "ExpectingInput":  false,
+                                                   "CommandOrigin":  1,
+                                                   "DisplayScriptPosition":  null
+                                               },
+                            "ScriptStackTrace":  "at G, \u003cNo file\u003e: line 1\r\nat \u003cScriptBlock\u003e, \u003cNo file\u003e: line 1",
+                            "PipelineIterationInfo":  [
+                                                          0,
+                                                          0
+                                                      ],
+                            "writeErrorStream":  true,
+                            "PSMessageDetails":  null
+                        },
+                        {
+                            "Exception":  {
+                                              "SerializedRemoteException":  null,
+                                              "SerializedRemoteInvocationInfo":  null,
+                                              "ErrorRecord":  {
+                                                                  "Exception":  {
+                                                                                    "Message":  "   eec3b78..7175c58  HEAD -\u003e wk-b001-git-facet",
+                                                                                    "Data":  "System.Collections.ListDictionaryInternal",
+                                                                                    "InnerException":  null,
+                                                                                    "TargetSite":  null,
+                                                                                    "StackTrace":  null,
+                                                                                    "HelpLink":  null,
+                                                                                    "Source":  null,
+                                                                                    "HResult":  -2146233087
+                                                                                },
+                                                                  "TargetObject":  null,
+                                                                  "CategoryInfo":  {
+                                                                                       "Category":  0,
+                                                                                       "Activity":  "",
+                                                                                       "Reason":  "ParentContainsErrorRecordException",
+                                                                                       "TargetName":  "",
+                                                                                       "TargetType":  ""
+                                                                                   },
+                                                                  "FullyQualifiedErrorId":  "RuntimeException",
+                                                                  "ErrorDetails":  null,
+                                                                  "InvocationInfo":  null,
+                                                                  "ScriptStackTrace":  null,
+                                                                  "PipelineIterationInfo":  [
+
+                                                                                            ]
+                                                              },
+                                              "WasThrownFromThrowStatement":  false,
+                                              "Message":  "   eec3b78..7175c58  HEAD -\u003e wk-b001-git-facet",
+                                              "Data":  {
+
+                                                       },
+                                              "InnerException":  null,
+                                              "TargetSite":  null,
+                                              "StackTrace":  null,
+                                              "HelpLink":  null,
+                                              "Source":  null,
+                                              "HResult":  -2146233087
+                                          },
+                            "TargetObject":  "   eec3b78..7175c58  HEAD -\u003e wk-b001-git-facet",
+                            "CategoryInfo":  {
+                                                 "Category":  0,
+                                                 "Activity":  "",
+                                                 "Reason":  "RemoteException",
+                                                 "TargetName":  "   eec3b78..7175c58  HEAD -\u003e wk-b001-git-facet",
+                                                 "TargetType":  "String"
+                                             },
+                            "FullyQualifiedErrorId":  "NativeCommandErrorMessage",
+                            "ErrorDetails":  null,
+                            "InvocationInfo":  {
+                                                   "MyCommand":  {
+                                                                     "Path":  "C:\\Program Files\\Git\\cmd\\git.exe",
+                                                                     "Extension":  ".exe",
+                                                                     "Definition":  "C:\\Program Files\\Git\\cmd\\git.exe",
+                                                                     "Source":  "C:\\Program Files\\Git\\cmd\\git.exe",
+                                                                     "Version":  {
+                                                                                     "Major":  2,
+                                                                                     "Minor":  55,
+                                                                                     "Build":  0,
+                                                                                     "Revision":  3,
+                                                                                     "MajorRevision":  0,
+                                                                                     "MinorRevision":  3
+                                                                                 },
+                                                                     "Visibility":  0,
+                                                                     "OutputType":  [
+                                                                                        "System.String"
+                                                                                    ],
+                                                                     "Name":  "git.exe",
+                                                                     "CommandType":  32,
+                                                                     "ModuleName":  "",
+                                                                     "Module":  null,
+                                                                     "RemotingCapability":  1,
+                                                                     "Parameters":  null,
+                                                                     "ParameterSets":  null
+                                                                 },
+                                                   "BoundParameters":  {
+
+                                                                       },
+                                                   "UnboundArguments":  [
+
+                                                                        ],
+                                                   "ScriptLineNumber":  1,
+                                                   "OffsetInLine":  294,
+                                                   "HistoryId":  -1,
+                                                   "ScriptName":  "",
+                                                   "Line":  "$ErrorActionPreference=\u0027Stop\u0027;$g=\u0027C:\\Program Files\\Git\\cmd\\git.exe\u0027;$w=\u0027X:\\WorldKernel\\Build001\\workspaces\\evaluator-p3\u0027;$remote=\u0027https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git\u0027;function G([string[]]$a){$old=$ErrorActionPreference;try{$ErrorActionPreference=\u0027Continue\u0027;$o=\u0026 $g -C $w @a 2\u003e\u00261;$e=$LASTEXITCODE}finally{$ErrorActionPreference=$old};if($e){throw \"git $($a -join \u0027 \u0027) failed: $($o -join [Environment]::NewLine)\"};return @($o)};function First([string[]]$a){return ([string](G $a|Select-Object -First 1)).Trim()};if(-not(Test-Path (Join-Path $w \u0027.git\u0027))){throw \u0027evaluator clone absent\u0027};if((First @(\u0027remote\u0027,\u0027get-url\u0027,\u0027origin\u0027)) -ne $remote){throw \u0027evaluator remote mismatch\u0027};G @(\u0027fetch\u0027,\u0027--prune\u0027,\u0027origin\u0027)|Out-Null;G @(\u0027switch\u0027,\u0027-C\u0027,\u0027wk-b001-git-facet\u0027,\u0027origin/wk-b001-git-facet\u0027)|Out-Null;$before=First @(\u0027rev-parse\u0027,\u0027HEAD\u0027);$p=Join-Path $w \u0027fixture\\state.txt\u0027;[IO.File]::WriteAllText($p,([IO.File]::ReadAllText($p)+\"p3_evaluator_remote_change=1`n\"),(New-Object Text.UTF8Encoding($false)));$env:GIT_AUTHOR_NAME=\u0027Build 001 Blinded Evaluator\u0027;$env:GIT_AUTHOR_EMAIL=\u0027build001-evaluator@invalid.local\u0027;$env:GIT_COMMITTER_NAME=$env:GIT_AUTHOR_NAME;$env:GIT_COMMITTER_EMAIL=$env:GIT_AUTHOR_EMAIL;$env:GIT_AUTHOR_DATE=\u00272026-08-11T12:20:00Z\u0027;$env:GIT_COMMITTER_DATE=$env:GIT_AUTHOR_DATE;G @(\u0027add\u0027,\u0027--\u0027,\u0027fixture/state.txt\u0027)|Out-Null;G @(\u0027commit\u0027,\u0027--no-gpg-sign\u0027,\u0027-m\u0027,\u0027Build 001 P3 evaluator remote commit\u0027)|Out-Null;$after=First @(\u0027rev-parse\u0027,\u0027HEAD\u0027);$push=G @(\u0027push\u0027,\u0027origin\u0027,\u0027HEAD:refs/heads/wk-b001-git-facet\u0027);$result=[ordered]@{provider=\u0027stock-git evaluator fixture controller\u0027;semantic_action=\u0027evaluator:create_remote_commit\u0027;before=$before;after=$after;remote_branch=\u0027wk-b001-git-facet\u0027;push_exit=0;push_output=$push;recorded_at=[DateTimeOffset]::UtcNow.ToString(\u0027O\u0027)};$path=\u0027X:\\WorldKernel\\Build001\\repo\\artifacts\\preflight\\p3-evaluator-remote-commit.json\u0027;[IO.File]::WriteAllText($path,($result|ConvertTo-Json -Depth 5),(New-Object Text.UTF8Encoding($false)));[pscustomobject]@{Before=$before;After=$after;ArtifactSha256=(Get-FileHash $path -Algorithm SHA256).Hash.ToLowerInvariant()}|ConvertTo-Json -Compress",
+                                                   "PositionMessage":  "At line:1 char:294\r\n+ ... e;try{$ErrorActionPreference=\u0027Continue\u0027;$o=\u0026 $g -C $w @a 2\u003e\u00261;$e=$LAS ...\r\n+                                                ~~~~~~~~~~~~~~~~~~",
+                                                   "PSScriptRoot":  "",
+                                                   "PSCommandPath":  null,
+                                                   "InvocationName":  "\u0026",
+                                                   "PipelineLength":  0,
+                                                   "PipelinePosition":  0,
+                                                   "ExpectingInput":  false,
+                                                   "CommandOrigin":  1,
+                                                   "DisplayScriptPosition":  null
+                                               },
+                            "ScriptStackTrace":  "at G, \u003cNo file\u003e: line 1\r\nat \u003cScriptBlock\u003e, \u003cNo file\u003e: line 1",
+                            "PipelineIterationInfo":  [
+                                                          0,
+                                                          0
+                                                      ],
+                            "writeErrorStream":  true,
+                            "PSMessageDetails":  null
+                        }
+                    ],
+    "recorded_at":  "2026-08-11T13:49:46.2966175+00:00"
+}

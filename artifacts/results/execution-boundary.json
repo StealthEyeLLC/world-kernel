@@ -1,0 +1,17 @@
+{
+  "schema": "world-kernel-build001-execution-boundary-v1",
+  "classification": "NO_CONFIRMATORY_CONCLUSION",
+  "preflight": {
+    "passed": ["P1", "P3", "P4", "P6"],
+    "failed": ["P0", "P2", "P5"]
+  },
+  "acquisition": "not_started",
+  "pilot": "not_started",
+  "confirmatory": "not_started",
+  "drift": "not_started",
+  "first_confirmatory_block_started": false,
+  "preregistration_amended": false,
+  "confirmatory_outcome_inspected": false,
+  "primary_effect_estimable": false,
+  "recorded_at": "2026-08-11T14:33:00Z"
+}

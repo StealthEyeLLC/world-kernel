@@ -1,2 +1,1 @@
-success
-
+Check behavior is evaluator-controlled through an encrypted GitHub Actions secret.

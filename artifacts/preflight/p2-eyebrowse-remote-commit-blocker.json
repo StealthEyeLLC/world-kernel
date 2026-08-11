@@ -1,0 +1,20 @@
+{
+    "preflight":  "P2 authenticated eyeBROWSE remote commit",
+    "exit_code":  1,
+    "write_occurred":  false,
+    "output":  [
+                   "file:///X:/WorldKernel/Build001/repo/scripts/eyebrowse-github-remote-commit.mjs:34",
+                   "    throw new Error(\u0027authenticated eyeBROWSE GitHub profile required\u0027);",
+                   "          ^",
+                   "System.Management.Automation.RemoteException",
+                   "Error: authenticated eyeBROWSE GitHub profile required",
+                   "    at file:///X:/WorldKernel/Build001/repo/scripts/eyebrowse-github-remote-commit.mjs:34:11",
+                   "    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+                   "System.Management.Automation.RemoteException",
+                   "Node.js v24.18.1"
+               ],
+    "expected_success":  true,
+    "passed":  false,
+    "blocker":  "browser profile is anonymous",
+    "observed_at":  "2026-08-11T13:52:09.7065649+00:00"
+}

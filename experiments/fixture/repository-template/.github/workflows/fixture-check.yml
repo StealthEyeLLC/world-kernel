@@ -16,11 +16,11 @@ jobs:
       - uses: actions/checkout@v5
       - name: Apply fixture check regime
         shell: bash
+        env:
+          WK_BUILD001_CHECK_MODE: ${{ secrets.WK_BUILD001_CHECK_MODE }}
         run: |
-          mode="$(tr -d '\r\n' < fixture/check-mode.txt)"
-          case "$mode" in
-            success) exit 0 ;;
+          case "$WK_BUILD001_CHECK_MODE" in
+            ""|success) exit 0 ;;
             failure) exit 1 ;;
-            *) echo "unsupported fixture check mode: $mode" >&2; exit 2 ;;
+            *) echo "unsupported hidden fixture check mode" >&2; exit 2 ;;
           esac
-

@@ -158,6 +158,39 @@ internal static class UnitTests
         return Task.CompletedTask;
     }
 
+    public static async Task PreflightRefusalAsync(string artifactDirectory)
+    {
+        var blockedPath = Path.Combine(artifactDirectory, $"blocked-preflight-{Guid.NewGuid():N}.json");
+        var allowedPath = Path.Combine(artifactDirectory, $"allowed-preflight-{Guid.NewGuid():N}.json");
+        try
+        {
+            await File.WriteAllBytesAsync(blockedPath, CanonicalJson.Serialize(new
+            {
+                schema = PreflightGateEvaluator.ManifestSchema,
+                all_preflight_gates_passed = false,
+                gates = new[]
+                {
+                    new { id = "P5", passed = false }
+                }
+            })).ConfigureAwait(false);
+            await AssertEx.ThrowsAsync<InvalidOperationException>(() => Task.Run(() =>
+                PreflightGateEvaluator.EnsurePhaseAuthorized(blockedPath, "confirmatory"))).ConfigureAwait(false);
+
+            await File.WriteAllBytesAsync(allowedPath, CanonicalJson.Serialize(new
+            {
+                schema = PreflightGateEvaluator.ManifestSchema,
+                all_preflight_gates_passed = true,
+                gates = Array.Empty<object>()
+            })).ConfigureAwait(false);
+            PreflightGateEvaluator.EnsurePhaseAuthorized(allowedPath, "pilot");
+        }
+        finally
+        {
+            if (File.Exists(blockedPath)) File.Delete(blockedPath);
+            if (File.Exists(allowedPath)) File.Delete(allowedPath);
+        }
+    }
+
     private static EpisodeExport Episode(int index)
     {
         var action = "git:push_ref";

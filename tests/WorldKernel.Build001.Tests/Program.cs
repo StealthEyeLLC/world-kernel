@@ -16,6 +16,7 @@ var tests = new List<(string Name, Func<Task> Run)>
     ("packages.same_source_deterministic_bounded", UnitTests.PackagesAsync),
     ("scoring.brier_and_behavior", UnitTests.ScoringAsync),
     ("statistics.paired_block_procedure", UnitTests.StatisticsAsync),
+    ("experiment.preflight_phase_refusal", () => UnitTests.PreflightRefusalAsync(artifactDirectory)),
     ("postgres.schema_temporal_append_only", () => DatabaseTests.SchemaAndTemporalAsync(secretFile)),
     ("postgres.prediction_dispatch_episode", () => DatabaseTests.ActionLifecycleAsync(secretFile, artifactDirectory)),
     ("postgres.epistemic_laundering_hostiles", () => DatabaseTests.EpistemicHostilesAsync(secretFile, artifactDirectory)),

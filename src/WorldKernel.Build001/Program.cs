@@ -33,6 +33,33 @@ internal static class CommandLine
                 case "package-pair":
                     await BuildPackagePairAsync(options).ConfigureAwait(false);
                     return 0;
+                case "git-observe":
+                    await ObserveGitAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "git-action":
+                    await RunGitActionAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "codeeye-observe":
+                    await ObserveCodeEyeAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "eyebrowse-preflight":
+                    await PreflightEyeBrowseAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "eyebrowse-remote-commit":
+                    await CommitThroughEyeBrowseAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "freeze-preregistration":
+                    await FreezePreregistrationAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "preflight-evaluate":
+                    await EvaluatePreflightAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "phase-authorize":
+                    AuthorizePhase(options);
+                    return 0;
+                case "overhead-measure":
+                    await MeasureOverheadAsync(options).ConfigureAwait(false);
+                    return 0;
                 default:
                     throw new ArgumentException($"Unknown command '{args[0]}'.");
             }
@@ -153,6 +180,163 @@ internal static class CommandLine
         Console.WriteLine(JsonSerializer.Serialize(new { ok = true, memoryPath, structuredPath, lineagePath }, JsonDefaults.Options));
     }
 
+    private static NativeGitFacet CreateGitFacet(IReadOnlyDictionary<string, string> options) => new(
+        Required(options, "git-executable"),
+        Required(options, "fixture-root"));
+
+    private static async Task ObserveGitAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var observation = await CreateGitFacet(options)
+            .ObserveAsync(Required(options, "working-copy"))
+            .ConfigureAwait(false);
+        var evidence = CanonicalJson.Canonicalize(observation);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            evidence_sha256 = CanonicalJson.Sha256(evidence),
+            observation
+        }, JsonDefaults.Options));
+    }
+
+    private static async Task RunGitActionAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var facet = CreateGitFacet(options);
+        var workingCopy = Required(options, "working-copy");
+        var semanticAction = Required(options, "semantic-action");
+        ProviderOperationResult result = semanticAction switch
+        {
+            "git:create_local_commit" => await facet.CreateLocalCommitAsync(
+                workingCopy,
+                Required(options, "relative-path"),
+                Required(options, "message"),
+                DateTimeOffset.Parse(Required(options, "timestamp"), System.Globalization.CultureInfo.InvariantCulture),
+                default).ConfigureAwait(false),
+            "git:create_branch" => await facet.CreateBranchAsync(
+                workingCopy,
+                Required(options, "branch"),
+                default).ConfigureAwait(false),
+            "git:push_ref" => await facet.PushRefAsync(
+                workingCopy,
+                Required(options, "branch"),
+                default).ConfigureAwait(false),
+            "git:fetch_remote" => await facet.FetchRemoteAsync(workingCopy, default).ConfigureAwait(false),
+            "git:integrate_fast_forward" => await facet.IntegrateFastForwardAsync(
+                workingCopy,
+                Required(options, "branch"),
+                default).ConfigureAwait(false),
+            _ => throw new ArgumentException($"'{semanticAction}' is not owned by the experiment-native Git facet.")
+        };
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            semantic_action = result.SemanticAction,
+            receipt_accepted = result.ReceiptAccepted,
+            result.ExitCode,
+            result.StartedAt,
+            result.CompletedAt,
+            evidence_sha256 = CanonicalJson.Sha256(result.EvidenceBytes),
+            receipt = result.TypedReceipt
+        }, JsonDefaults.Options));
+    }
+
+    private static ProgramHostAdapter CreateProgramHost(IReadOnlyDictionary<string, string> options) => new(
+        Required(options, "node-executable"),
+        Required(options, "scripts-root"));
+
+    private static async Task ObserveCodeEyeAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var result = await CreateProgramHost(options).ObserveCodeEyeAsync(
+            Required(options, "sdk-path"),
+            Required(options, "solution-path"),
+            options.GetValueOrDefault("pipe", "codeeye-dev")).ConfigureAwait(false);
+        WriteProgramHostResult(result);
+    }
+
+    private static async Task PreflightEyeBrowseAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var result = await CreateProgramHost(options).PreflightEyeBrowseGitHubAsync(
+            Required(options, "sdk-path"),
+            Required(options, "repository-url")).ConfigureAwait(false);
+        WriteProgramHostResult(result);
+    }
+
+    private static async Task CommitThroughEyeBrowseAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var result = await CreateProgramHost(options).CreateRemoteCommitAsync(
+            Required(options, "sdk-path"),
+            Required(options, "branch"),
+            Required(options, "file"),
+            Required(options, "text"),
+            Required(options, "message")).ConfigureAwait(false);
+        WriteProgramHostResult(result);
+    }
+
+    private static void WriteProgramHostResult(ProgramHostResult result) => Console.WriteLine(JsonSerializer.Serialize(new
+    {
+        ok = true,
+        result.ScriptName,
+        result.ExitCode,
+        result.StartedAt,
+        result.CompletedAt,
+        evidence_sha256 = CanonicalJson.Sha256(result.EvidenceBytes),
+        result.Payload
+    }, JsonDefaults.Options));
+
+    private static async Task FreezePreregistrationAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var repositoryRoot = Required(options, "repo-root");
+        var connection = ConnectionSecrets.ReadConnectionString(Required(options, "secret-file"), "evaluator_connection");
+        var output = Required(options, "output");
+        var frozen = await EvaluatorBoundary.FreezeOriginalAsync(repositoryRoot, connection, output).ConfigureAwait(false);
+        var bytes = await File.ReadAllBytesAsync(output).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            output,
+            output_sha256 = CanonicalJson.Sha256(bytes),
+            contract = frozen
+        }, JsonDefaults.Options));
+    }
+
+    private static async Task EvaluatePreflightAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var output = Required(options, "output");
+        var manifest = PreflightGateEvaluator.Evaluate(Required(options, "artifact-directory"));
+        var bytes = CanonicalJson.Serialize(manifest);
+        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(output))!);
+        await File.WriteAllBytesAsync(output, bytes).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            output,
+            output_sha256 = CanonicalJson.Sha256(bytes),
+            manifest.AllPreflightGatesPassed,
+            failed_gates = manifest.Gates.Where(gate => !gate.Passed).Select(gate => gate.Id).ToArray()
+        }, JsonDefaults.Options));
+    }
+
+    private static void AuthorizePhase(IReadOnlyDictionary<string, string> options)
+    {
+        var phase = Required(options, "phase");
+        PreflightGateEvaluator.EnsurePhaseAuthorized(Required(options, "preflight-manifest"), phase);
+        Console.WriteLine(JsonSerializer.Serialize(new { ok = true, phase, authorized = true }, JsonDefaults.Options));
+    }
+
+    private static async Task MeasureOverheadAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var secretFile = Required(options, "secret-file");
+        var result = await OverheadBenchmark.MeasureAsync(
+            ConnectionSecrets.ReadConnectionString(secretFile, "owner_connection"),
+            ConnectionSecrets.ReadConnectionString(secretFile, "evaluator_connection"),
+            Required(options, "evidence-root"),
+            Required(options, "artifact-root")).ConfigureAwait(false);
+        var bytes = CanonicalJson.Serialize(result);
+        var output = Required(options, "output");
+        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(output))!);
+        await File.WriteAllBytesAsync(output, bytes).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new { ok = true, output, output_sha256 = CanonicalJson.Sha256(bytes) }, JsonDefaults.Options));
+    }
+
     private static Dictionary<string, string> Parse(IEnumerable<string> values)
     {
         var result = new Dictionary<string, string>(StringComparer.Ordinal);
@@ -179,6 +363,14 @@ internal static class CommandLine
           evidence-put --source PATH --store-root PATH --provider NAME --observer NAME [--media-type TYPE]
           stats --input paired-blocks.json --output result.json
           package-pair --input episodes.json --output-directory PATH --semantic-action ACTION --manifestation-ref REF
+          git-observe --git-executable PATH --fixture-root PATH --working-copy PATH
+          git-action --semantic-action ACTION --git-executable PATH --fixture-root PATH --working-copy PATH [action options]
+          codeeye-observe --node-executable PATH --scripts-root PATH --sdk-path PATH --solution-path PATH
+          eyebrowse-preflight --node-executable PATH --scripts-root PATH --sdk-path PATH --repository-url URL
+          eyebrowse-remote-commit --node-executable PATH --scripts-root PATH --sdk-path PATH --branch NAME --file PATH --text TEXT --message TEXT
+          freeze-preregistration --repo-root PATH --secret-file PATH --output PATH
+          preflight-evaluate --artifact-directory PATH --output PATH
+          phase-authorize --preflight-manifest PATH --phase acquisition|pilot|confirmatory|drift
+          overhead-measure --secret-file PATH --evidence-root PATH --artifact-root PATH --output PATH
         """);
 }
-

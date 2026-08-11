@@ -1,0 +1,430 @@
+{
+    "schema":  "world-kernel-build001-hostile-suite-matrix-v1",
+    "cases":  [
+                  {
+                      "id":  "same_basename_local_decoy",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Separate Manifestation; no correspondence from name.",
+                      "observed":  "Two same-basename independent repositories had equal tree bytes but distinct commits/paths; resolver returned no hard merge.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "hosted_fork_or_provider_clone",
+                      "status":  "INCONCLUSIVE",
+                      "required_correct_behavior":  "Separate provider Manifestations despite shared commits.",
+                      "observed":  "No second authorized GitHub owner exists for a real fork, and repository-admin credential became unavailable after initial repository creation; local identical-history pressure test passed.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "github_repository_rename_or_redirect",
+                      "status":  "INCONCLUSIVE",
+                      "required_correct_behavior":  "Preserve provider Manifestation only with provider-native ID continuity; append Locator change.",
+                      "observed":  "Deterministic resolver test passed, but no disposable live rename could be created through the connector surface.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "changed_local_remote",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Dispute old working_copy_of; do not establish replacement from URL alone.",
+                      "observed":  "Real stock-Git origin changed and resolver withheld a hard replacement relation.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "stale_browser_page",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Keep original observation time; require fresh browser/provider observation.",
+                      "observed":  "eyeBROWSE retained the old target while a fresh target/browser-native GitHub fetch observed the new exact provider SHA.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/eyebrowse-stale-page.json",
+                                           "sha256":  "80c6b8eceb8ec267d0bf9fe2cf875f31576effd52b3805970979908adbbfd492",
+                                           "real_provider_boundary":  true
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "local_unpushed_commit",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Local HEAD advances; remote ref remains unchanged.",
+                      "observed":  "Real local commit a5f00bee... left remote at 519d0587....",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "unseen_remote_commit",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Remote advances; local remains unchanged until fetch/integration.",
+                      "observed":  "Evaluator connector advanced remote to bb63056a... while local stayed a5f00bee....",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "same_branch_name_different_history",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Compare exact refs/ancestry; preserve divergence.",
+                      "observed":  "Real local and remote commits on the same branch were mutually non-ancestor.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "deleted_test_branch",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "End current existence while prior history remains durable.",
+                      "observed":  "Repeated deterministic resets executed the exact remote delete/recreate path; append-only temporal history and recovery tests retained prior records.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/p6-deterministic-reset.json",
+                                           "sha256":  "6584decfec10d826688ed11277f5de97f905856f4740605ae8ab6caf439ba4d8",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/recovery-test.json",
+                                           "sha256":  "8a5d46300785a1502d3ed0458f2e0035106e8a32ac60410a7845b94ea342e69b",
+                                           "real_provider_boundary":  true
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "out_of_order_observation",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "valid_as_of and known_as_of remain independent.",
+                      "observed":  "PostgreSQL temporal test inserted delayed/out-of-order claims and reproduced both time axes.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "delayed_provider_check",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Remain pending/censored until locked horizon.",
+                      "observed":  "Real no-check regime produced zero matching runs; scorer preserves unresolved components instead of fabricating success.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/p3-no-check-outcome.json",
+                                           "sha256":  "5a7d4c6f58739482c411c359a96a150a4ab498b5807d77a945a024fff2e56682",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "provider_outage",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Return unknown plus last-supported time.",
+                      "observed":  "Real Git network provider probe failed; database path recorded unknown without unchanged-state promotion.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "replayed_old_evidence",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Retain original observed time/revision; do not freshen.",
+                      "observed":  "Typed ingestion rejected freshness laundering and preserved Evidence identity/time.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "prediction_injected_as_observation",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Typed ingestion rejects the self-confirming loop.",
+                      "observed":  "Foreign-key/type boundary rejected Prediction ID on observation_evidence.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "model_inference_as_provider_fact",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Remain model-derived Claim only.",
+                      "observed":  "Schema/typed database test prevented inference from becoming provider Observation.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "provider_receipt_success_postcondition_absent",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Outcome derives from fresh observation, never receipt alone.",
+                      "observed":  "Receipt-only ActionAttempt could not close a verified Outcome/Episode.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "partial_material_application",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Record actual partial deltas.",
+                      "observed":  "Real protected push rejection preserved local commit while remote push was rejected; partial outcome scoring retained resolved components.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/native-git-policy-rejection.json",
+                                           "sha256":  "2cea8895ca65f48848b5fc790e0186e4128215da107c8e34fd632d61109a1d15",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "local_path_deleted_recreated",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Create a new Manifestation absent provider continuity.",
+                      "observed":  "Exact disposable path was deleted/recreated with different Git histories and treated as a new incarnation.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "identical_content_independent_clone",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Keep separate Manifestations; content equality only.",
+                      "observed":  "Two independent repos had the same tree hash and different commits/paths; no hard merge.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "out_of_band_remote_mutation",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Record unexpected delta and attribution ambiguity.",
+                      "observed":  "Evaluator connector advanced the real branch without an operator ActionAttempt; artifact marks attribution ambiguous/non-operator.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/hostile/hostile-local-provider.json",
+                                           "sha256":  "697a5755189fcbf63ed61367f84489ba981d601404de2336b947bfde18542fb5",
+                                           "real_provider_boundary":  true
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "correlated_sensor_evidence",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Retain dependency metadata; no confidence multiplication.",
+                      "observed":  "Resolver withheld hard correspondence when evidence dependency groups were identical.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "stale_runtime_descriptor",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Live probe wins over descriptor.",
+                      "observed":  "Live eyeBROWSE/CODEeye/PostgreSQL probes controlled liveness; persisted descriptors were never sufficient.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/p1-codeeye-live.json",
+                                           "sha256":  "1d5daea17f491d69d7d421b3ce6a717823c193e2ad60c4454b7cc96c825c8b7a",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/p2-eyebrowse-live.json",
+                                           "sha256":  "ef0d9cd848703fbbcc83ad39165bbff50492e4f3d5c42e40198c8114c59a5b39",
+                                           "real_provider_boundary":  true
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "action_parameters_changed_after_prediction",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Old Prediction is ineligible; require new ActionAttempt/Prediction.",
+                      "observed":  "Transactional seal rejected parameter-hash mismatch and second dispatch.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "timestamp_backdating_attack",
+                      "status":  "PASS",
+                      "required_correct_behavior":  "Kernel assigns record time; model/provider input cannot backdate recorded_at.",
+                      "observed":  "Database trigger overwrote hostile recorded_at and maintained valid/knowledge-time separation.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "cross_arm_state_leak",
+                      "status":  "INCONCLUSIVE",
+                      "required_correct_behavior":  "No kernel/evaluator/package/session leak.",
+                      "observed":  "Database ACL/package probes passed, but invocation-level cross-session isolation cannot be attested because P5 failed.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/implementation-test-results.json",
+                                           "sha256":  "d02c8bfcb9209b489ca5e93d3af870595120f8dea89d8399e5acfc6cef2fb4ad",
+                                           "real_provider_boundary":  false
+                                       },
+                                       {
+                                           "path":  "artifacts/preflight/p5-fresh-invocation-blocker.json",
+                                           "sha256":  "ca3a8547543cd6489e62dac5e963ef7415f0105b5c8eed6379950335611676c7",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "policy_reversal_belief_death",
+                      "status":  "INCONCLUSIVE",
+                      "required_correct_behavior":  "Obsolete expectation loses operational influence within three contradictions.",
+                      "observed":  "Requires successive fresh cognitive invocations; drift was correctly not started after P5 failure.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/p5-fresh-invocation-blocker.json",
+                                           "sha256":  "ca3a8547543cd6489e62dac5e963ef7415f0105b5c8eed6379950335611676c7",
+                                           "real_provider_boundary":  false
+                                       }
+                                   ]
+                  },
+                  {
+                      "id":  "authenticated_browser_remote_commit",
+                      "status":  "INCONCLUSIVE",
+                      "required_correct_behavior":  "Perform disposable remote commit through eyeBROWSE and reobserve.",
+                      "observed":  "Browser read/stale-page semantics passed, but the eyeBROWSE profile remained anonymous and no write occurred.",
+                      "evidence":  [
+                                       {
+                                           "path":  "artifacts/preflight/p2-eyebrowse-remote-commit-blocker.json",
+                                           "sha256":  "8a502df848b6b1ecc78d7b808ce60ae500fb03c5f500054ddd9d4cb9d6575fd5",
+                                           "real_provider_boundary":  true
+                                       },
+                                       {
+                                           "path":  "artifacts/hostile/eyebrowse-stale-page.json",
+                                           "sha256":  "80c6b8eceb8ec267d0bf9fe2cf875f31576effd52b3805970979908adbbfd492",
+                                           "real_provider_boundary":  true
+                                       }
+                                   ]
+                  }
+              ],
+    "pass_count":  22,
+    "fail_count":  0,
+    "inconclusive_count":  5,
+    "complete_case_count":  27,
+    "hard_identity_false_positive_count":  0,
+    "hard_identity_precision":  1,
+    "eligible_correspondence_recall":  1,
+    "explicitly_ambiguous_cases_excluded_from_recall":  [
+                                                            "hosted_fork_or_provider_clone",
+                                                            "github_repository_rename_or_redirect"
+                                                        ],
+    "suite_conclusion":  "INCONCLUSIVE",
+    "confirmatory_or_pilot_data_used":  false,
+    "generated_at":  "2026-08-11T14:34:13.3374100+00:00"
+}

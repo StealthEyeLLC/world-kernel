@@ -1,0 +1,31 @@
+{
+  "preflight": "P5 fresh invocation mechanism",
+  "passed": false,
+  "classification": "not_validly_executable",
+  "observations": [
+    {
+      "surface": "product-native Cloud Browser",
+      "url": "https://chatgpt.com/",
+      "authenticated": false,
+      "observed_state": "ChatGPT sign-in wall",
+      "raw_session_export_available": false
+    },
+    {
+      "surface": "current work conversation",
+      "fresh_for_trial": false,
+      "reason": "This is the implementation conversation and cannot serve as an isolated confirmatory arm."
+    }
+  ],
+  "required_but_unattested": [
+    "exact isolated model session per arm",
+    "no prior trial transcript",
+    "memory disabled or provably unavailable",
+    "no cross-arm state",
+    "same exact model and configuration across arms",
+    "machine-readable invocation output before dispatch"
+  ],
+  "owner_credentials_requested_in_chat": false,
+  "confirmatory_started": false,
+  "pilot_started": false,
+  "recorded_at": "2026-08-11T13:52:25Z"
+}

@@ -1,0 +1,54 @@
+{
+    "preflight":  "P0 baseline capture",
+    "passed":  false,
+    "blocker":  "Exact model deployment identifier/configuration is not exposed to this invocation; do not invent it.",
+    "machine":  {
+                    "name":  "STEALTHEYELLC",
+                    "os_caption":  "Microsoft Windows 11 Home",
+                    "os_version":  "10.0.26200",
+                    "os_build":  "26200",
+                    "interactive_user":  "STEALTHEYELLC\\StealthEye",
+                    "eye_service_state":  "Running",
+                    "eye_service_identity":  "LocalSystem"
+                },
+    "repositories":  {
+                         "eye_default_head":  "53948b74701f51c29c9322dfa9f017ba6b45f4a4",
+                         "eye_local_protected_head":  "92e4a9af61312e617bb0f8b93fd5e9ddd2f22db9",
+                         "codeeye_head":  "1ca0f93d64bc20bccb3b96dbcda43a2232783609",
+                         "eyebrowse_head":  "2e27f44ebd3522d0d26b036dc57f790535df3533",
+                         "world_kernel_head":  "8685ba5eec7e6ec5e725453d280dea0f24d101d0",
+                         "governing_freeze_commit":  "22f9f8e459d71f8df271078575c920db9c6469b2",
+                         "fixture_head":  "519d05879314cab45280a9f58efbd8859ecd8d64"
+                     },
+    "runtimes":  {
+                     "git":  "git version 2.55.0.windows.3",
+                     "dotnet_sdk":  "10.0.302",
+                     "node":  "v24.18.1",
+                     "chrome":  "151.0.7922.109",
+                     "postgres":  "postgres (PostgreSQL) 18.4",
+                     "github_cli":  "gh version 2.97.0 (2026-07-31)"
+                 },
+    "provider":  {
+                     "github_owner_login":  "StealthEyeLLC",
+                     "github_owner_type":  "User",
+                     "github_owner_id":  247854506,
+                     "world_kernel_repository_id":  1330898472,
+                     "fixture_repository_id":  1330898503
+                 },
+    "contracts":  {
+                      "human_sha256":  "63804abcc376c4e2c27f242bee16e10678458b1befd5d1e4903ff54fa2d87696",
+                      "machine_sha256":  "cf4de0ea97cd394ec8ae9373617d253b9b220be11a6584d30380b0051a617b10",
+                      "evaluation_spec_sha256":  "f182f6b0ac91d85436f077f0c78e3db0ec3b35d2f15f82d0675b699598c93ded",
+                      "scorer":  "build001-primary-analysis-v1",
+                      "memory_serializer":  "build001-memory-v1",
+                      "structured_serializer":  "build001-structured-v1"
+                  },
+    "model":  {
+                  "product_surface":  "ChatGPT Work / Codex",
+                  "reported_family":  "GPT-5 class",
+                  "exact_identifier":  null,
+                  "configuration_hash":  null,
+                  "confirmatory_eligible":  false
+              },
+    "captured_at":  "2026-08-11T13:58:20.1943998+00:00"
+}

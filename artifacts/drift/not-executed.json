@@ -1,0 +1,10 @@
+{
+  "schema": "world-kernel-build001-drift-result-v1",
+  "status": "not_executed",
+  "reason": "P5 fresh isolated invocation mechanism did not pass.",
+  "contradiction_opportunities": 0,
+  "obsolete_outcome_probabilities": [],
+  "new_outcome_probabilities": [],
+  "operational_recovery_bound_estimable": false,
+  "generated_at": "2026-08-11T14:33:00Z"
+}

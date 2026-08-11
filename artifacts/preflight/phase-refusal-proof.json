@@ -1,0 +1,37 @@
+{
+    "schema":  "world-kernel-build001-phase-refusal-proof-v1",
+    "preflight_manifest_sha256":  "5f4195e5b8d8ee9047d78cc16f3d3dc5459e562e14e3e76d732cdfbda6e48e00",
+    "all_preflight_gates_passed":  false,
+    "first_confirmatory_block_started":  false,
+    "probes":  [
+                   {
+                       "phase":  "acquisition",
+                       "expected_authorized":  false,
+                       "exit_code":  1,
+                       "refusal_or_authorization_matched_manifest":  true,
+                       "output":  ""
+                   },
+                   {
+                       "phase":  "pilot",
+                       "expected_authorized":  false,
+                       "exit_code":  1,
+                       "refusal_or_authorization_matched_manifest":  true,
+                       "output":  ""
+                   },
+                   {
+                       "phase":  "confirmatory",
+                       "expected_authorized":  false,
+                       "exit_code":  1,
+                       "refusal_or_authorization_matched_manifest":  true,
+                       "output":  ""
+                   },
+                   {
+                       "phase":  "drift",
+                       "expected_authorized":  false,
+                       "exit_code":  1,
+                       "refusal_or_authorization_matched_manifest":  true,
+                       "output":  ""
+                   }
+               ],
+    "generated_at":  "2026-08-11T14:34:13.2959623+00:00"
+}
