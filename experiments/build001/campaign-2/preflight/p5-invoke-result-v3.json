@@ -1,0 +1,15 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-adapter-result-v1",
+    "passed":  false,
+    "mode":  "invoke",
+    "trial_id":  "campaign2-p5-probe-002",
+    "started_at":  "2026-08-11T17:49:37.1963646+00:00",
+    "completed_at":  "2026-08-11T17:49:41.0773213+00:00",
+    "invalidation_reasons":  [
+                                 "adapter_error"
+                             ],
+    "error_type":  "RuntimeException",
+    "error":  "A hash table can only be added to another hash table.",
+    "request_sha256":  "924fec3d6aae3f6f6b6f32d476801ffc5a1da35d21a5772842ad730e939f43ba",
+    "operation_count":  10
+}

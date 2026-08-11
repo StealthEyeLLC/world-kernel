@@ -19,7 +19,7 @@ if (-not (Test-Path $request -PathType Leaf)) { throw "Subject request is absent
 if (Test-Path $output) { throw "Subject output already exists and will not be overwritten: $output" }
 
 $script = Join-Path $PSScriptRoot 'campaign2-edge-subject.ps1'
-$expectedScript = '7403e08a133c935dea40e7991dba714de12c37cfbd2a1c18657da75dd1747160'
+$expectedScript = 'b2c6e52e4a44199ae6e6a514130332e2de1bf759070b51ff3b946b2af909e9dd'
 
 function Get-NormalizedSha256([string] $Path) {
     $text = [IO.File]::ReadAllText($Path).Replace("`r`n", "`n")

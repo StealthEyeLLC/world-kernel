@@ -106,11 +106,11 @@ function Find-Element(
 }
 
 function Find-ElementsByName([string] $Pattern) {
-    $matches = @()
+    $foundElements = @()
     foreach ($element in (Get-Elements)) {
-        if ($element.Current.Name -match $Pattern) { $matches += $element }
+        if ($element.Current.Name -match $Pattern) { $foundElements += $element }
     }
-    return $matches
+    return $foundElements
 }
 
 function Invoke-Element([Windows.Automation.AutomationElement] $Element) {

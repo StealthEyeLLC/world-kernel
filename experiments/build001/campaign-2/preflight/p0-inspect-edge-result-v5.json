@@ -1,0 +1,39 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-adapter-result-v1",
+    "passed":  true,
+    "mode":  "inspect",
+    "trial_id":  "campaign2-p0-inspect",
+    "started_at":  "2026-08-11T17:55:27.7196419+00:00",
+    "completed_at":  "2026-08-11T17:55:32.2422182+00:00",
+    "invalidation_reasons":  [
+
+                             ],
+    "request_sha256":  "324f5f1b8d9bb800c9e5f6438f1796b8376dc7ebdf3898529d30b885a11b65e2",
+    "ui_evidence":  {
+                        "application":  "Microsoft Edge",
+                        "application_version":  "151.0.4129.72",
+                        "before":  {
+                                       "href":  "https://chatgpt.com/?temporary-chat=true",
+                                       "signed_in":  true,
+                                       "login_control_present":  false,
+                                       "temporary_chat":  true,
+                                       "chat_surface_selected":  true,
+                                       "message_marker_count":  0,
+                                       "attachment_marker_count":  0,
+                                       "project_context_present":  false,
+                                       "file_library_context_present":  false,
+                                       "temporary_markers":  [
+                                                                 "Turn off temporary chat",
+                                                                 "Temporary chat"
+                                                             ]
+                                   },
+                        "model_before":  {
+                                             "selected_model":  "5.6 Sol",
+                                             "reasoning_selection":  "Extra High",
+                                             "model_marker":  "Model GPT-5.6 Sol",
+                                             "effort_marker":  "Effort Extra High"
+                                         }
+                    },
+    "ui_evidence_sha256":  "8c8a0c74c0c8000f334fe0008d2dcabff5f1508649b5a9e106606257f3064f48",
+    "operation_count":  6
+}
