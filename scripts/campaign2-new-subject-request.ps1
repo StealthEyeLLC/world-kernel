@@ -44,8 +44,10 @@ if (Test-Path $output) { throw "Subject request already exists and will not be o
 function Get-NormalizedSha256([string] $Path) {
     $text = [IO.File]::ReadAllText($Path).Replace("`r`n", "`n")
     $bytes = [Text.Encoding]::UTF8.GetBytes($text)
-    $hash = [Security.Cryptography.SHA256]::HashData($bytes)
-    return [Convert]::ToHexString($hash).ToLowerInvariant()
+    $algorithm = [Security.Cryptography.SHA256]::Create()
+    try { $hash = $algorithm.ComputeHash($bytes) }
+    finally { $algorithm.Dispose() }
+    return -join ($hash | ForEach-Object { $_.ToString('x2') })
 }
 
 $request = [ordered]@{
