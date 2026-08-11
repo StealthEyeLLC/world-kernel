@@ -1,0 +1,26 @@
+{
+    "schema":  "world-kernel-build001-campaign2-pre-execution-freeze-boundary-v1",
+    "campaign_id":  "build001-campaign-2",
+    "observed_at":  "2026-08-11T20:27:09.3294560+00:00",
+    "branch":  "build001-campaign-2",
+    "implementation_commit":  "0c1dcc21301218c25a403fff174e1d90e465195e",
+    "preflight_manifest_sha256":  "e9b37f1719c666001f167bf6a18079c073b9cfa889bc83c194d2ce09e98b9391",
+    "counts":  {
+                   "seed_commitments":  0,
+                   "hidden_configurations":  0,
+                   "reset_verifications":  0,
+                   "arm_randomizations":  0,
+                   "invocation_attestations":  0,
+                   "ground_truth_rows":  0,
+                   "aggregate_results":  0,
+                   "campaign2_actions":  0,
+                   "campaign2_predictions":  0,
+                   "campaign2_episodes":  0
+               },
+    "acquisition_started":  false,
+    "pilot_started":  false,
+    "confirmatory_started":  false,
+    "drift_started":  false,
+    "scientific_outcomes_observed":  false,
+    "passed":  true
+}

@@ -1,7 +1,7 @@
 {
   "schema": "world-kernel-build001-campaign2-preregistration-amendment-v1",
   "campaign_id": "build001-campaign-2",
-  "status": "prospective_pre_acquisition_freeze_candidate",
+  "status": "prospective_pre_acquisition_frozen",
   "frozen_at": "2026-08-11T18:15:13.0723293Z",
   "prospective": true,
   "does_not_supersede_original": true,
@@ -41,7 +41,7 @@
   },
   "preflight": {
     "manifest_path": "artifacts/campaign-2/preflight/preflight-gates.json",
-    "manifest_sha256": "63e1e460ffb16396db66477e775ea6c500936ebc56308fad9ad3ca13c46d32d0",
+    "manifest_sha256": "e9b37f1719c666001f167bf6a18079c073b9cfa889bc83c194d2ce09e98b9391",
     "lineage_sha256": "77ec8ffcce0a32220735a953c35042ebb0ead156fab1395dd3b679f3cfee4923",
     "all_p0_through_p6_passed": true,
     "failed_gates": []

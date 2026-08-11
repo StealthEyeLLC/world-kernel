@@ -1,66 +1,247 @@
 {
-  "schema": "world-kernel-build001-campaign2-preregistration-freeze-v1",
-  "campaign_id": "build001-campaign-2",
-  "frozen_at": "2026-08-11T18:19:45.4971416Z",
-  "frozen_before_acquisition": true,
-  "branch": "build001-campaign-2",
-  "amendment_commit": "6eb1b1b8daa4dc7ceeba6e919a665c692950f8d2",
-  "amendment_commit_url": "https://github.com/StealthEyeLLC/world-kernel/commit/6eb1b1b8daa4dc7ceeba6e919a665c692950f8d2",
-  "files": {
-    "authority": {
-      "path": "docs/campaigns/build001-campaign-2/00-AUTHORITY.md",
-      "sha256": "9a6f7ca2e976f0f0e6dd763152d3e2d26220ce9ff05763590105a59df00c1041"
-    },
-    "preflight_repair": {
-      "path": "docs/campaigns/build001-campaign-2/01-PREFLIGHT-REPAIR.md",
-      "sha256": "2fe8809fc35c8e04adc5eaaad6d1751e23c196b7232a0fc82cddb0f9dad81820"
-    },
-    "human_amendment": {
-      "path": "docs/campaigns/build001-campaign-2/02-PREREGISTRATION-AMENDMENT.md",
-      "sha256": "bcad0760f338060acb0eb2978bf95ab345278886b9287198baa7badbf030f518"
-    },
-    "machine_amendment": {
-      "path": "experiments/build001/campaign-2/preregistration.json",
-      "sha256": "fb0c969607f0e512183a4e0817a9c6057eb5b6fc0361ace3e4b940da3f8e728f"
-    },
-    "preflight_manifest": {
-      "path": "artifacts/campaign-2/preflight/preflight-gates.json",
-      "sha256": "63e1e460ffb16396db66477e775ea6c500936ebc56308fad9ad3ca13c46d32d0",
-      "all_p0_through_p6_passed": true
-    },
-    "preflight_lineage": {
-      "path": "artifacts/campaign-2/preflight/evidence-lineage.json",
-      "sha256": "77ec8ffcce0a32220735a953c35042ebb0ead156fab1395dd3b679f3cfee4923"
-    },
-    "pre_acquisition_boundary": {
-      "path": "artifacts/campaign-2/preflight/pre-acquisition-boundary.json",
-      "sha256": "b31285619c2011a5be4d0374cd3280a904ba999135f77b00f47cf53ae1e60bc8"
-    }
-  },
-  "original_contract": {
-    "freeze_commit": "22f9f8e459d71f8df271078575c920db9c6469b2",
-    "human_spec_sha256": "63804abcc376c4e2c27f242bee16e10678458b1befd5d1e4903ff54fa2d87696",
-    "machine_preregistration_sha256": "cf4de0ea97cd394ec8ae9373617d253b9b220be11a6584d30380b0051a617b10",
-    "evaluation_spec_sha256": "f182f6b0ac91d85436f077f0c78e3db0ec3b35d2f15f82d0675b699598c93ded"
-  },
-  "campaign1": {
-    "result_commit": "29851025b0f11034a276cd1259651ee4fec5ed0e",
-    "permanent_conclusion": "NO VALID CONFIRMATORY CONCLUSION",
-    "preserved": true
-  },
-  "boundary_state": {
-    "seed_commitments": 0,
-    "arm_randomizations": 0,
-    "invocation_attestations": 0,
-    "ground_truth_rows": 0,
-    "aggregate_results": 0,
-    "acquisition_started": false,
-    "pilot_started": false,
-    "first_confirmatory_block_started": false,
-    "confirmatory_started": false,
-    "drift_started": false,
-    "confirmatory_outcome_inspected": false
-  },
-  "valid": true,
-  "decision": "Campaign 2 phase execution may begin only after this freeze manifest is committed and pushed and the repository phase-authorize command accepts the all-pass manifest."
+    "schema":  "world-kernel-build001-campaign2-execution-freeze-v2",
+    "campaign_id":  "build001-campaign-2",
+    "frozen_at":  "2026-08-11T20:29:53.3225136+00:00",
+    "frozen_before_acquisition":  true,
+    "valid":  true,
+    "branch":  "build001-campaign-2",
+    "authority":  {
+                      "campaign2_authority_path":  "docs/campaigns/build001-campaign-2/00-AUTHORITY.md",
+                      "campaign2_authority_sha256":  "9a6f7ca2e976f0f0e6dd763152d3e2d26220ce9ff05763590105a59df00c1041",
+                      "preflight_repair_path":  "docs/campaigns/build001-campaign-2/01-PREFLIGHT-REPAIR.md",
+                      "preflight_repair_sha256":  "ca2174ce6b317c216c586a4d984b4c4b2fb5bbcb937ca018c13ac848c057b501",
+                      "amendment_path":  "docs/campaigns/build001-campaign-2/02-PREREGISTRATION-AMENDMENT.md",
+                      "amendment_sha256":  "8ca431105e63609e5e3a31397d29ae71c623d1d4a0be4f7a326df131490cf9d1",
+                      "machine_amendment_path":  "experiments/build001/campaign-2/preregistration.json",
+                      "machine_amendment_sha256":  "10927c54ef666657428f75de449085a02a48650189e95a711f746627505cd2b8",
+                      "build002_authorized":  false,
+                      "canonicalization_authorized":  false,
+                      "architecture_redesign_authorized":  false
+                  },
+    "original_contract":  {
+                              "freeze_commit":  "22f9f8e459d71f8df271078575c920db9c6469b2",
+                              "human_spec_path":  "docs/preregistration/original/StealthEye_World_Kernel_Build_001_Spec_and_Preregistration.md",
+                              "human_spec_sha256":  "63804abcc376c4e2c27f242bee16e10678458b1befd5d1e4903ff54fa2d87696",
+                              "machine_preregistration_path":  "docs/preregistration/original/StealthEye_World_Kernel_Build_001_Preregistration.json",
+                              "machine_preregistration_sha256":  "cf4de0ea97cd394ec8ae9373617d253b9b220be11a6584d30380b0051a617b10",
+                              "evaluation_spec_sha256":  "f182f6b0ac91d85436f077f0c78e3db0ec3b35d2f15f82d0675b699598c93ded",
+                              "does_not_supersede_original":  true
+                          },
+    "campaign1":  {
+                      "main_result_commit":  "29851025b0f11034a276cd1259651ee4fec5ed0e",
+                      "permanent_conclusion":  "NO VALID CONFIRMATORY CONCLUSION",
+                      "acquisition_blocks":  0,
+                      "pilot_blocks":  0,
+                      "confirmatory_blocks":  0,
+                      "treatment_memory_outcomes":  0,
+                      "preserved":  true
+                  },
+    "implementation":  {
+                           "commit":  "0c1dcc21301218c25a403fff174e1d90e465195e",
+                           "remote_verified":  true,
+                           "eye_head":  "53948b74701f51c29c9322dfa9f017ba6b45f4a4",
+                           "codeeye_head":  "1ca0f93d64bc20bccb3b96dbcda43a2232783609",
+                           "eyebrowse_head":  "2e27f44ebd3522d0d26b036dc57f790535df3533",
+                           "frozen_files":  {
+                                                "src/WorldKernel.Build001/Campaign2Execution.cs":  "7559ddce3026aa3a5d4f81868ac2db492e04007030d1b188149e0b292ddc9bad",
+                                                "src/WorldKernel.Build001/Campaign2Attestation.cs":  "6a34b288a2364e4f815d21649128e1691c3c7b16188d3d1238e8f2b58d84316b",
+                                                "src/WorldKernel.Build001/ExperimentControl.cs":  "28f0d26ddbd6a9e1b5f4cd8a38b50b6d6a27305c9b6052612d80d28b9798a2f3",
+                                                "src/WorldKernel.Build001/Program.cs":  "79fd0b4f8e62b95405a6bb26f81a15e687ead176893d2d4951363acfcf99fe80",
+                                                "src/WorldKernel.Build001/Packages.cs":  "ca1bc3e55b0c1a0dc04b2af66d4f6883f0d3788dfef13d440dd4020f3c60e390",
+                                                "src/WorldKernel.Build001/Scoring.cs":  "56c6ead94f543b93700f8c3f9bbc89f565e0483f511bfcbcf099998be4d800f9",
+                                                "scripts/campaign2-acquisition-controller.ps1":  "5b0330ef48f172aa28e59ca97c7cb2f6ac3332aa356c2c35e2c3c41cd79373c7",
+                                                "scripts/campaign2-user-worker.ps1":  "8d7ce85a0f5b483a0c63d6f5cb6e5563c54fee00af97369f1e5fdfd8b639787a",
+                                                "scripts/campaign2-recover-action.ps1":  "232a24b3d7d1324b7ac24669b8e6d9337455d3884f886314a11720a8c37e3387",
+                                                "scripts/campaign2-verify-reset.ps1":  "1fe68a2eabda3b1bc1a042015179b566d658989ad04ddedfea85dc40760efafe",
+                                                "scripts/campaign2-observe-state.ps1":  "2a36fa2cd9095e9b7127a932cc0c11c08681d802f62724ccff379c4d69d1d1b0",
+                                                "scripts/campaign2-prepare-action.ps1":  "9e525dfb766d8a372502a5d63c034616fb98a7a2971b3a53863b959a60965757",
+                                                "scripts/campaign2-subject-adapter.ps1":  "98d4bd52e90dd3f098e3318afd5f650110bdf591add4bc3a8ec31ecec833d502",
+                                                "scripts/campaign2-edge-subject.ps1":  "b2c6e52e4a44199ae6e6a514130332e2de1bf759070b51ff3b946b2af909e9dd",
+                                                "scripts/campaign2-new-subject-request.ps1":  "526e8fd35761965648393eb69cc11b7e78374ca60bba92184184e879d2ae10d7",
+                                                "scripts/fixture-reset.ps1":  "dd94513938888457c0e1dcf5b590ce18bb8aecb86a72563623203f03ae945267",
+                                                "scripts/fixture-provider-admin.ps1":  "46abc3be3623f00cd0a9693d1e8e86e9ea8eb921c94e00e5f412d760ffc278c8",
+                                                "scripts/eyebrowse-github-ref-observe.mjs":  "edddc82d7381798abde12c7277311db8f33752f7ac7909af4a3dd49c707bca91",
+                                                "scripts/eyebrowse-github-check-observe.mjs":  "5e19ae87d2f3b04f58f1afe6f56f6e795f90f04d9a7d44a73f27efc5bcb9cf4a",
+                                                "scripts/eyebrowse-github-remote-commit.mjs":  "3af03f3a4b230c9e03f60386b7713c0def9158be09cdb5a19412be00ea813a7e",
+                                                "experiments/build001/campaign-2/base-prompt.txt":  "f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5",
+                                                "experiments/build001/campaign-2/tool-contract.json":  "e1d2b899190ed0c0f88e1dce4fb2a73f653de20b9d8766df4e196cb4f883c181",
+                                                "experiments/build001/campaign-2/trial-output-contract.json":  "8aec3ac079db715f8d6990d52a8cd9f7d275e4e3ded2efa1088ef101d9d5c193",
+                                                "experiments/build001/campaign-2/packages/cold.txt":  "53eb9ec10dd4e13a1d1c88b84c9445c2a5c3273ce59b696d22b68b627e061565"
+                                            }
+                       },
+    "preflight":  {
+                      "manifest_path":  "artifacts/campaign-2/preflight/preflight-gates.json",
+                      "manifest_sha256":  "e9b37f1719c666001f167bf6a18079c073b9cfa889bc83c194d2ce09e98b9391",
+                      "all_p0_through_p6_passed":  true,
+                      "p0":  {
+                                 "path":  "experiments/build001/campaign-2/preflight/p0-product-attestation.json",
+                                 "sha256":  "b55fa393290cb349fdab1fe4a45c86ce3a2efc34152efa60810c9e15ee2e7672",
+                                 "observable_configuration_fingerprint_sha256":  "afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5"
+                             },
+                      "p2":  {
+                                 "path":  "artifacts/campaign-2/preflight/p2-eyebrowse-remote-commit.json",
+                                 "sha256":  "e469cd6fddb95299f2d6bca329119993a06fbc593baaf1a669a9325c2b55ea03",
+                                 "method":  "authenticated GitHub web through eyeBROWSE plus independent provider reobservation",
+                                 "fixture_only":  true
+                             },
+                      "p5":  {
+                                 "path":  "experiments/build001/campaign-2/preflight/p5-fresh-invocation-attestation.json",
+                                 "sha256":  "104968ac005fb9b77ba305f9bde4d54cbbcaf34d746d68a7d7e79345a7af9934",
+                                 "method_version":  "campaign2-temporary-chat-isolation-v1",
+                                 "subject_driver_sha256":  "b2c6e52e4a44199ae6e6a514130332e2de1bf759070b51ff3b946b2af909e9dd",
+                                 "adapter_sha256":  "98d4bd52e90dd3f098e3318afd5f650110bdf591add4bc3a8ec31ecec833d502"
+                             },
+                      "p6":  {
+                                 "path":  "experiments/build001/campaign-2/preflight/p6-deterministic-reset-attestation-v4.json",
+                                 "sha256":  "3d0446d4b4135f951bbc2286ebc98ed40237f381ddc36787c3c751ac6b3e8d02",
+                                 "version":  "v4",
+                                 "passed":  true
+                             },
+                      "phase_authorization":  {
+                                                  "acquisition":  true,
+                                                  "pilot":  true,
+                                                  "confirmatory":  true,
+                                                  "drift":  true,
+                                                  "no_waiver":  true,
+                                                  "evidence_path":  "artifacts/campaign-2/preflight/phase-authorization-final.json",
+                                                  "evidence_sha256":  "b7baa4bf54281ad73702220c0f172d8efc66c341b712cf1f14c79d2732029204"
+                                              }
+                  },
+    "subject":  {
+                    "product_surface":  "ChatGPT web",
+                    "documented_model_family":  "GPT-5.6 Sol",
+                    "selected_model":  "5.6 Sol",
+                    "reasoning_selection":  "Extra High",
+                    "conversation_type":  "Temporary Chat",
+                    "workspace_type":  "Business",
+                    "observable_configuration_fingerprint_sha256":  "afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5",
+                    "base_prompt_sha256":  "f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5",
+                    "tool_contract_sha256":  "e1d2b899190ed0c0f88e1dce4fb2a73f653de20b9d8766df4e196cb4f883c181",
+                    "trial_output_contract_sha256":  "8aec3ac079db715f8d6990d52a8cd9f7d275e4e3ded2efa1088ef101d9d5c193",
+                    "fresh_context_rule":  "new Temporary Chat, zero prior trial transcript, no project context, no File Library context, no prior-trial attachments",
+                    "orchestrator_is_never_subject":  true,
+                    "acquisition_uses_no_inherited_world_memory":  true
+                },
+    "serialization":  {
+                          "memory_version":  "build001-memory-v1",
+                          "memory_hash":  "fc896a80ffb5d2f23ad2f90bdae6d06719386f99bf4ce6513db5a0787e075ece",
+                          "structured_version":  "build001-structured-v1",
+                          "structured_hash":  "2a2c592dd12372928703d123343a8ff9dedfa290d472e57fec406948ae1b10c0",
+                          "scorer_version":  "build001-brier-v1",
+                          "scorer_source_sha256":  "56c6ead94f543b93700f8c3f9bbc89f565e0483f511bfcbcf099998be4d800f9",
+                          "evaluation_spec_version":  "build001-evaluation-v1",
+                          "inherited_default_token_ceiling":  6000,
+                          "inherited_absolute_token_ceiling":  8000,
+                          "inherited_byte_ceiling":  32768
+                      },
+    "fixture":  {
+                    "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+                    "provider_native_id":  "1330898503",
+                    "original_baseline":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+                    "disposable_branch_namespace":  "wk-b001-*",
+                    "material_file":  "fixture/state.txt",
+                    "reset_method":  "P6-v4 deterministic reset plus independent reobservation",
+                    "provider_check_method":  "authenticated eyeBROWSE exact-commit GitHub checks observation",
+                    "hidden_schedule_evaluator_only":  true
+                },
+    "experiment":  {
+                       "actions":  [
+                                       "git:create_local_commit",
+                                       "git:create_branch",
+                                       "git:push_ref",
+                                       "github:create_remote_commit",
+                                       "git:fetch_remote",
+                                       "git:integrate_fast_forward"
+                                   ],
+                       "arms":  [
+                                    "cold",
+                                    "memory",
+                                    "structured"
+                                ],
+                       "primary_comparison":  "structured_vs_conventional_memory",
+                       "primary_metric":  "configuration-block mean Brier loss",
+                       "strong_relative_improvement_target":  0.2,
+                       "paired_bootstrap_resamples":  10000,
+                       "bootstrap_confidence":  0.95,
+                       "bootstrap_difference":  "B_M - B_S",
+                       "paired_randomization_test":  true,
+                       "paired_randomization_p_lt":  0.05,
+                       "independence_unit":  "configuration_block",
+                       "acquisition":  {
+                                           "start_blocks":  24,
+                                           "maximum_blocks":  36,
+                                           "minimum_eligible_per_action":  20,
+                                           "minimum_accepted_pushes":  8,
+                                           "minimum_rejected_pushes":  8,
+                                           "minimum_accepted_fast_forwards":  8,
+                                           "minimum_rejected_fast_forwards":  8,
+                                           "minimum_distinct_seeds_per_action":  6,
+                                           "same_corpus_for_memory_and_structured":  true
+                                       },
+                       "pilot":  {
+                                     "held_out_blocks":  12,
+                                     "arms_per_block":  3,
+                                     "excluded_from_confirmatory":  true,
+                                     "memory_headroom_minimum_brier":  0.05,
+                                     "permitted_tuning":  [
+                                                              "H1/H2/H3 horizons",
+                                                              "inherited package budget within frozen bounds",
+                                                              "serialization formatting without information change",
+                                                              "fixture reset mechanics",
+                                                              "unambiguous proposition wording/schema",
+                                                              "mechanically derived confirmatory N",
+                                                              "provider wait/censor mechanics"
+                                                          ]
+                                 },
+                       "confirmatory_sample_size":  {
+                                                        "formula":  "ceil_to_multiple_of_8(max(48, ((1.959964 + 0.841621) * s_d / (0.20 * Mbar))^2))",
+                                                        "if_sd_zero":  48,
+                                                        "if_memory_brier_below_0_05":  "redesign/re-pilot",
+                                                        "if_n_above_96":  "redesign/re-pilot; do not clip"
+                                                    },
+                       "behavioral_gate":  {
+                                               "excess_material_actions":  "max(0, actual_material_actions - evaluator_oracle_minimum_material_actions)",
+                                               "structured_relative_reduction_when_memory_has_headroom":  0.2,
+                                               "consequential_errors_must_not_increase":  true,
+                                               "task_completion_not_more_than_percentage_points_below_memory":  5
+                                           },
+                       "drift_gate":  {
+                                          "by_third_strong_contradiction_obsolete_probability_max":  0.5,
+                                          "obsolete_probability_below_new_alternative":  true,
+                                          "qualifying_blocks_fraction_min":  0.9
+                                      }
+                   },
+    "integrity":  {
+                      "prediction_durable_before_dispatch":  true,
+                      "receipt_is_not_outcome":  true,
+                      "fresh_provider_reobservation_required":  true,
+                      "old_evidence_never_becomes_fresh_by_retrieval":  true,
+                      "provider_outage_means_unknown":  true,
+                      "no_prediction_to_observation_laundering":  true,
+                      "no_projection_to_raw_evidence_laundering":  true,
+                      "no_repository_same_as":  true,
+                      "working_copy_of_requires_provider_history_evidence":  true,
+                      "correspondence_precision_required":  1,
+                      "correspondence_recall_required":  0.95,
+                      "memory_structured_same_candidate_episode_ids":  true,
+                      "same_token_and_byte_ceilings":  true,
+                      "zero_extra_structured_llm_calls":  true,
+                      "trial_invalidation_reasons":  [
+                                                         "wrong product/model/reasoning configuration",
+                                                         "context contamination",
+                                                         "malformed or unparsable response",
+                                                         "failure to record full prediction vector before dispatch",
+                                                         "sealed-vs-dispatched action or parameter mismatch",
+                                                         "corrupted reset or isolation",
+                                                         "other preregistered mechanical invalidity"
+                                                     ],
+                      "unfavorable_result_is_not_invalidation":  true
+                  },
+    "boundary":  {
+                     "path":  "artifacts/campaign-2/preflight/pre-execution-freeze-boundary.json",
+                     "sha256":  "4609ac769062c61258e9fa4f1e89b6feb848a91c37bb41428159f77ec9953950",
+                     "all_scientific_counts_zero":  true,
+                     "scientific_outcomes_observed":  false
+                 },
+    "decision":  "Acquisition may begin only after this execution-freeze manifest and its final preflight artifacts are committed, pushed, provider-verified, and phase-authorize accepts the bound all-pass manifest. Any subsequent frozen execution-file change invalidates this freeze until prospectively re-evaluated."
 }

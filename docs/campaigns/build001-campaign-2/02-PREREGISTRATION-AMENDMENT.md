@@ -213,7 +213,7 @@ Campaign 2 continues to require:
 
 The audited P0-P6 manifest currently has SHA-256:
 
-`35f71f99661e762970c5a985873b5bc61c6e7d656cfad37a3a0df75aa5af7edc`
+`e9b37f1719c666001f167bf6a18079c073b9cfa889bc83c194d2ce09e98b9391`
 
 Before any acquisition seed is opened, a machine-readable Campaign 2 execution-freeze manifest must bind the exact audited implementation commit, governing preregistration/authority hashes, Eye-line HEADs, P0/P5/P2 evidence, subject contracts, serializers, scorer, reset/check mechanics, the six action classes, the three arms, primary metric/statistics, behavioral/drift gates, fresh-context/equal-information rules, and invalidation rules.
 
