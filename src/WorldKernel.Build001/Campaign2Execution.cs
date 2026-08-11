@@ -376,7 +376,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             select.Parameters.AddWithValue("seed", input.SeedId);
             await using var reader = await select.ExecuteReaderAsync(cancellationToken).ConfigureAwait(false);
             while (await reader.ReadAsync(cancellationToken).ConfigureAwait(false))
-                existing.Add((reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetFieldValue<DateTimeOffset>(5)));
+                existing.Add((reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), ReadDbTimestamp(reader, 5)));
         }
         if (existing.Count > 1) throw new InvalidDataException("Prospective Campaign 2 seed commitment is duplicated.");
         if (existing.Count == 1)
@@ -398,7 +398,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             seed.Parameters.AddWithValue("commitment", hiddenHash);
             seed.Parameters.AddWithValue("ref", input.SealedPayloadRef);
             seed.Parameters.AddWithValue("revision", input.PublicFixtureRevision);
-            registeredAt = (DateTimeOffset)(await seed.ExecuteScalarAsync(cancellationToken).ConfigureAwait(false)
+            registeredAt = ReadDbTimestamp(await seed.ExecuteScalarAsync(cancellationToken).ConfigureAwait(false)
                 ?? throw new DataException("Prospective seed commitment did not return a record time."));
         }
         var record = new Campaign2AcquisitionBlockRegistrationRecord(
@@ -515,7 +515,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             while (await reader.ReadAsync(cancellationToken).ConfigureAwait(false))
             {
                 resetCount++;
-                existingReset = (reader.GetGuid(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetBoolean(4), reader.GetFieldValue<DateTimeOffset>(5));
+                existingReset = (reader.GetGuid(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetBoolean(4), ReadDbTimestamp(reader, 5));
             }
         }
         if (hiddenCount > 1 || resetCount > 1 || hiddenCount != resetCount)
@@ -560,7 +560,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                 insert.Parameters.AddWithValue("actual", actualFingerprint);
                 insert.Parameters.AddWithValue("expected", expectedFingerprint);
                 KernelDb.AddJson(insert, "hashes", JsonSerializer.SerializeToElement(new[] { resetHash, verificationHash }, JsonDefaults.Options));
-                registeredAt = (DateTimeOffset)(await insert.ExecuteScalarAsync(cancellationToken).ConfigureAwait(false)
+                registeredAt = ReadDbTimestamp(await insert.ExecuteScalarAsync(cancellationToken).ConfigureAwait(false)
                     ?? throw new DataException("Reset registration did not return a record time."));
             }
             await transaction.CommitAsync(cancellationToken).ConfigureAwait(false);
@@ -727,7 +727,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             await using var command = new NpgsqlCommand("SELECT recorded_at FROM wk.action_phase WHERE action_phase_id=@id;", connection);
             command.Parameters.AddWithValue("id", dispatchPhaseId);
             var value = await command.ExecuteScalarAsync(token).ConfigureAwait(false);
-            return value is DateTimeOffset dto ? dto : new DateTimeOffset(DateTime.SpecifyKind((DateTime)value!, DateTimeKind.Utc));
+            return ReadDbTimestamp(value ?? throw new DataException("Dispatch phase timestamp is absent."));
         }, cancellationToken).ConfigureAwait(false);
 
         var record = new Campaign2BeginRecord(
@@ -1221,7 +1221,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                 {
                     state = new ExistingCloseState(
                         reader.GetGuid(0), reader.GetGuid(1), reader.GetGuid(2), reader.GetString(3), reader.GetDouble(4),
-                        reader.GetString(5), reader.GetString(6), reader.GetFieldValue<DateTimeOffset>(7),
+                        reader.GetString(5), reader.GetString(6), ReadDbTimestamp(reader, 7),
                         new Dictionary<string, Guid>(StringComparer.Ordinal));
                     if (await reader.ReadAsync(token).ConfigureAwait(false))
                         throw new InvalidDataException("Campaign 2 Action has duplicate closed TransitionEpisodes.");
@@ -1527,7 +1527,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                 {
                     dispatchCount++;
                     dispatchPhaseId = reader.GetGuid(0);
-                    dispatchedAt = reader.GetFieldValue<DateTimeOffset>(1);
+                    dispatchedAt = ReadDbTimestamp(reader, 1);
                 }
             }
             if (dispatchCount > 1) throw new InvalidDataException("Campaign 2 Action has duplicate dispatch seals.");
@@ -1546,7 +1546,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                     }, JsonDefaults.Options), token).ConfigureAwait(false);
                 await using var command = new NpgsqlCommand("SELECT recorded_at FROM wk.action_phase WHERE action_phase_id=@id;", connection);
                 command.Parameters.AddWithValue("id", dispatchPhaseId);
-                dispatchedAt = (DateTimeOffset)(await command.ExecuteScalarAsync(token).ConfigureAwait(false)
+                dispatchedAt = ReadDbTimestamp(await command.ExecuteScalarAsync(token).ConfigureAwait(false)
                     ?? throw new DataException("Recovered dispatch phase timestamp is absent."));
             }
             return new Campaign2BeginRecord(
@@ -2058,9 +2058,23 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         var path = Path.Combine(root, "experiments", "build001", "campaign-2", "preregistration-freeze-manifest.json");
         using var document = JsonDocument.Parse(File.ReadAllBytes(path));
         var value = document.RootElement;
+        var initialProspectiveFreeze = value.TryGetProperty("frozen_before_acquisition", out var initialFreezeValue) &&
+                                       initialFreezeValue.ValueKind == JsonValueKind.True;
+        var preSubjectRepairFreeze = value.TryGetProperty("repair_after_seed_registration", out var repairValue) &&
+                                     repairValue.ValueKind == JsonValueKind.True &&
+                                     value.TryGetProperty("frozen_before_first_subject_invocation", out var beforeSubjectValue) &&
+                                     beforeSubjectValue.ValueKind == JsonValueKind.True &&
+                                     value.TryGetProperty("scientific_outcomes_observed", out var outcomesValue) &&
+                                     outcomesValue.ValueKind == JsonValueKind.False;
         if (RequiredString(value, "schema") != FreezeManifestSchema || RequiredString(value, "campaign_id") != CampaignId ||
-            !RequiredBoolean(value, "valid") || !RequiredBoolean(value, "frozen_before_acquisition"))
+            !RequiredBoolean(value, "valid") || (!initialProspectiveFreeze && !preSubjectRepairFreeze))
             throw new InvalidDataException("Campaign 2 execution freeze manifest is not valid and prospective.");
+        if (preSubjectRepairFreeze)
+        {
+            var supersededFreeze = RequiredString(value, "supersedes_execution_freeze_commit");
+            if (supersededFreeze.Length != 40 || supersededFreeze.Any(character => !Uri.IsHexDigit(character)))
+                throw new InvalidDataException("Campaign 2 repair freeze does not identify the superseded prospective freeze commit.");
+        }
         var implementation = value.GetProperty("implementation");
         var commit = RequiredString(implementation, "commit");
         if (commit.Length != 40 || commit.Any(character => !Uri.IsHexDigit(character)))
@@ -2284,6 +2298,16 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
     private static T Deserialize<T>(byte[] bytes) =>
         JsonSerializer.Deserialize<T>(bytes, JsonDefaults.Options) ?? throw new InvalidDataException($"Unable to deserialize {typeof(T).Name}.");
 
+    private static DateTimeOffset ReadDbTimestamp(NpgsqlDataReader reader, int ordinal) =>
+        ReadDbTimestamp(reader.GetValue(ordinal));
+
+    private static DateTimeOffset ReadDbTimestamp(object value) => value switch
+    {
+        DateTimeOffset dto => dto,
+        DateTime dateTime when dateTime.Kind == DateTimeKind.Utc => new DateTimeOffset(dateTime),
+        DateTime dateTime => new DateTimeOffset(DateTime.SpecifyKind(dateTime, DateTimeKind.Utc)),
+        _ => throw new InvalidCastException($"Unsupported PostgreSQL timestamp CLR type: {value.GetType().FullName}.")
+    };
     private static string RequiredString(JsonElement value, string name) =>
         value.TryGetProperty(name, out var property) && property.ValueKind == JsonValueKind.String && !string.IsNullOrWhiteSpace(property.GetString())
             ? property.GetString()!

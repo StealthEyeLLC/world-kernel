@@ -1,0 +1,31 @@
+{
+    "schema":  "world-kernel-build001-campaign2-pre-subject-mechanical-repair-v1",
+    "campaign_id":  "build001-campaign-2",
+    "observed_at":  "2026-08-11T20:34:51.2676301+00:00",
+    "superseded_execution_freeze_commit":  "c7762b38b969c586d330387eed1181ebbec913a8",
+    "superseded_execution_freeze_sha256":  "e094714b0dbe3681f4d30c32aec379643eb3369a9e289452ebf011aecad90667",
+    "seed_id":  "campaign2-acquisition-block-seed-01-lc",
+    "configuration_block_id":  "c2-acq-01",
+    "commitment_sha256":  "23793241ef40481bb91cb683fe72cb235b862959eb506ccd4e12135eac846321",
+    "public_fixture_revision":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "seed_recorded_at":  "2026-08-11 16:31:20.346867-04",
+    "failure":  "Npgsql returned PostgreSQL timestamptz as System.DateTime while Campaign2Execution directly cast to System.DateTimeOffset after durable seed insertion",
+    "repair_scope":  [
+                         "coerce PostgreSQL timestamp CLR values through one deterministic UTC helper",
+                         "apply helper to seed/reset/close/dispatch recovery timestamp reads",
+                         "allow an explicit pre-subject repair freeze that names the superseded prospective freeze"
+                     ],
+    "hidden_schedule_changed":  false,
+    "seed_commitment_changed":  false,
+    "subject_invoked":  false,
+    "prediction_recorded":  false,
+    "material_action_dispatched":  false,
+    "outcome_observed":  false,
+    "ground_truth_recorded":  false,
+    "scientific_result_seen":  false,
+    "hypothesis_changed":  false,
+    "arms_changed":  false,
+    "metric_changed":  false,
+    "scoring_changed":  false,
+    "subject_mechanism_changed":  false
+}

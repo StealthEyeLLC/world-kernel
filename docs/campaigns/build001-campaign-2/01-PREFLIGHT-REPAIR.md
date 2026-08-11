@@ -117,3 +117,17 @@ At the final audited gate:
 - drift: not started.
 
 The audited implementation must be committed and pushed, then a separate Campaign 2 execution-freeze manifest must bind that exact commit and the preregistered scientific constants before any acquisition seed is opened.
+
+## Pre-subject execution-freeze repair
+
+The initial execution freeze was committed and provider-verified before acquisition at `c7762b38b969c586d330387eed1181ebbec913a8` with freeze SHA-256 `e094714b0dbe3681f4d30c32aec379643eb3369a9e289452ebf011aecad90667`.
+
+The first acquisition action-slot seed (`campaign2-acquisition-block-seed-01-lc`, configuration block `c2-acq-01`) was durably inserted before the controller hit a mechanical CLR compatibility error: PostgreSQL `timestamptz` was returned by Npgsql as `System.DateTime`, while the new execution code directly cast the value to `System.DateTimeOffset`.
+
+No ChatGPT subject had been invoked. No Prediction existed. No Action was declared or dispatched. No provider Outcome or ground truth existed. No scientific result had been observed. The sealed hidden schedule and its commitment were not changed.
+
+The bounded repair therefore changes only timestamp materialization in the Campaign 2 execution plumbing. All PostgreSQL timestamp reads now pass through one deterministic UTC coercion helper, including retry and recovery paths. The freeze validator also distinguishes the original pre-acquisition freeze from a narrowly scoped replacement freeze that is permitted only before the first subject invocation, only with zero scientific outcomes, and only when it explicitly names the superseded prospective freeze.
+
+This repair changes no subject mechanism, prompt, arm representation, candidate episodes, metric, scorer, action class, hidden schedule, fixture difficulty, statistical procedure, behavioral gate, drift gate, or hypothesis. The exact already-committed seed is retained rather than replaced.
+
+Durable engineering evidence: `experiments/build001/campaign-2/acquisition/engineering/pre-subject-timestamp-repair.json`.
