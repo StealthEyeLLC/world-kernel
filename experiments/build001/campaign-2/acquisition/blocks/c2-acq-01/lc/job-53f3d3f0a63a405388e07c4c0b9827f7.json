@@ -1,0 +1,17 @@
+{
+    "schema":  "world-kernel-build001-campaign2-user-job-v1",
+    "job_id":  "53f3d3f0a63a405388e07c4c0b9827f7",
+    "operation":  "reset",
+    "status_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\acquisition\\blocks\\c2-acq-01\\lc\\job-53f3d3f0a63a405388e07c4c0b9827f7.status.json",
+    "arguments":  {
+                      "block_id":  "c2-a01-lc",
+                      "seed":  "campaign2-acquisition-block-seed-01-lc",
+                      "branch":  "wk-b001-c2-a01-lc",
+                      "push_regime":  "accepted",
+                      "check_regime":  "no_check",
+                      "browser_freshness":  "fresh",
+                      "workspace_root":  "X:\\WorldKernel\\Build001\\workspaces",
+                      "output_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\acquisition\\blocks\\c2-acq-01\\lc\\reset.json"
+                  },
+    "created_at":  "2026-08-11T20:40:29.2872887+00:00"
+}

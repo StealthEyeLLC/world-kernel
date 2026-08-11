@@ -1,0 +1,8 @@
+{
+    "schema":  "world-kernel-build001-campaign2-user-job-status-v1",
+    "ok":  true,
+    "operation":  "prepare",
+    "job_id":  "8798f84da2074b10890a7bfd3d75afe4",
+    "started_at":  "2026-08-11T20:40:49.2587939+00:00",
+    "completed_at":  "2026-08-11T20:40:49.7835106+00:00"
+}

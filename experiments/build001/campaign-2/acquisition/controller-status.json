@@ -1,0 +1,8 @@
+{
+    "schema":  "world-kernel-build001-campaign2-controller-status-v1",
+    "state":  "running",
+    "block":  1,
+    "trial_id":  "c2-acq-01-lc",
+    "semantic_action":  "git:create_local_commit",
+    "updated_at":  "2026-08-11T20:41:50.4179530+00:00"
+}

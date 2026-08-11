@@ -1,0 +1,15 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-adapter-result-v1",
+    "passed":  false,
+    "mode":  "invoke",
+    "trial_id":  "c2-acq-01-lc",
+    "started_at":  "2026-08-11T20:41:52.1503816+00:00",
+    "completed_at":  "2026-08-11T20:41:57.7993013+00:00",
+    "invalidation_reasons":  [
+                                 "adapter_error"
+                             ],
+    "error_type":  "RuntimeException",
+    "error":  "ChatGPT prompt editor did not retain the exact locked prompt.",
+    "request_sha256":  "1f55a90c08849a97978cfeb20466ee17b428614a5de13a1d61df1018ba89e975",
+    "operation_count":  10
+}

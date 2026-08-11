@@ -1,0 +1,33 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-mechanical-invalidations-v1",
+    "campaign_id":  "build001-campaign-2",
+    "trial_id":  "c2-acq-01-lc",
+    "observed_at":  "2026-08-11T20:45:26.9468666+00:00",
+    "request_sha256":  "1f55a90c08849a97978cfeb20466ee17b428614a5de13a1d61df1018ba89e975",
+    "frozen_subject_driver_changed":  false,
+    "attempts":  [
+                     {
+                         "artifact":  "invalidations/subject-result-invalid-001.json",
+                         "sha256":  "91d65132e8d76dfcdc7de8119b269ef23675ebeccd10f73a60be81747678c68e",
+                         "passed":  false,
+                         "request_sha256":  "1f55a90c08849a97978cfeb20466ee17b428614a5de13a1d61df1018ba89e975",
+                         "error":  "ChatGPT prompt editor did not retain the exact locked prompt.",
+                         "reason":  "initial frozen-driver editor-retention failure",
+                         "model_response_accepted":  false,
+                         "prediction_recorded":  false,
+                         "material_action_dispatched":  false
+                     },
+                     {
+                         "artifact":  "invalidations/subject-result-invalid-002.json",
+                         "sha256":  "c7b66bc41f87fb685dd413994be12afa75ff6fbd5ed44438b27eab09cdaa412c",
+                         "passed":  false,
+                         "request_sha256":  "1f55a90c08849a97978cfeb20466ee17b428614a5de13a1d61df1018ba89e975",
+                         "error":  "ChatGPT prompt editor did not retain the exact locked prompt.",
+                         "reason":  "identical-request frozen-driver replacement editor-retention failure",
+                         "model_response_accepted":  false,
+                         "prediction_recorded":  false,
+                         "material_action_dispatched":  false
+                     }
+                 ],
+    "scientific_outcome_observed":  false
+}
