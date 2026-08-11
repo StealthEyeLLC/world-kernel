@@ -15,8 +15,6 @@ param(
     [Parameter(Mandatory = $true)]
     [string] $CurrentObservations,
     [Parameter(Mandatory = $true)]
-    [string] $PropositionsJson,
-    [Parameter(Mandatory = $true)]
     [string] $ArmPackagePath,
     [Parameter(Mandatory = $true)]
     [ValidatePattern('^[0-9a-f]{64}$')]
@@ -34,9 +32,12 @@ $toolContract = Join-Path $campaignRoot 'tool-contract.json'
 $outputContract = Join-Path $campaignRoot 'trial-output-contract.json'
 $armPackage = [IO.Path]::GetFullPath($ArmPackagePath)
 $output = [IO.Path]::GetFullPath($OutputPath)
-$propositions = @($PropositionsJson | ConvertFrom-Json)
+$evaluation = Get-Content -Raw -Path (Join-Path $repoRoot 'schemas\evaluation-spec-v1.json') | ConvertFrom-Json
+$actionProperty = $evaluation.actions.PSObject.Properties[$SemanticAction]
+if ($null -eq $actionProperty) { throw "Semantic action is not in the frozen evaluation spec: $SemanticAction" }
+$propositions = @($actionProperty.Value)
 if ($propositions.Count -eq 0 -or $propositions.Where({ $_ -isnot [string] }).Count -gt 0) {
-    throw 'PropositionsJson must be a non-empty JSON string array.'
+    throw 'Frozen evaluation spec supplied an invalid proposition vector.'
 }
 foreach ($candidate in @($armPackage, $output)) {
     if (-not $candidate.StartsWith($campaignRoot, [StringComparison]::OrdinalIgnoreCase)) {
