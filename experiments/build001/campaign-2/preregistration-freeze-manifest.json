@@ -1,0 +1,66 @@
+{
+  "schema": "world-kernel-build001-campaign2-preregistration-freeze-v1",
+  "campaign_id": "build001-campaign-2",
+  "frozen_at": "2026-08-11T18:19:45.4971416Z",
+  "frozen_before_acquisition": true,
+  "branch": "build001-campaign-2",
+  "amendment_commit": "6eb1b1b8daa4dc7ceeba6e919a665c692950f8d2",
+  "amendment_commit_url": "https://github.com/StealthEyeLLC/world-kernel/commit/6eb1b1b8daa4dc7ceeba6e919a665c692950f8d2",
+  "files": {
+    "authority": {
+      "path": "docs/campaigns/build001-campaign-2/00-AUTHORITY.md",
+      "sha256": "9a6f7ca2e976f0f0e6dd763152d3e2d26220ce9ff05763590105a59df00c1041"
+    },
+    "preflight_repair": {
+      "path": "docs/campaigns/build001-campaign-2/01-PREFLIGHT-REPAIR.md",
+      "sha256": "2fe8809fc35c8e04adc5eaaad6d1751e23c196b7232a0fc82cddb0f9dad81820"
+    },
+    "human_amendment": {
+      "path": "docs/campaigns/build001-campaign-2/02-PREREGISTRATION-AMENDMENT.md",
+      "sha256": "bcad0760f338060acb0eb2978bf95ab345278886b9287198baa7badbf030f518"
+    },
+    "machine_amendment": {
+      "path": "experiments/build001/campaign-2/preregistration.json",
+      "sha256": "fb0c969607f0e512183a4e0817a9c6057eb5b6fc0361ace3e4b940da3f8e728f"
+    },
+    "preflight_manifest": {
+      "path": "artifacts/campaign-2/preflight/preflight-gates.json",
+      "sha256": "63e1e460ffb16396db66477e775ea6c500936ebc56308fad9ad3ca13c46d32d0",
+      "all_p0_through_p6_passed": true
+    },
+    "preflight_lineage": {
+      "path": "artifacts/campaign-2/preflight/evidence-lineage.json",
+      "sha256": "77ec8ffcce0a32220735a953c35042ebb0ead156fab1395dd3b679f3cfee4923"
+    },
+    "pre_acquisition_boundary": {
+      "path": "artifacts/campaign-2/preflight/pre-acquisition-boundary.json",
+      "sha256": "b31285619c2011a5be4d0374cd3280a904ba999135f77b00f47cf53ae1e60bc8"
+    }
+  },
+  "original_contract": {
+    "freeze_commit": "22f9f8e459d71f8df271078575c920db9c6469b2",
+    "human_spec_sha256": "63804abcc376c4e2c27f242bee16e10678458b1befd5d1e4903ff54fa2d87696",
+    "machine_preregistration_sha256": "cf4de0ea97cd394ec8ae9373617d253b9b220be11a6584d30380b0051a617b10",
+    "evaluation_spec_sha256": "f182f6b0ac91d85436f077f0c78e3db0ec3b35d2f15f82d0675b699598c93ded"
+  },
+  "campaign1": {
+    "result_commit": "29851025b0f11034a276cd1259651ee4fec5ed0e",
+    "permanent_conclusion": "NO VALID CONFIRMATORY CONCLUSION",
+    "preserved": true
+  },
+  "boundary_state": {
+    "seed_commitments": 0,
+    "arm_randomizations": 0,
+    "invocation_attestations": 0,
+    "ground_truth_rows": 0,
+    "aggregate_results": 0,
+    "acquisition_started": false,
+    "pilot_started": false,
+    "first_confirmatory_block_started": false,
+    "confirmatory_started": false,
+    "drift_started": false,
+    "confirmatory_outcome_inspected": false
+  },
+  "valid": true,
+  "decision": "Campaign 2 phase execution may begin only after this freeze manifest is committed and pushed and the repository phase-authorize command accepts the all-pass manifest."
+}
