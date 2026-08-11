@@ -46,7 +46,8 @@ public static class PreflightGateEvaluator
         var p4Tests = Load(artifactDirectory, "implementation-test-results.json");
         var p4Recovery = Load(artifactDirectory, "recovery-test.json");
         var p4Runtime = Load(artifactDirectory, "postgres-runtime-manifest.json");
-        var p5 = Load(artifactDirectory, "p5-fresh-invocation.json", required: false) ??\n                 Load(artifactDirectory, "p5-fresh-invocation-blocker.json");
+        var p5 = Load(artifactDirectory, "p5-fresh-invocation.json", required: false) ??
+                 Load(artifactDirectory, "p5-fresh-invocation-blocker.json");
         var p6 = Load(artifactDirectory, "p6-deterministic-reset.json");
 
         var gates = new List<PreflightGate>
