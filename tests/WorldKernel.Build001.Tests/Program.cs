@@ -5,7 +5,9 @@ using StealthEye.WorldKernel.Build001.Tests;
 var options = Parse(args);
 var repositoryRoot = Required(options, "repo-root");
 var secretFile = Required(options, "secret-file");
-var artifactDirectory = options.TryGetValue("artifact-directory", out var configuredArtifactDirectory)\n    ? Path.GetFullPath(configuredArtifactDirectory)\n    : Path.Combine(repositoryRoot, "artifacts", "preflight");
+var artifactDirectory = options.TryGetValue("artifact-directory", out var configuredArtifactDirectory)
+    ? Path.GetFullPath(configuredArtifactDirectory)
+    : Path.Combine(repositoryRoot, "artifacts", "preflight");
 Directory.CreateDirectory(artifactDirectory);
 
 var tests = new List<(string Name, Func<Task> Run)>
