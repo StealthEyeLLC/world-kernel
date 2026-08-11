@@ -1,0 +1,41 @@
+{
+  "schema": "world-kernel-build001-campaign2-pre-acquisition-boundary-v1",
+  "passed": true,
+  "captured_at": "2026-08-11T18:12:42.7292039Z",
+  "campaign": 2,
+  "campaign1": {
+    "result_commit": "29851025b0f11034a276cd1259651ee4fec5ed0e",
+    "results_sha256": "b14df79d5d4c34be33501eea6f848503587dc0649ce49ad2eb06db0aaaf741e2",
+    "permanent_conclusion": "NO VALID CONFIRMATORY CONCLUSION"
+  },
+  "original_boundary": {
+    "freeze_commit": "22f9f8e459d71f8df271078575c920db9c6469b2",
+    "human_spec_sha256": "63804abcc376c4e2c27f242bee16e10678458b1befd5d1e4903ff54fa2d87696",
+    "machine_preregistration_sha256": "cf4de0ea97cd394ec8ae9373617d253b9b220be11a6584d30380b0051a617b10",
+    "evaluation_spec_sha256": "f182f6b0ac91d85436f077f0c78e3db0ec3b35d2f15f82d0675b699598c93ded"
+  },
+  "preflight_manifest_sha256": "63e1e460ffb16396db66477e775ea6c500936ebc56308fad9ad3ca13c46d32d0",
+  "p0_through_p6_passed": true,
+  "evaluator_database": {
+    "boundary_events": [
+      {
+        "event_type": "original_frozen",
+        "contract_version": "v1-original",
+        "occurred_at": "2026-08-11T10:07:30.811649-04:00"
+      }
+    ],
+    "seed_commitments": 0,
+    "arm_randomizations": 0,
+    "invocation_attestations": 0,
+    "ground_truth_rows": 0,
+    "aggregate_results": 0
+  },
+  "acquisition_started": false,
+  "pilot_started": false,
+  "confirmatory_started": false,
+  "drift_started": false,
+  "confirmatory_outcome_inspected": false,
+  "campaign2_amendment_frozen_at_capture": false,
+  "phase_dispatch_authorized_at_capture": false,
+  "decision": "Freeze the prospective Campaign 2 amendment before any acquisition or trial dispatch."
+}

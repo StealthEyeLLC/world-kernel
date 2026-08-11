@@ -1,0 +1,21 @@
+{
+    "preflight":  "P6 deterministic reset",
+    "accepted_regime":  {
+                            "fingerprint_1":  "844c9bc7a8c00e5d7be5be0f2095e182aaa8b67d1f59ea4d6c1c9a9d690f0a3e",
+                            "fingerprint_2":  "844c9bc7a8c00e5d7be5be0f2095e182aaa8b67d1f59ea4d6c1c9a9d690f0a3e",
+                            "head_1":  "f7b43c8c30b6ae6829c6dac8fa9a18fa21657ce1",
+                            "head_2":  "f7b43c8c30b6ae6829c6dac8fa9a18fa21657ce1",
+                            "passed":  true
+                        },
+    "rejected_regime":  {
+                            "fingerprint_1":  "ff23ea0b9fd15fab019e15946d0280fef716b883f73c4f5e03b7ec6e5b0c0988",
+                            "fingerprint_2":  "ff23ea0b9fd15fab019e15946d0280fef716b883f73c4f5e03b7ec6e5b0c0988",
+                            "head_1":  "5d700cadc0bce2bbbc4674d6044833a8cb671792",
+                            "head_2":  "5d700cadc0bce2bbbc4674d6044833a8cb671792",
+                            "passed":  true
+                        },
+    "different_regimes_have_different_fingerprints":  true,
+    "same_seed_repeated_material_state":  true,
+    "passed":  true,
+    "observed_at":  "2026-08-11T13:57:54.0448726+00:00"
+}

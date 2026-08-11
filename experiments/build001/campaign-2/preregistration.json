@@ -1,0 +1,202 @@
+{
+  "schema": "world-kernel-build001-campaign2-preregistration-amendment-v1",
+  "campaign_id": "build001-campaign-2",
+  "status": "prospective_pre_acquisition_freeze_candidate",
+  "frozen_at": "2026-08-11T18:15:13.0723293Z",
+  "prospective": true,
+  "does_not_supersede_original": true,
+  "authority": {
+    "path": "docs/campaigns/build001-campaign-2/00-AUTHORITY.md",
+    "sha256": "9a6f7ca2e976f0f0e6dd763152d3e2d26220ce9ff05763590105a59df00c1041"
+  },
+  "original_contract": {
+    "contract_version": "v1-original",
+    "freeze_commit": "22f9f8e459d71f8df271078575c920db9c6469b2",
+    "human_spec_path": "docs/preregistration/original/StealthEye_World_Kernel_Build_001_Spec_and_Preregistration.md",
+    "human_spec_sha256": "63804abcc376c4e2c27f242bee16e10678458b1befd5d1e4903ff54fa2d87696",
+    "machine_preregistration_path": "docs/preregistration/original/StealthEye_World_Kernel_Build_001_Preregistration.json",
+    "machine_preregistration_sha256": "cf4de0ea97cd394ec8ae9373617d253b9b220be11a6584d30380b0051a617b10",
+    "evaluation_spec_path": "schemas/evaluation-spec-v1.json",
+    "evaluation_spec_sha256": "f182f6b0ac91d85436f077f0c78e3db0ec3b35d2f15f82d0675b699598c93ded",
+    "conflict_rule": "original_scientific_contract_controls_and_execution_stops"
+  },
+  "campaign1": {
+    "result_commit": "29851025b0f11034a276cd1259651ee4fec5ed0e",
+    "results_sha256": "b14df79d5d4c34be33501eea6f848503587dc0649ce49ad2eb06db0aaaf741e2",
+    "permanent_conclusion": "NO VALID CONFIRMATORY CONCLUSION",
+    "acquisition_started": false,
+    "pilot_started": false,
+    "confirmatory_started": false,
+    "drift_started": false
+  },
+  "scope": {
+    "campaign": 2,
+    "build": 1,
+    "not_build_2": true,
+    "architecture_redesign": false,
+    "repaired_gates": ["P0", "P2", "P5"],
+    "unchanged_valid_gates": ["P1", "P3", "P4", "P6"],
+    "fixture_repository_only": "StealthEyeLLC/world-kernel-build-001-fixture",
+    "sibling_repository_mutation": false
+  },
+  "preflight": {
+    "manifest_path": "artifacts/campaign-2/preflight/preflight-gates.json",
+    "manifest_sha256": "63e1e460ffb16396db66477e775ea6c500936ebc56308fad9ad3ca13c46d32d0",
+    "lineage_sha256": "77ec8ffcce0a32220735a953c35042ebb0ead156fab1395dd3b679f3cfee4923",
+    "all_p0_through_p6_passed": true,
+    "failed_gates": []
+  },
+  "p0_observable_subject": {
+    "product_surface": "ChatGPT web",
+    "selected_model": "5.6 Sol",
+    "reasoning_selection": "Extra High",
+    "conversation_type": "Temporary Chat",
+    "observable_configuration_fingerprint_sha256": "afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5",
+    "private_deployment_identifier_exposed": false,
+    "private_deployment_identifier_equality_claimed": false,
+    "observable_product_fallback_allowed": false,
+    "project_context_enabled": false,
+    "file_library_context_enabled": false,
+    "prior_trial_attachments_present": false,
+    "custom_instructions": "identically_frozen_empty",
+    "fast_answers": false
+  },
+  "p2_provider_mechanism": {
+    "browser": "eyeBROWSE dev profile",
+    "authenticated_login": "StealthEyeLLC",
+    "repository": "StealthEyeLLC/world-kernel-build-001-fixture",
+    "branch": "wk-b001-c2-p2-auth-proof",
+    "base_sha": "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "proof_commit_sha": "96dd6c21a2f1ce9304020331a7c7930a128c4986",
+    "main_unchanged": true,
+    "provider_state_independently_verified": true
+  },
+  "p5_invocation_mechanism": {
+    "method_version": "campaign2-temporary-chat-isolation-v1",
+    "trial_invalidation_rules_version": "campaign2-trial-invalidation-v1",
+    "new_temporary_chat_per_cognitive_trial": true,
+    "prior_message_count": 0,
+    "no_prior_trial_transcript": true,
+    "no_cross_arm_memory": true,
+    "no_hidden_evaluator_state": true,
+    "base_prompt_sha256": "f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5",
+    "tool_contract_sha256": "e1d2b899190ed0c0f88e1dce4fb2a73f653de20b9d8766df4e196cb4f883c181",
+    "trial_output_contract_sha256": "8aec3ac079db715f8d6990d52a8cd9f7d275e4e3ded2efa1088ef101d9d5c193",
+    "invocation_adapter_sha256": "98d4bd52e90dd3f098e3318afd5f650110bdf591add4bc3a8ec31ecec833d502",
+    "subject_driver_sha256": "b2c6e52e4a44199ae6e6a514130332e2de1bf759070b51ff3b946b2af909e9dd",
+    "extra_treatment_model_calls": 0,
+    "material_dispatch_requires_valid_durable_prediction": true,
+    "invalid_if": [
+      "freshness_or_isolation_not_attested",
+      "prior_messages_or_prior_trial_context_present",
+      "project_file_library_or_prior_attachment_present",
+      "observable_model_or_reasoning_mismatch",
+      "observable_product_fallback",
+      "base_prompt_tool_contract_or_output_contract_hash_mismatch",
+      "machine_readable_response_parse_or_validation_failure",
+      "adapter_error",
+      "cross_arm_memory_or_hidden_evaluator_state_detected"
+    ]
+  },
+  "frozen_experiment": {
+    "mission": "Test whether completely fresh ChatGPT invocations using structured provider-grounded temporal transition experience outperform equivalent fresh invocations using materially equivalent conventional episodic memory.",
+    "semantic_actions": [
+      "git:create_local_commit",
+      "git:create_branch",
+      "git:push_ref",
+      "github:create_remote_commit",
+      "git:fetch_remote",
+      "git:integrate_fast_forward"
+    ],
+    "arms": ["cold", "conventional_memory", "structured"],
+    "primary_comparison": "structured_vs_conventional_memory",
+    "primary_metric": "configuration_block_mean_brier_loss",
+    "relative_brier_loss_reduction_target": 0.20,
+    "effect_formula": "(mean_memory_brier - mean_structured_brier) / mean_memory_brier",
+    "paired_by": "configuration_block",
+    "bootstrap_resamples": 10000,
+    "confidence_level": 0.95,
+    "paired_randomization_test_alpha": 0.05,
+    "cold_comparison_primary": false,
+    "same_source_episode_candidates": true,
+    "same_inherited_budget": true,
+    "candidate_max_inherited_tokens": 6000,
+    "candidate_max_inherited_utf8_bytes": 32768,
+    "pilot_may_raise_budget_above_8000_tokens": false,
+    "extra_model_calls_for_structured": 0
+  },
+  "acquisition": {
+    "fresh_invocation_each_configuration_block": true,
+    "prior_inherited_memory": false,
+    "initial_blocks": 24,
+    "maximum_blocks": 36,
+    "minimum_eligible_episodes_per_action_class": 20,
+    "minimum_push_accepts": 8,
+    "minimum_push_rejects": 8,
+    "minimum_fast_forward_accepts": 8,
+    "minimum_fast_forward_rejects": 8,
+    "minimum_distinct_configuration_seeds_per_action": 6
+  },
+  "pilot": {
+    "blocks": 12,
+    "excluded_from_confirmatory_analysis": true,
+    "memory_brier_headroom_minimum": 0.05,
+    "tuning_permissions_unchanged_from_original": true,
+    "primary_comparison_tunable": false,
+    "effect_target_tunable": false,
+    "metric_family_tunable": false,
+    "fresh_invocation_requirement_tunable": false,
+    "equal_information_and_compute_requirement_tunable": false
+  },
+  "confirmatory_sample_size": {
+    "status": "pilot_derived",
+    "formula": "delta=0.20*mean_memory_pilot_brier; n_raw=((1.959964+0.841621)*sd_paired_difference/delta)^2; N=ceil_to_multiple_of_8(max(48,n_raw))",
+    "minimum": 48,
+    "maximum_feasible": 96,
+    "above_maximum_action": "redesign_and_rerun_pilot_before_confirmatory",
+    "low_memory_headroom_action": "redesign_and_rerun_pilot_before_confirmatory"
+  },
+  "behavioral_gate": {
+    "metric": "excess_material_actions",
+    "relative_reduction_target_when_memory_has_headroom": 0.20,
+    "task_completion_max_allowed_drop_percentage_points": 5,
+    "consequential_error_increase_allowed": false
+  },
+  "drift_gate": {
+    "minimum_fraction_of_confirmatory_blocks": 0.3333333333,
+    "fresh_invocation_each_contradiction_opportunity": true,
+    "maximum_strong_contradictions_before_obsolete_probability_must_be_at_most_0_5": 3,
+    "strong_pass_fraction_meeting_bound": 0.90
+  },
+  "strong_pass": {
+    "requires_all_original_integrity_gates": true,
+    "primary_relative_brier_reduction_at_least": 0.20,
+    "bootstrap_ci_excludes_zero_in_structured_favor": true,
+    "paired_randomization_p_below": 0.05,
+    "behavioral_gate": true,
+    "fresh_instance_gate": true,
+    "drift_gate": true,
+    "equal_information_compute_gate": true
+  },
+  "phase_order": ["preflight", "acquisition", "pilot", "pilot_derived_freeze", "confirmatory", "drift"],
+  "pre_acquisition_boundary": {
+    "artifact_path": "artifacts/campaign-2/preflight/pre-acquisition-boundary.json",
+    "artifact_sha256": "b31285619c2011a5be4d0374cd3280a904ba999135f77b00f47cf53ae1e60bc8",
+    "seed_commitments": 0,
+    "arm_randomizations": 0,
+    "invocation_attestations": 0,
+    "ground_truth_rows": 0,
+    "aggregate_results": 0,
+    "acquisition_started": false,
+    "pilot_started": false,
+    "confirmatory_started": false,
+    "drift_started": false,
+    "confirmatory_outcome_inspected": false
+  },
+  "authorization": {
+    "preflight_eligible": true,
+    "phase_dispatch_before_freeze_manifest": false,
+    "freeze_manifest_required": true,
+    "no_gate_waiver": true
+  }
+}

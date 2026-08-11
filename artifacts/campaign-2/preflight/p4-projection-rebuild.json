@@ -1,0 +1,19 @@
+{
+    "test":  "P4 derived projection rebuild",
+    "before":  {
+                   "claims":  4,
+                   "beliefs":  2,
+                   "evidence":  14,
+                   "episodes":  2
+               },
+    "after":  {
+                  "claims":  4,
+                  "beliefs":  2,
+                  "evidence":  14,
+                  "episodes":  2
+              },
+    "identical":  true,
+    "authoritative_current_state_table":  false,
+    "rebuild_source":  "append-only durable records plus schema migration",
+    "observed_at":  "2026-08-11T13:53:24.1256812+00:00"
+}

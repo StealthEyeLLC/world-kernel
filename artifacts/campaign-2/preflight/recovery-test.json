@@ -1,0 +1,13 @@
+{
+    "test":  "postgres-crash-recovery-v1",
+    "mode":  "immediate stop then WAL recovery restart",
+    "counts_before":  "48,24,20,4",
+    "counts_after":  "48,24,20,4",
+    "interrupted_actions_marked":  12,
+    "episodes_before_recovery_mark":  4,
+    "episodes_after_recovery_mark":  4,
+    "impossible_process_continuity_claimed":  false,
+    "live_provider_reobservation_required":  true,
+    "passed":  true,
+    "observed_at":  "2026-08-11T14:33:59.9895508+00:00"
+}
