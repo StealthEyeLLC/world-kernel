@@ -1,0 +1,20 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-scientific-boundary-pre-freeze-v1",
+    "campaign_id":  "build001-campaign-2r",
+    "passed":  true,
+    "prospective":  true,
+    "verified_preflight_commit":  "21138b2c2b6a6578658b061be84e737c585c4235",
+    "scientific_counts":  {
+                              "action_attempts":  0,
+                              "predictions":  0,
+                              "outcomes":  0,
+                              "prediction_evaluations":  0,
+                              "transition_episodes":  0,
+                              "campaign_scoped_claims":  0,
+                              "campaign_scoped_correspondences":  0,
+                              "evaluator_seed_commitments":  0,
+                              "evaluator_ground_truth":  0,
+                              "acquisition_files":  0
+                          },
+    "observed_at":  "2026-08-12T03:40:58.2587443+00:00"
+}
