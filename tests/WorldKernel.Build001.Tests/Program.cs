@@ -24,6 +24,9 @@ var tests = new List<(string Name, Func<Task> Run)>
     ("postgres.schema_temporal_append_only", () => DatabaseTests.SchemaAndTemporalAsync(secretFile)),
     ("postgres.prediction_dispatch_episode", () => DatabaseTests.ActionLifecycleAsync(secretFile, artifactDirectory)),
     ("postgres.epistemic_laundering_hostiles", () => DatabaseTests.EpistemicHostilesAsync(secretFile, artifactDirectory)),
+    ("postgres.claim_lineage_run_a_negative", () => DatabaseTests.ClaimLineageRunANegativeAsync(secretFile)),
+    ("postgres.claim_lineage_provider_matched_positive", () => DatabaseTests.ClaimLineageProviderMatchedPositiveAsync(secretFile)),
+    ("postgres.claim_lineage_cross_provider_hostiles", () => DatabaseTests.ClaimLineageCrossProviderHostilesAsync(secretFile)),
     ("postgres.arm_isolation", () => DatabaseTests.ArmIsolationAsync(secretFile))
 };
 

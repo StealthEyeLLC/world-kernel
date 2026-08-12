@@ -25,7 +25,7 @@ public static class Campaign2User32
 '@
 
 $repoRoot = [IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
-$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2')).TrimEnd('\') + '\'
+$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2r')).TrimEnd('\') + '\'
 $requestFile = [IO.Path]::GetFullPath($RequestPath)
 $outputFile = [IO.Path]::GetFullPath($OutputPath)
 foreach ($candidate in @($requestFile, $outputFile)) {

@@ -7,7 +7,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repoRoot = [IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
-$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2')).TrimEnd('\') + '\'
+$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2r')).TrimEnd('\') + '\'
 $request = [IO.Path]::GetFullPath($RequestPath)
 $output = [IO.Path]::GetFullPath($OutputPath)
 foreach ($candidate in @($request, $output)) {
@@ -19,7 +19,7 @@ if (-not (Test-Path $request -PathType Leaf)) { throw "Subject request is absent
 if (Test-Path $output) { throw "Subject output already exists and will not be overwritten: $output" }
 
 $script = Join-Path $PSScriptRoot 'campaign2-edge-subject.ps1'
-$expectedScript = 'b2c6e52e4a44199ae6e6a514130332e2de1bf759070b51ff3b946b2af909e9dd'
+$expectedScript = 'f6e057758e7bc21b417aaf487fa79c034c632a7fc64a0820904c3a68a284d205'
 
 function Get-NormalizedSha256([string] $Path) {
     $text = [IO.File]::ReadAllText($Path).Replace("`r`n", "`n")

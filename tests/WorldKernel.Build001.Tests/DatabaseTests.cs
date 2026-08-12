@@ -6,7 +6,7 @@ using StealthEye.WorldKernel.Build001;
 
 namespace StealthEye.WorldKernel.Build001.Tests;
 
-internal static class DatabaseTests
+internal static partial class DatabaseTests
 {
     public static async Task SchemaAndTemporalAsync(string secretFile)
     {
@@ -217,6 +217,44 @@ internal static class DatabaseTests
         await AssertEx.ThrowsAsync<PostgresException>(
             () => InsertEpisodeAsync(database, replay, replayPrediction.PredictionId, correspondenceId, preObservation.ObservationId, replayObservation.ObservationId, replayOutcome, replayEvaluation, omitLinks: false),
             exception => exception.SqlState == "23514").ConfigureAwait(false);
+
+        var sentinelScope = await database.WithConnectionAsync(async (connection, cancellationToken) =>
+        {
+            await using var command = new NpgsqlCommand("SELECT public_environment_scope::text FROM wk.transition_episode WHERE action_id=@id;", connection);
+            command.Parameters.AddWithValue("id", declaration.ActionId);
+            return (string?)await command.ExecuteScalarAsync(cancellationToken).ConfigureAwait(false)
+                   ?? throw new InvalidDataException("Lifecycle sentinel TransitionEpisode is absent.");
+        }).ConfigureAwait(false);
+        using var sentinelScopeDocument = JsonDocument.Parse(sentinelScope);
+        AssertEx.False(sentinelScopeDocument.RootElement.TryGetProperty("campaign_id", out _),
+            "Non-scientific lifecycle sentinel must not carry a Campaign 2R campaign ID.");
+
+        var sentinel = CanonicalJson.Serialize(new
+        {
+            schema = "world-kernel-build001-campaign2r-nonscientific-lifecycle-sentinel-v1",
+            campaign_id = (string?)null,
+            scientific = false,
+            arm = declaration.Arm,
+            semantic_action = declaration.SemanticAction,
+            action_id = declaration.ActionId,
+            prediction_id = prediction.PredictionId,
+            outcome_id = outcomeId,
+            evaluation_id = evaluationId,
+            transition_episode_count = episodeCount,
+            public_environment_scope = sentinelScopeDocument.RootElement.Clone(),
+            prediction_before_dispatch = true,
+            parameter_mismatch_rejected = true,
+            duplicate_dispatch_rejected = true,
+            prediction_immutable_after_dispatch = true,
+            evaluation_spec_immutable = true,
+            missing_episode_links_rejected = true,
+            provider_receipt_alone_rejected = true,
+            stale_replayed_evidence_episode_rejected = true,
+            generated_at = DateTimeOffset.UtcNow
+        });
+        var sentinelPath = Path.Combine(artifactDirectory, "non-scientific-lifecycle-sentinel.json");
+        await File.WriteAllBytesAsync(sentinelPath, sentinel).ConfigureAwait(false);
+        await File.WriteAllTextAsync(sentinelPath + ".sha256", CanonicalJson.Sha256(sentinel) + "  non-scientific-lifecycle-sentinel.json\n").ConfigureAwait(false);
     }
 
     public static async Task EpistemicHostilesAsync(string secretFile, string artifactDirectory)

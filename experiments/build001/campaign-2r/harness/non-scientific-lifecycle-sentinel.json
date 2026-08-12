@@ -1,0 +1,16 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-nonscientific-lifecycle-sentinel-v1",
+    "campaign_id":  null,
+    "scientific":  false,
+    "source_path":  "experiments/build001/campaign-2r/harness/01b-create-local-commit-harness.json",
+    "source_sha256":  "5288b1346472549cdfe23c9b04616e58165fb95dba1439630e1d97a4d4b1ffde",
+    "semantic_action":  "git:create_local_commit",
+    "prediction_before_dispatch":  true,
+    "subject_matched_lineage":  true,
+    "provider_matched_lineage":  true,
+    "outcome_count":  0,
+    "prediction_evaluation_count":  0,
+    "transition_episode_count":  0,
+    "material_action_dispatched":  false,
+    "generated_at":  "2026-08-12T02:49:27.7102910+00:00"
+}

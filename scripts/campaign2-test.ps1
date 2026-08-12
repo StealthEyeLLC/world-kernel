@@ -6,7 +6,7 @@ param(
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
 if (-not $ArtifactDirectory) {
-    $ArtifactDirectory = Join-Path $repoRoot 'experiments\build001\campaign-2\preflight\regression'
+    $ArtifactDirectory = Join-Path $repoRoot 'experiments\build001\campaign-2r\preflight\regression'
 }
 $ArtifactDirectory = [IO.Path]::GetFullPath($ArtifactDirectory)
 $dotnet = 'C:\Program Files\dotnet\dotnet.exe'

@@ -1,4 +1,4 @@
-﻿param(
+param(
     [Parameter(Mandatory = $true)]
     [string] $JobPath
 )
@@ -6,7 +6,7 @@
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $repoRoot = [IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
-$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2')).TrimEnd('\') + '\'
+$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2r')).TrimEnd('\') + '\'
 $jobFile = [IO.Path]::GetFullPath($JobPath)
 if (-not $jobFile.StartsWith($campaignRoot, [StringComparison]::OrdinalIgnoreCase)) { throw 'Campaign 2 worker job path escapes the experiment namespace.' }
 $job = Get-Content -Raw -LiteralPath $jobFile | ConvertFrom-Json

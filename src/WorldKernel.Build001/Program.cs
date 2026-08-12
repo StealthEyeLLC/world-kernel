@@ -54,6 +54,9 @@ internal static class CommandLine
                 case "campaign2-register-reset":
                     await RegisterCampaign2ResetAsync(options).ConfigureAwait(false);
                     return 0;
+                case "campaign2-lineage-harness":
+                    await RunCampaign2LineageHarnessAsync(options).ConfigureAwait(false);
+                    return 0;
                 case "campaign2-begin":
                     await BeginCampaign2EpisodeAsync(options).ConfigureAwait(false);
                     return 0;
@@ -334,6 +337,21 @@ internal static class CommandLine
             output = Required(options, "output")
         }, JsonDefaults.Options));
     }
+    private static async Task RunCampaign2LineageHarnessAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var result = await Campaign2Execution.RunPrefreezeLineageHarnessAsync(
+            Required(options, "secret-file"),
+            Required(options, "evidence-root"),
+            Required(options, "working-copy"),
+            Required(options, "state-observation"),
+            Required(options, "semantic-action")).ConfigureAwait(false);
+        var output = Required(options, "output");
+        var bytes = CanonicalJson.Serialize(result);
+        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(output))!);
+        await File.WriteAllBytesAsync(output, bytes).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new { ok = true, result.SemanticAction, result.TrialId, result.ActionId, result.PredictionId, result.DispatchSealPhaseId, result.PredictionBeforeDispatch, result.RemoteClaimSubjectMatched, result.RemoteClaimProviderMatched, result.LocalClaimsSubjectMatched, result.OutcomeCount, result.PredictionEvaluationCount, result.TransitionEpisodeCount, result.MaterialActionDispatched, output, output_sha256 = CanonicalJson.Sha256(bytes) }, JsonDefaults.Options));
+    }
+
     private static async Task BeginCampaign2EpisodeAsync(IReadOnlyDictionary<string, string> options)
     {
         var record = await Campaign2Execution.BeginAsync(

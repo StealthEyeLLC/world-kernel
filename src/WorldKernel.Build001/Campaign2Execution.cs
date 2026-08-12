@@ -231,6 +231,8 @@ public sealed record Campaign2BeginRecord(
     Guid CorrespondenceId,
     Guid PreObservationId,
     Guid PreEvidenceId,
+    Guid PreRemoteObservationId,
+    Guid PreRemoteEvidenceId,
     IReadOnlyDictionary<string, Guid> PreClaimIds,
     string ResetManifestSha256,
     Guid RequestEvidenceId,
@@ -295,9 +297,9 @@ public sealed record Campaign2AcquisitionCoverage(
     bool InitialTwentyFourBlocks,
     bool StopRuleSatisfied);
 
-public static class Campaign2Execution
+public static partial class Campaign2Execution
 {
-    public const string CampaignId = "build001-campaign-2";
+    public const string CampaignId = "build001-campaign-2r";
 public const string BlockRegistrationInputSchema = "world-kernel-build001-campaign2-block-registration-input-v1";
     public const string BlockRegistrationRecordSchema = "world-kernel-build001-campaign2-block-registration-v1";
     public const string ResetRegistrationRecordSchema = "world-kernel-build001-campaign2-reset-registration-v1";
@@ -333,7 +335,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         var root = Path.GetFullPath(repositoryRoot);
         ValidateFreeze(root);
         PreflightGateEvaluator.EnsurePhaseAuthorized(
-            Path.Combine(root, "artifacts", "campaign-2", "preflight", "preflight-gates.json"),
+            Path.Combine(root, "artifacts", "campaign-2r", "preflight", "preflight-gates.json"),
             "acquisition");
         var inputFile = Path.GetFullPath(inputPath);
         var rootPrefix = root.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
@@ -341,7 +343,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         {
             throw new InvalidOperationException("Hidden acquisition registration input must remain outside the repository tree.");
         }
-        var campaignRoot = Path.Combine(root, "experiments", "build001", "campaign-2");
+        var campaignRoot = Path.Combine(root, "experiments", "build001", "campaign-2r");
         var outputFile = EnsureUnder(campaignRoot, outputPath);
         EnsureAbsent(outputFile);
         var input = Deserialize<Campaign2AcquisitionBlockRegistrationInput>(
@@ -421,9 +423,9 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         var root = Path.GetFullPath(repositoryRoot);
         ValidateFreeze(root);
         PreflightGateEvaluator.EnsurePhaseAuthorized(
-            Path.Combine(root, "artifacts", "campaign-2", "preflight", "preflight-gates.json"),
+            Path.Combine(root, "artifacts", "campaign-2r", "preflight", "preflight-gates.json"),
             "acquisition");
-        var campaignRoot = Path.Combine(root, "experiments", "build001", "campaign-2");
+        var campaignRoot = Path.Combine(root, "experiments", "build001", "campaign-2r");
         var resetFile = EnsureUnder(campaignRoot, resetManifestPath);
         var verificationFile = EnsureUnder(campaignRoot, independentVerificationPath);
         var outputFile = EnsureUnder(campaignRoot, outputPath);
@@ -582,9 +584,9 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         var root = Path.GetFullPath(repositoryRoot);
         ValidateFreeze(root);
         PreflightGateEvaluator.EnsurePhaseAuthorized(
-            Path.Combine(root, "artifacts", "campaign-2", "preflight", "preflight-gates.json"),
+            Path.Combine(root, "artifacts", "campaign-2r", "preflight", "preflight-gates.json"),
             "acquisition");
-        var campaignRoot = Path.Combine(root, "experiments", "build001", "campaign-2");
+        var campaignRoot = Path.Combine(root, "experiments", "build001", "campaign-2r");
         var inputFile = EnsureUnder(campaignRoot, inputPath);
         var outputFile = EnsureUnder(campaignRoot, outputPath);
         EnsureAbsent(outputFile);
@@ -639,6 +641,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         var seed = RequiredString(reset, "seed_commitment_sha256");
         var localId = await EnsureLocalManifestationAsync(database, input, generationId, fingerprint, cancellationToken).ConfigureAwait(false);
         var remoteId = await EnsureRemoteManifestationAsync(database, cancellationToken).ConfigureAwait(false);
+        var preRemoteLineage = await EnsureRemoteRefLineageAsync(database, store, remoteId, pre, cancellationToken).ConfigureAwait(false);
 
         var preObservationId = Guid.NewGuid();
         var preObservation = new ObservationRecord(
@@ -649,19 +652,23 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             "git/native",
             pre.ObservedAt,
             "succeeded",
-            JsonSerializer.SerializeToElement(new { complete = true, local = true, remote = true }, JsonDefaults.Options),
-            pre.RemoteHead,
+            JsonSerializer.SerializeToElement(new { complete = true, local = true }, JsonDefaults.Options),
+            pre.LocalHead,
             null,
-            JsonSerializer.SerializeToElement(new { dependency_group = "native-git-provider-reset" }, JsonDefaults.Options),
+            JsonSerializer.SerializeToElement(new { dependency_group = "native-git-local" }, JsonDefaults.Options),
             JsonSerializer.SerializeToElement(pre, JsonDefaults.Options),
             [preEvidence.EvidenceId]);
         preObservation = await EnsureObservationAsync(database, preObservation, cancellationToken).ConfigureAwait(false);
         preObservationId = preObservation.ObservationId;
         var preClaims = await InsertStateClaimsAsync(
-            database, localId, remoteId, preObservationId, preEvidence.EvidenceId, pre, null, null, null, cancellationToken).ConfigureAwait(false);
+            database, localId, remoteId, preObservationId, preEvidence.EvidenceId, pre,
+            preRemoteLineage.Observation.ObservationId, preRemoteLineage.Evidence.EvidenceId,
+            null, null, null, cancellationToken).ConfigureAwait(false);
 
         var correspondenceId = await InsertCorrespondenceAsync(
-            database, localId, remoteId, preObservationId, preEvidence.EvidenceId, preClaims.Values,
+            database, localId, remoteId,
+            [preObservationId, preRemoteLineage.Observation.ObservationId],
+            [preEvidence.EvidenceId, preRemoteLineage.Evidence.EvidenceId], preClaims.Values,
             resetManifestSha256, cancellationToken).ConfigureAwait(false);
 
         var actionId = Guid.NewGuid();
@@ -707,8 +714,10 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             throw new InvalidDataException("Validated Campaign 2 subject prediction acquired format defects: " + string.Join("; ", defects));
         }
         await InsertPredictionLineageAsync(
-            database, actionId, predictionId, preObservationId,
-            [preEvidence.EvidenceId, requestEvidence.EvidenceId, subjectEvidence.EvidenceId], cancellationToken).ConfigureAwait(false);
+            database, actionId, predictionId,
+            [preObservationId, preRemoteLineage.Observation.ObservationId],
+            [preEvidence.EvidenceId, preRemoteLineage.Evidence.EvidenceId, requestEvidence.EvidenceId, subjectEvidence.EvidenceId],
+            cancellationToken).ConfigureAwait(false);
 
         var dispatchPhaseId = await database.SealDispatchAsync(
             actionId,
@@ -752,6 +761,8 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             correspondenceId,
             preObservationId,
             preEvidence.EvidenceId,
+            preRemoteLineage.Observation.ObservationId,
+            preRemoteLineage.Evidence.EvidenceId,
             preClaims,
             resetManifestSha256,
             requestEvidence.EvidenceId,
@@ -783,7 +794,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
     {
         var root = Path.GetFullPath(repositoryRoot);
         ValidateFreeze(root);
-        var campaignRoot = Path.Combine(root, "experiments", "build001", "campaign-2");
+        var campaignRoot = Path.Combine(root, "experiments", "build001", "campaign-2r");
         var beginFile = EnsureUnder(campaignRoot, beginPath);
         var receiptFile = EnsureUnder(campaignRoot, receiptPath);
         var postFile = EnsureUnder(campaignRoot, postObservationPath);
@@ -855,6 +866,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         receiptEvidence = await EnsureEvidenceAsync(database, receiptEvidence, cancellationToken).ConfigureAwait(false);
         postEvidence = await EnsureEvidenceAsync(database, postEvidence, cancellationToken).ConfigureAwait(false);
         providerEvidence = await EnsureEvidenceAsync(database, providerEvidence, cancellationToken).ConfigureAwait(false);
+        var postRemoteLineage = await EnsureRemoteRefLineageAsync(database, store, begin.RemoteManifestationId, post, cancellationToken).ConfigureAwait(false);
         var postObservationId = Guid.NewGuid();
         var postObservation = new ObservationRecord(
             postObservationId,
@@ -864,10 +876,10 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             "git/native",
             post.ObservedAt,
             "succeeded",
-            JsonSerializer.SerializeToElement(new { complete = true, local = true, remote = true, locked_horizons = true }, JsonDefaults.Options),
-            post.RemoteHead,
+            JsonSerializer.SerializeToElement(new { complete = true, local = true, locked_horizons = true }, JsonDefaults.Options),
+            post.LocalHead,
             null,
-            JsonSerializer.SerializeToElement(new { dependency_group = "native-git-plus-provider-outcome" }, JsonDefaults.Options),
+            JsonSerializer.SerializeToElement(new { dependency_group = "native-git-local" }, JsonDefaults.Options),
             JsonSerializer.SerializeToElement(post, JsonDefaults.Options),
             [postEvidence.EvidenceId]);
         postObservation = await EnsureObservationAsync(database, postObservation, cancellationToken).ConfigureAwait(false);
@@ -881,8 +893,8 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             "github/provider",
             provider.ObservedAt,
             "succeeded",
-            JsonSerializer.SerializeToElement(new { complete = true, provider_native = true }, JsonDefaults.Options),
-            post.RemoteHead,
+            JsonSerializer.SerializeToElement(new { complete = true, provider_native = true, presentation_or_check_only = true }, JsonDefaults.Options),
+            null,
             null,
             JsonSerializer.SerializeToElement(new { dependency_group = "github-provider-outcome" }, JsonDefaults.Options),
             JsonSerializer.SerializeToElement(provider, JsonDefaults.Options),
@@ -890,8 +902,9 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         providerObservation = await EnsureObservationAsync(database, providerObservation, cancellationToken).ConfigureAwait(false);
         providerObservationId = providerObservation.ObservationId;
         var postClaims = await InsertStateClaimsAsync(
-            database, begin.LocalManifestationId, begin.RemoteManifestationId, postObservationId, postEvidence.EvidenceId,
-            post, provider, providerObservationId, providerEvidence.EvidenceId, cancellationToken).ConfigureAwait(false);
+            database, begin.LocalManifestationId, begin.RemoteManifestationId, postObservationId, postEvidence.EvidenceId, post,
+            postRemoteLineage.Observation.ObservationId, postRemoteLineage.Evidence.EvidenceId,
+            provider, providerObservationId, providerEvidence.EvidenceId, cancellationToken).ConfigureAwait(false);
         await InsertReobservationDispositionsAsync(database, begin.PreClaimIds, postClaims, post.ObservedAt, cancellationToken).ConfigureAwait(false);
 
         var outcomeId = Guid.NewGuid();
@@ -923,8 +936,10 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                 KernelDb.AddJson(outcome, "invariants", JsonSerializer.SerializeToElement(new Dictionary<string, bool>(), JsonDefaults.Options));
                 await outcome.ExecuteNonQueryAsync(token).ConfigureAwait(false);
             }
-            await InsertOutcomeLinksAsync(connection, transaction, outcomeId, [postObservationId, providerObservationId],
-                [postEvidence.EvidenceId, providerEvidence.EvidenceId, receiptEvidence.EvidenceId], token).ConfigureAwait(false);
+            await InsertOutcomeLinksAsync(connection, transaction, outcomeId,
+                [postObservationId, postRemoteLineage.Observation.ObservationId, providerObservationId],
+                [postEvidence.EvidenceId, postRemoteLineage.Evidence.EvidenceId, providerEvidence.EvidenceId, receiptEvidence.EvidenceId],
+                token).ConfigureAwait(false);
 
             await using (var evaluation = new NpgsqlCommand("""
                 INSERT INTO wk.prediction_evaluation(
@@ -999,7 +1014,9 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                      {
                          ("episode_correspondence", "correspondence_id", begin.CorrespondenceId),
                          ("episode_pre_observation", "observation_id", begin.PreObservationId),
+                         ("episode_pre_observation", "observation_id", begin.PreRemoteObservationId),
                          ("episode_post_observation", "observation_id", postObservationId),
+                         ("episode_post_observation", "observation_id", postRemoteLineage.Observation.ObservationId),
                          ("episode_post_observation", "observation_id", providerObservationId),
                          ("episode_outcome", "outcome_id", outcomeId),
                          ("episode_evaluation", "evaluation_id", evaluationId)
@@ -1026,11 +1043,12 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             secretFile, begin, resolved, postEvidence.ContentHash, providerEvidence.ContentHash, provider.ObservedAt, cancellationToken).ConfigureAwait(false);
 
         var preObservationSha256 = CanonicalJson.Sha256(await File.ReadAllBytesAsync(begin.PreObservationPath, cancellationToken).ConfigureAwait(false));
+        var preRemoteRefSha256 = CanonicalJson.Sha256(CanonicalJson.Serialize(BuildRemoteRefProviderPayload(before)));
         var localManifestationRef = $"git:working-copy:{begin.TrialId}";
         var publicClaims = BuildPublicClaimExports(
-                begin.PreClaimIds, before, null, localManifestationRef, preObservationSha256, null, "historical_pre_reobservation")
+                begin.PreClaimIds, before, null, localManifestationRef, preObservationSha256, preRemoteRefSha256, null, "historical_pre_reobservation")
             .Concat(BuildPublicClaimExports(
-                postClaims, post, provider, localManifestationRef, postEvidence.ContentHash, providerEvidence.ContentHash, "supported_at_episode_close"))
+                postClaims, post, provider, localManifestationRef, postEvidence.ContentHash, postRemoteLineage.Evidence.ContentHash, providerEvidence.ContentHash, "supported_at_episode_close"))
             .ToArray();
         var publicCorrespondence = new PublicCorrespondenceExport(
             begin.CorrespondenceId,
@@ -1041,7 +1059,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             1.0,
             before.ObservedAt,
             before.ObservedAt,
-            [preObservationSha256]);
+            [preObservationSha256, preRemoteRefSha256]);
         var publicEpisode = new EpisodeExport(
             episodeId,
             begin.SemanticAction,
@@ -1058,7 +1076,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             "verified",
             publicClaims,
             [publicCorrespondence],
-            new[] { preObservationSha256, receiptEvidence.ContentHash, postEvidence.ContentHash, providerEvidence.ContentHash }
+            new[] { preObservationSha256, preRemoteRefSha256, receiptEvidence.ContentHash, postEvidence.ContentHash, postRemoteLineage.Evidence.ContentHash, providerEvidence.ContentHash }
                 .Distinct(StringComparer.Ordinal).ToArray(),
             ProviderVersionFingerprint);
         var publicEpisodePath = Path.Combine(Path.GetDirectoryName(outputFile)!, "episode-public.json");
@@ -1100,7 +1118,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         CancellationToken cancellationToken = default)
     {
         var root = Path.GetFullPath(repositoryRoot);
-        var output = EnsureUnder(Path.Combine(root, "experiments", "build001", "campaign-2"), outputPath);
+        var output = EnsureUnder(Path.Combine(root, "experiments", "build001", "campaign-2r"), outputPath);
         await using var database = new KernelDb(ConnectionSecrets.ReadConnectionString(secretFile, "owner_connection"));
         var rows = await database.WithConnectionAsync(async (connection, token) =>
         {
@@ -1261,18 +1279,20 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         var receiptHash = CanonicalJson.Sha256(receiptBytes);
         var postHash = CanonicalJson.Sha256(postBytes);
         var providerHash = CanonicalJson.Sha256(providerBytes);
+        var preRemoteRefHash = CanonicalJson.Sha256(CanonicalJson.Serialize(BuildRemoteRefProviderPayload(before)));
+        var postRemoteRefHash = CanonicalJson.Sha256(CanonicalJson.Serialize(BuildRemoteRefProviderPayload(post)));
         await RecordEvaluatorGroundTruthAsync(
             secretFile, begin, resolved, postHash, providerHash, provider.ObservedAt, cancellationToken).ConfigureAwait(false);
 
         var localManifestationRef = $"git:working-copy:{begin.TrialId}";
         var publicClaims = BuildPublicClaimExports(
-                begin.PreClaimIds, before, null, localManifestationRef, preHash, null, "historical_pre_reobservation")
+                begin.PreClaimIds, before, null, localManifestationRef, preHash, preRemoteRefHash, null, "historical_pre_reobservation")
             .Concat(BuildPublicClaimExports(
-                existing.PostClaimIds, post, provider, localManifestationRef, postHash, providerHash, "supported_at_episode_close"))
+                existing.PostClaimIds, post, provider, localManifestationRef, postHash, postRemoteRefHash, providerHash, "supported_at_episode_close"))
             .ToArray();
         var publicCorrespondence = new PublicCorrespondenceExport(
             begin.CorrespondenceId, localManifestationRef, "git:working_copy_of", FixtureManifestationRef, "candidate", 1.0,
-            before.ObservedAt, before.ObservedAt, [preHash]);
+            before.ObservedAt, before.ObservedAt, [preHash, preRemoteRefHash]);
         var publicEpisode = new EpisodeExport(
             existing.EpisodeId,
             begin.SemanticAction,
@@ -1289,7 +1309,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             "verified",
             publicClaims,
             [publicCorrespondence],
-            new[] { preHash, receiptHash, postHash, providerHash }.Distinct(StringComparer.Ordinal).ToArray(),
+            new[] { preHash, preRemoteRefHash, receiptHash, postHash, postRemoteRefHash, providerHash }.Distinct(StringComparer.Ordinal).ToArray(),
             ProviderVersionFingerprint);
         var publicEpisodePath = Path.Combine(Path.GetDirectoryName(outputFile)!, "episode-public.json");
         var expectedBytes = CanonicalJson.Serialize(publicEpisode);
@@ -1426,6 +1446,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                     ? id : throw new InvalidDataException($"Campaign 2 recovery is missing durable {observer}/{method} evidence.");
             }
             var preEvidenceId = await FindEvidenceAsync(CanonicalJson.Sha256(preBytes), "campaign2-state-observer", "fresh-pre-dispatch-observation").ConfigureAwait(false);
+            var preRemoteEvidenceId = await FindEvidenceAsync(CanonicalJson.Sha256(CanonicalJson.Serialize(BuildRemoteRefProviderPayload(pre))), "campaign2-github-ref-observer", "git-ls-remote-exact-hosted-ref").ConfigureAwait(false);
             var requestEvidenceId = await FindEvidenceAsync(CanonicalJson.Sha256(requestBytes), "campaign2-request-builder", "locked-subject-request").ConfigureAwait(false);
             var subjectEvidenceId = await FindEvidenceAsync(CanonicalJson.Sha256(subjectBytes), "campaign2-subject-adapter", "fresh-temporary-chat").ConfigureAwait(false);
 
@@ -1442,13 +1463,26 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                     ? id : throw new InvalidDataException("Campaign 2 recovery is missing the pre-dispatch Observation.");
             }
 
+            Guid preRemoteObservationId;
+            await using (var command = new NpgsqlCommand("""
+                SELECT observation_id FROM wk.observation
+                WHERE target_manifestation_id=@target AND observer_name='campaign2-github-ref-observer' AND observed_at=@observed
+                ORDER BY recorded_at LIMIT 1;
+                """, connection))
+            {
+                command.Parameters.AddWithValue("target", remoteId);
+                command.Parameters.AddWithValue("observed", pre.ObservedAt);
+                preRemoteObservationId = await command.ExecuteScalarAsync(token).ConfigureAwait(false) is Guid id
+                    ? id : throw new InvalidDataException("Campaign 2R recovery is missing the hosted-ref pre-dispatch Observation.");
+            }
+
             var preClaims = new Dictionary<string, Guid>(StringComparer.Ordinal);
             await using (var command = new NpgsqlCommand("""
                 SELECT predicate_namespace || ':' || predicate, claim_id
-                FROM wk.claim WHERE primary_observation_id=@observation ORDER BY recorded_at;
+                FROM wk.claim WHERE primary_observation_id = ANY(@observations) ORDER BY recorded_at;
                 """, connection))
             {
-                command.Parameters.AddWithValue("observation", preObservationId);
+                command.Parameters.AddWithValue("observations", new[] { preObservationId, preRemoteObservationId });
                 await using var reader = await command.ExecuteReaderAsync(token).ConfigureAwait(false);
                 while (await reader.ReadAsync(token).ConfigureAwait(false)) preClaims[reader.GetString(0)] = reader.GetGuid(1);
             }
@@ -1513,8 +1547,9 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                 if (CanonicalJson.HashJson(storedDocument.RootElement) != expectedHash)
                     throw new InvalidDataException("Existing durable Prediction differs from the sealed subject output.");
             }
-            await InsertPredictionLineageAsync(database, action.ActionId, predictionId, preObservationId,
-                [preEvidenceId, requestEvidenceId, subjectEvidenceId], token).ConfigureAwait(false);
+            await InsertPredictionLineageAsync(database, action.ActionId, predictionId,
+                [preObservationId, preRemoteObservationId],
+                [preEvidenceId, preRemoteEvidenceId, requestEvidenceId, subjectEvidenceId], token).ConfigureAwait(false);
 
             Guid dispatchPhaseId = Guid.Empty;
             DateTimeOffset dispatchedAt = default;
@@ -1553,7 +1588,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                 BeginRecordSchema, CampaignId, input.Phase, input.TrialId, input.ConfigurationBlockId, input.EvaluatorSeedId,
                 input.Arm, input.SemanticAction, input.Target, input.Parameters, input.WorkingCopy, input.ResetBranch, input.Branch,
                 RequiredString(reset, "actual_fingerprint"), RequiredString(reset, "seed_commitment_sha256"), GetFreezeManifestSha256(root),
-                localId, remoteId, correspondenceId, preObservationId, preEvidenceId, preClaims, resetManifestSha256,
+                localId, remoteId, correspondenceId, preObservationId, preEvidenceId, preRemoteObservationId, preRemoteEvidenceId, preClaims, resetManifestSha256,
                 requestEvidenceId, subjectEvidenceId, action.ActionId, predictionId, dispatchPhaseId, dispatchedAt,
                 input.ResetManifestPath, input.PreObservationPath, input.SubjectRequestPath, input.SubjectResultPath,
                 CanonicalJson.Sha256(subjectBytes), dispatchedAt);
@@ -1573,11 +1608,12 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
 
     private static IReadOnlyList<PublicClaimExport> BuildPublicClaimExports(
         IReadOnlyDictionary<string, Guid> ids, Campaign2StateObservation state, Campaign2ProviderOutcome? provider,
-        string localRef, string stateEvidenceHash, string? providerEvidenceHash, string disposition)
+        string localRef, string stateEvidenceHash, string remoteRefEvidenceHash, string? providerEvidenceHash, string disposition)
     {
         var result = new List<PublicClaimExport>();
         foreach (var pair in ids.OrderBy(value => value.Key, StringComparer.Ordinal))
         {
+            var remoteRefSpecific = pair.Key == "github:remote_ref_head";
             var providerSpecific = pair.Key is "github:check_started" or "github:check_terminal_success" or "github:browser_presented_head";
             var value = pair.Key switch
             {
@@ -1594,7 +1630,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                 _ => throw new InvalidDataException("Unknown Campaign 2 public claim key: " + pair.Key)
             };
             var knownAt = providerSpecific ? provider!.ObservedAt : state.ObservedAt;
-            var evidenceHash = providerSpecific ? providerEvidenceHash! : stateEvidenceHash;
+            var evidenceHash = remoteRefSpecific ? remoteRefEvidenceHash : providerSpecific ? providerEvidenceHash! : stateEvidenceHash;
             result.Add(new PublicClaimExport(
                 pair.Value,
                 pair.Key.StartsWith("github:", StringComparison.Ordinal) ? FixtureManifestationRef : localRef,
@@ -1759,8 +1795,8 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
 
     private static async Task<IReadOnlyDictionary<string, Guid>> InsertStateClaimsAsync(
         KernelDb database, Guid localId, Guid remoteId, Guid localObservationId, Guid localEvidenceId,
-        Campaign2StateObservation state, Campaign2ProviderOutcome? provider, Guid? providerObservationId,
-        Guid? providerEvidenceId, CancellationToken cancellationToken)
+        Campaign2StateObservation state, Guid remoteRefObservationId, Guid remoteRefEvidenceId,
+        Campaign2ProviderOutcome? provider, Guid? providerObservationId, Guid? providerEvidenceId, CancellationToken cancellationToken)
     {
         var claims = new Dictionary<string, Guid>(StringComparer.Ordinal);
         var expectedKeys = new HashSet<string>(new[]
@@ -1775,8 +1811,8 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             expectedKeys.Add("github:browser_presented_head");
         }
         var observationIds = providerObservationId is Guid providerObservation
-            ? new[] { localObservationId, providerObservation }
-            : new[] { localObservationId };
+            ? new[] { localObservationId, remoteRefObservationId, providerObservation }
+            : new[] { localObservationId, remoteRefObservationId };
         var existing = await database.WithConnectionAsync(async (connection, token) =>
         {
             var result = new Dictionary<string, Guid>(StringComparer.Ordinal);
@@ -1809,7 +1845,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
             await AddAsync("git:worktree_clean", localId, "git", "worktree_clean", JsonSerializer.SerializeToElement(state.WorktreeClean), "observed", "provider", state.ObservedAt, localObservationId, localEvidenceId).ConfigureAwait(false);
             await AddAsync("git:remote_tracking_head", localId, "git", "remote_tracking_head", JsonSerializer.SerializeToElement(state.RemoteTrackingHead), "observed", "provider", state.ObservedAt, localObservationId, localEvidenceId).ConfigureAwait(false);
             await AddAsync("git:remote_url", localId, "git", "configured_remote_url", JsonSerializer.SerializeToElement(state.RemoteUrl), "observed", "provider", state.ObservedAt, localObservationId, localEvidenceId).ConfigureAwait(false);
-            await AddAsync("github:remote_ref_head", remoteId, "github", "remote_ref_head", JsonSerializer.SerializeToElement(state.RemoteHead), "observed", "provider", state.ObservedAt, localObservationId, localEvidenceId).ConfigureAwait(false);
+            await AddAsync("github:remote_ref_head", remoteId, "github", "remote_ref_head", JsonSerializer.SerializeToElement(state.RemoteHead), "observed", "provider", state.ObservedAt, remoteRefObservationId, remoteRefEvidenceId).ConfigureAwait(false);
             await AddAsync("git:public_topology_class", localId, "git", "public_topology_class", JsonSerializer.SerializeToElement(state.PublicTopologyClass), "derived", "derived", state.ObservedAt, localObservationId, localEvidenceId).ConfigureAwait(false);
             if (provider is not null && providerObservationId is Guid po && providerEvidenceId is Guid pe)
             {
@@ -1892,8 +1928,8 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         KernelDb database,
         Guid localId,
         Guid remoteId,
-        Guid observationId,
-        Guid preEvidenceId,
+        IReadOnlyList<Guid> observationIds,
+        IReadOnlyList<Guid> evidenceIds,
         IEnumerable<Guid> basisClaimIds,
         string fingerprint,
         CancellationToken cancellationToken)
@@ -1935,14 +1971,15 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
                 command.Parameters.AddWithValue("fingerprint", fingerprint);
                 await command.ExecuteNonQueryAsync(token).ConfigureAwait(false);
             }
-            await using (var observation = new NpgsqlCommand(
-                             "INSERT INTO wk.correspondence_observation(correspondence_id,observation_id) VALUES (@id,@value);", connection, transaction))
+            foreach (var observationId in observationIds.Distinct())
             {
+                await using var observation = new NpgsqlCommand(
+                    "INSERT INTO wk.correspondence_observation(correspondence_id,observation_id) VALUES (@id,@value);", connection, transaction);
                 observation.Parameters.AddWithValue("id", id);
                 observation.Parameters.AddWithValue("value", observationId);
                 await observation.ExecuteNonQueryAsync(token).ConfigureAwait(false);
             }
-            foreach (var evidenceId in new[] { preEvidenceId })
+            foreach (var evidenceId in evidenceIds.Distinct())
             {
                 await using var evidence = new NpgsqlCommand(
                     "INSERT INTO wk.correspondence_evidence(correspondence_id,evidence_id) VALUES (@id,@value);", connection, transaction);
@@ -1967,16 +2004,17 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
         KernelDb database,
         Guid actionId,
         Guid predictionId,
-        Guid observationId,
+        IReadOnlyList<Guid> observationIds,
         IReadOnlyList<Guid> evidenceIds,
         CancellationToken cancellationToken)
     {
         await database.WithConnectionAsync(async (connection, token) =>
         {
             await using var transaction = await connection.BeginTransactionAsync(token).ConfigureAwait(false);
-            await using (var precondition = new NpgsqlCommand(
-                             "INSERT INTO wk.action_precondition_observation(action_id,observation_id) VALUES (@action,@observation) ON CONFLICT DO NOTHING;", connection, transaction))
+            foreach (var observationId in observationIds.Distinct())
             {
+                await using var precondition = new NpgsqlCommand(
+                    "INSERT INTO wk.action_precondition_observation(action_id,observation_id) VALUES (@action,@observation) ON CONFLICT DO NOTHING;", connection, transaction);
                 precondition.Parameters.AddWithValue("action", actionId);
                 precondition.Parameters.AddWithValue("observation", observationId);
                 await precondition.ExecuteNonQueryAsync(token).ConfigureAwait(false);
@@ -2042,7 +2080,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
 
     private static string GetFreezeManifestSha256(string root)
     {
-        var path = Path.Combine(root, "experiments", "build001", "campaign-2", "preregistration-freeze-manifest.json");
+        var path = Path.Combine(root, "experiments", "build001", "campaign-2r", "preregistration-freeze-manifest.json");
         var sidecar = path + ".sha256";
         var actual = CanonicalJson.Sha256(File.ReadAllBytes(path));
         if (!File.Exists(sidecar)) throw new InvalidDataException("Campaign 2 freeze manifest SHA-256 sidecar is absent.");
@@ -2055,7 +2093,7 @@ public const string BlockRegistrationInputSchema = "world-kernel-build001-campai
     private static void ValidateFreeze(string root)
     {
         _ = GetFreezeManifestSha256(root);
-        var path = Path.Combine(root, "experiments", "build001", "campaign-2", "preregistration-freeze-manifest.json");
+        var path = Path.Combine(root, "experiments", "build001", "campaign-2r", "preregistration-freeze-manifest.json");
         using var document = JsonDocument.Parse(File.ReadAllBytes(path));
         var value = document.RootElement;
         var initialProspectiveFreeze = value.TryGetProperty("frozen_before_acquisition", out var initialFreezeValue) &&

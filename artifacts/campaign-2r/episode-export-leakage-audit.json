@@ -1,0 +1,23 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-episode-export-leakage-audit-v1",
+    "source":  "src/WorldKernel.Build001/Campaign2Execution.cs",
+    "builder":  "BuildPublicClaimExports",
+    "forbidden_terms":  [
+                            "push_regime",
+                            "check_regime",
+                            "integration_regime",
+                            "answer_key",
+                            "hidden_configuration",
+                            "hidden_seed",
+                            "future_hidden_state",
+                            "evaluator_schedule_label"
+                        ],
+    "forbidden_hits":  [
+
+                       ],
+    "remote_ref_uses_dedicated_evidence_hash":  true,
+    "browser_presentation_is_separate_claim":  true,
+    "hosted_ref_is_separate_claim":  true,
+    "pass":  true,
+    "generated_at":  "2026-08-12T02:50:34.9576768+00:00"
+}

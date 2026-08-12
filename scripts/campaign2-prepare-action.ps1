@@ -23,7 +23,7 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $repoRoot = [IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
-$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2')).TrimEnd('\') + '\'
+$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2r')).TrimEnd('\') + '\'
 $output = [IO.Path]::GetFullPath($OutputPath)
 $workspace = [IO.Path]::GetFullPath($WorkingCopy)
 $git = 'C:\Program Files\Git\cmd\git.exe'
@@ -56,7 +56,7 @@ $timestamp = [DateTimeOffset]::Parse('2026-01-01T00:00:00Z').AddSeconds($seconds
 $commands = @()
 
 function Set-State([string] $Directory, [string] $Role) {
-    $text = "campaign=build001-campaign-2`nseed=$Seed`naction=$SemanticAction`nrole=$Role`ngeneration=$($seedHash.Substring(0,16))`n"
+    $text = "campaign=build001-campaign-2r`nseed=$Seed`naction=$SemanticAction`nrole=$Role`ngeneration=$($seedHash.Substring(0,16))`n"
     [IO.File]::WriteAllText((Join-Path $Directory 'fixture\state.txt'), $text, (New-Object Text.UTF8Encoding($false)))
     return $text
 }
@@ -121,7 +121,7 @@ switch ($SemanticAction) {
         $task = 'Push the current local HEAD once to the exact remote branch parameter without force.'
     }
     'github:create_remote_commit' {
-        $replacement = "campaign=build001-campaign-2`nseed=$Seed`naction=$SemanticAction`nrole=operator-remote-commit`ngeneration=$($seedHash.Substring(0,16))`n"
+        $replacement = "campaign=build001-campaign-2r`nseed=$Seed`naction=$SemanticAction`nrole=operator-remote-commit`ngeneration=$($seedHash.Substring(0,16))`n"
         $scheduled = [ordered]@{ branch = $ResetBranch; file = 'fixture/state.txt'; text = $replacement; message = "Campaign 2 measured remote commit $ResetBranch" }
         $task = 'Create one hosted commit through eyeBROWSE on the exact branch and file using the exact replacement text and commit message.'
     }

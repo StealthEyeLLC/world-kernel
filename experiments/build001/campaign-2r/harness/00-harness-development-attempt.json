@@ -1,0 +1,17 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-prefreeze-harness-development-attempt-v1",
+    "scientific":  false,
+    "semantic_action":  "git:create_local_commit",
+    "state_observation":  "experiments/build001/campaign-2r/harness/01-create-local-commit-state.json",
+    "result":  "rejected",
+    "sqlstate":  "23514",
+    "database_constraint":  "prediction_expected_deltas_check",
+    "stage":  "Prediction persistence",
+    "prediction_persisted":  false,
+    "outcome_created":  false,
+    "transition_episode_created":  false,
+    "material_action_dispatched":  false,
+    "repair":  "harness-only empty expected deltas/invariants changed from JSON arrays to JSON objects; scientific contract unchanged",
+    "superseded_by":  "experiments/build001/campaign-2r/harness/01b-create-local-commit-harness.json",
+    "recorded_at":  "2026-08-12T02:53:05.5682103+00:00"
+}

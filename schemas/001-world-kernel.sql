@@ -572,6 +572,96 @@ CREATE TRIGGER action_attempt_validate_insert
 BEFORE INSERT ON wk.action_attempt
 FOR EACH ROW EXECUTE FUNCTION wk.validate_action_attempt();
 
+CREATE OR REPLACE FUNCTION wk.provider_lineage_compatible(
+  subject_provider text,
+  observation_provider text,
+  evidence_provider text
+)
+RETURNS boolean
+LANGUAGE sql
+IMMUTABLE
+AS $$
+  SELECT CASE
+    WHEN subject_provider = 'codeeye/git-local' THEN
+      observation_provider IN ('codeeye/git-local','git/native')
+      AND (evidence_provider IS NULL OR evidence_provider IN ('codeeye/git-local','git/native'))
+    WHEN subject_provider = 'github/provider' THEN
+      observation_provider = 'github/provider'
+      AND (evidence_provider IS NULL OR evidence_provider = 'github/provider')
+    ELSE
+      observation_provider = subject_provider
+      AND (evidence_provider IS NULL OR evidence_provider = observation_provider)
+  END;
+$$;
+
+CREATE OR REPLACE FUNCTION wk.validate_observation_provider()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+DECLARE
+  target_provider text;
+BEGIN
+  SELECT provider_namespace INTO STRICT target_provider
+  FROM wk.manifestation WHERE manifestation_id = NEW.target_manifestation_id;
+  IF NOT wk.provider_lineage_compatible(target_provider, NEW.provider_namespace, NULL) THEN
+    RAISE EXCEPTION 'provider Observation namespace is incompatible with target Manifestation' USING ERRCODE = '23514';
+  END IF;
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS observation_validate_provider_insert ON wk.observation;
+CREATE TRIGGER observation_validate_provider_insert
+BEFORE INSERT ON wk.observation
+FOR EACH ROW EXECUTE FUNCTION wk.validate_observation_provider();
+
+CREATE OR REPLACE FUNCTION wk.validate_observation_evidence_provider()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+DECLARE
+  subject_provider text;
+  observation_provider text;
+  evidence_provider text;
+  observation_status text;
+  observation_observed_at timestamptz;
+  observation_provider_revision text;
+BEGIN
+  SELECT m.provider_namespace, o.provider_namespace, e.provider_namespace,
+         o.acquisition_status, o.observed_at, o.provider_revision
+  INTO subject_provider, observation_provider, evidence_provider,
+       observation_status, observation_observed_at, observation_provider_revision
+  FROM wk.observation o
+  JOIN wk.manifestation m ON m.manifestation_id = o.target_manifestation_id
+  CROSS JOIN wk.evidence e
+  WHERE o.observation_id = NEW.observation_id
+    AND e.evidence_id = NEW.evidence_id;
+  IF NOT FOUND THEN
+    RETURN NEW;
+  END IF;
+  IF NOT wk.provider_lineage_compatible(subject_provider, observation_provider, evidence_provider) THEN
+    RAISE EXCEPTION 'Observation/Evidence provider namespaces are incompatible with target Manifestation' USING ERRCODE = '23514';
+  END IF;
+  IF observation_status = 'succeeded' AND EXISTS (
+    SELECT 1
+    FROM wk.observation_evidence prior_link
+    JOIN wk.observation prior_observation ON prior_observation.observation_id = prior_link.observation_id
+    WHERE prior_link.evidence_id = NEW.evidence_id
+      AND prior_link.observation_id <> NEW.observation_id
+      AND (prior_observation.observed_at <> observation_observed_at
+           OR prior_observation.provider_revision IS DISTINCT FROM observation_provider_revision)
+  ) THEN
+    RAISE EXCEPTION 'replayed Evidence cannot reset provider Observation freshness' USING ERRCODE = '23514';
+  END IF;
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS observation_evidence_validate_provider_insert ON wk.observation_evidence;
+CREATE TRIGGER observation_evidence_validate_provider_insert
+BEFORE INSERT ON wk.observation_evidence
+FOR EACH ROW EXECUTE FUNCTION wk.validate_observation_evidence_provider();
+
 CREATE OR REPLACE FUNCTION wk.validate_claim_lineage()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -581,10 +671,15 @@ BEGIN
     IF NOT EXISTS (
       SELECT 1
       FROM wk.observation o
+      JOIN wk.manifestation m ON m.manifestation_id = o.target_manifestation_id
       JOIN wk.observation_evidence oe ON oe.observation_id = o.observation_id
+      JOIN wk.evidence e ON e.evidence_id = oe.evidence_id
       WHERE o.observation_id = NEW.primary_observation_id
         AND o.target_manifestation_id = NEW.subject_manifestation_id
         AND oe.evidence_id = NEW.primary_evidence_id
+        AND o.acquisition_status = 'succeeded'
+        AND e.acquisition_method NOT IN ('provider-action-receipt','provider-return')
+        AND wk.provider_lineage_compatible(m.provider_namespace, o.provider_namespace, e.provider_namespace)
     ) THEN
       RAISE EXCEPTION 'material/provider Claim lacks subject-matched Observation/Evidence lineage' USING ERRCODE = '23514';
     END IF;

@@ -26,7 +26,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repoRoot = [IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
-$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2')).TrimEnd('\') + '\'
+$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-2r')).TrimEnd('\') + '\'
 $basePrompt = Join-Path $campaignRoot 'base-prompt.txt'
 $toolContract = Join-Path $campaignRoot 'tool-contract.json'
 $outputContract = Join-Path $campaignRoot 'trial-output-contract.json'

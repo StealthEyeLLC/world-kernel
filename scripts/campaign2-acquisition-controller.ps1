@@ -10,7 +10,7 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $repoRoot = [IO.Path]::GetFullPath($RepositoryRoot)
-$campaignRoot = Join-Path $repoRoot 'experiments\build001\campaign-2'
+$campaignRoot = Join-Path $repoRoot 'experiments\build001\campaign-2r'
 $acquisitionRoot = Join-Path $campaignRoot 'acquisition'
 $evaluatorHiddenRoot = 'C:\WorldKernel\Build001\evaluator\campaign2\acquisition'
 $fixturePublicRevision = '519d05879314cab45280a9f58efbd8859ecd8d64'
@@ -27,7 +27,7 @@ $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
 $cliDll = Join-Path $repoRoot 'src\WorldKernel.Build001\bin\Release\net10.0\world-kernel-build-001.dll'
 $node = 'C:\AgentBrowser\tools\node-v24.18.1-win-x64\node.exe'
 $sdk = 'X:\AgentBrowser\repo\program-host\sdk\eyebrowse.mjs'
-$preflight = Join-Path $repoRoot 'artifacts\campaign-2\preflight\preflight-gates.json'
+$preflight = Join-Path $repoRoot 'artifacts\campaign-2r\preflight\preflight-gates.json'
 $coldPackage = Join-Path $campaignRoot 'packages\cold.txt'
 $configurationFingerprint = 'afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5'
 $userId = 'STEALTHEYELLC\StealthEye'
@@ -160,16 +160,16 @@ $controllerStatus = Join-Path $acquisitionRoot 'controller-status.json'
 $coveragePath = Join-Path $acquisitionRoot 'coverage.json'
 
 for ($block = 1; $block -le $MaximumBlocks; $block++) {
-    $configurationBlockId = 'c2-acq-{0:d2}' -f $block
-    $blockSeed = 'campaign2-acquisition-block-seed-{0:d2}' -f $block
+    $configurationBlockId = 'c2r-acq-{0:d2}' -f $block
+    $blockSeed = 'campaign2r-acquisition-block-seed-{0:d2}' -f $block
     $blockRoot = Join-Path $acquisitionRoot ("blocks\$configurationBlockId")
     [IO.Directory]::CreateDirectory($blockRoot) | Out-Null
     foreach ($semanticAction in $actions) {
         $code = Get-Code $semanticAction
         $seed = "$blockSeed-$code"
         $trialId = "$configurationBlockId-$code"
-        $resetBlockId = "c2-a{0:d2}-$code" -f $block
-        $resetBranch = "wk-b001-c2-a{0:d2}-$code" -f $block
+        $resetBlockId = "c2r-a{0:d2}-$code" -f $block
+        $resetBranch = "wk-b001-c2r-a{0:d2}-$code" -f $block
         $episodeRoot = Join-Path $acquisitionRoot ("blocks\$configurationBlockId\$code")
         [IO.Directory]::CreateDirectory($episodeRoot) | Out-Null
         $closePath = Join-Path $episodeRoot 'close.json'
@@ -201,7 +201,7 @@ for ($block = 1; $block -le $MaximumBlocks; $block++) {
             }
             Write-NewJson $hiddenInputPath ([ordered]@{
                 schema = 'world-kernel-build001-campaign2-block-registration-input-v1'
-                campaign_id = 'build001-campaign-2'
+                campaign_id = 'build001-campaign-2r'
                 phase = 'acquisition'
                 configuration_block_id = $configurationBlockId
                 seed_id = $seed
@@ -272,7 +272,7 @@ for ($block = 1; $block -le $MaximumBlocks; $block++) {
         if (-not (Test-Path $beginInputPath)) {
             Write-NewJson $beginInputPath ([ordered]@{
                 schema = 'world-kernel-build001-campaign2-begin-input-v1'
-                campaign_id = 'build001-campaign-2'
+                campaign_id = 'build001-campaign-2r'
                 phase = 'acquisition'
                 trial_id = $trialId
                 configuration_block_id = $configurationBlockId
@@ -399,7 +399,7 @@ finally { $hasher.Dispose() }
 $completePath = Join-Path $acquisitionRoot 'acquisition-complete.json'
 Write-NewJson $completePath ([ordered]@{
     schema = 'world-kernel-build001-campaign2-acquisition-complete-v1'
-    campaign_id = 'build001-campaign-2'
+    campaign_id = 'build001-campaign-2r'
     stop_rule_satisfied = $true
     configuration_blocks = $finalCoverage.configuration_blocks
     coverage_path = $coveragePath

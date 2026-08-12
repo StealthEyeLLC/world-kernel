@@ -1,0 +1,172 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-changed-execution-files-v1",
+    "base_commit":  "4bc35bac9ee20268f3ce2966fc62f2c2ed4cff0b",
+    "items":  [
+                  {
+                      "path":  "schemas/001-world-kernel.sql",
+                      "old_sha256":  "bb9a78409420214004327ab12320664fd4004ef2877c73ea6e4b38abf95f3094",
+                      "new_sha256":  "cd5fe8f566d8538624650f7cbeed335d34b1dc1405d98e669a97aeac07a394af",
+                      "reason":  "strengthen existing subject/provider lineage enforcement; no gate weakened",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-acquisition-controller.ps1",
+                      "old_sha256":  "5b0330ef48f172aa28e59ca97c7cb2f6ac3332aa356c2c35e2c3c41cd79373c7",
+                      "new_sha256":  "4d941a2a5afeb82a77f8a6dd8224bf09339cb4e8e042181f3d9d08412a80339b",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-edge-subject.ps1",
+                      "old_sha256":  "b2c6e52e4a44199ae6e6a514130332e2de1bf759070b51ff3b946b2af909e9dd",
+                      "new_sha256":  "840e6ee6126b8226ec2b0a6d053501f071a10e91e65a4c79c73cb62e7e4cb264",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-new-subject-request.ps1",
+                      "old_sha256":  "526e8fd35761965648393eb69cc11b7e78374ca60bba92184184e879d2ae10d7",
+                      "new_sha256":  "dd20e340f79370c7183094e6ad2553e61a3110a03390114b1e56f3b8ed545df2",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-observe-state.ps1",
+                      "old_sha256":  "2a36fa2cd9095e9b7127a932cc0c11c08681d802f62724ccff379c4d69d1d1b0",
+                      "new_sha256":  "479e2b438229a9f635ea1e7e78f5cd62737beee344c825b6fb81dda99dec942a",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-prepare-action.ps1",
+                      "old_sha256":  "9e525dfb766d8a372502a5d63c034616fb98a7a2971b3a53863b959a60965757",
+                      "new_sha256":  "6c081b215454f22f2d80c28d984eeabffde90bdd0c9b6fc2b6148c97a0397752",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-recover-action.ps1",
+                      "old_sha256":  "232a24b3d7d1324b7ac24669b8e6d9337455d3884f886314a11720a8c37e3387",
+                      "new_sha256":  "a339bf1864320687712d5d9c1ab0ad6d7b0e647a0c21f2122010fd3d763b8b44",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-subject-adapter.ps1",
+                      "old_sha256":  "98d4bd52e90dd3f098e3318afd5f650110bdf591add4bc3a8ec31ecec833d502",
+                      "new_sha256":  "46e7600ff4e406954bb2cb2f5094c26f9d719cdad8e7877d26b39900fb5e5553",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-test.ps1",
+                      "old_sha256":  "94e6dfbaca030a40f8877a2fde672c1aca55828b90369810f0f6ba81ad7e9f6e",
+                      "new_sha256":  "a3ac1d764d753a514ed90e2d54ce8f5e15a1582e5d30a49385a95adf22f1f1c1",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-user-worker.ps1",
+                      "old_sha256":  "c44cf8397ff17e0906a0307a8fb923e49bc9bc33ba9a853db83e189dd6fe460f",
+                      "new_sha256":  "d2327a9267921eed6ecf3fd4ee5833b1cc1e8686a7ebe8e9003a6fe8207b7af0",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "scripts/campaign2-verify-reset.ps1",
+                      "old_sha256":  "1fe68a2eabda3b1bc1a042015179b566d658989ad04ddedfea85dc40760efafe",
+                      "new_sha256":  "460db9d4fe7745d7960baedce4e2a1f787864ffbdcc2f8064dcd5ad980bfae3e",
+                      "reason":  "isolate Campaign 2R paths/IDs from immutable Run A",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/Campaign2Execution.cs",
+                      "old_sha256":  "64bc8b2bab8016f0f5b959c81026a677dd17d57b3ddacf4c55bc0c76deefd17d",
+                      "new_sha256":  "e5491a227e9eac2d0e87d2a5cf4b21d961fdf8c728da4fc338af97cd2164ace8",
+                      "reason":  "separate local/hosted pre/post lineage, recovery, correspondence, Prediction lineage, and public provenance; isolate Run B namespace",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/Program.cs",
+                      "old_sha256":  "79fd0b4f8e62b95405a6bb26f81a15e687ead176893d2d4951363acfcf99fe80",
+                      "new_sha256":  "1c3945ef8d447b1977a2d9b1efbbf4c3af0f8549dfb54bfabe8f22fd5f0a03a4",
+                      "reason":  "expose pre-freeze lineage harness command only",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/Campaign2Lineage.cs",
+                      "old_sha256":  null,
+                      "new_sha256":  "d64f2a6e609d93aaf191586b7bd43725c6b647e3ca505a0e7711a0c6df592574",
+                      "reason":  "add provider-matched hosted-ref evidence/Observation construction",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  },
+                  {
+                      "path":  "src/WorldKernel.Build001/Campaign2LineageHarness.cs",
+                      "old_sha256":  null,
+                      "new_sha256":  "49b00f3b986fb0d20437d18ad66492dc8567e3e67d14e713eca550f62a0793e1",
+                      "reason":  "add pre-freeze non-scientific lineage harness only",
+                      "scientific_meaning_changed":  false,
+                      "subject_information_changed":  false,
+                      "fixture_difficulty_changed":  false,
+                      "metric_changed":  false,
+                      "arm_changed":  false
+                  }
+              ],
+    "generated_at":  "2026-08-12T02:51:16.0753604+00:00"
+}

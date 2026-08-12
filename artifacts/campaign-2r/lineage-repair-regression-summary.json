@@ -1,0 +1,18 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-lineage-repair-regression-summary-v1",
+    "tests_total":  16,
+    "tests_passed":  16,
+    "tests_failed":  0,
+    "build_warnings":  0,
+    "build_errors":  0,
+    "implementation_test_results":  "artifacts/campaign-2r/implementation-test-results.json",
+    "implementation_test_results_sha256":  "30a95c22540c11b9754032359f2e701f9b62350b527a0901e3af66437fb1b749",
+    "six_action_pre_dispatch_audit":  "experiments/build001/campaign-2r/harness/six-action-pre-dispatch-audit.json",
+    "six_action_pre_dispatch_sha256":  "8aec31fca7b9e71c759ad1b0cefdd63db4cffb8823d5d82fe3f57147c7e721f2",
+    "non_scientific_lifecycle_sentinel":  "experiments/build001/campaign-2r/harness/non-scientific-lifecycle-sentinel.json",
+    "non_scientific_lifecycle_sentinel_sha256":  "9812572ea5a58b36e5885e1073c15961d820fe9053d40a329162eadb6e116180",
+    "claim_lineage_matrix_sha256":  "e78e422c418a116cb7dfa35f9aa0819231fae115d97af51a2d646d90e789e36e",
+    "episode_export_leakage_audit_sha256":  "a4cbac06334841e971f9ef74aff3558884f60e954ac45d85b437eab46ec49aeb",
+    "schema_sha256":  "cd5fe8f566d8538624650f7cbeed335d34b1dc1405d98e669a97aeac07a394af",
+    "generated_at":  "2026-08-12T02:51:34.6298117+00:00"
+}
