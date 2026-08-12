@@ -1,0 +1,60 @@
+{
+    "schema":  "world-kernel-build001-campaign3-p6-deterministic-reset-v1",
+    "preflight":  "P6 deterministic reset",
+    "accepted_regime":  {
+                            "fingerprint_1":  "09e9d6961b987b0e24f70e0038e249245cae1c1d044b8c7bca870884d6690dd4",
+                            "fingerprint_2":  "09e9d6961b987b0e24f70e0038e249245cae1c1d044b8c7bca870884d6690dd4",
+                            "head_1":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+                            "head_2":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+                            "restored_fingerprint":  "09e9d6961b987b0e24f70e0038e249245cae1c1d044b8c7bca870884d6690dd4",
+                            "independent_fingerprint":  "09e9d6961b987b0e24f70e0038e249245cae1c1d044b8c7bca870884d6690dd4",
+                            "reset_head":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+                            "probe_provider_head":  "109a5297c3ed31fd3b9220eb858cd0783a95c987",
+                            "push_exit_code":  0,
+                            "provider_acceptance_confirmation":  true,
+                            "post_probe_restored_provider_head":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+                            "passed":  true
+                        },
+    "rejected_regime":  {
+                            "fingerprint_1":  "1ca054f9fa23cad9efff2f10fda1339ed4e50b16b505d533ce02fbafbe93ca75",
+                            "fingerprint_2":  "1ca054f9fa23cad9efff2f10fda1339ed4e50b16b505d533ce02fbafbe93ca75",
+                            "head_1":  "993c27dd82242818e876472498523021ff95ab05",
+                            "head_2":  "993c27dd82242818e876472498523021ff95ab05",
+                            "restored_fingerprint":  "1ca054f9fa23cad9efff2f10fda1339ed4e50b16b505d533ce02fbafbe93ca75",
+                            "independent_fingerprint":  "1ca054f9fa23cad9efff2f10fda1339ed4e50b16b505d533ce02fbafbe93ca75",
+                            "branch_protected":  true,
+                            "required_approving_reviews":  1,
+                            "admins_enforced":  true,
+                            "browser_freshness_setup":  "stale_until_reobserve",
+                            "push_exit_code":  1,
+                            "remote_unchanged_on_rejection":  true,
+                            "gh006":  true,
+                            "remote_head":  "993c27dd82242818e876472498523021ff95ab05",
+                            "local_rejected_probe_head":  "56c752dfd6ca7920a591c4e46082e7d6f9b2005a",
+                            "passed":  true
+                        },
+    "different_regimes_have_different_fingerprints":  true,
+    "same_seed_repeated_material_state":  true,
+    "independent_reobservation_matches_reset":  true,
+    "accepted_provider_behavior_verified":  true,
+    "rejected_provider_behavior_verified":  true,
+    "provider_connector_evidence":  {
+                                        "accepted_probe_commit":  "turn511",
+                                        "accepted_restored_branch":  "turn512",
+                                        "rejected_restored_branch":  "turn513"
+                                    },
+    "source_artifacts":  [
+                             "artifacts/campaign-3/preflight/p6-accepted-1.json",
+                             "artifacts/campaign-3/preflight/p6-accepted-2.json",
+                             "artifacts/campaign-3/preflight/p6-accepted-provider-confirmation.json",
+                             "artifacts/campaign-3/preflight/p6-accepted-restored-after-probe.json",
+                             "experiments/build001/campaign-3/preflight/p6-accepted-independent-final3.json",
+                             "artifacts/campaign-3/preflight/p6-rejected-1.json",
+                             "artifacts/campaign-3/preflight/p6-rejected-2.json",
+                             "artifacts/campaign-3/preflight/p6-rejected-provider-confirmation.json",
+                             "artifacts/campaign-3/preflight/p6-rejected-restored.json",
+                             "experiments/build001/campaign-3/preflight/p6-rejected-independent-final2.json"
+                         ],
+    "passed":  true,
+    "observed_at":  "2026-08-12T14:39:16.6060595+00:00"
+}

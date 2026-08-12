@@ -1,0 +1,31 @@
+{
+    "schema":  "world-kernel-build001-campaign3-subject-request-v1",
+    "mode":  "inspect",
+    "trial_id":  "c3-p0-inspect-001",
+    "arm":  "cold",
+    "expected_model":  "5.6 Sol",
+    "expected_reasoning":  "Extra High",
+    "observable_configuration_fingerprint_sha256":  "0000000000000000000000000000000000000000000000000000000000000000",
+    "base_prompt_path":  "C:\\WorldKernel\\Build001\\campaign3-orchestrator-repo\\experiments\\build001\\campaign-3\\base-prompt.txt",
+    "base_prompt_sha256":  "f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5",
+    "tool_contract_path":  "C:\\WorldKernel\\Build001\\campaign3-orchestrator-repo\\experiments\\build001\\campaign-3\\tool-contract.json",
+    "tool_contract_sha256":  "d48bcd03d8000ed091f6a24f34f7d955c2dce4ea927134dd69a76b8cd0b7d938",
+    "trial_output_contract_sha256":  "6c9cf0f54d6aa0cc777a2b92f34f5c7ec62f20e0bc090a9371673909ca66c2dd",
+    "arm_package_path":  "C:\\WorldKernel\\Build001\\campaign3-orchestrator-repo\\experiments\\build001\\campaign-3\\packages\\cold.txt",
+    "arm_package_sha256":  "53eb9ec10dd4e13a1d1c88b84c9445c2a5c3273ce59b696d22b68b627e061565",
+    "semantic_action":  "git:create_branch",
+    "target":  "StealthEyeLLC/world-kernel-build-001-fixture",
+    "task":  "Campaign 3 P0 inspect-only attestation; do not submit a subject prompt.",
+    "current_observations":  "{}",
+    "propositions":  [
+                         "provider_accepts_action",
+                         "new_local_branch_exists",
+                         "current_branch_is_new_branch",
+                         "local_head_sha_changes",
+                         "remote_branch_exists_before_push",
+                         "worktree_content_changes"
+                     ],
+    "extra_treatment_model_calls":  0,
+    "response_timeout_ms":  60000,
+    "generated_at":  "2026-08-12T13:03:38.6984971+00:00"
+}

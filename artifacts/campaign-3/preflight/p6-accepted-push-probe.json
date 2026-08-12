@@ -1,0 +1,19 @@
+{
+    "schema":  "world-kernel-build001-campaign3-p6-accepted-push-probe-v1",
+    "branch":  "wk-b001-c3-p6-accepted-final",
+    "reset_head":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+    "local_probe_head":  "b6a0f1d40bc7dc226ca1d2f0a5a94295c0e72892",
+    "provider_observed_probe_head":  "b6a0f1d40bc7dc226ca1d2f0a5a94295c0e72892",
+    "provider_observed_parent":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+    "push_exit_code":  0,
+    "push_stdout":  "To https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git\n \tHEAD:refs/heads/wk-b001-c3-p6-accepted-final\t1e1e337..b6a0f1d\nDone\n",
+    "provider_acceptance_verified":  true,
+    "post_probe_reset_restored":  true,
+    "current_restored_provider_head":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+    "connector_evidence":  {
+                               "probe_commit":  "turn474",
+                               "restored_branch":  "turn479"
+                           },
+    "passed":  true,
+    "observed_at":  "2026-08-12T14:38:56.3349160+00:00"
+}

@@ -1,0 +1,31 @@
+{
+    "schema":  "world-kernel-build001-campaign3-eyebrowse-write-attestation-v1",
+    "preflight":  "P2 authenticated eyeBROWSE remote commit",
+    "passed":  true,
+    "exit_code":  0,
+    "observed_at":  "2026-08-12T13:35:36.4795839+00:00",
+    "write_occurred":  true,
+    "provider_state_independently_verified":  true,
+    "stale_then_fresh_distinguished":  true,
+    "mutation_confined_to_fixture":  true,
+    "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+    "authenticated_browser_login":  "StealthEyeLLC",
+    "provider_write_method":  "GitHub web through authenticated eyeBROWSE",
+    "branch":  "wk-b001-c3-p2-browser",
+    "base_branch":  "main",
+    "base_sha":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "provider_commit_sha":  "835999766d3b4654841b5d3796b70bafc114f302",
+    "path":  "fixture/state.txt",
+    "browser_receipt_sha256":  "381305d157508dcf74c5efddf3d08e4f7c22f317d5b3088977d2f7cf1849af0c",
+    "browser_program_host_evidence_sha256":  "3ca72796fc8a8ca7f5bec360a08f89c9f73c288733be692f5bb45bc034f02773",
+    "fresh_provider_observation_sha256":  "e7dbdcd3bfb2845f85ab75588431d24310abb74c70dc8a387b73fc9d850b3cc2",
+    "independent_observation_method":  "ChatGPT GitHub admin connector independent branch/commit/file/main re-read after browser receipt",
+    "main_unchanged":  true,
+    "head_ahead_by":  1,
+    "proof_file_present_on_head":  true,
+    "proof_file_differs_from_main":  true,
+    "evidence":  {
+                     "browser":  "artifacts/campaign-3/preflight/p2-browser-receipt.json",
+                     "provider":  "artifacts/campaign-3/preflight/p2-github-provider-observation.json"
+                 }
+}

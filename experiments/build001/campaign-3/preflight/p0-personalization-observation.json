@@ -1,0 +1,49 @@
+{
+    "schema":  "world-kernel-build001-campaign3-p0-personalization-observation-v1",
+    "passed":  true,
+    "observed_at":  "2026-08-12T13:06:01.2555292+00:00",
+    "workspace_type":  "Business",
+    "base_style_and_tone":  "Default",
+    "fast_answers_enabled":  false,
+    "account_memory_enabled":  true,
+    "record_history_reference_enabled":  true,
+    "style_characteristics":  {
+                                  "warm":  "Default",
+                                  "enthusiastic":  "Default",
+                                  "headers_and_lists":  "Default",
+                                  "emoji":  "Default"
+                              },
+    "custom_instruction_fields":  [
+                                      {
+                                          "name":  "Custom instructions",
+                                          "value_length":  0,
+                                          "value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                                      },
+                                      {
+                                          "name":  "Nickname",
+                                          "value_length":  0,
+                                          "value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                                      },
+                                      {
+                                          "name":  "Occupation",
+                                          "value_length":  0,
+                                          "value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                                      },
+                                      {
+                                          "name":  "More about you",
+                                          "value_length":  0,
+                                          "value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                                      }
+                                  ],
+    "ui_markers":  {
+                       "base_style":  "Base style and tone Default",
+                       "warm":  "Warm, Default",
+                       "enthusiastic":  "Enthusiastic, Default",
+                       "headers_and_lists":  "Headers \u0026 Lists, Default",
+                       "emoji":  "Emoji, Default",
+                       "fast_answers":  "Fast answers toggle Off",
+                       "memory":  "Enable memory toggle On",
+                       "record_history":  "Reference record history toggle On",
+                       "workspace":  "StealthEye 2 Business"
+                   }
+}

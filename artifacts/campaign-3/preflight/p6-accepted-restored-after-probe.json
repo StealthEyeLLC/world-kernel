@@ -1,0 +1,36 @@
+{
+    "reset_version":  "build001-fixture-reset-v1",
+    "phase":  "preflight",
+    "block_id":  "c3-p6-accepted-final",
+    "arm":  "preflight",
+    "generation_id":  "7557855d-2950-4c7d-866c-3c3d3532a03e",
+    "seed_commitment_sha256":  "d7fda160689295b219135f64d0a335831e5b11ec287a5b1d09a8c229856ad99e",
+    "material":  {
+                     "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+                     "provider_native_repository_id":  1330898503,
+                     "base_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+                     "local_head":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+                     "remote_head":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+                     "tree":  "42d4fd52ff2fe7d29a488d081e3410b9e32049b3",
+                     "branch":  "wk-b001-c3-p6-accepted-final",
+                     "state_sha256":  "0aef059539f34b36ab6d0ad3828143a5e3cbf9d4b672a3bdb127fc410c2143c9",
+                     "push_policy":  {
+                                         "branch_protected":  false,
+                                         "required_approving_reviews":  0,
+                                         "admins_enforced":  false
+                                     },
+                     "check_provider":  {
+                                            "workflow_state":  "disabled_manually",
+                                            "encrypted_check_secret_present":  true
+                                        },
+                     "browser_freshness_setup":  "fresh"
+                 },
+    "actual_fingerprint":  "09e9d6961b987b0e24f70e0038e249245cae1c1d044b8c7bca870884d6690dd4",
+    "exact_local_remote_match":  true,
+    "reset_verified":  true,
+    "provider_evidence":  {
+                              "configured_remote":  "https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                              "provider_configuration_fingerprint":  "1e495bdc7b41e96f3495b6389dc970a099a5a4451478d109cd7ef95498be3165"
+                          },
+    "reset_at":  "2026-08-12T14:37:58.8044275+00:00"
+}

@@ -1,0 +1,27 @@
+{
+    "schema":  "world-kernel-build001-campaign3-github-provider-observation-v1",
+    "observed_at":  "2026-08-12T14:24:32.6226406+00:00",
+    "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+    "branch":  "wk-b001-c3-p2-live7",
+    "pre_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "post_head":  "0a5b893cbc44844405b34566a489bfd02225c1fa",
+    "post_parent":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "post_commit_message":  "Campaign 3 P2 stale-fresh live7",
+    "post_commit_verified_signature":  true,
+    "proof_file":  "fixture/state.txt",
+    "proof_blob_sha":  "7c9b664d86eddcb64aac88a9aa902a44aa56c5e4",
+    "proof_content":  "seed_version=build001-fixture-v1\ngeneration=seed\nvalue=0\np2_browser_proof=campaign3-live7\n",
+    "main_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "main_blob_sha":  "b08cd210262cf0b37c8beec4ec54065376df488a",
+    "main_content":  "seed_version=build001-fixture-v1\ngeneration=seed\nvalue=0\n\n",
+    "main_unchanged":  true,
+    "head_ahead_by":  1,
+    "proof_file_differs_from_main":  true,
+    "observation_method":  "ChatGPT GitHub admin connector independent commit/file/main re-read after owner-browser receipt",
+    "connector_evidence":  {
+                               "commit":  "turn424",
+                               "branch_file":  "turn428",
+                               "main_commit":  "turn422",
+                               "main_file":  "turn429"
+                           }
+}

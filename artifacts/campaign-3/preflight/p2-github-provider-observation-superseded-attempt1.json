@@ -1,0 +1,28 @@
+{
+    "schema":  "world-kernel-build001-campaign3-github-provider-observation-v1",
+    "observed_at":  "2026-08-12T13:35:36.4188215+00:00",
+    "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+    "branch":  "wk-b001-c3-p2-browser",
+    "pre_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "post_head":  "835999766d3b4654841b5d3796b70bafc114f302",
+    "post_parent":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "post_commit_message":  "Campaign3-P2-browser-commit",
+    "post_commit_verified_signature":  true,
+    "proof_file":  "fixture/state.txt",
+    "proof_blob_sha":  "e591b91d983a3bab1df6a176f6e9c4a4a2e8c44c",
+    "proof_content":  "campaign3_p2_browser_commit=2026-08-12T0849-0400\n",
+    "main_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "main_blob_sha":  "b08cd210262cf0b37c8beec4ec54065376df488a",
+    "main_content":  "seed_version=build001-fixture-v1\ngeneration=seed\nvalue=0\n\n",
+    "main_unchanged":  true,
+    "head_ahead_by":  1,
+    "proof_file_differs_from_main":  true,
+    "observation_method":  "ChatGPT GitHub admin connector independent branch/commit/file/main re-read after browser receipt",
+    "connector_evidence":  {
+                               "post_branch":  "turn454/turn462 context",
+                               "post_file":  "turn463",
+                               "post_commit":  "turn456",
+                               "main_branch":  "turn462",
+                               "main_file":  "turn465"
+                           }
+}

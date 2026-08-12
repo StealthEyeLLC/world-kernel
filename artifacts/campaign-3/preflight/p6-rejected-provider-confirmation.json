@@ -1,0 +1,17 @@
+{
+    "schema":  "world-kernel-build001-campaign3-p6-rejected-provider-confirmation-v1",
+    "receipt_accepted":  false,
+    "exit_code":  1,
+    "gh006":  true,
+    "branch":  "wk-b001-c3-p6-rejected-final",
+    "baseline_head":  "993c27dd82242818e876472498523021ff95ab05",
+    "probe_local_head":  "56c752dfd6ca7920a591c4e46082e7d6f9b2005a",
+    "remote_before":  "993c27dd82242818e876472498523021ff95ab05",
+    "remote_after":  "993c27dd82242818e876472498523021ff95ab05",
+    "remote_unchanged_on_rejection":  true,
+    "local_restored":  true,
+    "effective_identity":  "STEALTHEYELLC\\StealthEye",
+    "output":  "remote: error: GH006: Protected branch update failed for refs/heads/wk-b001-c3-p6-rejected-final.        \r\nremote: \r\nremote: - Changes must be made through a pull request.        \r\nTo https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git\r\n ! [remote rejected] HEAD -\u003e wk-b001-c3-p6-rejected-final (protected branch hook declined)\r\nerror: failed to push some refs to \u0027https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git\u0027",
+    "passed":  true,
+    "observed_at":  "2026-08-12T14:32:54.8960621+00:00"
+}

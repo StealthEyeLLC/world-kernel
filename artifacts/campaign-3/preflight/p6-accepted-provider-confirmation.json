@@ -1,0 +1,15 @@
+{
+    "schema":  "world-kernel-build001-campaign3-p6-accepted-provider-confirmation-v1",
+    "receipt_accepted":  true,
+    "exit_code":  0,
+    "branch":  "wk-b001-c3-p6-accepted-final",
+    "baseline_head":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+    "probe_local_head":  "109a5297c3ed31fd3b9220eb858cd0783a95c987",
+    "remote_before":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+    "remote_after":  "109a5297c3ed31fd3b9220eb858cd0783a95c987",
+    "provider_advanced_to_probe":  true,
+    "effective_identity":  "STEALTHEYELLC\\StealthEye",
+    "output":  "To https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git\r\n   1e1e337..109a529  HEAD -\u003e wk-b001-c3-p6-accepted-final",
+    "passed":  true,
+    "observed_at":  "2026-08-12T14:37:33.6530723+00:00"
+}

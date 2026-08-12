@@ -1,0 +1,27 @@
+{
+    "schema":  "world-kernel-build001-campaign3-p6-rejected-push-probe-v1",
+    "branch":  "wk-b001-c3-p6-rejected-final",
+    "reset_head":  "993c27dd82242818e876472498523021ff95ab05",
+    "local_rejected_probe_head":  "6fa82db691ef241c257bac5a3c3d8b326b811392",
+    "push_exit_code":  1,
+    "provider_rejection":  "GH006: Protected branch update failed for refs/heads/wk-b001-c3-p6-rejected-final; Changes must be made through a pull request.",
+    "gh006":  true,
+    "remote_unchanged_on_rejection":  true,
+    "provider_head_after_rejection":  "993c27dd82242818e876472498523021ff95ab05",
+    "provider_protected_after_rejection":  true,
+    "raw_capture":  {
+                        "stdout_path":  "campaign3-runtime/scratch/p6-rejected-probe.stdout.txt",
+                        "stdout_bytes":  356,
+                        "stdout_sha256":  "a7596d22a234fd3a7b3671bdf81da7469ddea69f6b686792f292521530d22023",
+                        "stderr_path":  "campaign3-runtime/scratch/p6-rejected-probe.stderr.txt",
+                        "stderr_bytes":  1274,
+                        "stderr_sha256":  "ce2dcf97bfd2900624043aa92953a709975ff7cfa3869d39af3c955f1daedef0",
+                        "exit_path":  "campaign3-runtime/scratch/p6-rejected-probe.exit.txt",
+                        "exit_sha256":  "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+                    },
+    "connector_evidence":  {
+                               "provider_branch_after_rejection":  "turn465"
+                           },
+    "passed":  true,
+    "observed_at":  "2026-08-12T14:40:39.9331093+00:00"
+}

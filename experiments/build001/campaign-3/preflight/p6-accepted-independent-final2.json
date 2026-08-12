@@ -1,0 +1,73 @@
+{
+    "schema":  "world-kernel-build001-campaign3-independent-reset-verification-v1",
+    "observed_at":  "2026-08-12T14:36:54.6222777+00:00",
+    "branch":  "wk-b001-c3-p6-accepted-final",
+    "browser_freshness":  "fresh",
+    "material":  {
+                     "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+                     "provider_native_repository_id":  1330898503,
+                     "base_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+                     "local_head":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+                     "remote_head":  "1e1e33727f28b723cd95645c77b8cd05e4d8b810",
+                     "tree":  "42d4fd52ff2fe7d29a488d081e3410b9e32049b3",
+                     "branch":  "wk-b001-c3-p6-accepted-final",
+                     "state_sha256":  "0aef059539f34b36ab6d0ad3828143a5e3cbf9d4b672a3bdb127fc410c2143c9",
+                     "push_policy":  {
+                                         "branch_protected":  false,
+                                         "required_approving_reviews":  0,
+                                         "admins_enforced":  false
+                                     },
+                     "check_provider":  {
+                                            "workflow_state":  "disabled_manually",
+                                            "encrypted_check_secret_present":  true
+                                        },
+                     "browser_freshness_setup":  "fresh"
+                 },
+    "expected_fingerprint":  "09e9d6961b987b0e24f70e0038e249245cae1c1d044b8c7bca870884d6690dd4",
+    "exact_local_remote_match":  true,
+    "provider_configuration_fingerprint":  "1e495bdc7b41e96f3495b6389dc970a099a5a4451478d109cd7ef95498be3165",
+    "commands":  [
+                     {
+                         "arguments":  [
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "1e1e33727f28b723cd95645c77b8cd05e4d8b810"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "rev-parse",
+                                           "HEAD^{tree}"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "42d4fd52ff2fe7d29a488d081e3410b9e32049b3"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "ls-remote",
+                                           "--heads",
+                                           "origin",
+                                           "refs/heads/wk-b001-c3-p6-accepted-final"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "1e1e33727f28b723cd95645c77b8cd05e4d8b810\trefs/heads/wk-b001-c3-p6-accepted-final"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "rev-parse",
+                                           "origin/main"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "519d05879314cab45280a9f58efbd8859ecd8d64"
+                                    ]
+                     }
+                 ]
+}

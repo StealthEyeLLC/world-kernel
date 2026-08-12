@@ -1,0 +1,15 @@
+{
+    "provisioned_at":  "2026-08-12T08:31:59.9646365+00:00",
+    "topology":  "portable loopback process hosted by a manual triggerless experiment-owned scheduled task; no Windows SCM service",
+    "source_url":  "https://get.enterprisedb.com/postgresql/postgresql-18.4-2-windows-x64-binaries.zip",
+    "archive_path":  "X:\\WorldKernel\\Build001\\downloads\\postgresql-18.4-2-windows-x64-binaries.zip",
+    "archive_sha256":  "02e239529ed7833d169f98d915d3feffe0813264b08b3ae353e78e8b9c97e1a6",
+    "postgres_version":  "postgres (PostgreSQL) 18.4",
+    "bin_root":  "C:\\WorldKernel\\Build001\\campaign3-runtime\\postgresql-18.4\\bin",
+    "data_root":  "C:\\WorldKernel\\Build001\\campaign3-runtime\\pgdata",
+    "port":  55431,
+    "listen_addresses":  "127.0.0.1",
+    "on_demand_scheduled_task":  "world-kernel-build001-postgres",
+    "auth":  "scram-sha-256",
+    "secret_file":  "C:\\WorldKernel\\Build001\\campaign3-runtime\\secrets\\connections.json"
+}
