@@ -1,7 +1,7 @@
 {
     "schema":  "world-kernel-build001-campaign3-scientific-zero-state-v1",
     "campaign_id":  "build001-campaign-3",
-    "observed_at":  "2026-08-12T14:40:01.3187547+00:00",
+    "observed_at":  "2026-08-12T14:51:56.8629466+00:00",
     "kernel_counts":  {
                           "action_attempts":  0,
                           "predictions":  0,
