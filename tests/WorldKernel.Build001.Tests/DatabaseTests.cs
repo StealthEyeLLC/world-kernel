@@ -231,7 +231,7 @@ internal static partial class DatabaseTests
 
         var sentinel = CanonicalJson.Serialize(new
         {
-            schema = "world-kernel-build001-campaign2r-nonscientific-lifecycle-sentinel-v1",
+            schema = "world-kernel-build001-campaign3-nonscientific-lifecycle-sentinel-v1",
             campaign_id = (string?)null,
             scientific = false,
             arm = declaration.Arm,

@@ -1,0 +1,86 @@
+{
+    "schema":  "world-kernel-build001-campaign3-noninteractive-preflight-status-v1",
+    "campaign_id":  "build001-campaign-3",
+    "generated_at":  "2026-08-12T08:17:59.0731759+00:00",
+    "interactive_profile_loaded":  false,
+    "regression":  {
+                       "status":  "PASS",
+                       "passed":  21,
+                       "failed":  0,
+                       "sha256":  "6e0a42fdbbe4682ba2da3e26d86453c21b121dbb4a5e3e6949fa304c10fe72b9",
+                       "isolated_scratch_databases":  true
+                   },
+    "six_action_dry":  {
+                           "status":  "PASS",
+                           "actions":  6,
+                           "material_dispatches":  0,
+                           "outcomes":  0,
+                           "prediction_evaluations":  0,
+                           "transition_episodes":  0,
+                           "sha256":  "bc77db9ade1d50491f2577f6de8682aa4614a879c9848267b60624dcb3fb32db"
+                       },
+    "gates":  [
+                  {
+                      "id":  "P0",
+                      "status":  "BLOCKED_INTERACTIVE",
+                      "reason":  "Fresh ChatGPT Business/model/reasoning/personalization/Temporary Chat controls require genuine authenticated user desktop."
+                  },
+                  {
+                      "id":  "P1",
+                      "status":  "PARTIAL",
+                      "passed":  [
+                                     "CODEeye Program Host attach/repo.status/world.sync/git.diff on disposable fixture clone"
+                                 ],
+                      "blocked":  [
+                                      "exact authenticated provider reset/write"
+                                  ]
+                  },
+                  {
+                      "id":  "P2",
+                      "status":  "BLOCKED_INTERACTIVE",
+                      "reason":  "Authenticated eyeBROWSE GitHub browser action may not be replaced by SYSTEM or admin connector."
+                  },
+                  {
+                      "id":  "P3",
+                      "status":  "PARTIAL",
+                      "passed":  [
+                                     "create local branch",
+                                     "create local commit",
+                                     "fetch exact provider remote-ahead commit",
+                                     "ff-only accepted integration",
+                                     "ff-only non-fast-forward rejection"
+                                 ],
+                      "blocked":  [
+                                      "authenticated accepted push",
+                                      "protected-provider policy rejection under intended user credentials"
+                                  ],
+                      "summary_sha256":  "932cfe3ff53855e100f55ac16b87e6d061d874240950b61f968a9fbc39fd6b97"
+                  },
+                  {
+                      "id":  "P4",
+                      "status":  "PASS",
+                      "regression_sha256":  "6e0a42fdbbe4682ba2da3e26d86453c21b121dbb4a5e3e6949fa304c10fe72b9",
+                      "projection_sha256":  "d532845efaf655bdc46f64eb7832bfb6dfdc631585134419fda8c67a1a66529b",
+                      "recovery_sha256":  "df0dfbd5b514d4fd7b32716e8fcf826eb68bd95e96cd9a73fae079851be1577c",
+                      "summary_sha256":  "0548e456b181cdef815824a655cf7c87f5ff4fd5a373abd40742bcff1e00afb6"
+                  },
+                  {
+                      "id":  "P5",
+                      "status":  "BLOCKED_INTERACTIVE",
+                      "reason":  "Fresh eligible Temporary Chat creation requires genuine authenticated ChatGPT user session."
+                  },
+                  {
+                      "id":  "P6",
+                      "status":  "BLOCKED_INTERACTIVE",
+                      "reason":  "Complete accepted/rejected provider reset integrity requires intended authenticated fixture Git/GitHub user context."
+                  }
+              ],
+    "scientific_zero_state":  true,
+    "scientific_zero_state_sha256":  "71bd9d0532f4ccab0b55a5d34aeaa1bcac989b76c98481ba92aefd7476c40024",
+    "external_eye_heads_verified":  true,
+    "external_eye_heads_sha256":  "1425dea938a32b9a3426f2277045e7813c96312f39739bd8818b9a6d959ff379",
+    "all_preflight_gates_passed":  false,
+    "science_authorized":  false,
+    "campaign3_frozen":  false,
+    "scientific_subjects_run":  0
+}

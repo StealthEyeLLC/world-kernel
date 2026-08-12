@@ -1,0 +1,143 @@
+{
+    "schema":  "world-kernel-build001-campaign3-state-observation-v1",
+    "observed_at":  "2026-08-12T08:15:32.4648222+00:00",
+    "branch":  "wk-b001-c3-p3-ff",
+    "local_head":  "413d61a9c05d2544cc8b9b11271b39f9232d6a1c",
+    "current_branch":  "wk-b001-c3-p3-ff-local",
+    "local_tree":  "2d3391dc00a3990bae574822de624116b5b132ee",
+    "worktree_content_sha256":  "9995873156080d2c7d0ad9068c26bca35f9adbc743dfa8b56de2fb4fa5ac5c20",
+    "worktree_clean":  true,
+    "local_branches":  [
+                           "main",
+                           "wk-b001-c3-p3-diverge",
+                           "wk-b001-c3-p3-ff-local",
+                           "wk-b001-c3-p3-local-branch"
+                       ],
+    "remote_head":  "413d61a9c05d2544cc8b9b11271b39f9232d6a1c",
+    "remote_tracking_head":  "413d61a9c05d2544cc8b9b11271b39f9232d6a1c",
+    "remote_head_reachable_locally":  true,
+    "local_head_parent_count":  1,
+    "remote_url":  "https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+    "public_topology_class":  "synchronized",
+    "commands":  [
+                     {
+                         "arguments":  [
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "413d61a9c05d2544cc8b9b11271b39f9232d6a1c"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "branch",
+                                           "--show-current"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "wk-b001-c3-p3-ff-local"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "rev-parse",
+                                           "HEAD^{tree}"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "2d3391dc00a3990bae574822de624116b5b132ee"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "status",
+                                           "--porcelain=v2",
+                                           "--untracked-files=all"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "remote",
+                                           "get-url",
+                                           "origin"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "for-each-ref",
+                                           "--format=%(refname:short)",
+                                           "refs/heads"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "main",
+                                        "wk-b001-c3-p3-diverge",
+                                        "wk-b001-c3-p3-ff-local",
+                                        "wk-b001-c3-p3-local-branch"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "rev-parse",
+                                           "--verify",
+                                           "refs/remotes/origin/wk-b001-c3-p3-ff"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "413d61a9c05d2544cc8b9b11271b39f9232d6a1c"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "ls-remote",
+                                           "--heads",
+                                           "origin",
+                                           "refs/heads/wk-b001-c3-p3-ff"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "413d61a9c05d2544cc8b9b11271b39f9232d6a1c\trefs/heads/wk-b001-c3-p3-ff"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "rev-list",
+                                           "--parents",
+                                           "-n",
+                                           "1",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "413d61a9c05d2544cc8b9b11271b39f9232d6a1c 519d05879314cab45280a9f58efbd8859ecd8d64"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "ls-files"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        ".github/workflows/fixture-check.yml",
+                                        ".gitignore",
+                                        "FixtureProbe.slnx",
+                                        "README.md",
+                                        "fixture/campaign3-p3-provider-ahead.txt",
+                                        "fixture/check-mode.txt",
+                                        "fixture/state.txt",
+                                        "src/FixtureProbe/FixtureProbe.csproj",
+                                        "src/FixtureProbe/Program.cs"
+                                    ]
+                     }
+                 ]
+}

@@ -1,0 +1,52 @@
+{
+    "schema":  "world-kernel-build001-campaign3-implementation-reconstruction-v1",
+    "recorded_at":  "2026-08-12T08:18:39.0829463+00:00",
+    "campaign_id":  "build001-campaign-3",
+    "branch":  "build001-campaign-3",
+    "base_implementation":  "4b1d5e415797db7011c6e580120fe394758b15f0",
+    "base_tree":  "4a27ce78a7161ee556f0bb6ae57cdaa64df8d113",
+    "rejected_2r_freeze_candidate":  "3d130abd9e2f10ab29fea7938314b9198f5dbeb6",
+    "repairs":  [
+                    "provider_matched_claim_lineage",
+                    "prediction_evidence_observation_outcome_separation",
+                    "github_ui_compatibility",
+                    "fresh_subject_driver",
+                    "authenticated_material_action_context",
+                    "campaign3_runtime_isolation",
+                    "postgres_local_service_logged_out_runtime",
+                    "p0_evidence_composer",
+                    "science_authorization_hard_gate",
+                    "single_freeze_validator"
+                ],
+    "regression":  {
+                       "status":  "PASS",
+                       "passed":  21,
+                       "failed":  0,
+                       "sha256":  "6e0a42fdbbe4682ba2da3e26d86453c21b121dbb4a5e3e6949fa304c10fe72b9",
+                       "isolated_scratch_databases":  true
+                   },
+    "six_action_dry":  {
+                           "status":  "PASS",
+                           "actions":  6,
+                           "material_dispatches":  0,
+                           "outcomes":  0,
+                           "prediction_evaluations":  0,
+                           "transition_episodes":  0,
+                           "sha256":  "bc77db9ade1d50491f2577f6de8682aa4614a879c9848267b60624dcb3fb32db"
+                       },
+    "scientific_zero_state":  {
+                                  "passed":  true,
+                                  "sha256":  "71bd9d0532f4ccab0b55a5d34aeaa1bcac989b76c98481ba92aefd7476c40024"
+                              },
+    "external_heads":  {
+                           "eye":  "53948b74701f51c29c9322dfa9f017ba6b45f4a4",
+                           "codeeye":  "1ca0f93d64bc20bccb3b96dbcda43a2232783609",
+                           "eyebrowse":  "2e27f44ebd3522d0d26b036dc57f790535df3533",
+                           "match_original":  true
+                       },
+    "single_freeze_validator":  true,
+    "science_authorization_hard_gate":  true,
+    "campaign3_frozen":  false,
+    "science_authorized":  false,
+    "scientific_subjects_run":  0
+}

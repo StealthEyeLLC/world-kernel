@@ -26,7 +26,7 @@ public sealed record PreflightManifest(
 
 public static class PreflightGateEvaluator
 {
-    public const string ManifestSchema = "world-kernel-build001-preflight-gates-v2-campaign2";
+    public const string ManifestSchema = "world-kernel-build001-preflight-gates-v3-campaign3";
 
     public static PreflightManifest Evaluate(string artifactDirectory)
     {
@@ -55,11 +55,11 @@ public static class PreflightGateEvaluator
             Gate(
                 "P0",
                 "Baseline capture",
-                Campaign2Attestation.PassesP0(p0.Root),
+                Campaign3Attestation.PassesP0(p0.Root),
                 [
-                    Campaign2Attestation.PassesP0(p0.Root)
+                    Campaign3Attestation.PassesP0(p0.Root)
                         ? "Observable ChatGPT product controls and their canonical fingerprint are attested."
-                        : "Campaign 2 observable product/configuration attestation is absent or invalid.",
+                        : "Campaign 3 observable product/configuration attestation is absent or invalid.",
                     "No private OpenAI serving deployment identifier is claimed or hashed."
                 ],
                 [p0]),
@@ -69,7 +69,7 @@ public static class PreflightGateEvaluator
                 Number(p1, "exit_code") == 0 &&
                 String(p1, "payload", "observer") == "CODEeye.ProgramHost" &&
                 Contains(p1, "\"repository_status\"") && Contains(p1, "\"world_sync\"") &&
-                Contains(p1, "\"git_diff\"") && Contains(p1, "p3_local_change=1"),
+                Contains(p1, "\"git_diff\"") && Contains(p1, "campaign3_p1_local_change=1"),
                 [
                     "Named-pipe Program Host probe returned current repository HEAD/branch.",
                     "Controlled local change and live world.sync provider incarnation were observed."
@@ -82,7 +82,7 @@ public static class PreflightGateEvaluator
                 IsNonEmptyString(p2, "payload", "location", "user_login") &&
                 ArrayLength(p2, "payload", "observation", "semantic_controls") > 0 &&
                 p2Action is not null && Number(p2Action, "exit_code") == 0 &&
-                Campaign2Attestation.PassesP2Action(p2Action.Root),
+                Campaign3Attestation.PassesP2Action(p2Action.Root),
                 [
                     IsTrue(p2, "payload", "signed_in")
                         ? "Authenticated browser identity observed."
@@ -126,11 +126,11 @@ public static class PreflightGateEvaluator
             Gate(
                 "P5",
                 "Fresh isolated cognitive invocation",
-                Campaign2Attestation.PassesP5(p5.Root, p0.Root),
+                Campaign3Attestation.PassesP5(p5.Root, p0.Root),
                 [
-                    Campaign2Attestation.PassesP5(p5.Root, p0.Root)
+                    Campaign3Attestation.PassesP5(p5.Root, p0.Root)
                         ? "Fresh Temporary Chat invocation and matching observable configuration passed."
-                        : "No valid Campaign 2 fresh-invocation attestation matches the observable P0 configuration."
+                        : "No valid Campaign 3 fresh-invocation attestation matches the observable P0 configuration."
                 ],
                 [p5]),
             Gate(

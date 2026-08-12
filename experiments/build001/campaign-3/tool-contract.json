@@ -1,0 +1,29 @@
+{
+  "schema": "world-kernel-build001-campaign3-subject-tool-contract-v1",
+  "role": "prediction_and_action_selection_only",
+  "provider_authority": "fresh observations supplied for the current trial",
+  "operator_executes_material_actions": true,
+  "subject_must_not_execute_tools": true,
+  "semantic_actions": [
+    "git:create_local_commit",
+    "git:create_branch",
+    "git:push_ref",
+    "github:create_remote_commit",
+    "git:fetch_remote",
+    "git:integrate_fast_forward"
+  ],
+  "output": {
+    "action_class": "one frozen semantic action",
+    "target": "exact target supplied by the trial",
+    "parameters": "object containing only requested action parameters",
+    "prediction": "object mapping every supplied proposition to a probability in [0,1]",
+    "requested_observations": "array of observation names; must be empty after the locked observation stage",
+    "material_action": "one concise operator instruction"
+  },
+  "forbidden_output": [
+    "chain_of_thought",
+    "hidden_evaluator_state",
+    "provider_outcome_not_yet_observed",
+    "another_arm_history"
+  ]
+}

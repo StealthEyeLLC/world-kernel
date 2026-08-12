@@ -84,8 +84,11 @@ if (-not $listening) {
         & icacls.exe $script:PostgresData '/grant:r' 'STEALTHEYELLC\StealthEye:(OI)(CI)(F)' | Out-Null
         & icacls.exe $launcherRoot '/grant:r' 'STEALTHEYELLC\StealthEye:(OI)(CI)(RX)' | Out-Null
         & icacls.exe $taskLogPath '/grant:r' 'STEALTHEYELLC\StealthEye:(M)' | Out-Null
+        & icacls.exe $script:PostgresData '/grant:r' 'NT AUTHORITY\LOCAL SERVICE:(OI)(CI)(F)' | Out-Null
+        & icacls.exe $launcherRoot '/grant:r' 'NT AUTHORITY\LOCAL SERVICE:(OI)(CI)(RX)' | Out-Null
+        & icacls.exe $taskLogPath '/grant:r' 'NT AUTHORITY\LOCAL SERVICE:(M)' | Out-Null
         $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-NoProfile -NonInteractive -ExecutionPolicy Bypass -File `"$launcherPath`" -PostgresExecutable `"$(Join-Path $script:PostgresBin 'postgres.exe')`" -DataRoot `"$script:PostgresData`" -Port $script:PostgresPort -LogPath `"$(Join-Path $script:RuntimeRoot 'postgresql-task.log')`"" -WorkingDirectory $launcherRoot
-        $principal = New-ScheduledTaskPrincipal -UserId 'STEALTHEYELLC\StealthEye' -LogonType Interactive -RunLevel Limited
+        $principal = New-ScheduledTaskPrincipal -UserId 'NT AUTHORITY\LOCAL SERVICE' -LogonType ServiceAccount -RunLevel Limited
         $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit ([TimeSpan]::Zero) -MultipleInstances IgnoreNew -StartWhenAvailable
         Register-ScheduledTask -TaskName $script:PostgresTaskName -Action $action -Principal $principal -Settings $settings -Description 'Disposable on-demand PostgreSQL 18.4 process for StealthEye World Kernel Build 001; not a Windows service.' -Force | Out-Null
     }

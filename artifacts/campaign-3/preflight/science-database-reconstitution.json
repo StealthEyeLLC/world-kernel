@@ -1,0 +1,33 @@
+{
+    "schema":  "world-kernel-build001-campaign3-science-database-reconstitution-v1",
+    "campaign_id":  "build001-campaign-3",
+    "recorded_at":  "2026-08-12T08:17:58.9858941+00:00",
+    "reason":  "Remove only new Campaign 3 prefreeze non-scientific harness rows so the prospective science boundary is literal zero.",
+    "prior_campaign_data_modified":  false,
+    "databases_recreated":  [
+                                {
+                                    "name":  "world_kernel",
+                                    "owner":  "wk_owner"
+                                },
+                                {
+                                    "name":  "world_kernel_evaluator",
+                                    "owner":  "wk_eval_owner"
+                                }
+                            ],
+    "schemas_reapplied":  [
+                              "schemas/001-world-kernel.sql",
+                              "schemas/002-evaluator.sql",
+                              "schemas/003-operator-grants.sql"
+                          ],
+    "database_connect_acls":  [
+                                  "world_kernel|{=T/wk_owner,wk_owner=CTc/wk_owner,wk_operator=c/wk_owner}",
+                                  "world_kernel_evaluator|{=T/wk_eval_owner,wk_eval_owner=CTc/wk_eval_owner}"
+                              ],
+    "public_connect_revoked":  true,
+    "regression_after_reconstitution_ran_only_in_disposable_scratch_databases":  true,
+    "science_databases_used_for_regression":  false,
+    "scientific_subjects_run":  0,
+    "material_scientific_actions_run":  0,
+    "zero_state_sha256":  "71bd9d0532f4ccab0b55a5d34aeaa1bcac989b76c98481ba92aefd7476c40024",
+    "literal_zero_restored":  true
+}

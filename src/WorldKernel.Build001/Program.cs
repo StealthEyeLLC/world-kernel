@@ -48,6 +48,9 @@ internal static class CommandLine
                 case "eyebrowse-remote-commit":
                     await CommitThroughEyeBrowseAsync(options).ConfigureAwait(false);
                     return 0;
+                case "campaign3-compose-p0":
+                    await ComposeCampaign3P0Async(options).ConfigureAwait(false);
+                    return 0;
                 case "campaign2-register-block":
                     await RegisterCampaign2BlockAsync(options).ConfigureAwait(false);
                     return 0;
@@ -65,6 +68,24 @@ internal static class CommandLine
                     return 0;
                 case "campaign2-coverage":
                     await WriteCampaign2CoverageAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "campaign3-register-block":
+                    await RegisterCampaign3BlockAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "campaign3-register-reset":
+                    await RegisterCampaign3ResetAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "campaign3-lineage-harness":
+                    await RunCampaign3LineageHarnessAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "campaign3-begin":
+                    await BeginCampaign3EpisodeAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "campaign3-close":
+                    await CloseCampaign3EpisodeAsync(options).ConfigureAwait(false);
+                    return 0;
+                case "campaign3-coverage":
+                    await WriteCampaign3CoverageAsync(options).ConfigureAwait(false);
                     return 0;
                 case "freeze-preregistration":
                     await FreezePreregistrationAsync(options).ConfigureAwait(false);
@@ -300,6 +321,27 @@ internal static class CommandLine
         result.Payload
     }, JsonDefaults.Options));
 
+    private static async Task ComposeCampaign3P0Async(IReadOnlyDictionary<string, string> options)
+    {
+        var output = Required(options, "output");
+        var bytes = Campaign3P0Composer.Compose(
+            Required(options, "inspect-result"),
+            Required(options, "personalization-observation"),
+            Required(options, "base-prompt"),
+            Required(options, "tool-contract"),
+            Required(options, "trial-output-contract"));
+        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(output))!);
+        await File.WriteAllBytesAsync(output, bytes).ConfigureAwait(false);
+        using var document = JsonDocument.Parse(bytes);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            output,
+            output_sha256 = CanonicalJson.Sha256(bytes),
+            observable_configuration_fingerprint_sha256 = document.RootElement.GetProperty("observable_configuration_fingerprint_sha256").GetString()
+        }, JsonDefaults.Options));
+    }
+
     private static async Task RegisterCampaign2BlockAsync(IReadOnlyDictionary<string, string> options)
     {
         var record = await Campaign2Execution.RegisterAcquisitionBlockAsync(
@@ -416,6 +458,123 @@ internal static class CommandLine
         }, JsonDefaults.Options));
     }
 
+
+    private static async Task RegisterCampaign3BlockAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var record = await Campaign3Execution.RegisterAcquisitionBlockAsync(
+            Required(options, "repo-root"),
+            Required(options, "secret-file"),
+            Required(options, "input"),
+            Required(options, "output")).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            record.ConfigurationBlockId,
+            record.SeedId,
+            record.CommitmentSha256,
+            output = Required(options, "output")
+        }, JsonDefaults.Options));
+    }
+
+    private static async Task RegisterCampaign3ResetAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var record = await Campaign3Execution.RegisterAcquisitionResetAsync(
+            Required(options, "repo-root"),
+            Required(options, "secret-file"),
+            Required(options, "configuration-block"),
+            Required(options, "seed-id"),
+            Required(options, "reset-manifest"),
+            Required(options, "verification"),
+            Required(options, "output")).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            record.ConfigurationBlockId,
+            record.SeedId,
+            record.GenerationId,
+            record.ActualFingerprint,
+            output = Required(options, "output")
+        }, JsonDefaults.Options));
+    }
+    private static async Task RunCampaign3LineageHarnessAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var result = await Campaign3Execution.RunPrefreezeLineageHarnessAsync(
+            Required(options, "secret-file"),
+            Required(options, "evidence-root"),
+            Required(options, "working-copy"),
+            Required(options, "state-observation"),
+            Required(options, "semantic-action")).ConfigureAwait(false);
+        var output = Required(options, "output");
+        var bytes = CanonicalJson.Serialize(result);
+        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(output))!);
+        await File.WriteAllBytesAsync(output, bytes).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new { ok = true, result.SemanticAction, result.TrialId, result.ActionId, result.PredictionId, result.DispatchSealPhaseId, result.PredictionBeforeDispatch, result.RemoteClaimSubjectMatched, result.RemoteClaimProviderMatched, result.LocalClaimsSubjectMatched, result.OutcomeCount, result.PredictionEvaluationCount, result.TransitionEpisodeCount, result.MaterialActionDispatched, output, output_sha256 = CanonicalJson.Sha256(bytes) }, JsonDefaults.Options));
+    }
+
+    private static async Task BeginCampaign3EpisodeAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var record = await Campaign3Execution.BeginAsync(
+            Required(options, "repo-root"),
+            Required(options, "secret-file"),
+            Required(options, "evidence-root"),
+            Required(options, "input"),
+            Required(options, "output")).ConfigureAwait(false);
+        var bytes = await File.ReadAllBytesAsync(Required(options, "output")).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            phase = record.Phase,
+            record.TrialId,
+            record.ActionId,
+            record.PredictionId,
+            record.DispatchPhaseId,
+            record.DispatchedAt,
+            output = Required(options, "output"),
+            output_sha256 = CanonicalJson.Sha256(bytes)
+        }, JsonDefaults.Options));
+    }
+
+    private static async Task CloseCampaign3EpisodeAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var record = await Campaign3Execution.CloseAsync(
+            Required(options, "repo-root"),
+            Required(options, "secret-file"),
+            Required(options, "evidence-root"),
+            Required(options, "begin"),
+            Required(options, "receipt"),
+            Required(options, "post-observation"),
+            Required(options, "provider-outcome"),
+            Required(options, "output")).ConfigureAwait(false);
+        var bytes = await File.ReadAllBytesAsync(Required(options, "output")).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            record.TrialId,
+            record.EpisodeId,
+            record.EligibilityStatus,
+            record.MeanBrierLoss,
+            output = Required(options, "output"),
+            output_sha256 = CanonicalJson.Sha256(bytes)
+        }, JsonDefaults.Options));
+    }
+
+    private static async Task WriteCampaign3CoverageAsync(IReadOnlyDictionary<string, string> options)
+    {
+        var coverage = await Campaign3Execution.WriteCoverageAsync(
+            Required(options, "repo-root"),
+            Required(options, "secret-file"),
+            Required(options, "output")).ConfigureAwait(false);
+        var bytes = await File.ReadAllBytesAsync(Required(options, "output")).ConfigureAwait(false);
+        Console.WriteLine(JsonSerializer.Serialize(new
+        {
+            ok = true,
+            coverage.ConfigurationBlocks,
+            coverage.StopRuleSatisfied,
+            output = Required(options, "output"),
+            output_sha256 = CanonicalJson.Sha256(bytes)
+        }, JsonDefaults.Options));
+    }
+
     private static async Task FreezePreregistrationAsync(IReadOnlyDictionary<string, string> options)
     {
         var repositoryRoot = Required(options, "repo-root");
@@ -502,11 +661,17 @@ internal static class CommandLine
           codeeye-observe --node-executable PATH --scripts-root PATH --sdk-path PATH --solution-path PATH
           eyebrowse-preflight --node-executable PATH --scripts-root PATH --sdk-path PATH --repository-url URL
           eyebrowse-remote-commit --node-executable PATH --scripts-root PATH --sdk-path PATH --branch NAME --file PATH --text TEXT --message TEXT
+          campaign3-compose-p0 --inspect-result PATH --personalization-observation PATH --base-prompt PATH --tool-contract PATH --trial-output-contract PATH --output PATH
           campaign2-register-block --repo-root PATH --secret-file PATH --input PATH --output PATH
           campaign2-register-reset --repo-root PATH --secret-file PATH --configuration-block ID --seed-id ID --reset-manifest PATH --verification PATH --output PATH
           campaign2-begin --repo-root PATH --secret-file PATH --evidence-root PATH --input PATH --output PATH
           campaign2-close --repo-root PATH --secret-file PATH --evidence-root PATH --begin PATH --receipt PATH --post-observation PATH --provider-outcome PATH --output PATH
           campaign2-coverage --repo-root PATH --secret-file PATH --output PATH
+          campaign3-register-block --repo-root PATH --secret-file PATH --input PATH --output PATH
+          campaign3-register-reset --repo-root PATH --secret-file PATH --configuration-block ID --seed-id ID --reset-manifest PATH --verification PATH --output PATH
+          campaign3-begin --repo-root PATH --secret-file PATH --evidence-root PATH --input PATH --output PATH
+          campaign3-close --repo-root PATH --secret-file PATH --evidence-root PATH --begin PATH --receipt PATH --post-observation PATH --provider-outcome PATH --output PATH
+          campaign3-coverage --repo-root PATH --secret-file PATH --output PATH
           freeze-preregistration --repo-root PATH --secret-file PATH --output PATH
           preflight-evaluate --artifact-directory PATH --output PATH
           phase-authorize --preflight-manifest PATH --phase acquisition|pilot|confirmatory|drift

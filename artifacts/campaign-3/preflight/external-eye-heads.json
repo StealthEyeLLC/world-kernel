@@ -1,0 +1,12 @@
+{
+    "schema":  "world-kernel-build001-campaign3-external-heads-v1",
+    "campaign_id":  "build001-campaign-3",
+    "observed_at":  "2026-08-12T08:17:58.7422728+00:00",
+    "provider":  "GitHub administration connector",
+    "heads":  {
+                  "eye":  "53948b74701f51c29c9322dfa9f017ba6b45f4a4",
+                  "codeeye":  "1ca0f93d64bc20bccb3b96dbcda43a2232783609",
+                  "eyebrowse":  "2e27f44ebd3522d0d26b036dc57f790535df3533"
+              },
+    "matches_original_preregistration":  true
+}

@@ -1,0 +1,31 @@
+{
+    "schema":  "world-kernel-build001-campaign3-campaign2r-closure-v1",
+    "recorded_at":  "2026-08-12T08:18:38.9566352+00:00",
+    "campaign2_run_a":  {
+                            "classification":  "FAILURE",
+                            "terminal_commit":  "4bc35bac9ee20268f3ce2966fc62f2c2ed4cff0b"
+                        },
+    "campaign2r":  {
+                       "provider_branch":  "build001-campaign-2r",
+                       "provider_head":  "4b1d5e415797db7011c6e580120fe394758b15f0",
+                       "provider_tree":  "4a27ce78a7161ee556f0bb6ae57cdaa64df8d113",
+                       "local_freeze_candidate":  "3d130abd9e2f10ab29fea7938314b9198f5dbeb6",
+                       "local_candidate_execution_affecting_changes":  0,
+                       "scientific_counts":  {
+                                                 "action_attempts":  0,
+                                                 "predictions":  0,
+                                                 "outcomes":  0,
+                                                 "prediction_evaluations":  0,
+                                                 "transition_episodes":  0,
+                                                 "claims":  0,
+                                                 "correspondences":  0,
+                                                 "seed_commitments":  0,
+                                                 "hidden_configurations":  0,
+                                                 "reset_verifications":  0,
+                                                 "scientific_result_files":  0
+                                             },
+                       "classification":  "ABORTED BEFORE SCIENTIFIC ACQUISITION",
+                       "engineering_hardening_retained":  true,
+                       "scientific_treatment_comparison_observed":  false
+                   }
+}

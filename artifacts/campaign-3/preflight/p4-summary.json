@@ -1,0 +1,29 @@
+{
+    "schema":  "world-kernel-build001-campaign3-p4-summary-v1",
+    "campaign_id":  "build001-campaign-3",
+    "status":  "PASS",
+    "postgres":  {
+                     "version":  "18.4",
+                     "owner":  "NT AUTHORITY\\LOCAL SERVICE",
+                     "loopback":  "127.0.0.1:55431",
+                     "windows_scm_service_registered":  false
+                 },
+    "regression":  {
+                       "passed":  21,
+                       "failed":  0,
+                       "sha256":  "6e0a42fdbbe4682ba2da3e26d86453c21b121dbb4a5e3e6949fa304c10fe72b9",
+                       "isolated_scratch_databases":  true
+                   },
+    "projection_rebuild":  {
+                               "passed":  true,
+                               "authoritative_current_state_table":  false,
+                               "rebuild_source":  "append-only durable records plus schema view definition"
+                           },
+    "recovery":  {
+                     "passed":  true,
+                     "mode":  "immediate stop then WAL recovery restart",
+                     "durable_counts_identical":  true
+                 },
+    "science_databases_used_for_regression":  false,
+    "observed_at":  "2026-08-12T08:22:09.6978928+00:00"
+}

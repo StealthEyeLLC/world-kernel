@@ -1,0 +1,25 @@
+{
+    "schema":  "world-kernel-build001-campaign3-prefreeze-nonscientific-harness-history-v1",
+    "campaign_id":  "build001-campaign-3",
+    "classification":  "NON-SCIENTIFIC PREFREEZE ENGINEERING HARNESS",
+    "reconstructed_from_prior_machine_database_read":  true,
+    "counts":  {
+                   "action_attempts":  6,
+                   "predictions":  6,
+                   "claims":  42,
+                   "correspondences":  6,
+                   "outcomes":  0,
+                   "prediction_evaluations":  0,
+                   "transition_episodes":  0
+               },
+    "producer_requirements":  {
+                                  "non_scientific_harness":  true,
+                                  "scored":  false,
+                                  "material_dispatch_permitted":  false
+                              },
+    "scientific_subject_output_present":  false,
+    "material_action_dispatched":  false,
+    "scientific_result_observed":  false,
+    "disposition":  "Preserved as engineering history; Campaign 3-only science databases were recreated before freeze. Prior campaigns were untouched.",
+    "recorded_at":  "2026-08-12T08:17:58.9744417+00:00"
+}

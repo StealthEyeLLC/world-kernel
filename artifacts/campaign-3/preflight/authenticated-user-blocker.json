@@ -1,0 +1,23 @@
+{
+    "schema":  "world-kernel-build001-campaign3-authenticated-user-blocker-v1",
+    "campaign_id":  "build001-campaign-3",
+    "attempted_fixture_only":  true,
+    "target_ref":  "refs/heads/wk-b001-c3-auth-probe-orchestrator",
+    "exit_code":  128,
+    "credential_failure":  true,
+    "interactive_stealtheye_profile_loaded":  false,
+    "provider_mutation_credited":  false,
+    "blocks":  [
+                   "P1 authenticated provider reset/write",
+                   "P3 authenticated accepted/policy-rejected push",
+                   "P6 deterministic accepted/rejected provider reset",
+                   "P0/P2/P5 interactive browser attestations"
+               ],
+    "output":  [
+                   "fatal: Cannot prompt because user interactivity has been disabled.",
+                   "fatal: could not read Username for \u0027https://github.com\u0027: terminal prompts disabled"
+               ],
+    "observed_at":  "2026-08-12T08:14:33.4965087+00:00",
+    "provider_ref_absent_after_probe":  true,
+    "provider_ref_verification":  "GitHub administration connector"
+}

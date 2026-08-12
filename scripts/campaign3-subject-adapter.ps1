@@ -1,0 +1,37 @@
+param(
+    [Parameter(Mandatory = $true)]
+    [string] $RequestPath,
+    [Parameter(Mandatory = $true)]
+    [string] $OutputPath
+)
+
+$ErrorActionPreference = 'Stop'
+$repoRoot = [IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
+$campaignRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot 'experiments\build001\campaign-3')).TrimEnd('\') + '\'
+$request = [IO.Path]::GetFullPath($RequestPath)
+$output = [IO.Path]::GetFullPath($OutputPath)
+foreach ($candidate in @($request, $output)) {
+    if (-not $candidate.StartsWith($campaignRoot, [StringComparison]::OrdinalIgnoreCase)) {
+        throw "Campaign 3 subject path is outside the experiment namespace: $candidate"
+    }
+}
+if (-not (Test-Path $request -PathType Leaf)) { throw "Subject request is absent: $request" }
+if (Test-Path $output) { throw "Subject output already exists and will not be overwritten: $output" }
+
+$script = Join-Path $PSScriptRoot 'campaign3-edge-subject.ps1'
+$expectedScript = 'f6e057758e7bc21b417aaf487fa79c034c632a7fc64a0820904c3a68a284d205'
+
+function Get-NormalizedSha256([string] $Path) {
+    $text = [IO.File]::ReadAllText($Path).Replace("`r`n", "`n")
+    $algorithm = [Security.Cryptography.SHA256]::Create()
+    try { $hash = $algorithm.ComputeHash([Text.Encoding]::UTF8.GetBytes($text)) }
+    finally { $algorithm.Dispose() }
+    return -join ($hash | ForEach-Object { $_.ToString('x2') })
+}
+
+if ((Get-NormalizedSha256 $script) -ne $expectedScript) {
+    throw 'Frozen Campaign 3 subject driver hash changed.'
+}
+
+& $script -RequestPath $request -OutputPath $output
+exit $LASTEXITCODE

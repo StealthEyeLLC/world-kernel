@@ -1,0 +1,27 @@
+{
+    "schema":  "world-kernel-build001-campaign3-p3-summary-v1",
+    "campaign_id":  "build001-campaign-3",
+    "provider":  {
+                     "fixture_repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+                     "main_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+                     "remote_ahead_branch":  "wk-b001-c3-p3-ff",
+                     "remote_ahead_head":  "413d61a9c05d2544cc8b9b11271b39f9232d6a1c",
+                     "verified_by":  "GitHub administration connector"
+                 },
+    "native_git":  {
+                       "create_local_branch":  "PASS",
+                       "create_local_commit":  "PASS",
+                       "fetch_exact_provider_commit":  "PASS",
+                       "integrate_ff_only_accept":  "PASS",
+                       "integrate_ff_only_non_fast_forward_reject":  "PASS"
+                   },
+    "authenticated_push":  {
+                               "status":  "BLOCKED_INTERACTIVE",
+                               "system_probe_exit_code":  128,
+                               "credential_failure":  true,
+                               "probe_ref_absent_on_provider":  true,
+                               "credited_as_science_or_P3_pass":  false
+                           },
+    "status":  "PARTIAL",
+    "observed_at":  "2026-08-12T08:22:09.5398682+00:00"
+}
