@@ -15,17 +15,22 @@
     "repair":  {
                    "scope":  "single validator completeness expression only",
                    "old_script_sha256":  "1b1cfd77b1e1b139ab859e30187885a2678181982b6e02b367c3cfe23b64b5b8",
-                   "new_script_sha256":  "ced17e343606df4e8f38fed1e364c460bfb650de5b0de1e946a0732bc81f33b4",
+                   "new_script_sha256":  "9eb2c7abced92bfb3847fdce96213c39c5050959249c060485007603c2e3c83c",
                    "parser_errors":  0,
                    "real_gate_count":  7,
                    "real_missing_gate_count":  0,
                    "synthetic_missing_gate":  "P6",
-                   "synthetic_missing_gate_count":  1
+                   "synthetic_missing_gate_count":  1,
+                   "provider_blob_sha":  "5815a4ef131433f95521a0ceedf60f7a8eb19247",
+                   "real_gate_set_accepts":  true,
+                   "synthetic_missing_gate_rejects":  true
                },
     "post_failure_zero_state":  {
                                     "scientific_counts_zero":  true,
                                     "kernel_total":  0,
                                     "evaluator_total":  0,
                                     "verification_sha256":  "71905ed948becd2f085d633b5ed5e497e788cc45165334ef0154c92fc86d8e5c"
-                                }
+                                },
+    "evidence_corrected_at":  "2026-08-12T14:50:51.9454992+00:00",
+    "evidence_correction_reason":  "Concurrent intermediate hash was recorded before the provider-published final one-line predicate; corrected to the exact provider script bytes without changing the repair scope."
 }
