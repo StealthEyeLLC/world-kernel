@@ -1,0 +1,52 @@
+{
+    "schema":  "world-kernel-build001-campaign3-terminal-boundary-failure-v1",
+    "campaign_id":  "build001-campaign-3",
+    "terminal_status":  "ABORTED_AFTER_PROSPECTIVE_FREEZE_BEFORE_SCIENTIFIC_ACQUISITION",
+    "observed_at":  "2026-08-12T15:00:24.4406073+00:00",
+    "freeze":  {
+                   "provider_commit":  "648f1343c3355bd4c1f60529c7366055004b2d27",
+                   "provider_tree":  "c4c956e6259719dd7074776da65ce70b676e196c",
+                   "implementation_commit":  "336894b8245c4b21ece26b90e15ed643f7b0f32b",
+                   "implementation_tree":  "221463a1b6beb684741f7857b1f19fd2d334e69c",
+                   "manifest_sha256":  "4c39cf3ae6b57e2fd4143650513dc6f24bd1c81b6f528af1bb57a870c6cf23ac",
+                   "preflight_manifest_sha256":  "57f783021447831b251a80cbda083264f0b84c55972c60d34302567cc0e8f3f4",
+                   "freeze_zero_state_sha256":  "6f981b0859552c10e57a6f9f28b2c3f14cb6dda17a7cf26a39125d60ffd298d6",
+                   "normalized_frozen_files_verified":  89,
+                   "authority_files_verified":  7
+               },
+    "science_state":  {
+                          "scientific_subjects_run":  0,
+                          "scientific_counts_zero":  true,
+                          "post_freeze_observation_sha256":  "27f806062dc6f9c1163f35912515aff57fa3d6c2cbba3784a2f3b73595c3c4fc",
+                          "acquisition_started":  false
+                      },
+    "defect":  {
+                   "component":  "Campaign3Boundary.PassesScienceAuthorization",
+                   "frozen_source":  "src/WorldKernel.Build001/Campaign3Boundary.cs",
+                   "truthful_provider_head":  "648f1343c3355bd4c1f60529c7366055004b2d27",
+                   "truthful_provider_tree":  "c4c956e6259719dd7074776da65ce70b676e196c",
+                   "validator_expected_provider_head":  "336894b8245c4b21ece26b90e15ed643f7b0f32b",
+                   "validator_expected_provider_tree":  "221463a1b6beb684741f7857b1f19fd2d334e69c",
+                   "actual_frozen_method_probe":  {
+                                                      "truthful_published_head_authorization_passes":  false,
+                                                      "counterfactual_prefreeze_head_authorization_passes":  true,
+                                                      "provider_verification_sha256":  "868f510724227cd498ba784cc56ab5715e57235eb8ebe3ab895a6c0c0a57cd8a"
+                                                  },
+                   "truthful_science_authorization_possible":  false
+               },
+    "authority_response":  {
+                               "post_freeze_source_repair_allowed":  false,
+                               "campaign3_source_repaired_after_freeze":  false,
+                               "scientific_subject_invoked_after_freeze":  false,
+                               "required_next_boundary":  "build001-campaign-4"
+                           },
+    "provider_observer":  "GitHub administration connector",
+    "provider_evidence":  {
+                              "freeze_branch":  "turn568",
+                              "freeze_manifest":  "turn569/turn571",
+                              "freeze_manifest_sidecar":  "turn570",
+                              "external_eye":  "turn563",
+                              "external_codeeye":  "turn564",
+                              "external_eyebrowse":  "turn565"
+                          }
+}
