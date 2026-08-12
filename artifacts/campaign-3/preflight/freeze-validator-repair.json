@@ -1,0 +1,31 @@
+{
+    "schema":  "world-kernel-build001-campaign3-freeze-validator-repair-v1",
+    "campaign_id":  "build001-campaign-3",
+    "observed_at":  "2026-08-12T14:48:26.0232976+00:00",
+    "pre_repair_commit":  "959c63fcaeb97fa0c14e193c0186d219e3db9bd9",
+    "pre_repair_tree":  "13231e16df7be98fde45106582758d3319a0d2e3",
+    "freeze_manifest_created":  false,
+    "scientific_subjects_run":  false,
+    "failure":  {
+                    "exit_code":  1,
+                    "stage":  "pre-manifest P0-P6 completeness validation",
+                    "error":  "The property Count cannot be found on this object under Set-StrictMode.",
+                    "line":  25
+                },
+    "repair":  {
+                   "scope":  "single validator completeness expression only",
+                   "old_script_sha256":  "1b1cfd77b1e1b139ab859e30187885a2678181982b6e02b367c3cfe23b64b5b8",
+                   "new_script_sha256":  "ced17e343606df4e8f38fed1e364c460bfb650de5b0de1e946a0732bc81f33b4",
+                   "parser_errors":  0,
+                   "real_gate_count":  7,
+                   "real_missing_gate_count":  0,
+                   "synthetic_missing_gate":  "P6",
+                   "synthetic_missing_gate_count":  1
+               },
+    "post_failure_zero_state":  {
+                                    "scientific_counts_zero":  true,
+                                    "kernel_total":  0,
+                                    "evaluator_total":  0,
+                                    "verification_sha256":  "71905ed948becd2f085d633b5ed5e497e788cc45165334ef0154c92fc86d8e5c"
+                                }
+}

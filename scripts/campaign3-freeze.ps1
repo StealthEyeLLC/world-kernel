@@ -22,7 +22,7 @@ foreach($required in @($preflightPath,$p0Path,$p5Path,$headsPath)){if(-not(Test-
 $preflight=Get-Content $preflightPath -Raw|ConvertFrom-Json
 if(-not $preflight.all_preflight_gates_passed -or -not $preflight.acquisition_authorized){throw 'P0-P6 are not all passed/authorized.'}
 $gateIds=@($preflight.gates|ForEach-Object{$_.id})
-if(-not (@('P0','P1','P2','P3','P4','P5','P6')|ForEach-Object{$gateIds -contains $_}|Where-Object{$_ -eq $false}).Count -eq 0){throw 'P0-P6 gate set is incomplete.'}
+if(@(@('P0','P1','P2','P3','P4','P5','P6')|Where-Object{$gateIds -notcontains $_}).Count -ne 0){throw 'P0-P6 gate set is incomplete.'}
 if(@($preflight.gates|Where-Object{-not $_.passed}).Count -ne 0){throw 'At least one P0-P6 gate is not passed.'}
 $p0=Get-Content $p0Path -Raw|ConvertFrom-Json
 $p5=Get-Content $p5Path -Raw|ConvertFrom-Json
