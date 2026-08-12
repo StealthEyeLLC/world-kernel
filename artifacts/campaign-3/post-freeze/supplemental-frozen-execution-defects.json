@@ -1,0 +1,138 @@
+{
+    "schema":  "world-kernel-build001-campaign3-supplemental-frozen-execution-defects-v1",
+    "campaign_id":  "build001-campaign-3",
+    "recorded_at":  "2026-08-12T15:11:06.9735161+00:00",
+    "evidence_only":  true,
+    "terminal_disposition":  "ABORTED_AFTER_PROSPECTIVE_FREEZE_BEFORE_FIRST_SCIENTIFIC_SUBJECT",
+    "authority":  {
+                      "post_freeze_source_repair_performed":  false,
+                      "replacement_freeze_created":  false,
+                      "scientific_subject_invoked":  false,
+                      "campaign4_execution_started_by_this_record":  false
+                  },
+    "freeze":  {
+                   "freeze_commit":  "648f1343c3355bd4c1f60529c7366055004b2d27",
+                   "freeze_tree":  "c4c956e6259719dd7074776da65ce70b676e196c",
+                   "manifest_sha256":  "4c39cf3ae6b57e2fd4143650513dc6f24bd1c81b6f528af1bb57a870c6cf23ac",
+                   "frozen_implementation_commit":  "336894b8245c4b21ece26b90e15ed643f7b0f32b",
+                   "frozen_implementation_tree":  "221463a1b6beb684741f7857b1f19fd2d334e69c",
+                   "frozen_subject_configuration_fingerprint_sha256":  "b11c931b9fbcda0a1e21587f74233b54a84c50e603bc0d17c7d8e933a0eeba75",
+                   "post_freeze_source_repair_allowed":  false
+               },
+    "existing_abort":  {
+                           "commit":  "95c2f88b764415d5c7c576ff285363737344cee7",
+                           "tree":  "ae61cf5a122c8c7bdf92a4992d5eddbb5951a0b2",
+                           "artifact":  "artifacts\\campaign-3\\post-freeze\\boundary-authorization-defect.json",
+                           "artifact_sha256":  "eb93c7adefe1f0636ca56e58ece63aefe9c70b061468133944a69116200dec6d"
+                       },
+    "defects":  [
+                    {
+                        "id":  "C3-PF-SUP-001",
+                        "title":  "Frozen acquisition controller stamps stale subject configuration fingerprint",
+                        "severity":  "fatal_for_campaign3_scientific_execution",
+                        "frozen_controller_value":  "afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5",
+                        "frozen_manifest_value":  "b11c931b9fbcda0a1e21587f74233b54a84c50e603bc0d17c7d8e933a0eeba75",
+                        "evidence":  [
+                                         {
+                                             "path":  "scripts/campaign3-acquisition-controller.ps1",
+                                             "line":  33,
+                                             "fact":  "Controller hardcodes the stale fingerprint."
+                                         },
+                                         {
+                                             "path":  "scripts/campaign3-acquisition-controller.ps1",
+                                             "line":  265,
+                                             "fact":  "Controller passes the hardcoded value as -ConfigurationFingerprint when building each subject request."
+                                         },
+                                         {
+                                             "path":  "scripts/campaign3-new-subject-request.ps1",
+                                             "line":  65,
+                                             "fact":  "Request builder writes the supplied value to observable_configuration_fingerprint_sha256."
+                                         }
+                                     ],
+                        "effect":  "A scientific subject-request.json created by the frozen controller would attest a configuration fingerprint different from the prospectively frozen Campaign 3 subject configuration."
+                    },
+                    {
+                        "id":  "C3-PF-SUP-002",
+                        "title":  "Strict Campaign 3 science authorization is not wired into the acquisition entry path",
+                        "severity":  "fatal_for_campaign3_scientific_execution",
+                        "evidence":  [
+                                         {
+                                             "path":  "src/WorldKernel.Build001/Campaign3Boundary.cs",
+                                             "lines":  "7-43",
+                                             "fact":  "Defines ScienceAuthorizationSchema and PassesScienceAuthorization with freeze, provider, zero-state, fingerprint, and external-head bindings."
+                                         },
+                                         {
+                                             "path":  "scripts/campaign3-acquisition-controller.ps1",
+                                             "line":  159,
+                                             "fact":  "Acquisition entry calls only phase-authorize against preflight-gates.json."
+                                         },
+                                         {
+                                             "path":  "src/WorldKernel.Build001/Program.cs",
+                                             "lines":  "611-615",
+                                             "fact":  "phase-authorize calls only PreflightGateEvaluator.EnsurePhaseAuthorized(preflight-manifest, phase)."
+                                         },
+                                         {
+                                             "scope":  "src+scripts",
+                                             "fact":  "Search for PassesScienceAuthorization( finds only its definition in Campaign3Boundary.cs and no operational caller."
+                                         }
+                                     ],
+                        "effect":  "The frozen acquisition path can proceed from preflight phase authorization without consuming the stricter post-freeze science-authorization record required by the Campaign 3 boundary design. This compounds the already-recorded post-freeze authorization defect; it does not authorize a repair."
+                    }
+                ],
+    "source_immutability":  {
+                                "frozen_implementation_commit":  "336894b8245c4b21ece26b90e15ed643f7b0f32b",
+                                "current_abort_commit":  "95c2f88b764415d5c7c576ff285363737344cee7",
+                                "changed_src_or_scripts_path_count":  0,
+                                "verified_identical_blobs":  [
+                                                                 {
+                                                                     "path":  "scripts/campaign3-acquisition-controller.ps1",
+                                                                     "blob":  "33953b27045bc247414ddb341dee5fcd086dfb1d",
+                                                                     "sha256":  "85609597659677df8a2a1d7f698d3149cd02db93a1d520cf85ad36f65fac32dc"
+                                                                 },
+                                                                 {
+                                                                     "path":  "scripts/campaign3-new-subject-request.ps1",
+                                                                     "blob":  "de8f357ba96549948af25a14d7d3643969c1d9c9",
+                                                                     "sha256":  "662d3f4a62befdb69b4f75d74dcef635467419377804e5085f0304a2b6aa7595"
+                                                                 },
+                                                                 {
+                                                                     "path":  "src/WorldKernel.Build001/Campaign3Boundary.cs",
+                                                                     "blob":  "849bf03a35aeb1ba85e7ca2d872661a5be93c2a6",
+                                                                     "sha256":  "1cd168baf5c8069118478ebc699c7bbc6cf9068b98b65ce58f7d587155d05ddd"
+                                                                 },
+                                                                 {
+                                                                     "path":  "src/WorldKernel.Build001/ExperimentControl.cs",
+                                                                     "blob":  "50574946669236c747123343862fcc47997dbe6b",
+                                                                     "sha256":  "62c8178a91fa12c69b3b74afc8e4dd80803299df499b309507644cca4c71b54b"
+                                                                 },
+                                                                 {
+                                                                     "path":  "src/WorldKernel.Build001/Program.cs",
+                                                                     "blob":  "50e39449bb03ddc0ca44416247c0a5ae013bb13c",
+                                                                     "sha256":  "e275eb8cfdcda47851665057164822098441ad332121151a56aa263a4d912517"
+                                                                 }
+                                                             ]
+                            },
+    "scientific_boundary":  {
+                                "subject_request_count":  0,
+                                "subject_result_count":  0,
+                                "acquisition_directory_count":  0,
+                                "fresh_zero_state":  {
+                                                         "observed_at":  "2026-08-12T15:10:18.8139818+00:00",
+                                                         "scientific_counts_zero":  true,
+                                                         "kernel_total":  0,
+                                                         "evaluator_total":  0,
+                                                         "scientific_files":  0,
+                                                         "subject_results":  0,
+                                                         "episode_exports":  0,
+                                                         "hidden_evaluator_results":  0,
+                                                         "temporary_verification_sha256":  "7056ac05f1a64414b8667c45e5b2f6ded3883a6131ad7b8a2c4a15d1a6cf3ab0"
+                                                     }
+                            },
+    "next_boundary":  {
+                          "required_campaign":  "build001-campaign-4",
+                          "provider_ref_observed_at_recording":  "refs/heads/build001-campaign-4",
+                          "provider_ref_sha_at_recording":  "95c2f88b764415d5c7c576ff285363737344cee7",
+                          "distinct_campaign4_commit_observed":  false,
+                          "campaign4_execution_authorized_by_this_record":  false
+                      },
+    "conclusion":  "Campaign 3 remains terminally aborted after its prospective freeze and before the first scientific subject. These defects are supplemental evidence for a fresh campaign boundary only; they do not permit post-freeze repair or scientific continuation in Campaign 3."
+}
