@@ -1,0 +1,29 @@
+{
+    "schema":  "world-kernel-build001-campaign2-post-publication-reconstruction-v1",
+    "campaign_id":  "build001-campaign-2",
+    "recorded_at":  "2026-08-12T01:22:46.5653087+00:00",
+    "branch":  "build001-campaign-2",
+    "published_checkpoint":  {
+                                 "commit":  "0136bb24180194571970cc59be87ec3cd8a2dea4",
+                                 "message":  "Complete Campaign 2 acquisition",
+                                 "parent":  "f0aca8910d4918f874ec8eab4d80080dba36cef6",
+                                 "remote_verified":  true,
+                                 "normal_fast_forward":  true,
+                                 "force_push":  false
+                             },
+    "live_reconstruction":  {
+                                "controller_state_before_adjudication":  "running",
+                                "controller_block":  1,
+                                "controller_trial_id":  "c2-acq-01-lc",
+                                "configuration_block_directories":  1,
+                                "hidden_acquisition_seed_files":  1,
+                                "campaign2_action_attempts":  0,
+                                "campaign2_predictions":  0,
+                                "campaign2_outcomes":  0,
+                                "campaign2_transition_episodes":  0,
+                                "coverage_artifact_present":  false,
+                                "acquisition_complete_artifact_present":  false,
+                                "blocks_02_through_24_found":  false
+                            },
+    "conclusion":  "The published commit message did not match the durable scientific state. No valid Campaign 2 acquisition episode existed at publication. The historical commit is preserved and is not rewritten."
+}

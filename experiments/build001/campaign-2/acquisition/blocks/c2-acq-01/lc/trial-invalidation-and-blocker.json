@@ -1,0 +1,62 @@
+{
+    "schema":  "world-kernel-build001-campaign2-trial-invalidation-v1",
+    "campaign_id":  "build001-campaign-2",
+    "phase":  "acquisition",
+    "configuration_block_id":  "c2-acq-01",
+    "trial_id":  "c2-acq-01-lc",
+    "semantic_action":  "git:create_local_commit",
+    "recorded_at":  "2026-08-12T01:22:46.5653087+00:00",
+    "seed_id":  "campaign2-acquisition-block-seed-01-lc",
+    "seed_preserved":  true,
+    "attempts":  [
+                     {
+                         "artifact":  "subject-result.json",
+                         "passed":  false,
+                         "reason":  "adapter_error: ChatGPT prompt editor did not retain the exact locked prompt",
+                         "operator_output_produced":  false,
+                         "material_action_dispatched":  false
+                     },
+                     {
+                         "artifact":  "subject-result-replacement-001.json",
+                         "passed":  false,
+                         "reason":  "adapter_error: ChatGPT prompt editor did not retain the exact locked prompt",
+                         "operator_output_produced":  false,
+                         "material_action_dispatched":  false
+                     },
+                     {
+                         "artifact":  "subject-result-replacement-002.json",
+                         "passed":  false,
+                         "reason":  "adapter_error: ChatGPT prompt editor did not retain the exact locked prompt",
+                         "operator_output_produced":  false,
+                         "material_action_dispatched":  false
+                     },
+                     {
+                         "artifact":  "subject-result-retry-004.json",
+                         "passed":  true,
+                         "reason":  "fresh subject invocation valid after same-facts CRLF-to-LF current_observations normalization",
+                         "operator_output_produced":  true,
+                         "model":  "5.6 Sol",
+                         "reasoning":  "Extra High",
+                         "material_action_dispatched":  false,
+                         "begin_result":  "failed",
+                         "begin_error":  "23514: material/provider Claim lacks subject-matched Observation/Evidence lineage"
+                     }
+                 ],
+    "database_after_failed_begin":  {
+                                        "action_attempts":  0,
+                                        "predictions":  0,
+                                        "outcomes":  0,
+                                        "transition_episodes":  0
+                                    },
+    "lineage_defect":  {
+                           "frozen_file":  "src/WorldKernel.Build001/Campaign2Execution.cs",
+                           "behavior":  "pre-state insertion attempts github:remote_ref_head with remote manifestation as Claim subject but local working-copy Observation/Evidence as primary lineage",
+                           "kernel_guard":  "schemas/001-world-kernel.sql wk.validate_claim_lineage",
+                           "kernel_guard_result":  "rejected",
+                           "corrupt_claim_persisted":  false
+                       },
+    "preregistered_replacement_policy_applicable":  true,
+    "continuation_decision":  "STOP_CAMPAIGN_2",
+    "continuation_reason":  "A valid continuation requires changing frozen execution behavior after operator output. The original preregistration forbids retroactive post-freeze material changes to salvage the campaign.",
+    "classification":  "FAILURE"
+}

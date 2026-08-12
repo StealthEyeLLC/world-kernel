@@ -1,0 +1,65 @@
+{
+    "schema":  "world-kernel-build001-campaign2-final-artifact-hash-index-v1",
+    "generated_at":  "2026-08-12T01:23:18.6952924+00:00",
+    "branch":  "build001-campaign-2",
+    "base_commit":  "0136bb24180194571970cc59be87ec3cd8a2dea4",
+    "classification":  "FAILURE",
+    "pilot_freeze_present":  false,
+    "items":  [
+                  {
+                      "path":  "docs/campaigns/build001-campaign-2/04-CONFIRMATORY-RESULTS.md",
+                      "sha256":  "93d22433a038ab55110714d8688d16f092f373b2769793f2dda9b957939c0e3c",
+                      "bytes":  6461
+                  },
+                  {
+                      "path":  "docs/campaigns/build001-campaign-2/05-FINAL-BUILD-001-ADJUDICATION.md",
+                      "sha256":  "a990fe3b2f5e92d5fc9d24eea69721f92d363d6ec1a6a159254ad1c0333843f8",
+                      "bytes":  2926
+                  },
+                  {
+                      "path":  "experiments/build001/campaign-2/acquisition/controller-status.json",
+                      "sha256":  "b744e4c77d3b82eb3cca0d9d7db04f916110d668213de08a3b78dca8905b3355",
+                      "bytes":  669
+                  },
+                  {
+                      "path":  "experiments/build001/campaign-2/acquisition/engineering/post-publication-live-reconstruction.json",
+                      "sha256":  "c1cadbda605fc9876822aff2fee00ef5783ee225d1b59d07995f677adc8fa424",
+                      "bytes":  1849
+                  },
+                  {
+                      "path":  "experiments/build001/campaign-2/acquisition/engineering/editor-newline-normalization-diagnostic.json",
+                      "sha256":  "029e58cd540316eb38e2f7e5b0491e1e0446409907cd03b2e8396d896a033c51",
+                      "bytes":  1053
+                  },
+                  {
+                      "path":  "experiments/build001/campaign-2/acquisition/blocks/c2-acq-01/lc/subject-result-replacement-002.json",
+                      "sha256":  "356810f70611c45b1ba0c487268736e240d46243b3f5e016052e987fdb7a7e63",
+                      "bytes":  634
+                  },
+                  {
+                      "path":  "experiments/build001/campaign-2/acquisition/blocks/c2-acq-01/lc/subject-request-retry-004.json",
+                      "sha256":  "28086042ffcc8f5a59a83e376469cf77eea2d3a9c8179d60b6bf0538361cbf45",
+                      "bytes":  9106
+                  },
+                  {
+                      "path":  "experiments/build001/campaign-2/acquisition/blocks/c2-acq-01/lc/subject-result-retry-004.json",
+                      "sha256":  "69a7d8454be7ba98404d35e51954a712863ff401246d15ba091185b66ad914f4",
+                      "bytes":  5534
+                  },
+                  {
+                      "path":  "experiments/build001/campaign-2/acquisition/blocks/c2-acq-01/lc/begin-input-retry-004.json",
+                      "sha256":  "2f2cf23fcd9c535266463de17afc7a9ee2d80d1d37c251a1d11bb7440a8826a8",
+                      "bytes":  1499
+                  },
+                  {
+                      "path":  "experiments/build001/campaign-2/acquisition/blocks/c2-acq-01/lc/trial-invalidation-and-blocker.json",
+                      "sha256":  "4570b95e898cc10e93e78a9f13225c47084bf95d84d6ad87687777b505045a37",
+                      "bytes":  3663
+                  },
+                  {
+                      "path":  "experiments/build001/campaign-2/final-adjudication.json",
+                      "sha256":  "586ba3938c162e71db42eccc102b422f3c360e89b4bfbf88b5d39c8178482227",
+                      "bytes":  1122
+                  }
+              ]
+}

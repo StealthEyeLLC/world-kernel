@@ -1,0 +1,23 @@
+{
+    "schema":  "world-kernel-build001-campaign2-begin-input-v1",
+    "campaign_id":  "build001-campaign-2",
+    "phase":  "acquisition",
+    "trial_id":  "c2-acq-01-lc",
+    "configuration_block_id":  "c2-acq-01",
+    "evaluator_seed_id":  "campaign2-acquisition-block-seed-01-lc",
+    "arm":  "acquisition",
+    "semantic_action":  "git:create_local_commit",
+    "target":  "fixture:wk-b001-c2-a01-lc",
+    "parameters":  {
+                       "relative_path":  "fixture/state.txt",
+                       "message":  "Campaign 2 measured local commit wk-b001-c2-a01-lc",
+                       "timestamp":  "2026-01-22T01:20:44.0000000+00:00"
+                   },
+    "working_copy":  "X:\\WorldKernel\\Build001\\workspaces\\reset-acquisition-c2-a01-lc",
+    "reset_branch":  "wk-b001-c2-a01-lc",
+    "branch":  "wk-b001-c2-a01-lc",
+    "reset_manifest_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\acquisition\\blocks\\c2-acq-01\\lc\\reset.json",
+    "pre_observation_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\acquisition\\blocks\\c2-acq-01\\lc\\pre-observation.json",
+    "subject_request_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\acquisition\\blocks\\c2-acq-01\\lc\\subject-request-retry-004.json",
+    "subject_result_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\acquisition\\blocks\\c2-acq-01\\lc\\subject-result-retry-004.json"
+}

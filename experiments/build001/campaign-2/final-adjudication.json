@@ -1,0 +1,27 @@
+{
+    "schema":  "world-kernel-build001-campaign2-final-adjudication-v1",
+    "campaign_id":  "build001-campaign-2",
+    "recorded_at":  "2026-08-12T01:22:46.5653087+00:00",
+    "classification":  "FAILURE",
+    "failure_class":  "frozen_execution_integrity_failure_before_first_valid_acquisition_episode",
+    "acquisition":  {
+                        "valid_blocks":  0,
+                        "valid_episodes":  0,
+                        "published_checkpoint":  "0136bb24180194571970cc59be87ec3cd8a2dea4",
+                        "published_checkpoint_message":  "Complete Campaign 2 acquisition",
+                        "published_checkpoint_semantically_complete":  false
+                    },
+    "pilot":  {
+                  "blocks":  0,
+                  "freeze_created":  false
+              },
+    "confirmatory":  {
+                         "matched_blocks":  0,
+                         "started":  false
+                     },
+    "drift":  {
+                  "blocks":  0,
+                  "started":  false
+              },
+    "build002_scientifically_earned":  false
+}

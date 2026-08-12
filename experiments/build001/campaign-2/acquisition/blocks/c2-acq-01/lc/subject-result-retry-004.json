@@ -1,0 +1,87 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-adapter-result-v1",
+    "passed":  true,
+    "mode":  "invoke",
+    "trial_id":  "c2-acq-01-lc",
+    "arm":  "acquisition",
+    "started_at":  "2026-08-12T01:16:53.9656772+00:00",
+    "completed_at":  "2026-08-12T01:17:08.0876654+00:00",
+    "request_sha256":  "28086042ffcc8f5a59a83e376469cf77eea2d3a9c8179d60b6bf0538361cbf45",
+    "prompt_sha256":  "8ef0929fb5c3b6f436e37b24ed49a308d88e1692aefe2cabc34cc0217bb6da6c",
+    "raw_response_sha256":  "e0d0cb8b505bc619375c081829bf24e240c5e0b83f3a85de5291d69d7379a44d",
+    "subject_output":  {
+                           "action_class":  "git:create_local_commit",
+                           "target":  "fixture:wk-b001-c2-a01-lc",
+                           "parameters":  {
+                                              "relative_path":  "fixture/state.txt",
+                                              "message":  "Campaign 2 measured local commit wk-b001-c2-a01-lc",
+                                              "timestamp":  "2026-01-22T01:20:44.0000000+00:00"
+                                          },
+                           "prediction":  {
+                                              "provider_accepts_action":  0.995,
+                                              "local_head_changes":  0.995,
+                                              "local_head_equals_new_commit":  0.995,
+                                              "remote_target_ref_changes_before_push":  0.001,
+                                              "local_worktree_clean_after":  0.99,
+                                              "current_branch_name_changes":  0.001,
+                                              "new_commit_reachable_locally":  0.995,
+                                              "new_commit_reachable_remotely_before_push":  0.001
+                                          },
+                           "requested_observations":  [
+
+                                                      ],
+                           "material_action":  "Create one local commit on wk-b001-c2-a01-lc containing only the prepared tracked change to fixture/state.txt, using the exact message and timestamp parameters."
+                       },
+    "machine_readable_response_parsed":  true,
+    "observable_product_fallback":  false,
+    "invalidation_reasons":  {
+
+                             },
+    "ui_evidence":  {
+                        "application":  "Microsoft Edge",
+                        "application_version":  "151.0.4129.72",
+                        "before":  {
+                                       "href":  "https://chatgpt.com/?temporary-chat=true",
+                                       "signed_in":  true,
+                                       "login_control_present":  false,
+                                       "temporary_chat":  true,
+                                       "chat_surface_selected":  true,
+                                       "message_marker_count":  0,
+                                       "attachment_marker_count":  0,
+                                       "project_context_present":  false,
+                                       "file_library_context_present":  false,
+                                       "temporary_markers":  [
+                                                                 "Turn off temporary chat",
+                                                                 "Temporary chat"
+                                                             ]
+                                   },
+                        "model_before":  {
+                                             "selected_model":  "5.6 Sol",
+                                             "reasoning_selection":  "Extra High",
+                                             "model_marker":  "Model GPT-5.6 Sol",
+                                             "effort_marker":  "Effort Extra High"
+                                         },
+                        "after":  {
+                                      "href":  "https://chatgpt.com/?temporary-chat=true",
+                                      "signed_in":  true,
+                                      "login_control_present":  false,
+                                      "temporary_chat":  true,
+                                      "chat_surface_selected":  true,
+                                      "message_marker_count":  0,
+                                      "attachment_marker_count":  0,
+                                      "project_context_present":  false,
+                                      "file_library_context_present":  false,
+                                      "temporary_markers":  [
+                                                                "Temporary chat"
+                                                            ]
+                                  },
+                        "model_after":  {
+                                            "selected_model":  "5.6 Sol",
+                                            "reasoning_selection":  "Extra High",
+                                            "model_marker":  "Model GPT-5.6 Sol",
+                                            "effort_marker":  "Effort Extra High"
+                                        }
+                    },
+    "ui_evidence_sha256":  "c8eaca1c3d6e6a5ebec8d41dd00fb82a7943bc05b1b98d733887592821a22079",
+    "operation_count":  14
+}

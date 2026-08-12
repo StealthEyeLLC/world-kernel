@@ -1,0 +1,11 @@
+{
+    "schema":  "world-kernel-build001-campaign2-user-job-v1",
+    "job_id":  "c428e219e1214f3895b809a9052e46bb",
+    "operation":  "subject",
+    "status_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\acquisition\\blocks\\c2-acq-01\\lc\\job-c428e219e1214f3895b809a9052e46bb.status.json",
+    "arguments":  {
+                      "request_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\acquisition\\blocks\\c2-acq-01\\lc\\subject-request-retry-004.json",
+                      "output_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2\\acquisition\\blocks\\c2-acq-01\\lc\\subject-result-retry-004.json"
+                  },
+    "created_at":  "2026-08-12T01:16:53.1843074+00:00"
+}

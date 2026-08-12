@@ -1,8 +1,17 @@
 {
     "schema":  "world-kernel-build001-campaign2-controller-status-v1",
-    "state":  "running",
+    "state":  "blocked_execution_integrity_failure",
     "block":  1,
     "trial_id":  "c2-acq-01-lc",
     "semantic_action":  "git:create_local_commit",
-    "updated_at":  "2026-08-11T20:41:50.4179530+00:00"
+    "campaign2_action_attempts":  0,
+    "campaign2_predictions":  0,
+    "campaign2_outcomes":  0,
+    "campaign2_transition_episodes":  0,
+    "pilot_started":  false,
+    "confirmatory_started":  false,
+    "drift_started":  false,
+    "classification":  "FAILURE",
+    "blocker":  "23514: material/provider Claim lacks subject-matched Observation/Evidence lineage",
+    "updated_at":  "2026-08-12T01:22:46.5653087+00:00"
 }
