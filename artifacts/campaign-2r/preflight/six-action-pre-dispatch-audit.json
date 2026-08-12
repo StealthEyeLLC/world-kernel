@@ -1,6 +1,6 @@
 {
-    "schema":  "world-kernel-build001-campaign2r-six-action-pre-dispatch-audit-v1",
-    "generated_at":  "2026-08-12T03:27:28.7131572+00:00",
+    "schema":  "world-kernel-build001-campaign2r-six-action-pre-dispatch-audit-v2",
+    "generated_at":  "2026-08-12T04:25:39.8499773+00:00",
     "checks":  {
                    "controller_exact_six":  true,
                    "evaluation_spec_exact_six":  true,
@@ -8,9 +8,12 @@
                    "claims_before_action":  true,
                    "prediction_before_dispatch":  true,
                    "two_manifestation_targets":  true,
-                   "run_b_reset_ids_collision_proof":  true
+                   "run_b_reset_ids_collision_proof":  true,
+                   "material_action_limited_interactive_token":  true,
+                   "subject_remains_highest":  true,
+                   "context_proof_passed":  true
                },
-    "controller_sha256":  "4d941a2a5afeb82a77f8a6dd8224bf09339cb4e8e042181f3d9d08412a80339b",
+    "controller_sha256":  "51a2e03169c31ec48bad962c198a9a33b891a3f68212136f7d2608a8a1ee6f98",
     "controller_actions":  [
                                "git:create_local_commit",
                                "git:create_branch",
@@ -19,7 +22,6 @@
                                "git:fetch_remote",
                                "git:integrate_fast_forward"
                            ],
-    "passed":  true,
     "evaluation_spec_actions":  [
                                     "git:create_local_commit",
                                     "git:create_branch",
@@ -36,5 +38,7 @@
                              "git:fetch_remote",
                              "git:integrate_fast_forward"
                          ],
-    "execution_sha256":  "e5491a227e9eac2d0e87d2a5cf4b21d961fdf8c728da4fc338af97cd2164ace8"
+    "execution_sha256":  "e5491a227e9eac2d0e87d2a5cf4b21d961fdf8c728da4fc338af97cd2164ace8",
+    "material_action_context_proof_sha256":  "c001439b922567789aceee66d54c51d5e03def0689659269546f6714fae1e75a",
+    "passed":  true
 }

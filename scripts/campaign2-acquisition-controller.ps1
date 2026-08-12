@@ -309,7 +309,7 @@ for ($block = 1; $block -le $MaximumBlocks; $block++) {
                 semantic_action = $semanticAction; working_copy = $workingCopy
                 pre_observation_path = $prePath; prepare_path = $preparePath; output_path = $receiptPath
                 dotnet = $dotnet; cli_dll = $cliDll; fixture_root = $WorkspaceRoot; node = $node; sdk = $sdk
-            }) Highest $episodeRoot 360 | Out-Null
+            }) Limited $episodeRoot 360 | Out-Null
         }
 
         $postPath = Join-Path $episodeRoot 'post-observation.json'

@@ -1,8 +1,7 @@
 {
-    "schema":  "world-kernel-build001-campaign2r-preflight-artifact-index-v1",
+    "schema":  "world-kernel-build001-campaign2r-preflight-artifact-index-v2",
     "campaign_id":  "build001-campaign-2r",
-    "generated_at":  "2026-08-12T03:37:28.6527096+00:00",
-    "file_count":  46,
+    "generated_at":  "2026-08-12T04:27:37.2716502+00:00",
     "files":  [
                   {
                       "path":  "artifacts/campaign-2r/preflight/claim-construction-audit.json",
@@ -16,8 +15,8 @@
                   },
                   {
                       "path":  "artifacts/campaign-2r/preflight/implementation-test-results.json",
-                      "sha256":  "eb48a9b029a2f9412a9c6297b65b8db056ab5dc9114e7e2ad8fdd0897ac5404f",
-                      "bytes":  2280
+                      "sha256":  "5c07b1536e0c77d0630571a419503fb2e9d0a6269108ef24a5a88d988e6f4bcb",
+                      "bytes":  2281
                   },
                   {
                       "path":  "artifacts/campaign-2r/preflight/lineage-harness-final/git-create_branch.json",
@@ -55,13 +54,18 @@
                       "bytes":  6699
                   },
                   {
+                      "path":  "artifacts/campaign-2r/preflight/material-action-context-repair.json",
+                      "sha256":  "c001439b922567789aceee66d54c51d5e03def0689659269546f6714fae1e75a",
+                      "bytes":  955
+                  },
+                  {
                       "path":  "artifacts/campaign-2r/preflight/native-git-policy-rejection.json",
                       "sha256":  "457f92009b4fb9575104bce44f45acc99521eea0b8bb1234a368890255ccb590",
                       "bytes":  1206
                   },
                   {
                       "path":  "artifacts/campaign-2r/preflight/non-scientific-lifecycle-sentinel.json",
-                      "sha256":  "6ca55d8a0020aa6986fe3f2fca0fb1270448c63e8a3c72005b2abf1e1b282a3e",
+                      "sha256":  "cf62af26930681ba93227caccf2978e58b2c65529913198e68156ec01703524e",
                       "bytes":  841
                   },
                   {
@@ -211,13 +215,13 @@
                   },
                   {
                       "path":  "artifacts/campaign-2r/preflight/preflight-gates.json",
-                      "sha256":  "bfed8dbf13bb86e9d196583c18139ed1186f67b09fafc7de74a52f8fda1f387c",
+                      "sha256":  "7384f838221f877c2e2cc9657380c9d7685b27591f933bf168557cd9ce29aff3",
                       "bytes":  3999
                   },
                   {
                       "path":  "artifacts/campaign-2r/preflight/prefreeze-final-audit-manifest.json",
-                      "sha256":  "0d83e1778e69b21036b26d9d1315b1acf6a19f64babb8eaebdcab4196ea32fd9",
-                      "bytes":  9998
+                      "sha256":  "8d6034caa23768fedc0fabb15b949e4abcdeaa18953ac1a51d89af6cca504bf0",
+                      "bytes":  9790
                   },
                   {
                       "path":  "artifacts/campaign-2r/preflight/recovery-test.json",
@@ -225,14 +229,19 @@
                       "bytes":  497
                   },
                   {
+                      "path":  "artifacts/campaign-2r/preflight/scientific-boundary-pre-freeze.json",
+                      "sha256":  "27f00eeb852373d3bfccbc978ae7065b5539f52e614e3bfb76270ed2be2e8395",
+                      "bytes":  961
+                  },
+                  {
                       "path":  "artifacts/campaign-2r/preflight/scientific-boundary-zero.json",
-                      "sha256":  "b7e78dd667f669972d28f8daa4fbf983c36bdc7c01445403f260a186489043c2",
+                      "sha256":  "fe84b46901017a58291b8e0ddbcbbb6a0ca1bd95ade246c43cd0bde5d5062195",
                       "bytes":  1188
                   },
                   {
                       "path":  "artifacts/campaign-2r/preflight/six-action-pre-dispatch-audit.json",
-                      "sha256":  "213107804a4f352d4dffca1c06dfb1377c03a169914471c1fad7a4f737aaf450",
-                      "bytes":  2032
+                      "sha256":  "ec7be80689034aa18d136417cde649af9ca9a50fcdbd9fc03cb367aabb026ab6",
+                      "bytes":  2323
                   }
               ]
 }
