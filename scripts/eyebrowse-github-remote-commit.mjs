@@ -35,31 +35,54 @@ try {
   }
 
   const before = await eye.observe(target);
+  const elementName = item => String(item?.name ?? item?.Name ?? item?.label ?? item?.Label ?? '');
+  const queryItems = result => Array.isArray(result) ? result : (result?.items ?? result?.Items ?? result?.results ?? result?.Results ?? result?.elements ?? result?.Elements ?? []);
+  const elementId = item => item?.id ?? item?.Id ?? item?.elementId ?? item?.ElementId ?? item?.element_id;
   const editors = await eye.query({ target, role: 'textbox', limit: 20 });
-  const editorItems = editors.items ?? editors.results ?? editors.elements ?? [];
-  const editor = editorItems.find(item => /edit file|file contents|code/i.test(String(item.name ?? item.label ?? ''))) ?? editorItems[0];
-  const editorId = editor?.id ?? editor?.elementId ?? editor?.element_id;
-  if (!editorId) throw new Error('GitHub file editor textbox was not available through eyeBROWSE semantics');
-  await eye.fill(editorId, replacementText);
+  const editorItems = queryItems(editors);
+  const editor = editorItems.find(item => /edit file|file contents|code/i.test(elementName(item))) ?? editorItems[0];
+  const editorId = elementId(editor);
+  if (editorId) {
+    await eye.fill(editorId, replacementText);
+  } else {
+    const focused = await eye.jsValue(target, `(() => {
+      const candidate = document.querySelector('.cm-content[contenteditable="true"], [contenteditable="true"][role="textbox"]');
+      if (!candidate || !(candidate.offsetWidth || candidate.offsetHeight || candidate.getClientRects().length)) return false;
+      candidate.focus();
+      const range = document.createRange();
+      range.selectNodeContents(candidate);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      return true;
+    })()`);
+    if (!focused) throw new Error('GitHub visible file editor was not available through eyeBROWSE semantics or browser-side DOM state');
+    const inserted = await eye.jsValue(target, `(() => {
+      const candidate = document.activeElement;
+      if (!candidate || !candidate.isContentEditable) return false;
+      return document.execCommand('insertText', false, ${JSON.stringify(replacementText)});
+    })()`);
+    if (!inserted) throw new Error('GitHub visible CodeMirror editor rejected browser-side text insertion');
+  }
 
   const buttons = await eye.query({ target, role: 'button', limit: 60 });
-  const buttonItems = buttons.items ?? buttons.results ?? buttons.elements ?? [];
-  const commitChanges = buttonItems.find(item => /^commit changes/i.test(String(item.name ?? item.label ?? '')));
-  const commitChangesId = commitChanges?.id ?? commitChanges?.elementId ?? commitChanges?.element_id;
+  const buttonItems = queryItems(buttons);
+  const commitChanges = buttonItems.find(item => /^commit changes/i.test(elementName(item)));
+  const commitChangesId = elementId(commitChanges);
   if (!commitChangesId) throw new Error('GitHub Commit changes control was not found');
   await eye.click(commitChangesId);
   await eye.wait(target, "document.body && /commit changes/i.test(document.body.innerText)", 10000, 100);
 
   const dialogInputs = await eye.query({ target, role: 'textbox', limit: 20 });
-  const inputItems = dialogInputs.items ?? dialogInputs.results ?? dialogInputs.elements ?? [];
-  const messageInput = inputItems.find(item => /commit message/i.test(String(item.name ?? item.label ?? '')));
-  const messageId = messageInput?.id ?? messageInput?.elementId ?? messageInput?.element_id;
+  const inputItems = queryItems(dialogInputs);
+  const messageInput = inputItems.find(item => /commit message/i.test(elementName(item)));
+  const messageId = elementId(messageInput);
   if (messageId) await eye.fill(messageId, commitMessage);
 
   const finalButtons = await eye.query({ target, role: 'button', limit: 60 });
-  const finalItems = finalButtons.items ?? finalButtons.results ?? finalButtons.elements ?? [];
-  const finalCommit = finalItems.filter(item => /^commit changes/i.test(String(item.name ?? item.label ?? ''))).at(-1);
-  const finalId = finalCommit?.id ?? finalCommit?.elementId ?? finalCommit?.element_id;
+  const finalItems = queryItems(finalButtons);
+  const finalCommit = finalItems.filter(item => /^commit changes/i.test(elementName(item))).at(-1);
+  const finalId = elementId(finalCommit);
   if (!finalId) throw new Error('GitHub final Commit changes control was not found');
   await eye.click(finalId);
   await eye.wait(target, "location.pathname.includes('/blob/') && document.readyState === 'complete'", 30000, 100);

@@ -1,0 +1,53 @@
+{
+    "schema":  "world-kernel-build001-campaign2-fresh-invocation-v1",
+    "passed":  true,
+    "attestation_method_version":  "campaign2-temporary-chat-isolation-v1",
+    "trial_invalidation_rules_version":  "campaign2-trial-invalidation-v1",
+    "captured_at":  "2026-08-12T03:33:36.2882092+00:00",
+    "trial_id":  "campaign2r-p5-probe-final",
+    "observable_configuration_fingerprint_sha256":  "afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5",
+    "selected_model":  "5.6 Sol",
+    "reasoning_selection":  "Extra High",
+    "new_conversation":  true,
+    "temporary_chat":  true,
+    "prior_message_count":  0,
+    "no_prior_trial_transcript":  true,
+    "no_cross_arm_memory":  true,
+    "no_hidden_evaluator_state":  true,
+    "same_base_instructions":  true,
+    "same_tool_contract":  true,
+    "project_context_present":  false,
+    "file_library_context_present":  false,
+    "prior_trial_attachments_present":  false,
+    "observable_product_fallback":  false,
+    "machine_readable_response_parsed":  true,
+    "material_action_dispatched":  false,
+    "base_prompt_sha256":  "f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5",
+    "tool_contract_sha256":  "e1d2b899190ed0c0f88e1dce4fb2a73f653de20b9d8766df4e196cb4f883c181",
+    "arm_package_sha256":  "b0c621ae359f311ffe69bc07afe8355f948f1cd8ef58f2f025f33a22993aec9b",
+    "invocation_adapter_sha256":  "fb2ff43093c1f859cd6f909d0a4aa1be98b3ccea9a9b714538cc4b473b922885",
+    "subject_driver_sha256":  "f6e057758e7bc21b417aaf487fa79c034c632a7fc64a0820904c3a68a284d205",
+    "trial_output_contract_sha256":  "8aec3ac079db715f8d6990d52a8cd9f7d275e4e3ded2efa1088ef101d9d5c193",
+    "ui_evidence_sha256":  "f29f0cb83ffb269e2fc2386d19c596df729e879451350212903d605f21056f6d",
+    "request_sha256":  "a08fac5dc0243671e96e7a69f578aca1bb202b8045b073e82343bf922429be9b",
+    "prompt_sha256":  "ff7c569e513588807b884882c1bee828612ee2b897eb33e96732402ba79ee369",
+    "raw_response_sha256":  "ced991cdc6b22aaeb9369ad5ee8c9254375fed3e7aade4df0075e736142edb48",
+    "source_result_sha256":  "7a501753e89da06fb687495263972d2f6b04c664ea0fd6d57ed96d37e6f0cded",
+    "evidence":  {
+                     "request":  "experiments/build001/campaign-2r/preflight/p5-invoke-request.json",
+                     "result":  "experiments/build001/campaign-2r/preflight/p5-invoke-result.json",
+                     "pre_invocation_message_count":  0,
+                     "pre_invocation_attachment_count":  0,
+                     "temporary_chat_before":  true,
+                     "temporary_chat_after":  true,
+                     "model_before":  "5.6 Sol",
+                     "model_after":  "5.6 Sol",
+                     "reasoning_before":  "Extra High",
+                     "reasoning_after":  "Extra High",
+                     "adapter_invalidation_reasons":  [
+                                                          {
+
+                                                          }
+                                                      ]
+                 }
+}

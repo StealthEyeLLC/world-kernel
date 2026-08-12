@@ -1,0 +1,11 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-excluded-preflight-write-v1",
+    "excluded":  true,
+    "scientific":  false,
+    "branch":  "wk-b001-c2r-p2-live",
+    "commit":  "28f67bd1fd169a8f6e615a653be5425484676b4e",
+    "reason":  "Provider commit existed without a matching local Run B browser receipt/message correlation in the active continuation; excluded from P2 proof and all scientific evidence.",
+    "replacement_proof_branch":  "wk-b001-c2r-p2-live2",
+    "replacement_proof_commit":  "9b6d4b530a4d67209b517f33a8f15db55d5e440b",
+    "recorded_at":  "2026-08-12T03:10:06.5905342+00:00"
+}

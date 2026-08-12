@@ -1,0 +1,58 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-p0-edit-field-classification-v1",
+    "passed":  true,
+    "classification":  "four frozen personalization text fields",
+    "fields":  [
+                   {
+                       "name":  "Custom instructions",
+                       "id":  "",
+                       "value_length":  0,
+                       "ancestors":  [
+                                         "Personalization",
+                                         "Settings",
+                                         "ChatGPT"
+                                     ]
+                   },
+                   {
+                       "name":  "Nickname",
+                       "id":  "",
+                       "value_length":  0,
+                       "ancestors":  [
+                                         "Personalization",
+                                         "Settings",
+                                         "ChatGPT"
+                                     ]
+                   },
+                   {
+                       "name":  "Occupation",
+                       "id":  "",
+                       "value_length":  0,
+                       "ancestors":  [
+                                         "Personalization",
+                                         "Settings",
+                                         "ChatGPT"
+                                     ]
+                   },
+                   {
+                       "name":  "More about you",
+                       "id":  "",
+                       "value_length":  0,
+                       "ancestors":  [
+                                         "Personalization",
+                                         "Settings",
+                                         "ChatGPT"
+                                     ]
+                   }
+               ],
+    "excluded_controls":  [
+                              {
+                                  "name":  "Address and search bar",
+                                  "reason":  "outside frozen Personalization field set"
+                              },
+                              {
+                                  "name":  "",
+                                  "reason":  "outside frozen Personalization field set"
+                              }
+                          ],
+    "recorded_at":  "2026-08-12T03:34:33.6959497+00:00"
+}

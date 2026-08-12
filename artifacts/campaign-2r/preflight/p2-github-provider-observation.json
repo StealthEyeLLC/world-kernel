@@ -1,0 +1,28 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-github-provider-observation-v1",
+    "observed_at":  "2026-08-12T03:10:06.5482898+00:00",
+    "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+    "provider_native_repository_id":  1330898503,
+    "branch":  "wk-b001-c2r-p2-live2",
+    "pre_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "post_head":  "9b6d4b530a4d67209b517f33a8f15db55d5e440b",
+    "post_parent":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "post_commit_message":  "Campaign 2R P2 browser proof 004",
+    "post_commit_verified_signature":  true,
+    "post_committer":  "web-flow",
+    "proof_file":  "fixture/state.txt",
+    "proof_blob_sha":  "4fc78737dd3df7184d7988ebf869156326762f14",
+    "proof_content":  "seed_version=build001-fixture-v1\ngeneration=seed\nvalue=0\np2_browser_proof=campaign2r-004\n",
+    "main_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "main_blob_sha":  "b08cd210262cf0b37c8beec4ec54065376df488a",
+    "main_unchanged":  true,
+    "head_ahead_by":  1,
+    "proof_file_differs_from_main":  true,
+    "observation_method":  "GitHub connector branch fetch plus branch/main file fetch after browser receipt",
+    "connector_evidence":  {
+                               "pre_branch":  "turn170",
+                               "post_branch":  "turn173",
+                               "post_file":  "turn174",
+                               "main_file":  "turn175"
+                           }
+}

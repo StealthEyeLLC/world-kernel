@@ -1,0 +1,138 @@
+{
+    "schema":  "world-kernel-build001-campaign2-state-observation-v1",
+    "observed_at":  "2026-08-12T03:24:07.4127602+00:00",
+    "branch":  "wk-b001-c2-audit-reset",
+    "local_head":  "685a1bc20bdc61e7abe4eb6444449004ce8bb3d6",
+    "current_branch":  "wk-b001-c2-audit-reset",
+    "local_tree":  "8fa9dea4123948d1009754756b4416df638b6fd2",
+    "worktree_content_sha256":  "0fbf0c4f83d078dfbec7db43c1d4e12c14935d93458b22bdafbe88613134fe95",
+    "worktree_clean":  true,
+    "local_branches":  [
+                           "main",
+                           "wk-b001-c2-audit-reset"
+                       ],
+    "remote_head":  "685a1bc20bdc61e7abe4eb6444449004ce8bb3d6",
+    "remote_tracking_head":  "685a1bc20bdc61e7abe4eb6444449004ce8bb3d6",
+    "remote_head_reachable_locally":  true,
+    "local_head_parent_count":  1,
+    "remote_url":  "https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+    "public_topology_class":  "synchronized",
+    "commands":  [
+                     {
+                         "arguments":  [
+                                           "rev-parse",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "685a1bc20bdc61e7abe4eb6444449004ce8bb3d6"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "branch",
+                                           "--show-current"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "wk-b001-c2-audit-reset"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "rev-parse",
+                                           "HEAD^{tree}"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "8fa9dea4123948d1009754756b4416df638b6fd2"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "status",
+                                           "--porcelain=v2",
+                                           "--untracked-files=all"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "remote",
+                                           "get-url",
+                                           "origin"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "for-each-ref",
+                                           "--format=%(refname:short)",
+                                           "refs/heads"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "main",
+                                        "wk-b001-c2-audit-reset"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "rev-parse",
+                                           "--verify",
+                                           "refs/remotes/origin/wk-b001-c2-audit-reset"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "685a1bc20bdc61e7abe4eb6444449004ce8bb3d6"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "ls-remote",
+                                           "--heads",
+                                           "origin",
+                                           "refs/heads/wk-b001-c2-audit-reset"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "685a1bc20bdc61e7abe4eb6444449004ce8bb3d6\trefs/heads/wk-b001-c2-audit-reset"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "rev-list",
+                                           "--parents",
+                                           "-n",
+                                           "1",
+                                           "HEAD"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        "685a1bc20bdc61e7abe4eb6444449004ce8bb3d6 519d05879314cab45280a9f58efbd8859ecd8d64"
+                                    ]
+                     },
+                     {
+                         "arguments":  [
+                                           "ls-files"
+                                       ],
+                         "exit_code":  0,
+                         "output":  [
+                                        ".github/workflows/fixture-check.yml",
+                                        ".gitignore",
+                                        "FixtureProbe.slnx",
+                                        "README.md",
+                                        "fixture/check-mode.txt",
+                                        "fixture/state.txt",
+                                        "src/FixtureProbe/FixtureProbe.csproj",
+                                        "src/FixtureProbe/Program.cs"
+                                    ]
+                     }
+                 ]
+}

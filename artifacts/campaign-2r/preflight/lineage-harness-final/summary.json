@@ -1,0 +1,112 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-six-action-prefreeze-lineage-harness-v2",
+    "passed":  true,
+    "scientific":  false,
+    "isolation":  "one fresh PostgreSQL database per semantic action",
+    "state_observation":  "experiments/build001/campaign-2r/preflight/lineage-harness-state.json",
+    "working_copy":  "X:\\WorldKernel\\Build001\\workspaces\\c2r-lineage-sentinel",
+    "actions":  [
+                    {
+                        "semantic_action":  "git:create_local_commit",
+                        "passed":  true,
+                        "database":  "world_kernel_c2r_pf_git_create_local_commit_ab71b8",
+                        "database_counts":  {
+                                                "actions":  1,
+                                                "predictions":  1,
+                                                "outcomes":  0,
+                                                "evaluations":  0,
+                                                "episodes":  0
+                                            },
+                        "output":  "git-create_local_commit.json",
+                        "sha256":  "d679b1c570e95055c8ab3b7779bc97e816936a7872423b88dfc5b491504704cf",
+                        "action_id":  "6823a946-b170-4294-97a2-1df7d2fe1621",
+                        "prediction_id":  "de15a456-34b8-40e7-8855-1908f06547b1"
+                    },
+                    {
+                        "semantic_action":  "git:create_branch",
+                        "passed":  true,
+                        "database":  "world_kernel_c2r_pf_git_create_branch_03966e",
+                        "database_counts":  {
+                                                "actions":  1,
+                                                "predictions":  1,
+                                                "outcomes":  0,
+                                                "evaluations":  0,
+                                                "episodes":  0
+                                            },
+                        "output":  "git-create_branch.json",
+                        "sha256":  "466f36a74e69b7fd2b19c61c21d38cb86e2c64433b653696a340595595ccb91b",
+                        "action_id":  "2ef4416c-a900-411e-9c97-b7de9cebc6b5",
+                        "prediction_id":  "5f4aa76a-6f55-4a50-9d94-ad3f0920f734"
+                    },
+                    {
+                        "semantic_action":  "git:push_ref",
+                        "passed":  true,
+                        "database":  "world_kernel_c2r_pf_git_push_ref_cf470f",
+                        "database_counts":  {
+                                                "actions":  1,
+                                                "predictions":  1,
+                                                "outcomes":  0,
+                                                "evaluations":  0,
+                                                "episodes":  0
+                                            },
+                        "output":  "git-push_ref.json",
+                        "sha256":  "adb5a0cef97ac47e625dc3b27663cc9f50ce2caddf28ba67e44d244255af1033",
+                        "action_id":  "09299b39-a464-4768-bf72-5602274c1f1c",
+                        "prediction_id":  "9428c046-49c9-4fa0-8159-b6543eb2a617"
+                    },
+                    {
+                        "semantic_action":  "github:create_remote_commit",
+                        "passed":  true,
+                        "database":  "world_kernel_c2r_pf_github_create_remote_commit_4cf39f",
+                        "database_counts":  {
+                                                "actions":  1,
+                                                "predictions":  1,
+                                                "outcomes":  0,
+                                                "evaluations":  0,
+                                                "episodes":  0
+                                            },
+                        "output":  "github-create_remote_commit.json",
+                        "sha256":  "a71e4f40a427cd21c90224c98585f8614cbfe1768b24b511a5df844880100b66",
+                        "action_id":  "7c9676f1-454c-4caa-9ca6-d1741c501e4f",
+                        "prediction_id":  "0613de66-a68d-493d-85e0-d1136cc1d8e7"
+                    },
+                    {
+                        "semantic_action":  "git:fetch_remote",
+                        "passed":  true,
+                        "database":  "world_kernel_c2r_pf_git_fetch_remote_603440",
+                        "database_counts":  {
+                                                "actions":  1,
+                                                "predictions":  1,
+                                                "outcomes":  0,
+                                                "evaluations":  0,
+                                                "episodes":  0
+                                            },
+                        "output":  "git-fetch_remote.json",
+                        "sha256":  "fd9e770975fd3b071ef2fc92884fd661643d373a9e4129a2959d970e603a2a90",
+                        "action_id":  "4d0ad1ab-920d-4a35-ba66-6c23af8cece0",
+                        "prediction_id":  "d9ac3a99-8546-473a-bdc0-3454bb2e18a3"
+                    },
+                    {
+                        "semantic_action":  "git:integrate_fast_forward",
+                        "passed":  true,
+                        "database":  "world_kernel_c2r_pf_git_integrate_fast_forward_982439",
+                        "database_counts":  {
+                                                "actions":  1,
+                                                "predictions":  1,
+                                                "outcomes":  0,
+                                                "evaluations":  0,
+                                                "episodes":  0
+                                            },
+                        "output":  "git-integrate_fast_forward.json",
+                        "sha256":  "9d93dc1ec2ae9a7753ea9afccf802f59f68d15ca62388fad3a97675451106401",
+                        "action_id":  "08f0c318-dc73-4df1-a350-19bfe05aa8e2",
+                        "prediction_id":  "40a10ef6-9eb8-4858-9a60-2f31f1f28ca8"
+                    }
+                ],
+    "all_prediction_before_dispatch":  true,
+    "all_outcomes_zero":  true,
+    "all_evaluations_zero":  true,
+    "all_episodes_zero":  true,
+    "material_dispatch_permitted":  false,
+    "completed_at":  "2026-08-12T03:25:13.7515422+00:00"
+}

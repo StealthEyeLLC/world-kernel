@@ -1,0 +1,135 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-prefreeze-final-audit-manifest-v3",
+    "campaign_id":  "build001-campaign-2r",
+    "passed":  true,
+    "prospective":  true,
+    "scientific_counts_zero":  true,
+    "all_preflight_gates_passed":  true,
+    "authority":  "docs/campaigns/build001-campaign-2r/00-AUTHORITY.md",
+    "source_state":  {
+                         "base_head":  "6617d161682454cd0647fa4f0531299cfaa22cd4",
+                         "campaign_execution_sha256":  "e5491a227e9eac2d0e87d2a5cf4b21d961fdf8c728da4fc338af97cd2164ace8",
+                         "db_schema_sha256":  "cd5fe8f566d8538624650f7cbeed335d34b1dc1405d98e669a97aeac07a394af",
+                         "controller_sha256":  "4d941a2a5afeb82a77f8a6dd8224bf09339cb4e8e042181f3d9d08412a80339b",
+                         "eyebrowse_remote_commit_sha256":  "7ab15b020ce15c11be2acd033902d3a83d8caa287820f0abf4ead18ecfcf81e2",
+                         "subject_adapter_sha256":  "628907e08c883ee9d585b4000659392ae493217ab60d77b013ce0b2dd1127efb",
+                         "subject_driver_sha256":  "840e6ee6126b8226ec2b0a6d053501f071a10e91e65a4c79c73cb62e7e4cb264",
+                         "base_prompt_sha256":  "f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5",
+                         "tool_contract_sha256":  "e1d2b899190ed0c0f88e1dce4fb2a73f653de20b9d8766df4e196cb4f883c181",
+                         "trial_output_contract_sha256":  "8aec3ac079db715f8d6990d52a8cd9f7d275e4e3ded2efa1088ef101d9d5c193",
+                         "cold_package_sha256":  "53eb9ec10dd4e13a1d1c88b84c9445c2a5c3273ce59b696d22b68b627e061565",
+                         "observable_configuration_fingerprint":  "afc63aa5715471de2b59c12b9ca902fd5eef50eddc6c8df846c57f0442ff75e5"
+                     },
+    "required_evidence":  [
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p0-baseline.json",
+                                  "sha256":  "d0cbab6cf02d5573fc276fb314e0dad5d5a54742bba7db909348a25f56ebbb1b"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p1-codeeye-live.json",
+                                  "sha256":  "151d5e75ebaf090ba9667485f28e5b03cd25dc0e7874f58cc86358913b893659"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p2-eyebrowse-live.json",
+                                  "sha256":  "2ed1bbe8c87403d21a0b257346c073d3cf4614403adbb7b35979411b28f11de2"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p2-eyebrowse-remote-commit.json",
+                                  "sha256":  "10230bede7b4f5088c31b539de79fdb12407ff374644c92b7e4f120d19ed760b"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p3-native-git-observation.json",
+                                  "sha256":  "9e07d6f369f1a33c4e80079586f9e67a0a676609cd76336bb9e0932116ec7044"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p3-create-branch.json",
+                                  "sha256":  "a47cee27640c1792740e56214b42e5ff55a7ca6e4c792219d7577ecb7325e110"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p3-create-local-commit.json",
+                                  "sha256":  "6d77481597530317957c0aa2d476f1727692acbf84dd0081155d3548898c70b3"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p3-push-accepted.json",
+                                  "sha256":  "b7b5d874cce7ce7c84582de689bb80394c1f174265a92054677cead7d308c2a6"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/native-git-policy-rejection.json",
+                                  "sha256":  "457f92009b4fb9575104bce44f45acc99521eea0b8bb1234a368890255ccb590"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p3-fetch.json",
+                                  "sha256":  "bac0d77a21b6c415d4aaa1f468f9218cc2c1eeb88f76c6340f3a028229ee5101"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p3-integrate-fast-forward.json",
+                                  "sha256":  "7028c044ae3d900294ab2119dd38775ada98b031ed6cb65a9aa3116e7299224c"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p4-projection-rebuild.json",
+                                  "sha256":  "860ba6bd41a40c3f16bdc06072a7937f908028a3c26cbb2206219aa3e37a8533"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/postgres-runtime-manifest.json",
+                                  "sha256":  "f30c60e412556c9cffe32e09e101601260cc88202a96d27761c4e13b7878b1e2"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/recovery-test.json",
+                                  "sha256":  "3b2dae08cb0d83247f336955c01a5bc36282a6fa11aa88dcf7f50050d2ee3c42"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p5-fresh-invocation.json",
+                                  "sha256":  "98d9f11f5b5f24d856bbdb98a0180a80431babbb8ad09711e2c573b11edb966e"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/p6-deterministic-reset.json",
+                                  "sha256":  "34254c5c5f5b2aab68dadd81379bdee109ce494843a65639784126295af58122"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/claim-construction-audit.json",
+                                  "sha256":  "1343852d8900d9ea39db76f94a19de2b3d17a58ad0198abcd18632827d9412bf"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/six-action-pre-dispatch-audit.json",
+                                  "sha256":  "213107804a4f352d4dffca1c06dfb1377c03a169914471c1fad7a4f737aaf450"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/post-action-claim-audit.json",
+                                  "sha256":  "b96fdd8aa17ecb1c5ca21030e921335d96bda1d30657d1608fba4079eb7a5859"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/episode-export-leakage-audit.json",
+                                  "sha256":  "86a3b620eba00acdddd5d28bbb16eee662256f04ed7de6ebb4306b8c26283425"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/lineage-harness-final/summary.json",
+                                  "sha256":  "db030e39c8995e5b25ec90ec41e352b9d6f0f66cf413a0210124fa0714443d66"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/non-scientific-lifecycle-sentinel.json",
+                                  "sha256":  "6ca55d8a0020aa6986fe3f2fca0fb1270448c63e8a3c72005b2abf1e1b282a3e"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/implementation-test-results.json",
+                                  "sha256":  "eb48a9b029a2f9412a9c6297b65b8db056ab5dc9114e7e2ad8fdd0897ac5404f"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/preflight-gates.json",
+                                  "sha256":  "bfed8dbf13bb86e9d196583c18139ed1186f67b09fafc7de74a52f8fda1f387c"
+                              },
+                              {
+                                  "path":  "artifacts/campaign-2r/preflight/scientific-boundary-zero.json",
+                                  "sha256":  "b7e78dd667f669972d28f8daa4fbf983c36bdc7c01445403f260a186489043c2"
+                              }
+                          ],
+    "notes":  [
+                  "Run A remains immutable and is not salvaged.",
+                  "Fresh observable subject configuration reproduces the preregistered fingerprint exactly.",
+                  "Fresh P2 required only a mechanical current-GitHub UI compatibility repair; semantic action, provider authority, and success criteria are unchanged.",
+                  "The ambiguous first P2 branch write is excluded; only the correlated browser receipt plus independent GitHub provider observation is credited.",
+                  "Six dry lineage actions ran in separate fresh non-scientific databases with zero Outcomes/Evaluations/Episodes.",
+                  "The complete lifecycle sentinel is non-scientific and carries no Campaign 2R campaign_id.",
+                  "Campaign 2R scientific counters were reobserved at zero immediately before this manifest."
+              ],
+    "generated_at":  "2026-08-12T03:37:18.0704645+00:00"
+}

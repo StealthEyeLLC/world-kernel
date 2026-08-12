@@ -1,0 +1,19 @@
+{
+    "ok":  true,
+    "exit_code":  1,
+    "remote_before":  "cf6b216c5dcdf5418b6b37b84520c3cf79def08f",
+    "remote_after":  "cf6b216c5dcdf5418b6b37b84520c3cf79def08f",
+    "remote_unchanged":  true,
+    "gh006":  true,
+    "output":  [
+                   "remote: error: GH006: Protected branch update failed for refs/heads/wk-b001-c2r-p6-rejected.        ",
+                   "remote: ",
+                   "remote: - Changes must be made through a pull request.        ",
+                   "error: failed to push some refs to \u0027https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git\u0027",
+                   "To https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                   "!\tHEAD:refs/heads/wk-b001-c2r-p6-rejected\t[remote rejected] (protected branch hook declined)",
+                   "Done"
+               ],
+    "local_head":  "76e942bafcbf224584adcf2d364ddbfb233a5b8e",
+    "observed_at":  "2026-08-12T03:19:59.4919338+00:00"
+}

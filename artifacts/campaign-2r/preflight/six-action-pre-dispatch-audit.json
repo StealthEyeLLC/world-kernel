@@ -1,0 +1,40 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-six-action-pre-dispatch-audit-v1",
+    "generated_at":  "2026-08-12T03:27:28.7131572+00:00",
+    "checks":  {
+                   "controller_exact_six":  true,
+                   "evaluation_spec_exact_six":  true,
+                   "common_begin_path_orders_provider_observation_before_claims":  true,
+                   "claims_before_action":  true,
+                   "prediction_before_dispatch":  true,
+                   "two_manifestation_targets":  true,
+                   "run_b_reset_ids_collision_proof":  true
+               },
+    "controller_sha256":  "4d941a2a5afeb82a77f8a6dd8224bf09339cb4e8e042181f3d9d08412a80339b",
+    "controller_actions":  [
+                               "git:create_local_commit",
+                               "git:create_branch",
+                               "git:push_ref",
+                               "github:create_remote_commit",
+                               "git:fetch_remote",
+                               "git:integrate_fast_forward"
+                           ],
+    "passed":  true,
+    "evaluation_spec_actions":  [
+                                    "git:create_local_commit",
+                                    "git:create_branch",
+                                    "git:push_ref",
+                                    "github:create_remote_commit",
+                                    "git:fetch_remote",
+                                    "git:integrate_fast_forward"
+                                ],
+    "expected_actions":  [
+                             "git:create_local_commit",
+                             "git:create_branch",
+                             "git:push_ref",
+                             "github:create_remote_commit",
+                             "git:fetch_remote",
+                             "git:integrate_fast_forward"
+                         ],
+    "execution_sha256":  "e5491a227e9eac2d0e87d2a5cf4b21d961fdf8c728da4fc338af97cd2164ace8"
+}

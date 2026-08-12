@@ -1,0 +1,84 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-adapter-result-v1",
+    "passed":  true,
+    "mode":  "invoke",
+    "trial_id":  "campaign2r-p5-probe-final",
+    "arm":  "attestation_probe",
+    "started_at":  "2026-08-12T03:33:22.7372528+00:00",
+    "completed_at":  "2026-08-12T03:33:36.2882092+00:00",
+    "request_sha256":  "a08fac5dc0243671e96e7a69f578aca1bb202b8045b073e82343bf922429be9b",
+    "prompt_sha256":  "ff7c569e513588807b884882c1bee828612ee2b897eb33e96732402ba79ee369",
+    "raw_response_sha256":  "ced991cdc6b22aaeb9369ad5ee8c9254375fed3e7aade4df0075e736142edb48",
+    "subject_output":  {
+                           "action_class":  "git:create_branch",
+                           "target":  "fixture:preflight",
+                           "parameters":  {
+
+                                          },
+                           "prediction":  {
+                                              "provider_accepts_action":  0.99,
+                                              "new_local_branch_exists":  0.99,
+                                              "current_branch_is_new_branch":  0.99,
+                                              "local_head_sha_changes":  0.01,
+                                              "remote_branch_exists_before_push":  0.01,
+                                              "worktree_content_changes":  0.01
+                                          },
+                           "requested_observations":  [
+
+                                                      ],
+                           "material_action":  "Do not dispatch any provider action; attestation probe only."
+                       },
+    "machine_readable_response_parsed":  true,
+    "observable_product_fallback":  false,
+    "invalidation_reasons":  {
+
+                             },
+    "ui_evidence":  {
+                        "application":  "Microsoft Edge",
+                        "application_version":  "151.0.4129.72",
+                        "before":  {
+                                       "href":  "https://chatgpt.com/?temporary-chat=true",
+                                       "signed_in":  true,
+                                       "login_control_present":  false,
+                                       "temporary_chat":  true,
+                                       "chat_surface_selected":  true,
+                                       "message_marker_count":  0,
+                                       "attachment_marker_count":  0,
+                                       "project_context_present":  false,
+                                       "file_library_context_present":  false,
+                                       "temporary_markers":  [
+                                                                 "Turn off temporary chat",
+                                                                 "Temporary chat"
+                                                             ]
+                                   },
+                        "model_before":  {
+                                             "selected_model":  "5.6 Sol",
+                                             "reasoning_selection":  "Extra High",
+                                             "model_marker":  "Model GPT-5.6 Sol",
+                                             "effort_marker":  "Effort Extra High"
+                                         },
+                        "after":  {
+                                      "href":  "https://chatgpt.com/?temporary-chat=true",
+                                      "signed_in":  true,
+                                      "login_control_present":  false,
+                                      "temporary_chat":  true,
+                                      "chat_surface_selected":  true,
+                                      "message_marker_count":  0,
+                                      "attachment_marker_count":  0,
+                                      "project_context_present":  false,
+                                      "file_library_context_present":  false,
+                                      "temporary_markers":  [
+                                                                "Temporary chat",
+                                                                "You are the cognitive subject in a preregistered matched experiment. You are in a completely fresh conversation.\n\nUse only the common task text, the current provider observations, the common tool contract, and the arm package supplied below. Treat current provider observations as authoritative for current material state. Treat inherited history as historical experience, never as proof that provider state is still current.\n\nDo not use or request prior chats, personalization memory, project context, files, evaluator state, or information from another arm. Do not expose chain of thought. Return exactly one JSON object conforming to the supplied output contract, with no prose or Markdown.\n\nYour probabilities must be recorded before any material action is dispatched. If a required proposition is genuinely uncertain, express that uncertainty as a probability rather than inventing an observation.\n\nCOMMON TOOL CONTRACT\n{\n  \"schema\": \"world-kernel-build001-campaign2-subject-tool-contract-v1\",\n  \"role\": \"prediction_and_action_selection_only\",\n  \"provider_authority\": \"fresh observations supplied for the current trial\",\n  \"operator_executes_material_actions\": true,\n  \"subject_must_not_execute_tools\": true,\n  \"semantic_actions\": [\n    \"git:create_local_commit\",\n    \"git:create_branch\",\n    \"git:push_ref\",\n    \"github:create_remote_commit\",\n    \"git:fetch_remote\",\n    \"git:integrate_fast_forward\"\n  ],\n  \"output\": {\n    \"action_class\": \"one frozen semantic action\",\n    \"target\": \"exact target supplied by the trial\",\n    \"parameters\": \"object containing only requested action parameters\",\n    \"prediction\": \"object mapping every supplied proposition to a probability in [0,1]\",\n    \"requested_observations\": \"array of observation names; must be empty after the locked observation stage\",\n    \"material_action\": \"one concise operator instruction\"\n  },\n  \"forbidden_output\": [\n    \"chain_of_thought\",\n    \"hidden_evaluator_state\",\n    \"provider_outcome_not_yet_observed\",\n    \"another_arm_history\"\n  ]\n}\n\nARM PACKAGE (attestation_probe)\nNO INHERITED HISTORY. This is the common Campaign 2 P5 mechanism probe package.\n\nCURRENT PROVIDER OBSERVATIONS\nFresh final Run B Temporary Chat isolation probe under the frozen observable configuration. No material action is authorized or dispatched.\n\nLOCKED TASK\nSemantic action: git:create_branch\nTarget: fixture:preflight\nTask: Return the locked prediction JSON for this non-material attestation probe. Do not execute any provider action.\nPropositions: [\"provider_accepts_action\",\"new_local_branch_exists\",\"current_branch_is_new_branch\",\"local_head_sha_changes\",\"remote_branch_exists_before_push\",\"worktree_content_changes\"]\n\nReturn exactly the locked JSON object now."
+                                                            ]
+                                  },
+                        "model_after":  {
+                                            "selected_model":  "5.6 Sol",
+                                            "reasoning_selection":  "Extra High",
+                                            "model_marker":  "Model GPT-5.6 Sol",
+                                            "effort_marker":  "Effort Extra High"
+                                        }
+                    },
+    "ui_evidence_sha256":  "f29f0cb83ffb269e2fc2386d19c596df729e879451350212903d605f21056f6d",
+    "operation_count":  14
+}

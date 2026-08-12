@@ -1,0 +1,54 @@
+{
+    "preflight":  "P6 deterministic reset",
+    "accepted_regime":  {
+                            "fingerprint_1":  "0a5031800449bf9b310ac7fe305818ceb88de53a3a0f0f4ab566877cfa39e7b4",
+                            "fingerprint_2":  "0a5031800449bf9b310ac7fe305818ceb88de53a3a0f0f4ab566877cfa39e7b4",
+                            "head_1":  "9e5392113b86ab745ac6e6d513a8e768afc28dd6",
+                            "head_2":  "9e5392113b86ab745ac6e6d513a8e768afc28dd6",
+                            "restored_fingerprint":  "0a5031800449bf9b310ac7fe305818ceb88de53a3a0f0f4ab566877cfa39e7b4",
+                            "independent_fingerprint":  "0a5031800449bf9b310ac7fe305818ceb88de53a3a0f0f4ab566877cfa39e7b4",
+                            "reset_head":  "9e5392113b86ab745ac6e6d513a8e768afc28dd6",
+                            "post_probe_provider_head":  "654f60b9c2b32d66b1320b3f6c47c57c423066d4",
+                            "post_probe_parent":  "9e5392113b86ab745ac6e6d513a8e768afc28dd6",
+                            "push_exit_code":  0,
+                            "provider_up_to_date_confirmation":  true,
+                            "passed":  true
+                        },
+    "rejected_regime":  {
+                            "fingerprint_1":  "cbd84292324b90c4336b42781768f58a3f5d2473890fa6617da7adfa5914c48c",
+                            "fingerprint_2":  "cbd84292324b90c4336b42781768f58a3f5d2473890fa6617da7adfa5914c48c",
+                            "head_1":  "cf6b216c5dcdf5418b6b37b84520c3cf79def08f",
+                            "head_2":  "cf6b216c5dcdf5418b6b37b84520c3cf79def08f",
+                            "restored_fingerprint":  "cbd84292324b90c4336b42781768f58a3f5d2473890fa6617da7adfa5914c48c",
+                            "independent_fingerprint":  "cbd84292324b90c4336b42781768f58a3f5d2473890fa6617da7adfa5914c48c",
+                            "branch_protected":  true,
+                            "required_approving_reviews":  1,
+                            "admins_enforced":  true,
+                            "browser_freshness_setup":  "stale_until_reobserve",
+                            "push_exit_code":  1,
+                            "remote_unchanged_on_rejection":  true,
+                            "gh006":  true,
+                            "remote_head":  "cf6b216c5dcdf5418b6b37b84520c3cf79def08f",
+                            "local_rejected_probe_head":  "76e942bafcbf224584adcf2d364ddbfb233a5b8e",
+                            "passed":  true
+                        },
+    "different_regimes_have_different_fingerprints":  true,
+    "same_seed_repeated_material_state":  true,
+    "independent_reobservation_matches_reset":  true,
+    "accepted_provider_behavior_verified":  true,
+    "rejected_provider_behavior_verified":  true,
+    "provider_connector_evidence":  {
+                                        "accepted_branch":  "turn217",
+                                        "rejected_branch":  "turn218"
+                                    },
+    "source_artifacts":  [
+                             "artifacts/campaign-2r/preflight/p6-accepted-1.json",
+                             "artifacts/campaign-2r/preflight/p6-accepted-2.json",
+                             "artifacts/campaign-2r/preflight/p6-rejected-1.json",
+                             "artifacts/campaign-2r/preflight/p6-rejected-2.json",
+                             "artifacts/campaign-2r/preflight/p6-accepted-provider-confirmation.json",
+                             "artifacts/campaign-2r/preflight/p6-rejected-provider-confirmation.json"
+                         ],
+    "passed":  true,
+    "observed_at":  "2026-08-12T03:20:31.5021199+00:00"
+}

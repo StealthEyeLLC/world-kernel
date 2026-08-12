@@ -1,0 +1,62 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-p0-personalization-attestation-v1",
+    "passed":  true,
+    "captured_at":  "2026-08-12T03:32:14.3436925+00:00",
+    "workspace_type":  "Business",
+    "base_style_and_tone":  "Default",
+    "style_characteristics":  {
+                                  "warm":  "Default",
+                                  "enthusiastic":  "Default",
+                                  "headers_and_lists":  "Default",
+                                  "emoji":  "Default"
+                              },
+    "fast_answers_enabled":  false,
+    "account_memory_enabled":  true,
+    "record_history_reference_enabled":  true,
+    "custom_instruction_fields":  [
+                                      {
+                                          "name":  "Custom instructions",
+                                          "id":  "",
+                                          "value_length":  0,
+                                          "ancestors":  [
+                                                            "Personalization",
+                                                            "Settings",
+                                                            "ChatGPT"
+                                                        ]
+                                      },
+                                      {
+                                          "name":  "Nickname",
+                                          "id":  "",
+                                          "value_length":  0,
+                                          "ancestors":  [
+                                                            "Personalization",
+                                                            "Settings",
+                                                            "ChatGPT"
+                                                        ]
+                                      },
+                                      {
+                                          "name":  "Occupation",
+                                          "id":  "",
+                                          "value_length":  0,
+                                          "ancestors":  [
+                                                            "Personalization",
+                                                            "Settings",
+                                                            "ChatGPT"
+                                                        ]
+                                      },
+                                      {
+                                          "name":  "More about you",
+                                          "id":  "",
+                                          "value_length":  0,
+                                          "ancestors":  [
+                                                            "Personalization",
+                                                            "Settings",
+                                                            "ChatGPT"
+                                                        ]
+                                      }
+                                  ],
+    "custom_instruction_field_count":  4,
+    "custom_instruction_values_all_empty":  true,
+    "custom_instruction_empty_value_sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "observation_method":  "fresh Windows UI Automation inspection of signed-in ChatGPT Personalization controls"
+}

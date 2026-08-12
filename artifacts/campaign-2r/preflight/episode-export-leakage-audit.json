@@ -1,0 +1,33 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-episode-export-leakage-audit-v1",
+    "passed":  true,
+    "checks":  {
+                   "episode_export_record_has_no_hidden_fields":  true,
+                   "both_export_sites_found":  true,
+                   "export_sites_have_no_hidden_inputs":  true,
+                   "remote_ref_has_dedicated_public_evidence_channel":  true,
+                   "normal_export_includes_pre_and_post_remote_hashes":  true,
+                   "recovery_export_includes_reconstructed_remote_hashes":  true
+               },
+    "forbidden_terms":  [
+                            "HiddenConfiguration",
+                            "hidden_configuration",
+                            "SeedId",
+                            "seed_id",
+                            "push_regime",
+                            "check_regime",
+                            "integration_regime",
+                            "policy_epoch",
+                            "expected_configuration_fingerprint",
+                            "sealed_payload_ref"
+                        ],
+    "record_leaks":  [
+
+                     ],
+    "constructor_leaks":  [
+
+                          ],
+    "packages_sha256":  "ca1bc3e55b0c1a0dc04b2af66d4f6883f0d3788dfef13d440dd4020f3c60e390",
+    "execution_sha256":  "e5491a227e9eac2d0e87d2a5cf4b21d961fdf8c728da4fc338af97cd2164ace8",
+    "generated_at":  "2026-08-12T02:46:42.6300053+00:00"
+}

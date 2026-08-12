@@ -1,0 +1,16 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-claim-construction-audit-v1",
+    "generated_at":  "2026-08-12T02:46:21.3185035+00:00",
+    "source_sha256":  "e5491a227e9eac2d0e87d2a5cf4b21d961fdf8c728da4fc338af97cd2164ace8",
+    "checks":  {
+                   "remote_ref_helper_pre":  true,
+                   "remote_claim_requires_remote_pair":  true,
+                   "local_observation_local_only":  true,
+                   "provider_compatibility_gate":  true,
+                   "succeeded_observation_required":  true,
+                   "receipt_excluded":  true,
+                   "replay_freshness_reset_rejected":  true
+               },
+    "passed":  true,
+    "db_schema_sha256":  "cd5fe8f566d8538624650f7cbeed335d34b1dc1405d98e669a97aeac07a394af"
+}

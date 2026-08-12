@@ -1,0 +1,36 @@
+{
+    "reset_version":  "build001-fixture-reset-v1",
+    "phase":  "acquisition",
+    "block_id":  "c2r-p3-fetch",
+    "arm":  "acquisition",
+    "generation_id":  "8e2b2ae6-a98d-4f6e-9929-423cb20608c2",
+    "seed_commitment_sha256":  "d237d244b5d47471b9b83cb87bca49a549571eda2e565f1398df4a507d39b1d9",
+    "material":  {
+                     "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+                     "provider_native_repository_id":  1330898503,
+                     "base_head":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+                     "local_head":  "643fd4eb89e1c8566b3cc1ef7e2cd4e6ed2a9ea2",
+                     "remote_head":  "643fd4eb89e1c8566b3cc1ef7e2cd4e6ed2a9ea2",
+                     "tree":  "2a3ab43a198ee545f21506b98482270dee3bca57",
+                     "branch":  "wk-b001-c2r-p3-fetch",
+                     "state_sha256":  "22976033a397274b99cafeba7f80bc165d893b8d3ce3b98da314fc0c6bc73657",
+                     "push_policy":  {
+                                         "branch_protected":  false,
+                                         "required_approving_reviews":  0,
+                                         "admins_enforced":  false
+                                     },
+                     "check_provider":  {
+                                            "workflow_state":  "active",
+                                            "encrypted_check_secret_present":  true
+                                        },
+                     "browser_freshness_setup":  "fresh"
+                 },
+    "actual_fingerprint":  "4c5401cc312db777ab753953ec920831341b473988b7bc3e169640597a8240f6",
+    "exact_local_remote_match":  true,
+    "reset_verified":  true,
+    "provider_evidence":  {
+                              "configured_remote":  "https://github.com/StealthEyeLLC/world-kernel-build-001-fixture.git",
+                              "provider_configuration_fingerprint":  "debacfa2ef19bcb06d116f0697d41cfe273cc53c5088eaeb5f6e804545d97016"
+                          },
+    "reset_at":  "2026-08-12T03:15:08.3090488+00:00"
+}

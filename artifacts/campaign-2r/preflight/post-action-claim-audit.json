@@ -1,0 +1,14 @@
+{
+    "execution_sha256":  "e5491a227e9eac2d0e87d2a5cf4b21d961fdf8c728da4fc338af97cd2164ace8",
+    "passed":  true,
+    "checks":  {
+                   "post_remote_lineage":  true,
+                   "post_claims_use_remote_pair":  true,
+                   "outcome_links_remote_ref_observation":  true,
+                   "outcome_links_remote_ref_evidence":  true,
+                   "provider_check_claims_use_provider_pair":  true,
+                   "dispositions_after_fresh_claims":  true
+               },
+    "schema":  "world-kernel-build001-campaign2r-post-action-claim-audit-v1",
+    "generated_at":  "2026-08-12T02:46:21.3757610+00:00"
+}

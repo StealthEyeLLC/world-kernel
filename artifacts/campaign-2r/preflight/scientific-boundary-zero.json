@@ -1,0 +1,25 @@
+{
+    "schema":  "world-kernel-build001-campaign2r-scientific-boundary-zero-v1",
+    "campaign_id":  "build001-campaign-2r",
+    "passed":  true,
+    "prospective":  true,
+    "scientific_outcomes_observed":  false,
+    "scientific_counts":  {
+                              "action_attempts":  0,
+                              "predictions":  0,
+                              "outcomes":  0,
+                              "prediction_evaluations":  0,
+                              "transition_episodes":  0,
+                              "campaign_scoped_claims":  0,
+                              "campaign_scoped_correspondences":  0,
+                              "evaluator_seed_commitments":  0,
+                              "evaluator_ground_truth":  0,
+                              "acquisition_files":  0
+                          },
+    "selection_basis":  {
+                            "configuration_block_prefix":  "c2r-acq-",
+                            "campaign_scope":  "build001-campaign-2r",
+                            "controller_trial_prefix":  "c2r-acq-"
+                        },
+    "observed_at":  "2026-08-12T03:36:57.1419497+00:00"
+}

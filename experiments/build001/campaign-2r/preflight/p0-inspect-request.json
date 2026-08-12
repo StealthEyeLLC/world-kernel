@@ -1,0 +1,31 @@
+{
+    "schema":  "world-kernel-build001-campaign2-subject-request-v1",
+    "mode":  "inspect",
+    "trial_id":  "campaign2r-p0-inspect-001",
+    "arm":  "attestation_probe",
+    "expected_model":  "5.6 Sol",
+    "expected_reasoning":  "Extra High",
+    "observable_configuration_fingerprint_sha256":  "0000000000000000000000000000000000000000000000000000000000000000",
+    "base_prompt_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2r\\base-prompt.txt",
+    "base_prompt_sha256":  "f4ce7079afc8bfdc02998f62db9d32d3853d5b2b36a4c7f45fc2a1289c4e8fe5",
+    "tool_contract_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2r\\tool-contract.json",
+    "tool_contract_sha256":  "e1d2b899190ed0c0f88e1dce4fb2a73f653de20b9d8766df4e196cb4f883c181",
+    "trial_output_contract_sha256":  "8aec3ac079db715f8d6990d52a8cd9f7d275e4e3ded2efa1088ef101d9d5c193",
+    "arm_package_path":  "X:\\WorldKernel\\Build001\\repo\\experiments\\build001\\campaign-2r\\packages\\attestation-probe.txt",
+    "arm_package_sha256":  "b0c621ae359f311ffe69bc07afe8355f948f1cd8ef58f2f025f33a22993aec9b",
+    "semantic_action":  "git:create_branch",
+    "target":  "fixture:preflight",
+    "task":  "Return the locked JSON object for the attestation probe.",
+    "current_observations":  "Run B preflight subject mechanism inspection; no material provider action will be dispatched.",
+    "propositions":  [
+                         "provider_accepts_action",
+                         "new_local_branch_exists",
+                         "current_branch_is_new_branch",
+                         "local_head_sha_changes",
+                         "remote_branch_exists_before_push",
+                         "worktree_content_changes"
+                     ],
+    "extra_treatment_model_calls":  0,
+    "response_timeout_ms":  900000,
+    "generated_at":  "2026-08-12T02:49:46.1881147+00:00"
+}

@@ -1,0 +1,32 @@
+{
+    "schema":  "world-kernel-build001-campaign2-eyebrowse-write-attestation-v1",
+    "preflight":  "P2 authenticated eyeBROWSE remote commit",
+    "passed":  true,
+    "exit_code":  0,
+    "observed_at":  "2026-08-12T03:10:06.5905342+00:00",
+    "write_occurred":  true,
+    "provider_state_independently_verified":  true,
+    "stale_then_fresh_distinguished":  true,
+    "mutation_confined_to_fixture":  true,
+    "repository":  "StealthEyeLLC/world-kernel-build-001-fixture",
+    "authenticated_browser_login":  "StealthEyeLLC",
+    "provider_write_method":  "GitHub web through authenticated eyeBROWSE",
+    "branch":  "wk-b001-c2r-p2-live2",
+    "base_branch":  "main",
+    "base_sha":  "519d05879314cab45280a9f58efbd8859ecd8d64",
+    "provider_commit_sha":  "9b6d4b530a4d67209b517f33a8f15db55d5e440b",
+    "path":  "fixture/state.txt",
+    "browser_receipt_sha256":  "f7f86522f395dc5921305e7fce77068b6d29786bc803a18bfd4e4873be013ef7",
+    "browser_program_host_evidence_sha256":  "50da35bf8dda4bd0e1daaa00c913ddc1d0d2732f8b3c66675f8581ec0d897288",
+    "fresh_provider_observation_sha256":  "7332a9a3aaf1b049cffd32b105b993f254dacbdc80ae955feb4abd2dbf45a8f7",
+    "independent_observation_method":  "GitHub connector branch fetch and branch/main file lookup after browser receipt",
+    "main_unchanged":  true,
+    "head_ahead_by":  1,
+    "proof_file_present_on_head":  true,
+    "proof_file_absent_on_main":  true,
+    "additional_write_during_compact_rerun":  false,
+    "evidence":  {
+                     "browser":  "artifacts/campaign-2r/preflight/p2-browser-receipt.json",
+                     "provider":  "artifacts/campaign-2r/preflight/p2-github-provider-observation.json"
+                 }
+}

@@ -1,0 +1,18 @@
+{
+    "observed_at":  "2026-08-12T03:17:26.3145491+00:00",
+    "topology":  "portable loopback process hosted by a manual triggerless experiment-owned scheduled task; no Windows SCM service",
+    "postgres_version":  "postgres (PostgreSQL) 18.4",
+    "bin_root":  "C:\\WorldKernel\\Build001\\runtime\\postgresql-18.4\\bin",
+    "data_root":  "C:\\WorldKernel\\Build001\\runtime\\pgdata",
+    "port":  55431,
+    "listen_addresses":  "127.0.0.1",
+    "on_demand_scheduled_task":  "world-kernel-build001-postgres",
+    "scheduled_task_state":  "Running",
+    "windows_scm_services":  [
+
+                             ],
+    "no_windows_scm_service":  true,
+    "auth":  "scram-sha-256",
+    "secret_file":  "C:\\WorldKernel\\Build001\\runtime\\secrets\\connections.json",
+    "observation_method":  "live postgres --version, SHOW listen_addresses/port, Windows service and scheduled-task inspection"
+}
